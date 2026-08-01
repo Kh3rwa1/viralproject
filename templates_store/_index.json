@@ -1,0 +1,50 @@
+[
+  {
+    "name": "coaching",
+    "file": "/Users/dulorai/Documents/viralproject/templates_store/coaching.html",
+    "label": "Coaching",
+    "title_sample": "BrightPath Coaching Centre",
+    "accent": "#f4efe2",
+    "contract": "SITE",
+    "fields": [
+      "city",
+      "name",
+      "phoneDisplay",
+      "shortName"
+    ],
+    "og_image": "https://images.pexels.com/videos/6964495/free-video-6964495.jpg?auto=compress&amp;cs=tinysrgb&amp;w=1200"
+  },
+  {
+    "name": "dentist",
+    "file": "/Users/dulorai/Documents/viralproject/templates_store/dentist.html",
+    "label": "Dentist",
+    "title_sample": "Dr Tanmoy Das Dental Clinic \u2014 Malda, West Bengal",
+    "accent": "#061b19",
+    "contract": "LEAD",
+    "fields": [],
+    "og_image": "https://images.pexels.com/videos/5356060/pexels-photo-5356060.jpeg?auto=compress&w=1200"
+  },
+  {
+    "name": "lawyer",
+    "file": "/Users/dulorai/Documents/viralproject/templates_store/lawyer.html",
+    "label": "Lawyer",
+    "title_sample": "Legal Consultation in Jamshedpur",
+    "accent": "#120d0b",
+    "contract": "LEAD",
+    "fields": [
+      "address",
+      "category",
+      "categoryLocation",
+      "city",
+      "fullName",
+      "hours",
+      "initials",
+      "phone",
+      "rating",
+      "review",
+      "reviewCount",
+      "shortName"
+    ],
+    "og_image": "https://images.pexels.com/videos/8061607/pexels-photo-8061607.jpeg?auto=compress&w=1200"
+  }
+]

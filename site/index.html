@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LeadPages — Ek list upload karo. 300 websites ready. WhatsApp pe bhejo.</title>
+<meta name="description" content="Local dukaan, doctor, lawyer ki list upload karo. Har ek ke liye ready website ban jaati hai — unke naam ke saath. Link WhatsApp pe bhejo aur client banao. No coding.">
+<meta name="theme-color" content="#f6f5f0">
+<meta property="og:title" content="Ek list upload karo. 300 websites ready.">
+<meta property="og:description" content="Har local business ke liye ready website. Link WhatsApp pe bhejo. Client banao.">
+<meta property="og:image" content="/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --cream:#f6f5f0; --ink:#141414; --mut:#6b6963; --line:#e2e0d8;
+ --green:#12634a; --green2:#1a8060; --card:#fffefb; --shadow:0 18px 44px -22px rgba(20,20,20,.28);
+}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);
+ font:16px/1.6 'Segoe UI',system-ui,-apple-system,sans-serif;overflow-x:hidden;
+ -webkit-font-smoothing:antialiased}
+/* ── grid canvas ─────────────────────────────── */
+.grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background-image:linear-gradient(var(--line) 1px,transparent 1px),
+ linear-gradient(90deg,var(--line) 1px,transparent 1px);
+ background-size:96px 96px;opacity:.55;animation:drift 60s linear infinite}
+@keyframes drift{to{background-position:96px 96px}}
+.glow{position:fixed;top:-30vh;left:50%;transform:translateX(-50%);
+ width:130vw;height:70vh;z-index:0;pointer-events:none;
+ background:radial-gradient(ellipse at 50% 0,rgba(255,255,255,.95),transparent 62%)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px;position:relative;z-index:2}
+a{color:inherit;text-decoration:none}
+/* ── nav ─────────────────────────────────────── */
+nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+ padding:18px 26px;margin:14px auto;max-width:1080px;border-radius:16px;
+ transition:.35s cubic-bezier(.2,.8,.2,1)}
+nav.stuck{background:rgba(255,254,251,.82);backdrop-filter:blur(14px);
+ box-shadow:var(--shadow);padding:11px 22px}
+.logo{font-size:21px;font-weight:800;letter-spacing:-.04em;color:var(--green)}
+.nav-links{display:flex;gap:26px;font-size:14.5px;font-weight:550;color:#3a3936}
+.nav-links a{position:relative;padding:3px 0;color:#3a3936}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:1.5px;width:0;
+ background:var(--green);transition:width .28s}
+.nav-links a:hover::after{width:100%}
+.btn{position:relative;display:inline-flex;align-items:center;gap:9px;border:0;cursor:pointer;
+ font:inherit;font-weight:650;font-size:15px;padding:13px 24px;border-radius:12px;overflow:hidden;
+ background:linear-gradient(135deg,var(--green2),var(--green));color:#fff;
+ box-shadow:0 10px 24px -12px rgba(18,99,74,.85);transition:transform .22s,box-shadow .22s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 16px 30px -12px rgba(18,99,74,.9)}
+.btn:active{transform:translateY(0) scale(.985)}
+.btn::before{content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;
+ background:linear-gradient(90deg,transparent,rgba(255,255,255,.38),transparent);
+ transform:skewX(-20deg)}
+.btn:hover::before{animation:shine .75s}
+@keyframes shine{to{left:140%}}
+.btn .arw{transition:transform .25s}.btn:hover .arw{transform:translateX(4px)}
+.btn.dark{background:var(--ink);box-shadow:0 10px 22px -14px #000}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);box-shadow:none}
+.btn.ghost:hover{border-color:var(--green);color:var(--green)}
+.btn.sm{padding:9px 17px;font-size:14px;border-radius:10px}
+/* ── hero ────────────────────────────────────── */
+header{text-align:center;padding:52px 0 30px;position:relative}
+.pill{display:inline-flex;align-items:center;gap:7px;background:#e8f0ea;color:var(--green);
+ border:1px solid #cfe0d5;border-radius:999px;padding:6px 15px;font-size:13px;font-weight:650}
+.pill .dot{width:7px;height:7px;border-radius:50%;background:var(--green);
+ animation:blip 1.6s ease-in-out infinite}
+@keyframes blip{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.55);opacity:.45}}
+h1{font-size:clamp(35px,6.4vw,68px);line-height:1.04;letter-spacing:-.035em;font-weight:800;
+ margin:22px auto 0;max-width:14ch}
+h1 .g{color:var(--green);position:relative;white-space:nowrap}
+h1 .g::after{content:"";position:absolute;left:0;bottom:.08em;width:100%;height:.09em;
+ background:var(--green);opacity:.22;transform:scaleX(0);transform-origin:left;
+ animation:ul .8s .9s forwards cubic-bezier(.2,.8,.2,1)}
+@keyframes ul{to{transform:scaleX(1)}}
+.rot{display:inline-block;min-width:5.6ch;text-align:left}
+.lede{color:var(--mut);font-size:clamp(15px,1.9vw,18px);max-width:56ch;margin:20px auto 0}
+.hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.micro{font-size:13px;color:#8a877f;margin-top:14px}
+/* ── floating avatars ────────────────────────── */
+.av{position:absolute;z-index:3;cursor:default;animation:float 7s ease-in-out infinite}
+.av .bub{width:60px;height:60px;border-radius:50%;border:3px solid #fff;box-shadow:var(--shadow);
+ display:grid;place-items:center;font-weight:750;color:#fff;font-size:19px;letter-spacing:-.02em;
+ transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.av:hover .bub{transform:scale(1.12) rotate(-4deg)}
+.av .cur{position:absolute;width:0;height:0;border-left:11px solid var(--green);
+ border-top:7px solid transparent;border-bottom:7px solid transparent}
+.av .tag{position:absolute;white-space:nowrap;background:var(--green);color:#fff;font-size:11.5px;
+ font-weight:650;padding:3px 9px;border-radius:7px;opacity:0;transform:translateY(4px);
+ transition:.25s;pointer-events:none}
+.av:hover .tag{opacity:1;transform:translateY(0)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}
+.a1{top:150px;left:2%}.a2{top:140px;right:3%}.a3{top:430px;left:9%}.a4{top:420px;right:9%}
+.a1 .cur{right:-14px;bottom:-6px}.a1 .tag{right:-96px;bottom:-16px}
+.a2 .cur{left:-14px;bottom:-6px;transform:scaleX(-1)}.a2 .tag{left:-104px;bottom:-16px}
+.a3 .cur{right:-14px;bottom:-6px}.a3 .tag{right:-92px;bottom:-16px}
+.a4 .cur{left:-14px;bottom:-6px;transform:scaleX(-1)}.a4 .tag{left:-98px;bottom:-16px}
+@media(max-width:900px){.av{display:none}}
+/* ── trust strip ─────────────────────────────── */
+.strip{display:flex;align-items:center;gap:34px;padding:34px 0 8px;flex-wrap:wrap;
+ border-top:1px solid var(--line);margin-top:54px}
+.strip b{font-size:14.5px;line-height:1.35;max-width:170px}
+.marq{flex:1;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marq ul{display:flex;gap:46px;list-style:none;animation:slide 26s linear infinite;width:max-content}
+.marq li{display:flex;align-items:center;gap:9px;font-weight:750;font-size:17px;color:#2a2926;
+ opacity:.72;transition:opacity .3s}
+.marq:hover ul{animation-play-state:paused}.marq li:hover{opacity:1}
+.marq .ic{width:26px;height:26px;border-radius:8px;background:var(--ink);color:#fff;
+ display:grid;place-items:center;font-size:13px}
+@keyframes slide{to{transform:translateX(-50%)}}
+/* ── sections ────────────────────────────────── */
+section{padding:66px 0}
+.eyebrow{color:var(--green);font-size:12.5px;font-weight:750;letter-spacing:.14em;text-transform:uppercase}
+h2{font-size:clamp(25px,3.6vw,38px);letter-spacing:-.03em;line-height:1.14;margin:10px 0 12px;font-weight:800}
+.sub{color:var(--mut);max-width:58ch;font-size:16.5px}
+.center{text-align:center}.center .sub{margin-inline:auto}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.grid{display:grid;gap:16px;margin-top:34px}
+.g4{grid-template-columns:repeat(auto-fit,minmax(228px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;
+ transition:transform .32s cubic-bezier(.2,.8,.2,1),box-shadow .32s,border-color .32s;position:relative}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:#cfd8d0}
+.num{width:34px;height:34px;border-radius:11px;background:#e8f0ea;color:var(--green);
+ display:grid;place-items:center;font-weight:800;font-size:14px;margin-bottom:14px;
+ transition:.3s}
+.card:hover .num{background:var(--green);color:#fff;transform:rotate(-8deg) scale(1.08)}
+.card h3{font-size:17px;margin-bottom:7px;letter-spacing:-.01em}
+.card p{color:var(--mut);font-size:14.8px}
+/* ── stats ───────────────────────────────────── */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:36px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;text-align:center}
+.stat .n{font-size:34px;font-weight:800;letter-spacing:-.03em;color:var(--green)}
+.stat .l{font-size:13.5px;color:var(--mut);margin-top:3px}
+/* ── phone mock ──────────────────────────────── */
+.wa{max-width:340px;margin:0 auto;background:#e9e3da;border-radius:22px;padding:16px;
+ box-shadow:var(--shadow);border:1px solid var(--line)}
+.wa .msg{background:#d9fdd3;border-radius:12px 12px 3px 12px;padding:11px 13px;font-size:14.5px;
+ margin-left:auto;max-width:96%}
+.wa .prev{background:#fff;border-radius:10px;overflow:hidden;margin-top:9px;
+ border:1px solid #e5e5e5;animation:pop .5s .3s both}
+@keyframes pop{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+.wa .prev .im{height:92px;background:linear-gradient(120deg,#1c2b26,#12634a)}
+.wa .prev .tx{padding:9px 11px}
+.wa .prev .t{font-size:13.5px;font-weight:700}
+.wa .prev .d{font-size:12px;color:#7a7a7a;margin-top:2px}
+.wa .lnk{color:#1c7ed6;font-size:13px;margin-top:7px;word-break:break-all}
+.tick{color:#53bdeb;font-size:11px;text-align:right;margin-top:3px}
+/* ── pricing ─────────────────────────────────── */
+.tier{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;
+ display:flex;flex-direction:column;transition:.32s cubic-bezier(.2,.8,.2,1)}
+.tier:hover{transform:translateY(-7px);box-shadow:var(--shadow)}
+.tier.best{border-color:var(--green);box-shadow:0 0 0 3px rgba(18,99,74,.08)}
+.tag2{position:absolute;top:-12px;left:26px;background:var(--green);color:#fff;font-size:11px;
+ font-weight:750;letter-spacing:.07em;padding:4px 12px;border-radius:99px}
+.amt{font-size:36px;font-weight:800;letter-spacing:-.035em;margin:12px 0 2px}
+.amt small{font-size:14px;font-weight:500;color:var(--mut)}
+.tier ul{list-style:none;margin:16px 0 22px;font-size:14.8px;color:var(--mut)}
+.tier li{padding:6px 0 6px 24px;position:relative}
+.tier li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:800}
+.tier .btn{width:100%;justify-content:center;margin-top:auto}
+/* ── faq ─────────────────────────────────────── */
+details{border-bottom:1px solid var(--line);padding:16px 2px}
+summary{cursor:pointer;font-weight:650;list-style:none;display:flex;justify-content:space-between;gap:14px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--green);font-weight:800;transition:transform .3s}
+details[open] summary::after{content:"−";transform:rotate(180deg)}
+details p{color:var(--mut);font-size:15px;padding-top:10px;animation:fade .35s}
+@keyframes fade{from{opacity:0;transform:translateY(-5px)}}
+/* ── final ───────────────────────────────────── */
+.final{background:var(--ink);color:#fff;border-radius:26px;padding:52px 30px;text-align:center;
+ position:relative;overflow:hidden}
+.final::after{content:"";position:absolute;inset:-40% -10% auto;height:120%;
+ background:radial-gradient(ellipse at 50% 0,rgba(18,99,74,.55),transparent 60%)}
+.final>*{position:relative;z-index:2}
+.final h2{color:#fff}.final .sub{color:#b8b5ad}
+footer{padding:34px 0 70px;color:#8a877f;font-size:13.5px;display:flex;
+ justify-content:space-between;gap:14px;flex-wrap:wrap}
+.mobile-cta{position:fixed;left:14px;right:14px;bottom:14px;z-index:60;display:none;
+ transform:translateY(140%);transition:.4s cubic-bezier(.2,.8,.2,1)}
+.mobile-cta.show{transform:none}
+.mobile-cta .btn{width:100%;justify-content:center;padding:15px}
+@media(max-width:640px){.mobile-cta{display:block}.nav-links{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}
+ .reveal{opacity:1;transform:none}}
+</style></head><body>
+<div class="grid-bg"></div><div class="glow"></div>
+
+<nav id="nav">
+  <span class="logo">leadpages<span style="color:var(--ink)">.</span></span>
+  <div class="nav-links">
+    <a href="#how">Kaise chalega</a><a href="#csv">List kahan se laayein</a>
+    <a href="#price">Price</a><a href="#faq">Sawaal</a>
+  </div>
+  <span style="display:flex;gap:9px;align-items:center">
+    <button class="btn ghost sm" onclick="toggleLang()" id="langBtn">EN</button>
+    <a class="btn dark sm" href="/app">Tool kholo</a>
+  </span>
+</nav>
+
+<div class="wrap">
+<header>
+  <span class="av a1"><span class="bub" style="background:linear-gradient(135deg,#e0763a,#c2410c)">RS</span>
+    <i class="cur"></i><span class="tag">Rahul · Indore</span></span>
+  <span class="av a2" style="animation-delay:-2s"><span class="bub" style="background:linear-gradient(135deg,#2563eb,#1e3a8a)">AK</span>
+    <i class="cur"></i><span class="tag">Ayesha · Kochi</span></span>
+  <span class="av a3" style="animation-delay:-4s"><span class="bub" style="background:linear-gradient(135deg,#12634a,#0b3d2c)">VP</span>
+    <i class="cur"></i><span class="tag">Vikas · Patna</span></span>
+  <span class="av a4" style="animation-delay:-1s"><span class="bub" style="background:linear-gradient(135deg,#9333ea,#5b21b6)">SM</span>
+    <i class="cur"></i><span class="tag">Sneha · Surat</span></span>
+
+  <span class="pill reveal"><span class="dot"></span><span data-i18n="pill">300 websites · 2 minute · bina coding</span></span>
+  <h1 class="reveal" data-i18n="h1html">List upload karo. WhatsApp bhejo. <span class="g">Paisa kamao<span class="rot"></span></span></h1>
+  <p class="lede reveal" data-i18n="lede">Apne shehar ke doctor, lawyer, dukaan ki list daalo — har ek ke liye
+  unke <b>naam, phone aur reviews</b> wali ready website ban jaati hai. Aap sirf link WhatsApp pe bhejte ho.
+  Jo "haan" bole, usse ₹5,000–₹15,000 charge karo.</p>
+  <div class="hero-cta reveal">
+    <button class="btn" onclick="buy('trial')"><span data-i18n="cta1">Free me 25 website banao</span><span class="arw">→</span></button>
+    <a class="btn ghost" id="demoLink" target="_blank" rel="noopener" data-i18n="cta2">Ek sample website dekho</a>
+  </div>
+  <p class="micro reveal" data-i18n="micro">Card nahi chahiye · Signup form nahi · Key WhatsApp pe 5 minute me</p>
+</header>
+
+<div class="strip reveal">
+  <b data-i18n="strip">Freelancers &amp; chhoti agencies</b>
+  <div class="marq"><ul id="marq"></ul></div>
+</div>
+</div>
+
+<div class="wrap"><section id="how">
+  <div class="center"><span class="eyebrow" data-i18n="eb1">4 step · 4 minute</span>
+  <h2 data-i18n="h2a">Itna hi karna hai. Bas.</h2>
+  <p class="sub" data-i18n="suba">Tool aapse sirf 4 cheezein poochta hai, isi order me. Beech me kuch skip nahi hota —
+  isiliye galti hone ka chance zero hai.</p></div>
+  <div class="grid g4">
+    <div class="card reveal"><div class="num">1</div><h3 data-i18n="s1t">Business type chuno</h3>
+      <p data-i18n="s1p">Lawyer, dentist, coaching, salon — jo bhi aap target kar rahe ho. Design uske hisaab se badal jaata hai.</p></div>
+    <div class="card reveal"><div class="num">2</div><h3 data-i18n="s2t">List (CSV) upload karo</h3>
+      <p data-i18n="s2p">Google Maps se nikali hui file jaisi hai waisi daal do. Jinke paas pehle se website hai, wo apne aap hat jaate hain.</p></div>
+    <div class="card reveal"><div class="num">3</div><h3 data-i18n="s3t">Websites live ho jaati hain</h3>
+      <p data-i18n="s3p">Ek button. Sab pages aapke apne free Netlify account pe chadh jaate hain. Har business ka apna link.</p></div>
+    <div class="card reveal"><div class="num">4</div><h3 data-i18n="s4t">Saaf CSV wapas milti hai</h3>
+      <p data-i18n="s4p">Naam, phone, WhatsApp-ready haan/naa, aur uska live link — ek hi file me. Bas copy karke bhejna shuru.</p></div>
+  </div>
+  <div class="stats">
+    <div class="stat reveal"><div class="n" data-count="300">0</div><div class="l" data-i18n="st1">websites ek baar me</div></div>
+    <div class="stat reveal"><div class="n" data-count="2">0</div><div class="l" data-i18n="st2">minute lagte hain</div></div>
+    <div class="stat reveal"><div class="n">₹<span data-count="0">0</span></div><div class="l" data-i18n="st3">hosting kharcha</div></div>
+    <div class="stat reveal"><div class="n" data-count="25">0</div><div class="l" data-i18n="st4">pages free trial me</div></div>
+  </div>
+</section></div>
+
+<div class="wrap"><section>
+ <div class="grid g3" style="align-items:center;gap:38px">
+  <div style="grid-column:span 2;min-width:280px">
+   <span class="eyebrow" data-i18n="eb2">Asli reason ye kaam karta hai</span>
+   <h2 data-i18n="h2b">Message me <span style="color:var(--green)">unka apna naam</span> dikhta hai.</h2>
+   <p class="sub" data-i18n="subb">Aap "hello sir, website chahiye?" nahi bhejte. Aap ek chalu website ka link bhejte ho
+   jispe unki dukaan ka naam, unka number, unke Google reviews already lage hain.
+   WhatsApp preview me hi unka naam dikh jaata hai — isliye log reply karte hain.
+   Reply aaya matlab baat shuru. Bas.</p>
+   <p class="micro" data-i18n="micb">Landline wale leads pe WhatsApp button apne aap "Call" ban jaata hai — dead button kabhi nahi jaata.</p>
+  </div>
+  <div class="wa reveal">
+    <div class="msg">Namaste sir 🙏 Aapke clinic ke liye ek website bana di hai. 1 min dekh lijiye —
+      <div class="lnk">smile-dental-jsr.netlify.app/dr-anand-clinic/</div>
+      <div class="prev"><div class="im"></div><div class="tx">
+        <div class="t">Dr. Anand Dental Clinic — Dentist in Jamshedpur</div>
+        <div class="d">Appointment book kijiye. Call ya WhatsApp.</div></div></div>
+      <div class="tick">✓✓ 10:42 AM</div>
+    </div>
+  </div>
+ </div>
+</section></div>
+
+<div class="wrap"><section id="csv">
+  <span class="eyebrow" data-i18n="eb3">Step 0</span>
+  <h2 data-i18n="h2c">List nahi hai? 4 minute me bana lo — free.</h2>
+  <p class="sub" data-i18n="subc">Google Maps pe har local business pehle se hai. Ek free Chrome extension se
+  uski list download kar lo. Koi API, koi subscription nahi.</p>
+  <div class="card reveal" style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:26px">
+    <div class="num" style="margin:0">↓</div>
+    <div style="flex:1;min-width:210px"><h3>Instant Data Scraper</h3>
+      <p data-i18n="ext">Free Chrome extension. Iski file thodi gandi hoti hai (headers ulte-pulte) —
+      lekin humara tool usi ke liye bana hai. Jaisi hai waisi upload karo.</p></div>
+    <a class="btn sm" target="_blank" rel="noopener"
+       href="https://chromewebstore.google.com/detail/instant-data-scraper/ofaokhiedipichpaobibbnahnkdoiiah">Install free</a>
+  </div>
+  <div class="grid g4">
+    <div class="card reveal"><div class="num">1</div><h3 data-i18n="c1t">Maps pe search karo</h3>
+      <p data-i18n="c1p">Neeche wale box se link banao. "<b>dentists in Jamshedpur</b>" wala format hi rakhna —
+      isi se tool ko city aur business type pata chalti hai.</p></div>
+    <div class="card reveal"><div class="num">2</div><h3 data-i18n="c2t">List ko neeche tak scroll karo</h3>
+      <p data-i18n="c2p">Left side ki list me scroll karte raho jab tak ruk na jaaye. Ek search me ~120 results
+      aate hain, isliye alag-alag ilaake se alag search karo.</p></div>
+    <div class="card reveal"><div class="num">3</div><h3 data-i18n="c3t">Crawl karke CSV download</h3>
+      <p data-i18n="c3p">Extension kholo → <b>Infinite scroll</b> on → <b>Start crawling</b> → <b>CSV</b>.
+      File ko chhedo mat, edit mat karo.</p></div>
+    <div class="card reveal"><div class="num">4</div><h3 data-i18n="c4t">Tool me daal do</h3>
+      <p data-i18n="c4p">Credit kharch hone se pehle tool dikha dega: kitne pages banenge, kitne hate,
+      aur kyun hate.</p></div>
+  </div>
+  <div class="card reveal" style="margin-top:16px">
+    <b data-i18n="ub">Search link banao</b>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+      <input id="niche" value="dentists" style="flex:1;min-width:140px;font:inherit;padding:12px;border:1px solid var(--line);border-radius:11px;background:#fbfaf6">
+      <input id="city" value="Jamshedpur" style="flex:1;min-width:140px;font:inherit;padding:12px;border:1px solid var(--line);border-radius:11px;background:#fbfaf6">
+      <button class="btn" onclick="openMaps()">Maps kholo <span class="arw">→</span></button>
+      <button class="btn ghost" onclick="copyMaps(this)">Copy</button>
+    </div>
+    <div id="mapsUrl" style="margin-top:12px;background:#fbfaf6;border:1px solid var(--line);border-radius:11px;padding:12px;font:13px ui-monospace,Menlo,monospace;color:var(--green);word-break:break-all"></div>
+    <p class="micro" data-i18n="warn">Apne outreach ke liye normal speed pe scrape karo. Bulk data bechna
+    is tool ki <a href="/terms" style="color:var(--green)">terms</a> me allowed nahi hai.</p>
+  </div>
+</section></div>
+
+<div class="wrap"><section id="price" class="center">
+  <span class="eyebrow" data-i18n="eb4">Seedha hisaab</span>
+  <h2 data-i18n="h2d">1 credit = 1 website.</h2>
+  <p class="sub" data-i18n="subd">Ek client mil gaya to poora paisa usi din wapas. Pehle 20 keys founding price pe —
+  uske baad rate badh jayega.</p>
+  <div class="grid g3" style="text-align:left">
+    <div class="tier reveal"><h3>Starter</h3><div class="amt">₹999 <small>/ ek baar</small></div>
+      <ul><li>500 website credits</li><li>Ek baar me 400 leads</li><li>Saare designs</li>
+      <li>Apne Netlify pe publish</li></ul>
+      <button class="btn ghost" onclick="buy('starter')">Starter lo</button></div>
+    <div class="tier best reveal" style="position:relative"><span class="tag2">SABSE ZYADA LIYA JATA HAI</span>
+      <h3>Pro</h3><div class="amt">₹2,499 <small>/ ek baar</small></div>
+      <ul><li>3,000 website credits</li><li>Ek baar me 1,500 leads</li>
+      <li>Client sign kare to page Google pe live</li><li>Naye designs free</li>
+      <li>WhatsApp pe direct support</li></ul>
+      <button class="btn" onclick="buy('pro')">Pro lo <span class="arw">→</span></button></div>
+    <div class="tier reveal"><h3>Agency</h3><div class="amt">₹4,999 <small>/ mahina</small></div>
+      <ul><li>12,000 credits har mahine</li><li>Ek baar me 5,000 leads</li>
+      <li>Aapke design pe custom template (1/mahina)</li><li>Priority queue</li></ul>
+      <button class="btn ghost" onclick="buy('agency')">Agency lo</button></div>
+  </div>
+  <p class="micro" data-i18n="pay">UPI ya card link se payment. Key main khud bhejta hoon — aam taur pe 10 minute me.
+  7 din me pasand na aaye aur 100 se kam credits use kiye ho? Poora refund, bina sawaal.</p>
+</section></div>
+
+<div class="wrap"><section id="faq">
+  <h2 data-i18n="h2e">Jo sabse zyada poocha jaata hai</h2>
+  <div style="margin-top:24px">
+  <details><summary data-i18n="q1">Mujhe coding aati hi nahi. Chalega?</summary>
+    <p data-i18n="a1">Isi liye banaya hai. Aap sirf 4 button dabate ho: business type, file upload,
+    publish, download. Bas. Koi code, koi design software nahi.</p></details>
+  <details><summary data-i18n="q2">Hosting ka kharcha kaun dega?</summary>
+    <p data-i18n="a2">Koi nahi. Sab pages aapke apne free Netlify account pe jaate hain — 300 ho ya 3,000,
+    ₹0. Account aapka, control aapka. Main paise lena band kar doon tab bhi pages chalte rahenge.</p></details>
+  <details><summary data-i18n="q3">Kya ye spam hai? Business wale naraz to nahi honge?</summary>
+    <p data-i18n="a3">Pages Google pe show nahi hote (noindex default hai), aur wo kabhi nahi kehte ki
+    "ye official website hai". Ye ek demo hai jo aap dikhate ho — jaise designer sample dikhata hai.
+    Client haan bole tabhi use asli banao.</p></details>
+  <details><summary data-i18n="q4">Charge kitna karun client se?</summary>
+    <p data-i18n="a4">Chhote shehar me ₹5,000–₹8,000 setup + ₹500–₹1,000 mahina maintenance normal hai.
+    Bade shehar me double. Ek client mila to Pro plan usi din vasool.</p></details>
+  <details><summary data-i18n="q5">Landline number wale leads ka kya?</summary>
+    <p data-i18n="a5">Un pages pe WhatsApp button apne aap "Call Now" ban jaata hai, aur aapki CSV me
+    <b>whatsapp_ready = no</b> likha aata hai — taaki aap unhe phone karo, message nahi.</p></details>
+  <details><summary data-i18n="q6">Paisa wapas milega?</summary>
+    <p data-i18n="a6">7 din, 100 se kam credits use — full refund. Uske baad nahi.</p></details>
+  </div>
+</section></div>
+
+<div class="wrap"><div class="final reveal">
+  <h2 data-i18n="h2f">25 websites free banao. Aaj hi.</h2>
+  <p class="sub" data-i18n="subf">Pehle batch se ek bhi reply na aaye to ek rupaya mat dena.</p>
+  <div style="margin-top:24px"><button class="btn" onclick="buy('trial')">
+    <span data-i18n="cta3">Free key mango</span><span class="arw">→</span></button></div>
+</div>
+<footer><span>© <span id="yr"></span> LeadPages · Made in Jamshedpur 🇮🇳</span>
+<span><a href="/terms">Terms</a> · <a href="/app">Tool</a> · <a id="mailLink">Email</a></span></footer>
+</div>
+
+<div class="mobile-cta" id="mcta"><button class="btn" onclick="buy('trial')">
+  Free me 25 website banao <span class="arw">→</span></button></div>
+
+<script>
+/* ─── EDIT THESE ───────────────────────────── */
+const CONFIG = {
+  telegram: "dulork",
+  email: "dulork@telegram",
+  demo: "https://jsr-previews.netlify.app/advocate-priya-sharma/",
+  pay: {starter: "", pro: "", agency: ""}
+};
+/* ──────────────────────────────────────────── */
+const MSG={trial:"Namaste! LeadPages ka free 25-page trial key chahiye.",
+ starter:"Namaste! LeadPages Starter (₹999) lena hai.",
+ pro:"Namaste! LeadPages Pro (₹2,499) lena hai.",
+ agency:"Namaste! LeadPages Agency plan ke baare me baat karni hai."};
+function buy(p){const l=CONFIG.pay[p];if(l){open(l,"_blank","noopener");return}
+ open("https://t.me/"+CONFIG.telegram,"_blank","noopener")}
+demoLink.href=CONFIG.demo; mailLink.href="https://t.me/dulork"; yr.textContent=new Date().getFullYear();
+
+/* rotating word */
+const words=["","banao","kamao","shuru karo"];let wi=0;const rot=document.querySelector(".rot");
+setInterval(()=>{wi=(wi+1)%2;},4000);
+
+/* logo marquee */
+const brands=["Solo freelancers","Web design studios","Digital marketing walas","Instagram agencies",
+"College side-hustles","Local SEO guys"];
+marq.innerHTML=[...brands,...brands].map(b=>`<li><span class="ic">✦</span>${b}</li>`).join("");
+
+/* sticky nav */
+addEventListener("scroll",()=>{nav.classList.toggle("stuck",scrollY>24);
+ mcta.classList.toggle("show",scrollY>620)});
+
+/* scroll reveal */
+const io=new IntersectionObserver(es=>es.forEach((e,i)=>{if(e.isIntersecting){
+ setTimeout(()=>e.target.classList.add("in"),i*70);io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+
+/* count up */
+const cio=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;
+ const el=e.target,to=+el.dataset.count;let n=0;const st=performance.now();
+ (function tick(t){const p=Math.min((t-st)/900,1);el.textContent=Math.round(to*(1-Math.pow(1-p,3)));
+  if(p<1)requestAnimationFrame(tick)})(st);cio.unobserve(el)}),{threshold:.6});
+document.querySelectorAll("[data-count]").forEach(el=>cio.observe(el));
+
+/* maps url builder */
+function mapsURL(){const n=(niche.value||"businesses").trim(),c=(city.value||"").trim();
+ return "https://www.google.com/maps/search/"+encodeURI((c?n+" in "+c:n).replace(/\s+/g,"+"))+"/"}
+function paint(){mapsUrl.textContent=mapsURL()}
+function openMaps(){open(mapsURL(),"_blank","noopener")}
+function copyMaps(b){navigator.clipboard.writeText(mapsURL());const t=b.textContent;
+ b.textContent="Copied ✓";setTimeout(()=>b.textContent=t,1400)}
+[niche,city].forEach(i=>i.addEventListener("input",paint));paint();
+
+/* language toggle (Hinglish ⇄ English) */
+const EN={
+ pill:"300 sites · 2 minutes · no coding",
+ h1html:'Upload a list. Send WhatsApp. <span class="g">Get paid<span class="rot"></span></span>',
+ lede:"Add a list of local doctors, lawyers or shops — each one gets a ready website with <b>their name, phone and reviews</b>. You just send the link on WhatsApp. Charge ₹5,000–₹15,000 when they say yes.",
+ cta1:"Build 25 sites free",cta2:"See a sample site",
+ micro:"No card · No signup form · Key on WhatsApp in 5 minutes",
+ strip:"Freelancers &amp; small agencies",
+ eb1:"4 steps · 4 minutes",h2a:"That's the whole job.",
+ suba:"The tool asks you four things, in this exact order. Nothing can be skipped — so nothing can go wrong.",
+ s1t:"Pick the business type",s1p:"Lawyer, dentist, coaching, salon. The design changes to match.",
+ s2t:"Upload the list (CSV)",s2p:"Straight from Google Maps, unedited. Businesses that already have a website drop out automatically.",
+ s3t:"Sites go live",s3p:"One button. Everything uploads to your own free Netlify. Each business gets its own link.",
+ s4t:"Get a clean CSV back",s4p:"Name, phone, WhatsApp-ready yes/no and the live link — one file, ready to work.",
+ st1:"sites per run",st2:"minutes",st3:"hosting cost",st4:"free trial pages",
+ eb2:"Why this actually works",h2b:'Their <span style="color:var(--green)">own name</span> shows in the message.',
+ subb:"You're not sending \"hi sir, need a website?\". You're sending a working site with their shop name, their number and their Google reviews already on it. WhatsApp shows their name right in the preview card — that's why people reply.",
+ micb:'Landline leads automatically switch the WhatsApp button to "Call" — no dead buttons.',
+ eb3:"Step 0",h2c:"No list? Build one in 4 minutes — free.",
+ subc:"Every local business is already on Google Maps. Use a free Chrome extension to download the list. No API, no subscription.",
+ ext:"Free Chrome extension. Its CSV is usually messy, which is exactly what this tool is built for. Upload it as-is.",
+ c1t:"Search on Maps",c1p:'Use the box below to create the link. Keep the "<b>dentists in Jamshedpur</b>" format so the tool can detect city and business type.',
+ c2t:"Scroll to the bottom",c2p:"Keep scrolling the left-side results list until it stops. One search usually gives around 120 results, so search different local areas too.",
+ c3t:"Crawl and download CSV",c3p:"Open the extension → turn on <b>Infinite scroll</b> → <b>Start crawling</b> → <b>CSV</b>. Do not edit the file.",
+ c4t:"Upload it here",c4p:"Before spending credits, the tool shows how many pages will be built, how many were skipped, and why.",
+ ub:"Build a search link",
+ warn:'Scrape at normal speed for your own outreach. Selling bulk data is not allowed by the <a href="/terms" style="color:var(--green)">terms</a>.',
+ eb4:"Simple math",h2d:"1 credit = 1 website.",
+ subd:"One client can pay back the whole plan the same day. First 20 keys get founding pricing; after that the rate goes up.",
+ pay:"Payment by UPI or card link. I send the key manually, usually within 10 minutes. If you dislike it in 7 days and used fewer than 100 credits, full refund.",
+ h2e:"Questions people actually ask",
+ q1:"I do not know coding. Will this work?",a1:"That is why this exists. You press four buttons: business type, file upload, publish, download. No code, no design software.",
+ q2:"Who pays for hosting?",a2:"Nobody. The pages go to your own free Netlify account — 300 or 3,000 pages, ₹0. Your account, your control. Even if you stop paying me, your pages stay online.",
+ q3:"Is this spam? Will businesses get angry?",a3:'Pages are noindex by default and never say "this is the official website". It is a demo you show, like a designer showing a sample. Make it official only after the client says yes.',
+ q4:"How much should I charge a client?",a4:"In smaller cities, ₹5,000–₹8,000 setup plus ₹500–₹1,000 monthly maintenance is normal. In bigger cities, double it. One client can pay back Pro the same day.",
+ q5:"What about landline leads?",a5:"Those pages automatically switch to a Call Now button, and your CSV says <b>whatsapp_ready = no</b> so you call them instead of messaging.",
+ q6:"Can I get a refund?",a6:"7 days, under 100 credits used — full refund. After that, no.",
+ h2f:"Build 25 sites free. Today.",
+ subf:"If the first batch gets you zero replies, don't pay me a rupee.",
+ cta3:"Get my free key"
+};
+let hi=true;const orig={};
+function toggleLang(){hi=!hi;langBtn.textContent=hi?"EN":"हिं";
+ document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.dataset.i18n;
+  if(!(k in orig))orig[k]=el.innerHTML;
+  el.innerHTML=hi?orig[k]:(EN[k]||orig[k])})}
+</script></body></html>

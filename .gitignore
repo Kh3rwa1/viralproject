@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.DS_Store
+licenses.db
+keys_issued.csv
+workspace/
+updated.csv
+leads.csv
+state.json
+preview.html

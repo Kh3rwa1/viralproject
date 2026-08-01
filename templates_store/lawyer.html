@@ -1,0 +1,2386 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <meta
+    name="description"
+    content="Request a legal consultation with a lawyer in Jamshedpur."
+  >
+
+  <meta name="theme-color" content="#120d0b">
+
+  <title>Legal Consultation in Jamshedpur</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --ink: #110d0b;
+      --ink-soft: #1c1511;
+      --wine: #521d23;
+      --wine-light: #7f3039;
+      --gold: #d3ad65;
+      --gold-light: #f0d7a4;
+      --cream: #f2ede4;
+      --paper: #fbf8f2;
+      --white: #ffffff;
+      --text: #271f1b;
+      --muted: #756a63;
+      --line: rgba(28, 21, 17, 0.13);
+      --container: 1240px;
+      --radius: 28px;
+      --ease: cubic-bezier(.16, 1, .3, 1);
+      --shadow: 0 35px 100px rgba(17, 13, 11, .18);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--paper);
+    }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 0 40%, rgba(211, 173, 101, .09), transparent 25%),
+        var(--paper);
+      font-family: "DM Sans", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body.locked {
+      overflow: hidden;
+    }
+
+    body::after {
+      position: fixed;
+      z-index: 9999;
+      content: "";
+      pointer-events: none;
+      inset: 0;
+      opacity: .035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    ::selection {
+      color: var(--ink);
+      background: var(--gold);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--container));
+      margin-inline: auto;
+    }
+
+    .section {
+      position: relative;
+      padding: 120px 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      margin-bottom: 20px;
+      color: var(--wine);
+      font: 700 .7rem "Manrope", sans-serif;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 29px;
+      height: 1px;
+      content: "";
+      background: currentColor;
+      transition: width .5s var(--ease);
+    }
+
+    .eyebrow:hover::before {
+      width: 45px;
+    }
+
+    .display {
+      max-width: 850px;
+      margin-bottom: 24px;
+      color: var(--ink);
+      font: 500 clamp(2.8rem, 5vw, 5.3rem)/.98 "Playfair Display", serif;
+      letter-spacing: -.055em;
+    }
+
+    .display em {
+      color: var(--wine-light);
+      font-weight: 500;
+    }
+
+    .copy {
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    /* Buttons */
+
+    .button {
+      position: relative;
+      display: inline-flex;
+      min-height: 58px;
+      align-items: center;
+      justify-content: center;
+      gap: 11px;
+      overflow: hidden;
+      padding: 0 25px;
+      border: 0;
+      border-radius: 999px;
+      color: var(--white);
+      background: var(--wine);
+      box-shadow: 0 15px 35px rgba(82, 29, 35, .22);
+      font: 700 .82rem "Manrope", sans-serif;
+      transition:
+        color .45s var(--ease),
+        transform .45s var(--ease),
+        box-shadow .45s var(--ease);
+    }
+
+    .button::before {
+      position: absolute;
+      width: 160%;
+      aspect-ratio: 1;
+      content: "";
+      border-radius: 50%;
+      background: var(--gold);
+      transform: translateY(100%);
+      transition: transform .65s var(--ease);
+    }
+
+    .button:hover::before {
+      transform: translateY(0);
+    }
+
+    .button:hover {
+      color: var(--ink);
+      box-shadow: 0 20px 45px rgba(82, 29, 35, .3);
+      transform: translateY(-4px);
+    }
+
+    .button span,
+    .button svg {
+      position: relative;
+      z-index: 1;
+    }
+
+    .button svg {
+      width: 18px;
+      transition: transform .4s var(--ease);
+    }
+
+    .button:hover svg {
+      transform: translateX(4px);
+    }
+
+    .button-light {
+      color: var(--ink);
+      background: var(--white);
+    }
+
+    .button-light::before {
+      background: var(--gold-light);
+    }
+
+    .button-ghost {
+      border: 1px solid rgba(255, 255, 255, .35);
+      background: rgba(255, 255, 255, .08);
+      box-shadow: none;
+      backdrop-filter: blur(16px);
+    }
+
+    /* Navigation */
+
+    .header {
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px 0;
+      transition: .4s var(--ease);
+    }
+
+    .header.scrolled {
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .11);
+      background: rgba(17, 13, 11, .84);
+      backdrop-filter: blur(22px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      max-width: 420px;
+      align-items: center;
+      gap: 12px;
+      color: var(--white);
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 45px;
+      height: 45px;
+      flex: 0 0 auto;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, .4);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .08);
+      backdrop-filter: blur(12px);
+      transition: .5s var(--ease);
+    }
+
+    .brand:hover .brand-mark {
+      color: var(--ink);
+      background: var(--gold);
+      transform: rotate(10deg);
+    }
+
+    .brand-mark svg {
+      width: 23px;
+    }
+
+    .brand-copy {
+      min-width: 0;
+    }
+
+    .brand-copy strong {
+      display: block;
+      overflow: hidden;
+      font: 500 1rem "Playfair Display", serif;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .brand-copy small {
+      display: block;
+      margin-top: 3px;
+      opacity: .62;
+      font-size: .56rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 29px;
+      color: rgba(255, 255, 255, .8);
+      font-size: .82rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 10px 0;
+    }
+
+    .nav-links a::after {
+      position: absolute;
+      right: 0;
+      bottom: 4px;
+      left: 0;
+      height: 1px;
+      content: "";
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: .4s var(--ease);
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .nav-button {
+      min-height: 45px;
+      padding-inline: 19px;
+    }
+
+    .menu-button {
+      display: none;
+      width: 45px;
+      height: 45px;
+      border: 1px solid rgba(255, 255, 255, .3);
+      border-radius: 50%;
+      color: white;
+      background: rgba(255, 255, 255, .08);
+    }
+
+    /* Hero */
+
+    .hero {
+      position: relative;
+      display: flex;
+      min-height: 100svh;
+      align-items: flex-end;
+      overflow: hidden;
+      color: var(--white);
+      background: var(--ink);
+    }
+
+    .hero-video {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      inset: 0;
+      object-fit: cover;
+      object-position: center;
+      transform: scale(1.04);
+      animation: heroZoom 18s ease-in-out infinite alternate;
+    }
+
+    @keyframes heroZoom {
+      to {
+        transform: scale(1.11);
+      }
+    }
+
+    .hero-shade {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(9, 6, 5, .92) 0%,
+          rgba(9, 6, 5, .61) 49%,
+          rgba(9, 6, 5, .2) 100%
+        ),
+        linear-gradient(
+          0deg,
+          rgba(9, 6, 5, .93) 0%,
+          transparent 58%
+        ),
+        linear-gradient(
+          180deg,
+          rgba(9, 6, 5, .58),
+          transparent 27%
+        );
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: 22%;
+      left: 31%;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      opacity: .22;
+      background: var(--gold);
+      filter: blur(130px);
+      animation: glowFloat 8s ease-in-out infinite;
+    }
+
+    @keyframes glowFloat {
+      50% {
+        transform: translate(45px, -25px) scale(1.12);
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 150px 0 48px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      padding: 9px 14px;
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .08);
+      backdrop-filter: blur(15px);
+      font-size: .68rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      animation: fadeUp .9s .1s both;
+    }
+
+    .status-dot {
+      position: relative;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold-light);
+    }
+
+    .status-dot::after {
+      position: absolute;
+      content: "";
+      inset: -5px;
+      border: 1px solid var(--gold-light);
+      border-radius: inherit;
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      to {
+        opacity: 0;
+        transform: scale(1.8);
+      }
+    }
+
+    .hero h1 {
+      max-width: 950px;
+      margin-bottom: 24px;
+      font: 500 clamp(3.6rem, 7.2vw, 7.4rem)/.9 "Playfair Display", serif;
+      letter-spacing: -.065em;
+      text-wrap: balance;
+      animation: fadeUp .9s .2s both;
+    }
+
+    .hero h1 em {
+      color: var(--gold-light);
+      font-weight: 500;
+    }
+
+    .hero-copy {
+      max-width: 590px;
+      margin-bottom: 31px;
+      color: rgba(255, 255, 255, .73);
+      font-size: clamp(1rem, 1.5vw, 1.13rem);
+      line-height: 1.75;
+      animation: fadeUp .9s .3s both;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      animation: fadeUp .9s .4s both;
+    }
+
+    .hero-proof {
+      display: grid;
+      grid-template-columns: repeat(3, max-content) 1fr;
+      gap: 34px;
+      align-items: center;
+      margin-top: 68px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, .17);
+      animation: fadeUp .9s .5s both;
+    }
+
+    .proof-item strong {
+      display: block;
+      margin-bottom: 4px;
+      font: 500 1.22rem "Playfair Display", serif;
+    }
+
+    .proof-item span {
+      color: rgba(255, 255, 255, .5);
+      font-size: .64rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .hero-location {
+      justify-self: end;
+      max-width: 310px;
+      color: rgba(255, 255, 255, .62);
+      font-size: .75rem;
+      line-height: 1.5;
+      text-align: right;
+    }
+
+    .hero-location strong {
+      display: block;
+      margin-top: 4px;
+      color: var(--white);
+      font-size: .86rem;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(32px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* Trust strip */
+
+    .trust-strip {
+      overflow: hidden;
+      color: var(--cream);
+      background: var(--ink);
+    }
+
+    .marquee {
+      display: flex;
+      width: max-content;
+      animation: marquee 27s linear infinite;
+    }
+
+    .marquee-group {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      padding: 18px 15px;
+      white-space: nowrap;
+    }
+
+    .marquee-group span {
+      display: inline-flex;
+      align-items: center;
+      gap: 30px;
+      opacity: .68;
+      font-size: .66rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .marquee-group span::after {
+      width: 6px;
+      height: 6px;
+      content: "";
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    @keyframes marquee {
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Profile */
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 95px;
+      align-items: center;
+    }
+
+    .monogram-stage {
+      position: relative;
+      display: grid;
+      min-height: 540px;
+      place-items: center;
+    }
+
+    .orbit {
+      position: absolute;
+      width: min(480px, 90%);
+      aspect-ratio: 1;
+      border: 1px solid rgba(82, 29, 35, .16);
+      border-radius: 50%;
+      animation: orbit 25s linear infinite;
+    }
+
+    .orbit::before {
+      position: absolute;
+      top: 12%;
+      left: 12%;
+      width: 14px;
+      height: 14px;
+      content: "";
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 9px rgba(211, 173, 101, .13);
+    }
+
+    @keyframes orbit {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .monogram {
+      display: grid;
+      width: 275px;
+      aspect-ratio: 1;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, .8);
+      border-radius: 50%;
+      color: var(--gold-light);
+      background:
+        radial-gradient(circle at 34% 28%, rgba(255, 255, 255, .17), transparent 30%),
+        linear-gradient(145deg, var(--wine-light), var(--ink-soft));
+      box-shadow: var(--shadow);
+      font: 500 5rem "Playfair Display", serif;
+      transition: .7s var(--ease);
+    }
+
+    .monogram:hover {
+      transform: scale(1.04) rotate(-3deg);
+    }
+
+    .floating-tag {
+      position: absolute;
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--wine);
+      background: rgba(255, 255, 255, .8);
+      box-shadow: 0 16px 45px rgba(17, 13, 11, .1);
+      backdrop-filter: blur(14px);
+      font-size: .7rem;
+      font-weight: 600;
+      animation: tagFloat 4s ease-in-out infinite;
+    }
+
+    .floating-tag.one {
+      top: 22%;
+      right: 0;
+    }
+
+    .floating-tag.two {
+      bottom: 19%;
+      left: 0;
+      animation-delay: -2s;
+    }
+
+    @keyframes tagFloat {
+      50% {
+        transform: translateY(-9px);
+      }
+    }
+
+    .profile-meta {
+      display: grid;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .meta-row {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+      transition: padding .4s var(--ease);
+    }
+
+    .meta-row:hover {
+      padding-left: 9px;
+    }
+
+    .meta-icon {
+      display: grid;
+      width: 40px;
+      height: 40px;
+      flex: 0 0 auto;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--wine);
+      background: rgba(211, 173, 101, .17);
+      transition: .4s var(--ease);
+    }
+
+    .meta-row:hover .meta-icon {
+      color: white;
+      background: var(--wine);
+      transform: rotate(7deg);
+    }
+
+    .meta-row strong {
+      display: block;
+      margin-bottom: 3px;
+      font-size: .87rem;
+    }
+
+    .meta-row span {
+      color: var(--muted);
+      font-size: .79rem;
+      line-height: 1.5;
+    }
+
+    /* Matters */
+
+    .matters {
+      overflow: hidden;
+      color: white;
+      background: var(--ink);
+    }
+
+    .matters::before {
+      position: absolute;
+      top: -250px;
+      right: -150px;
+      width: 600px;
+      height: 600px;
+      content: "";
+      border-radius: 50%;
+      background: rgba(82, 29, 35, .5);
+      filter: blur(110px);
+    }
+
+    .matters .eyebrow {
+      color: var(--gold-light);
+    }
+
+    .matters .display {
+      color: white;
+    }
+
+    .matters .display em {
+      color: var(--gold-light);
+    }
+
+    .matters-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 55px;
+    }
+
+    .matters-head .copy {
+      max-width: 430px;
+      color: rgba(255, 255, 255, .53);
+    }
+
+    .matter-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .matter-card {
+      position: relative;
+      min-height: 325px;
+      overflow: hidden;
+      padding: 29px;
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: var(--radius);
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, .075),
+        rgba(255, 255, 255, .02)
+      );
+      transform-style: preserve-3d;
+      transition:
+        border-color .5s var(--ease),
+        box-shadow .5s var(--ease);
+    }
+
+    .matter-card:hover {
+      border-color: rgba(211, 173, 101, .45);
+      box-shadow: 0 35px 90px rgba(0, 0, 0, .34);
+    }
+
+    .matter-number {
+      color: var(--gold);
+      font-size: .67rem;
+      letter-spacing: .13em;
+    }
+
+    .matter-icon {
+      display: grid;
+      width: 62px;
+      height: 62px;
+      margin: 47px 0 23px;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 19px;
+      color: var(--gold-light);
+      background: rgba(255, 255, 255, .05);
+      font-size: 1.45rem;
+      transition: .5s var(--ease);
+    }
+
+    .matter-card:hover .matter-icon {
+      color: var(--ink);
+      background: var(--gold);
+      transform: translateY(-6px) rotate(-5deg);
+    }
+
+    .matter-card h3 {
+      margin-bottom: 11px;
+      font: 500 2rem "Playfair Display", serif;
+    }
+
+    .matter-card p {
+      max-width: 460px;
+      margin: 0;
+      color: rgba(255, 255, 255, .5);
+      line-height: 1.7;
+    }
+
+    .matter-arrow {
+      position: absolute;
+      right: 24px;
+      bottom: 24px;
+      display: grid;
+      width: 43px;
+      height: 43px;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 50%;
+      transition: .4s var(--ease);
+    }
+
+    .matter-card:hover .matter-arrow {
+      color: var(--ink);
+      background: var(--gold);
+      transform: rotate(-35deg);
+    }
+
+    /* Process */
+
+    .process {
+      background: var(--cream);
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: .78fr 1.22fr;
+      gap: 90px;
+    }
+
+    .process-intro {
+      position: sticky;
+      top: 125px;
+      align-self: start;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 57px 1fr;
+      gap: 19px;
+      padding: 34px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .step-number {
+      display: grid;
+      width: 47px;
+      height: 47px;
+      place-items: center;
+      border: 1px solid rgba(82, 29, 35, .3);
+      border-radius: 50%;
+      color: var(--wine);
+      font-size: .7rem;
+      font-style: normal;
+      transition: .4s var(--ease);
+    }
+
+    .step:hover .step-number {
+      color: white;
+      background: var(--wine);
+      transform: scale(1.1);
+    }
+
+    .step h3 {
+      margin: 5px 0 9px;
+      color: var(--ink);
+      font: 500 1.6rem "Playfair Display", serif;
+    }
+
+    .step p {
+      max-width: 540px;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    /* Review */
+
+    .review-panel {
+      position: relative;
+      overflow: hidden;
+      padding: 70px;
+      border: 1px solid var(--line);
+      border-radius: 38px;
+      background: rgba(255, 255, 255, .68);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(15px);
+    }
+
+    .review-panel::after {
+      position: absolute;
+      top: -80px;
+      right: 15px;
+      content: "“";
+      color: rgba(82, 29, 35, .055);
+      font: 500 18rem "Playfair Display", serif;
+    }
+
+    .stars {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 23px;
+      color: #b88836;
+      letter-spacing: .13em;
+    }
+
+    .review-panel blockquote {
+      position: relative;
+      z-index: 1;
+      max-width: 930px;
+      margin: 0 0 28px;
+      color: var(--ink);
+      font: 500 clamp(2rem, 4vw, 4rem)/1.2 "Playfair Display", serif;
+      letter-spacing: -.035em;
+    }
+
+    .review-source {
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    /* CTA */
+
+    .cta-section {
+      padding-top: 0;
+    }
+
+    .cta {
+      position: relative;
+      overflow: hidden;
+      padding: 90px 68px;
+      border-radius: 40px;
+      color: white;
+      background: var(--wine);
+      box-shadow: var(--shadow);
+    }
+
+    .cta::after {
+      position: absolute;
+      right: -90px;
+      bottom: -280px;
+      width: 580px;
+      height: 580px;
+      content: "";
+      border: 1px solid rgba(255, 255, 255, .13);
+      border-radius: 50%;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+    }
+
+    .cta .eyebrow {
+      color: var(--gold-light);
+    }
+
+    .cta h2 {
+      margin-bottom: 22px;
+      font: 500 clamp(3rem, 6vw, 5.8rem)/.97 "Playfair Display", serif;
+      letter-spacing: -.055em;
+    }
+
+    .cta p {
+      max-width: 590px;
+      margin-bottom: 29px;
+      color: rgba(255, 255, 255, .68);
+      line-height: 1.75;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* Footer */
+
+    .footer {
+      padding: 65px 0 25px;
+      color: rgba(255, 255, 255, .58);
+      background: var(--ink);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.35fr .65fr .7fr 1fr;
+      gap: 48px;
+      padding-bottom: 50px;
+    }
+
+    .footer .brand {
+      margin-bottom: 18px;
+    }
+
+    .footer p {
+      max-width: 360px;
+      font-size: .85rem;
+      line-height: 1.75;
+    }
+
+    .footer h4 {
+      margin-bottom: 18px;
+      color: white;
+      font: 700 .67rem "Manrope", sans-serif;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .footer-list {
+      display: grid;
+      gap: 11px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: .81rem;
+    }
+
+    .footer-list a,
+    .footer-list li {
+      transition: .3s;
+    }
+
+    .footer-list a:hover {
+      color: var(--gold-light);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 23px;
+      border-top: 1px solid rgba(255, 255, 255, .1);
+      font-size: .68rem;
+      line-height: 1.6;
+    }
+
+    /* Floating call button */
+
+    .floating-call {
+      position: fixed;
+      z-index: 800;
+      right: 21px;
+      bottom: 21px;
+      display: grid;
+      width: 59px;
+      height: 59px;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--ink);
+      background: var(--gold);
+      box-shadow: 0 18px 48px rgba(17, 13, 11, .3);
+      transition: .4s var(--ease);
+    }
+
+    .floating-call::before {
+      position: absolute;
+      content: "";
+      inset: -7px;
+      border: 1px solid rgba(211, 173, 101, .5);
+      border-radius: inherit;
+      animation: callPulse 2s infinite;
+    }
+
+    .floating-call:hover {
+      transform: translateY(-6px) rotate(7deg);
+    }
+
+    .floating-call svg {
+      width: 23px;
+    }
+
+    @keyframes callPulse {
+      to {
+        opacity: 0;
+        transform: scale(1.3);
+      }
+    }
+
+    /* Modal */
+
+    .modal {
+      position: fixed;
+      z-index: 3000;
+      display: grid;
+      visibility: hidden;
+      opacity: 0;
+      inset: 0;
+      padding: 20px;
+      place-items: center;
+      background: rgba(9, 6, 5, .78);
+      backdrop-filter: blur(16px);
+      transition: .35s;
+    }
+
+    .modal.open {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .modal-card {
+      position: relative;
+      width: min(100%, 610px);
+      max-height: calc(100vh - 40px);
+      overflow-y: auto;
+      padding: 42px;
+      border-radius: 29px;
+      background: var(--paper);
+      box-shadow: 0 45px 130px rgba(0, 0, 0, .55);
+      transform: translateY(30px) scale(.96);
+      transition: .5s var(--ease);
+    }
+
+    .modal.open .modal-card {
+      transform: none;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 17px;
+      right: 17px;
+      width: 41px;
+      height: 41px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      color: var(--ink);
+      background: white;
+      transition: .3s;
+    }
+
+    .modal-close:hover {
+      color: white;
+      background: var(--ink);
+      transform: rotate(90deg);
+    }
+
+    .modal h2 {
+      max-width: 470px;
+      margin-bottom: 11px;
+      color: var(--ink);
+      font: 500 2.8rem/1 "Playfair Display", serif;
+      letter-spacing: -.04em;
+    }
+
+    .modal-intro {
+      margin-bottom: 26px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      display: block;
+      margin: 0 0 7px 3px;
+      font-size: .7rem;
+      font-weight: 600;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      outline: 0;
+      color: var(--ink);
+      background: white;
+      transition: .3s;
+    }
+
+    .field input,
+    .field select {
+      height: 54px;
+      padding: 0 15px;
+    }
+
+    .field textarea {
+      min-height: 105px;
+      padding: 14px 15px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--wine);
+      box-shadow: 0 0 0 4px rgba(82, 29, 35, .09);
+    }
+
+    .submit {
+      width: 100%;
+    }
+
+    /* Reveal animations */
+
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(42px);
+      transition:
+        opacity .85s var(--ease),
+        transform .85s var(--ease);
+    }
+
+    [data-reveal].visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 980px) {
+      .menu-button {
+        position: relative;
+        z-index: 5;
+        display: block;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: min(88%, 420px);
+        height: 100vh;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        padding: 42px;
+        color: white;
+        background: rgba(17, 13, 11, .98);
+        box-shadow: -30px 0 80px rgba(0, 0, 0, .35);
+        transform: translateX(105%);
+        transition: transform .6s var(--ease);
+      }
+
+      .nav-links.open {
+        transform: none;
+      }
+
+      .nav-links a {
+        font: 500 2rem "Playfair Display", serif;
+      }
+
+      .profile-grid,
+      .process-grid {
+        grid-template-columns: 1fr;
+        gap: 55px;
+      }
+
+      .process-intro {
+        position: static;
+      }
+
+      .matters-head {
+        display: block;
+      }
+
+      .matters-head .copy {
+        margin-top: 18px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .container {
+        width: min(calc(100% - 28px), var(--container));
+      }
+
+      .section {
+        padding: 86px 0;
+      }
+
+      .brand {
+        max-width: 255px;
+      }
+
+      .brand-copy small {
+        display: none;
+      }
+
+      .hero {
+        min-height: 820px;
+      }
+
+      .hero-video {
+        object-position: 58% center;
+      }
+
+      .hero-content {
+        padding: 130px 0 30px;
+      }
+
+      .hero h1 {
+        font-size: clamp(3.45rem, 16vw, 5rem);
+      }
+
+      .hero-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .hero-actions .button {
+        width: 100%;
+      }
+
+      .hero-proof {
+        grid-template-columns: 1fr 1fr;
+        gap: 19px;
+        margin-top: 44px;
+      }
+
+      .hero-proof .proof-item:nth-child(3) {
+        display: none;
+      }
+
+      .hero-location {
+        grid-column: 1 / -1;
+        justify-self: start;
+        text-align: left;
+      }
+
+      .monogram-stage {
+        min-height: 430px;
+      }
+
+      .monogram {
+        width: 215px;
+        font-size: 4rem;
+      }
+
+      .matter-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .review-panel {
+        padding: 42px 23px;
+        border-radius: 28px;
+      }
+
+      .cta {
+        padding: 61px 24px;
+        border-radius: 29px;
+      }
+
+      .cta-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+      }
+
+      .form {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .modal-card {
+        padding: 37px 20px 24px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <header class="header" id="header">
+    <div class="container nav">
+      <a href="#home" class="brand">
+        <span class="brand-mark">
+          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M16 4v23M8 8h16M7 8l-4 8h8L7 8Zm18 0-4 8h8l-4-8ZM11 27h10" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M3 16c1 3 7 3 8 0M21 16c1 3 7 3 8 0" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </span>
+
+        <span class="brand-copy">
+          <strong data-field="shortName">Ravi Shankar Pandey</strong>
+          <small data-field="category">Lawyer</small>
+        </span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#profile">Profile</a>
+        <a href="#matters">Legal support</a>
+        <a href="#process">Process</a>
+        <a href="#review">Review</a>
+
+        <button class="button button-light nav-button consultation-trigger">
+          <span>Request consultation</span>
+        </button>
+      </nav>
+
+      <button
+        class="menu-button"
+        id="menuButton"
+        aria-label="Open menu"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Video-only hero -->
+    <section class="hero" id="home">
+      <video
+        class="hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        aria-label="Lawyer speaking with clients during a consultation"
+      >
+        <!-- Pexels source: https://www.pexels.com/video/a-lawyer-talking-to-his-clients-8061607/ -->
+        <source
+          src="https://videos.pexels.com/video-files/8061607/8061607-hd_1920_1080_25fps.mp4"
+          type="video/mp4"
+        >
+      </video>
+
+      <div class="hero-shade"></div>
+      <div class="hero-glow" aria-hidden="true"></div>
+
+      <div class="container hero-content">
+        <div class="hero-badge">
+          <span class="status-dot"></span>
+          <span data-field="categoryLocation">Lawyer in Jamshedpur</span>
+        </div>
+
+        <h1>
+          Clear legal guidance.<br>
+          <em>Confident next steps.</em>
+        </h1>
+
+        <p class="hero-copy">
+          Request a private consultation with
+          <strong data-field="shortName">Ravi Shankar Pandey</strong>
+          to discuss your legal matter and understand the next steps available
+          to you.
+        </p>
+
+        <div class="hero-actions">
+          <button class="button button-light consultation-trigger">
+            <span>Request a consultation</span>
+
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M5 12h14m-6-6 6 6-6 6" stroke-width="1.7"/>
+            </svg>
+          </button>
+
+          <a class="button button-ghost phone-link" href="tel:+919470550524">
+            <span>Call now</span>
+          </a>
+        </div>
+
+        <div class="hero-proof">
+          <div class="proof-item rating-block">
+            <strong>
+              <span data-field="rating">4.8</span> ★
+            </strong>
+            <span>Google rating</span>
+          </div>
+
+          <div class="proof-item rating-block">
+            <strong data-field="reviewCount">190</strong>
+            <span>Public reviews</span>
+          </div>
+
+          <div class="proof-item">
+            <strong data-field="hours">Open 24 hours</strong>
+            <span>Listing hours</span>
+          </div>
+
+          <div class="hero-location">
+            Consultation location
+            <strong data-field="address">
+              Sharda Bhavan, Vishnu Path, Jamshedpur
+            </strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="trust-strip" aria-hidden="true">
+      <div class="marquee">
+        <div class="marquee-group">
+          <span>Private consultation</span>
+          <span>Clear communication</span>
+          <span>Legal matter assessment</span>
+          <span>Document discussion</span>
+          <span>Practical next steps</span>
+          <span>Jamshedpur legal support</span>
+        </div>
+
+        <div class="marquee-group">
+          <span>Private consultation</span>
+          <span>Clear communication</span>
+          <span>Legal matter assessment</span>
+          <span>Document discussion</span>
+          <span>Practical next steps</span>
+          <span>Jamshedpur legal support</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile -->
+    <section class="section" id="profile">
+      <div class="container profile-grid">
+        <div class="monogram-stage" data-reveal>
+          <div class="orbit"></div>
+
+          <div class="monogram" data-field="initials">RP</div>
+
+          <span class="floating-tag one" data-field="category">
+            Lawyer
+          </span>
+
+          <span class="floating-tag two" data-field="city">
+            Jamshedpur
+          </span>
+        </div>
+
+        <div data-reveal>
+          <div class="eyebrow">Professional legal consultation</div>
+
+          <h2 class="display">
+            Understand your position before making your <em>next move.</em>
+          </h2>
+
+          <p class="copy">
+            Legal matters can feel complicated when the options are unclear.
+            A direct consultation allows you to explain the situation, raise
+            questions and discuss a suitable path forward.
+          </p>
+
+          <div class="profile-meta">
+            <div class="meta-row">
+              <span class="meta-icon">§</span>
+
+              <div>
+                <strong>Legal professional</strong>
+                <span data-field="fullName">
+                  Ravi Shankar Pandey (Best/Top Lawyer and Advocate in Jamshedpur)
+                </span>
+              </div>
+            </div>
+
+            <div class="meta-row">
+              <span class="meta-icon">⌖</span>
+
+              <div>
+                <strong>Consultation address</strong>
+                <span data-field="address">
+                  Sharda Bhavan, Vishnu Path, Jamshedpur
+                </span>
+              </div>
+            </div>
+
+            <div class="meta-row">
+              <span class="meta-icon">☎</span>
+
+              <div>
+                <strong>Contact number</strong>
+                <span data-field="phone">094705 50524</span>
+              </div>
+            </div>
+
+            <div class="meta-row">
+              <span class="meta-icon">◷</span>
+
+              <div>
+                <strong>Listing hours</strong>
+                <span data-field="hours">Open 24 hours</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Legal support -->
+    <section class="section matters" id="matters">
+      <div class="container">
+        <header class="matters-head" data-reveal>
+          <div>
+            <div class="eyebrow">How a consultation can help</div>
+
+            <h2 class="display">
+              Bring clarity to your <em>legal matter.</em>
+            </h2>
+          </div>
+
+          <p class="copy">
+            The exact legal services available should be confirmed directly
+            during your consultation.
+          </p>
+        </header>
+
+        <div class="matter-grid">
+          <article class="matter-card tilt-card" data-reveal>
+            <span class="matter-number">01</span>
+            <div class="matter-icon">§</div>
+            <h3>Initial case discussion</h3>
+            <p>
+              Explain the facts and circumstances surrounding your legal
+              matter in a private consultation.
+            </p>
+            <span class="matter-arrow">↗</span>
+          </article>
+
+          <article class="matter-card tilt-card" data-reveal>
+            <span class="matter-number">02</span>
+            <div class="matter-icon">◇</div>
+            <h3>Options and next steps</h3>
+            <p>
+              Discuss possible paths forward and the information that may be
+              relevant to your situation.
+            </p>
+            <span class="matter-arrow">↗</span>
+          </article>
+
+          <article class="matter-card tilt-card" data-reveal>
+            <span class="matter-number">03</span>
+            <div class="matter-icon">▤</div>
+            <h3>Document discussion</h3>
+            <p>
+              Bring relevant notices, agreements or other documents for an
+              initial professional discussion.
+            </p>
+            <span class="matter-arrow">↗</span>
+          </article>
+
+          <article class="matter-card tilt-card" data-reveal>
+            <span class="matter-number">04</span>
+            <div class="matter-icon">◎</div>
+            <h3>Representation enquiry</h3>
+            <p>
+              Ask whether representation or further legal assistance may be
+              available for your particular matter.
+            </p>
+            <span class="matter-arrow">↗</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section class="section process" id="process">
+      <div class="container process-grid">
+        <div class="process-intro" data-reveal>
+          <div class="eyebrow">Consultation process</div>
+
+          <h2 class="display">
+            A simpler way to <em>start the conversation.</em>
+          </h2>
+
+          <p class="copy">
+            Share the basic details of your matter and request a suitable time
+            for a direct consultation.
+          </p>
+        </div>
+
+        <div>
+          <article class="step" data-reveal>
+            <i class="step-number">01</i>
+
+            <div>
+              <h3>Send your request</h3>
+              <p>
+                Provide your name, phone number and a short description of the
+                legal matter.
+              </p>
+            </div>
+          </article>
+
+          <article class="step" data-reveal>
+            <i class="step-number">02</i>
+
+            <div>
+              <h3>Confirm availability</h3>
+              <p>
+                Contact the listed number to confirm availability, consultation
+                timing and any documents you should bring.
+              </p>
+            </div>
+          </article>
+
+          <article class="step" data-reveal>
+            <i class="step-number">03</i>
+
+            <div>
+              <h3>Discuss your situation</h3>
+              <p>
+                Explain the relevant facts and ask questions about the legal
+                process applicable to your circumstances.
+              </p>
+            </div>
+          </article>
+
+          <article class="step" data-reveal>
+            <i class="step-number">04</i>
+
+            <div>
+              <h3>Consider your next step</h3>
+              <p>
+                Review the information provided before deciding how you wish
+                to proceed.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Review -->
+    <section class="section" id="review">
+      <div class="container">
+        <article class="review-panel" data-reveal>
+          <div class="stars" aria-label="Five-star visual">
+            ★ ★ ★ ★ ★
+          </div>
+
+          <blockquote>
+            “<span data-field="review">The guidance provided was practical and reassuring throughout the process.</span>”
+          </blockquote>
+
+          <div class="review-source">
+            Public review excerpt shown on the Google business listing.
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section cta-section">
+      <div class="container">
+        <div class="cta" data-reveal>
+          <div class="cta-content">
+            <div class="eyebrow">Request a private consultation</div>
+
+            <h2>Take the first step with greater clarity.</h2>
+
+            <p>
+              Contact
+              <strong data-field="shortName">Ravi Shankar Pandey</strong>
+              to request a consultation regarding your legal matter.
+            </p>
+
+            <div class="cta-actions">
+              <button class="button button-light consultation-trigger">
+                <span>Send consultation request</span>
+              </button>
+
+              <a class="button button-ghost phone-link" href="tel:+919470550524">
+                <span data-field="phone">094705 50524</span>
+              </a>
+
+              <a
+                class="button button-ghost maps-link"
+                href="#"
+                target="_blank"
+                rel="noopener"
+              >
+                <span>View location</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="#home" class="brand">
+            <span class="brand-mark">§</span>
+
+            <span class="brand-copy">
+              <strong data-field="shortName">Ravi Shankar Pandey</strong>
+              <small data-field="category">Lawyer</small>
+            </span>
+          </a>
+
+          <p>
+            A premium informational page for requesting a legal consultation
+            in <span data-field="city">Jamshedpur</span>.
+          </p>
+        </div>
+
+        <div>
+          <h4>Explore</h4>
+
+          <ul class="footer-list">
+            <li><a href="#profile">Profile</a></li>
+            <li><a href="#matters">Legal support</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#review">Review</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Contact</h4>
+
+          <ul class="footer-list">
+            <li>
+              <a class="phone-link" href="tel:+919470550524">
+                <span data-field="phone">094705 50524</span>
+              </a>
+            </li>
+
+            <li data-field="hours">Open 24 hours</li>
+
+            <li>
+              <a
+                class="maps-link"
+                href="#"
+                target="_blank"
+                rel="noopener"
+              >
+                Google Maps
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Location</h4>
+
+          <p data-field="address">
+            Sharda Bhavan, Vishnu Path, Jamshedpur
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>
+          © <span id="year"></span>
+          <span data-field="shortName">Ravi Shankar Pandey</span>.
+        </span>
+
+        <span>
+          This page provides general contact information and does not itself
+          constitute legal advice or create an advocate-client relationship.
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating call -->
+  <a
+    class="floating-call phone-link"
+    href="tel:+919470550524"
+    aria-label="Call lawyer"
+  >
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path
+        d="M7 3H4.5A1.5 1.5 0 0 0 3 4.5C3 13.6 10.4 21 19.5 21a1.5 1.5 0 0 0 1.5-1.5V17l-5-1-1.2 3c-4.6-1.9-7.9-5.2-9.8-9.8L8 8 7 3Z"
+        stroke-width="1.5"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </a>
+
+  <!-- Consultation modal -->
+  <div
+    class="modal"
+    id="modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalTitle"
+  >
+    <div class="modal-card">
+      <button
+        class="modal-close"
+        id="modalClose"
+        aria-label="Close form"
+      >
+        ×
+      </button>
+
+      <h2 id="modalTitle">Request a consultation.</h2>
+
+      <p class="modal-intro">
+        This form prepares a WhatsApp message for
+        <strong data-field="shortName">Ravi Shankar Pandey</strong>.
+      </p>
+
+      <form class="form" id="consultationForm">
+        <div class="field">
+          <label for="clientName">Your name</label>
+          <input
+            id="clientName"
+            name="clientName"
+            required
+            autocomplete="name"
+            placeholder="Full name"
+          >
+        </div>
+
+        <div class="field">
+          <label for="clientPhone">Phone number</label>
+          <input
+            id="clientPhone"
+            name="clientPhone"
+            required
+            autocomplete="tel"
+            inputmode="tel"
+            placeholder="+91"
+          >
+        </div>
+
+        <div class="field full">
+          <label for="matterType">Nature of enquiry</label>
+
+          <select id="matterType" name="matterType">
+            <option>General legal consultation</option>
+            <option>Document-related enquiry</option>
+            <option>Representation enquiry</option>
+            <option>Notice or dispute</option>
+            <option>Other legal matter</option>
+          </select>
+        </div>
+
+        <div class="field full">
+          <label for="message">Brief description</label>
+
+          <textarea
+            id="message"
+            name="message"
+            required
+            placeholder="Briefly describe the matter. Avoid sharing highly sensitive information here."
+          ></textarea>
+        </div>
+
+        <div class="field full">
+          <button class="button submit" type="submit">
+            <span>Continue on WhatsApp</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    /*
+      ============================================================
+      REPLACE ONLY THIS OBJECT FOR EVERY QUALIFIED CSV LEAD
+      ============================================================
+
+      Rules:
+      - Lead must have no existing website.
+      - Do not add fake practice areas, qualifications or awards.
+      - Keep blank values as empty strings.
+    */
+
+    const LEAD = {
+      fullName:
+        "Ravi Shankar Pandey (Best/Top Lawyer and Advocate in Jamshedpur)",
+
+      shortName:
+        "Ravi Shankar Pandey",
+
+      rating:
+        "4.8",
+
+      reviewCount:
+        "190",
+
+      category:
+        "Lawyer",
+
+      address:
+        "Sharda Bhavan, Vishnu Path, Jamshedpur",
+
+      city:
+        "Jamshedpur",
+
+      phone:
+        "094705 50524",
+
+      hours:
+        "Open 24 hours",
+
+      review:
+        "The guidance provided was practical and reassuring throughout the process.",
+
+      mapsUrl:
+        "https://www.google.com/maps/place/Ravi+Shankar+Pandey+%28Best%2FTop+Lawyer+and+Advocate+in+Jamshedpur%29/data=!4m7!3m6!1s0x39f5e524cf1cc48f:0xb3ae6984a152c6ba!8m2!3d22.7712274!4d86.2641183!16s%2Fg%2F11q88v630l"
+    };
+
+    /*
+      Optional URL personalization:
+
+      index.html?name=Advocate%20Rahul%20Singh
+                &phone=9876543210
+                &category=Legal%20Services
+                &address=Jamshedpur
+                &rating=5.0
+                &reviews=41
+                &hours=Open%2024%20hours
+                &review=Professional%20and%20helpful
+                &maps=https%3A%2F%2Fgoogle.com%2Fmaps...
+    */
+
+    const query = new URLSearchParams(window.location.search);
+
+    const lead = {
+      ...LEAD,
+      fullName: query.get("name") || LEAD.fullName,
+      shortName: query.get("shortName") || query.get("name") || LEAD.shortName,
+      phone: query.get("phone") || LEAD.phone,
+      category: query.get("category") || LEAD.category,
+      address: query.get("address") || LEAD.address,
+      city: query.get("city") || LEAD.city,
+      rating: query.get("rating") || LEAD.rating,
+      reviewCount: query.get("reviews") || LEAD.reviewCount,
+      hours: query.get("hours") || LEAD.hours,
+      review: query.get("review") || LEAD.review,
+      mapsUrl: query.get("maps") || LEAD.mapsUrl
+    };
+
+    function cleanPhone(value) {
+      const digits = String(value || "").replace(/\D/g, "");
+
+      if (digits.length === 10) {
+        return `91${digits}`;
+      }
+
+      if (digits.length === 11 && digits.startsWith("0")) {
+        return `91${digits.slice(1)}`;
+      }
+
+      return digits;
+    }
+
+    function getInitials(name) {
+      const ignored = [
+        "advocate",
+        "lawyer",
+        "best",
+        "top",
+        "and",
+        "associates",
+        "associate"
+      ];
+
+      const words = String(name)
+        .replace(/[()[\]/|,&.-]/g, " ")
+        .split(/\s+/)
+        .filter(Boolean)
+        .filter(word => !ignored.includes(word.toLowerCase()));
+
+      return words
+        .slice(0, 2)
+        .map(word => word[0])
+        .join("")
+        .toUpperCase() || "§";
+    }
+
+    function applyLeadData() {
+      const values = {
+        ...lead,
+        initials: getInitials(lead.shortName),
+        categoryLocation:
+          `${lead.category || "Legal professional"} in ${lead.city || "your city"}`
+      };
+
+      document.querySelectorAll("[data-field]").forEach(element => {
+        const key = element.dataset.field;
+
+        if (values[key]) {
+          element.textContent = values[key];
+        }
+      });
+
+      const phone = cleanPhone(lead.phone);
+
+      document.querySelectorAll(".phone-link").forEach(link => {
+        if (phone) {
+          link.href = `tel:+${phone}`;
+        } else {
+          link.hidden = true;
+        }
+      });
+
+      document.querySelectorAll(".maps-link").forEach(link => {
+        link.href =
+          lead.mapsUrl ||
+          `https://www.google.com/maps/search/?api=1&query=${
+            encodeURIComponent(`${lead.fullName} ${lead.address}`)
+          }`;
+      });
+
+      if (!lead.rating || !lead.reviewCount) {
+        document.querySelectorAll(".rating-block").forEach(block => {
+          block.hidden = true;
+        });
+      }
+
+      const reviewSection = document.querySelector("#review");
+
+      if (!lead.review && reviewSection) {
+        reviewSection.hidden = true;
+      }
+
+      document.title =
+        `${lead.shortName} — ${lead.category} in ${lead.city}`;
+
+      document
+        .querySelector('meta[name="description"]')
+        .setAttribute(
+          "content",
+          `Request a legal consultation with ${lead.shortName}, ${lead.category} in ${lead.city}.`
+        );
+
+      /*
+        Deterministic accent customization:
+        Different businesses receive slightly different wine/gold shades,
+        while maintaining the premium visual system.
+      */
+
+      const hash = [...lead.fullName].reduce(
+        (total, character) => total + character.charCodeAt(0),
+        0
+      );
+
+      const hue = 345 + (hash % 12);
+      const goldHue = 35 + (hash % 9);
+
+      document.documentElement.style.setProperty(
+        "--wine",
+        `hsl(${hue} 48% 23%)`
+      );
+
+      document.documentElement.style.setProperty(
+        "--wine-light",
+        `hsl(${hue} 45% 35%)`
+      );
+
+      document.documentElement.style.setProperty(
+        "--gold",
+        `hsl(${goldHue} 51% 61%)`
+      );
+    }
+
+    applyLeadData();
+
+    // Navigation
+    const header = document.querySelector("#header");
+    const menuButton = document.querySelector("#menuButton");
+    const navLinks = document.querySelector("#navLinks");
+
+    window.addEventListener("scroll", () => {
+      header.classList.toggle("scrolled", window.scrollY > 40);
+    });
+
+    menuButton.addEventListener("click", () => {
+      const open = navLinks.classList.toggle("open");
+
+      menuButton.textContent = open ? "×" : "☰";
+      menuButton.setAttribute("aria-expanded", String(open));
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuButton.textContent = "☰";
+        menuButton.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    // Modal
+    const modal = document.querySelector("#modal");
+    const modalClose = document.querySelector("#modalClose");
+
+    function openModal() {
+      modal.classList.add("open");
+      document.body.classList.add("locked");
+
+      setTimeout(() => {
+        document.querySelector("#clientName").focus();
+      }, 250);
+    }
+
+    function closeModal() {
+      modal.classList.remove("open");
+      document.body.classList.remove("locked");
+    }
+
+    document.querySelectorAll(".consultation-trigger").forEach(button => {
+      button.addEventListener("click", openModal);
+    });
+
+    modalClose.addEventListener("click", closeModal);
+
+    modal.addEventListener("click", event => {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+
+    window.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        closeModal();
+      }
+    });
+
+    // WhatsApp consultation request
+    document
+      .querySelector("#consultationForm")
+      .addEventListener("submit", event => {
+        event.preventDefault();
+
+        const form = new FormData(event.currentTarget);
+        const lawyerPhone = cleanPhone(lead.phone);
+
+        const message = [
+          `Hello ${lead.shortName},`,
+          "",
+          "I would like to request a legal consultation.",
+          "",
+          `Name: ${form.get("clientName")}`,
+          `Phone: ${form.get("clientPhone")}`,
+          `Enquiry: ${form.get("matterType")}`,
+          `Details: ${form.get("message")}`,
+          "",
+          "Please let me know your availability."
+        ].join("\n");
+
+        if (lawyerPhone) {
+          window.open(
+            `https://wa.me/${lawyerPhone}?text=${encodeURIComponent(message)}`,
+            "_blank",
+            "noopener"
+          );
+        } else {
+          window.location.href =
+            `mailto:?subject=${encodeURIComponent("Legal consultation request")}` +
+            `&body=${encodeURIComponent(message)}`;
+        }
+      });
+
+    // Scroll reveals
+    const revealObserver = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: .12 }
+    );
+
+    document.querySelectorAll("[data-reveal]").forEach(element => {
+      revealObserver.observe(element);
+    });
+
+    // Micro tilt
+    document.querySelectorAll(".tilt-card").forEach(card => {
+      card.addEventListener("mousemove", event => {
+        if (window.innerWidth < 900) return;
+
+        const rectangle = card.getBoundingClientRect();
+        const x = (event.clientX - rectangle.left) / rectangle.width - .5;
+        const y = (event.clientY - rectangle.top) / rectangle.height - .5;
+
+        card.style.transform =
+          `perspective(900px)
+           rotateY(${x * 4}deg)
+           rotateX(${-y * 4}deg)
+           translateY(-7px)`;
+      });
+
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "";
+      });
+    });
+
+    document.querySelector("#year").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>
