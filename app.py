@@ -21,11 +21,15 @@ SITE = ROOT / "site"
 app = Flask(__name__)
 app.secret_key = os.getenv("APP_SECRET", os.urandom(24).hex())
 app.config["MAX_CONTENT_LENGTH"] = 8 * 1024 * 1024
-CORS(app, supports_credentials=True, origins=["https://leadpages-main.netlify.app", "https://leadpages-app-production.up.railway.app", "http://127.0.0.1:8000", "http://localhost:8000"])
+CORS(app, supports_credentials=True, origins="*", allow_headers=["Content-Type", "X-Access-Key", "Authorization"])
 
 
 def auth():
-    k = session.get("key")
+    k = request.headers.get("X-Access-Key") or session.get("key")
+    if not k:
+        auth_hdr = request.headers.get("Authorization", "")
+        if auth_hdr.startswith("Bearer "):
+            k = auth_hdr[7:].strip()
     if not k:
         return None, "not signed in"
     return licenses.check(k)
@@ -307,15 +311,30 @@ input,button{font:inherit;border-radius:12px;border:1px solid #d9d6cb;padding:12
   </div></div>
 </div></div><script>
 let JOB=null,ME=null,TPL=null,POLL=null;
+let KEY=localStorage.getItem('lp_key')||'';
 const $=i=>document.getElementById(i);
-const api=(u,o={})=>fetch(u,{headers:{'Content-Type':'application/json'},...o}).then(r=>r.json());
+const api=(u,o={})=>fetch(u,{headers:{'Content-Type':'application/json','X-Access-Key':KEY,...(o.headers||{})},credentials:'include',...o}).then(r=>r.json());
 function unlock(id){const el=$(id);el.classList.add('open');el.querySelectorAll('input,button').forEach(e=>e.disabled=false);el.scrollIntoView({behavior:'smooth',block:'center'})}
-async function signin(){const r=await api('/api/auth',{method:'POST',body:JSON.stringify({key:$('key').value})});if(!r.ok){$('gateErr').textContent=r.error;return}boot(r)}
-async function logout(){await api('/api/logout',{method:'POST'});location.reload()}
+async function signin(){
+  const k=($('key').value||'').trim();
+  if(!k){$('gateErr').textContent='Key enter karo';return}
+  $('gateErr').textContent='Verifying...';
+  const r=await api('/api/auth',{method:'POST',body:JSON.stringify({key:k})});
+  if(!r.ok){$('gateErr').textContent=r.error||'Invalid key';return}
+  KEY=k;
+  localStorage.setItem('lp_key',k);
+  boot(r);
+}
+async function logout(){
+  localStorage.removeItem('lp_key');
+  KEY='';
+  await api('/api/logout',{method:'POST'});
+  location.reload();
+}
 function boot(m){ME=m;$('gate').classList.add('hide');$('app').classList.remove('hide');$('me').innerHTML=`<span class=pill>${m.plan}</span><span class=pill>${m.remaining} credits left</span><span class=pill>max ${m.max_rows} rows/job</span>`;loadTypes()}
 async function loadTypes(){const ts=await api('/api/templates');if(ts.error){$('t1').textContent=ts.error;return}$('types').innerHTML=ts.map(t=>`<button class="type" data-n="${t.name}" onclick="pickType(this)"><span class="sw" style="background:${t.accent}"></span>${t.label}</button>`).join('')||'<p class=muted>No templates found.</p>'}
 function pickType(b){document.querySelectorAll('.type').forEach(x=>x.classList.remove('on'));b.classList.add('on');TPL=b.dataset.n;$('t1').textContent='';unlock('s2')}
-async function upload(){if(!TPL){$('t1').textContent='Pehle business type chuno';return}const f=$('file').files[0];if(!f){$('statusErr').textContent='CSV file chuno';return}$('statusErr').textContent='';const fd=new FormData();fd.append('file',f);fd.append('template',TPL);const r=await fetch('/api/upload',{method:'POST',body:fd}).then(r=>r.json());if(r.error){$('statusErr').textContent=r.error;return}JOB=r.job;$('report').classList.remove('hide');const noteNotice=r.notice?`<div style="background:#fef3c7;color:#92400e;padding:8px 12px;border-radius:10px;margin:8px 0;font-size:13px">⚠️ ${r.notice}</div>`:'';$('report').innerHTML=`${noteNotice}<b>${r.buildable}</b> websites banengi · ${r.dropped} hate<table>${r.sample.map(s=>`<tr><td>${s.name}</td><td>${s.city}</td><td>${s.phone}</td><td>${s.wa?'WhatsApp':'call only'}</td></tr>`).join('')}</table><p class=muted>Skipped: ${r.dropped_detail.map(d=>d.why).join(', ')||'none'}</p>`;$('terms').disabled=false;$('buildBtn').disabled=false;$('buildBtn').classList.remove('hide')}
+async function upload(){if(!TPL){$('t1').textContent='Pehle business type chuno';return}const f=$('file').files[0];if(!f){$('statusErr').textContent='CSV file chuno';return}$('statusErr').textContent='';const fd=new FormData();fd.append('file',f);fd.append('template',TPL);const r=await fetch('/api/upload',{method:'POST',headers:{'X-Access-Key':KEY},credentials:'include',body:fd}).then(r=>r.json());if(r.error){$('statusErr').textContent=r.error;return}JOB=r.job;$('report').classList.remove('hide');const noteNotice=r.notice?`<div style="background:#fef3c7;color:#92400e;padding:8px 12px;border-radius:10px;margin:8px 0;font-size:13px">⚠️ ${r.notice}</div>`:'';$('report').innerHTML=`${noteNotice}<b>${r.buildable}</b> websites banengi · ${r.dropped} hate<table>${r.sample.map(s=>`<tr><td>${s.name}</td><td>${s.city}</td><td>${s.phone}</td><td>${s.wa?'WhatsApp':'call only'}</td></tr>`).join('')}</table><p class=muted>Skipped: ${r.dropped_detail.map(d=>d.why).join(', ')||'none'}</p>`;$('terms').disabled=false;$('buildBtn').disabled=false;$('buildBtn').classList.remove('hide')}
 async function build(){if(!$('terms').checked){alert('fair-use box tick karo');return}$('buildBtn').disabled=true;const r=await api('/api/build/'+JOB,{method:'POST',body:JSON.stringify({site_name:$('site').value||'Previews',accept_terms:true})});if(r.error){$('statusErr').textContent=r.error;$('buildBtn').disabled=false;return}poll()}
 async function loadLiveAndCsv(j){
   const data = await api('/api/csv_data/' + JOB);
@@ -341,8 +360,10 @@ async function loadLiveAndCsv(j){
 }
 function poll(){clearInterval(POLL);POLL=setInterval(async()=>{const j=await api('/api/job/'+JOB);if(j.error){$('status').textContent=j.error;clearInterval(POLL);return}$('status').textContent=j.message||j.state;if(j.total)$('barI').style.width=(100*j.progress/j.total)+'%';if(j.state==='done'){clearInterval(POLL);$('barI').style.width='100%';$('status').innerHTML=`${j.summary.built} pages ready · <a href="/p/${JOB}/${j.summary.slugs[0]}/" target=_blank>preview one</a>`;unlock('s3');api('/api/me').then(m=>$('me').innerHTML=`<span class=pill>${m.plan}</span><span class=pill>${m.remaining} credits left</span>`)}if(j.state==='deployed'){clearInterval(POLL);$('depStatus').innerHTML=`live -> <a href="${j.live_url}" target=_blank>${j.live_url}</a>`;unlock('s4');loadLiveAndCsv(j)}if(j.state==='error'){clearInterval(POLL);$('status').textContent='error: '+j.message;$('depStatus').textContent=j.message}},1500)}
 async function deploy(){$('depBtn').disabled=true;$('depStatus').textContent='deploying...';const r=await api('/api/deploy/'+JOB,{method:'POST',body:JSON.stringify({token:$('token').value,site:$('site').value})});if(r.error){$('depStatus').textContent=r.error;$('depBtn').disabled=false;return}poll()}
-function dl(k){location.href=`/api/${k}/${JOB}`}
-api('/api/me').then(m=>{if(m.ok)boot(m)}).catch(()=>{});
+function dl(k){location.href=`/api/${k}/${JOB}?key=${encodeURIComponent(KEY)}`}
+if(KEY){
+  api('/api/me').then(m=>{if(m.ok)boot(m)}).catch(()=>{});
+}
 </script></body></html>"""
 
 # Ensure workspace exists on import (for gunicorn)
