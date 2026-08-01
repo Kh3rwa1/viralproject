@@ -21,7 +21,21 @@ SITE = ROOT / "site"
 app = Flask(__name__)
 app.secret_key = os.getenv("APP_SECRET", os.urandom(24).hex())
 app.config["MAX_CONTENT_LENGTH"] = 8 * 1024 * 1024
-CORS(app, supports_credentials=True, origins="*", allow_headers=["Content-Type", "X-Access-Key", "Authorization"])
+@app.after_request
+def add_cors(resp):
+    origin = request.headers.get("Origin")
+    if origin:
+        resp.headers["Access-Control-Allow-Origin"] = origin
+        resp.headers["Access-Control-Allow-Credentials"] = "true"
+        resp.headers["Access-Control-Allow-Headers"] = "Content-Type, X-Access-Key, Authorization"
+        resp.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS, DELETE, PUT"
+    return resp
+
+
+@app.route("/<path:dummy>", methods=["OPTIONS"])
+@app.route("/", methods=["OPTIONS"])
+def options_handler(dummy=""):
+    return "", 200
 
 
 def auth():
@@ -313,14 +327,21 @@ input,button{font:inherit;border-radius:12px;border:1px solid #d9d6cb;padding:12
 let JOB=null,ME=null,TPL=null,POLL=null;
 let KEY=localStorage.getItem('lp_key')||'';
 const $=i=>document.getElementById(i);
-const api=(u,o={})=>fetch(u,{headers:{'Content-Type':'application/json','X-Access-Key':KEY,...(o.headers||{})},credentials:'include',...o}).then(r=>r.json());
+const api=async(u,o={})=>{
+  try{
+    const res=await fetch(u,{headers:{'Content-Type':'application/json','X-Access-Key':KEY,...(o.headers||{})},credentials:'include',...o});
+    return await res.json();
+  }catch(err){
+    return {ok:false,error:'Server connection error: '+(err.message||'Cannot reach server')};
+  }
+};
 function unlock(id){const el=$(id);el.classList.add('open');el.querySelectorAll('input,button').forEach(e=>e.disabled=false);el.scrollIntoView({behavior:'smooth',block:'center'})}
 async function signin(){
   const k=($('key').value||'').trim();
   if(!k){$('gateErr').textContent='Key enter karo';return}
   $('gateErr').textContent='Verifying...';
   const r=await api('/api/auth',{method:'POST',body:JSON.stringify({key:k})});
-  if(!r.ok){$('gateErr').textContent=r.error||'Invalid key';return}
+  if(!r||!r.ok){$('gateErr').textContent=(r&&r.error)?r.error:'Invalid key or server offline';return}
   KEY=k;
   localStorage.setItem('lp_key',k);
   boot(r);

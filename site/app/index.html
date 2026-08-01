@@ -68,7 +68,14 @@ input,button{font:inherit;border-radius:12px;border:1px solid #d9d6cb;padding:12
 let JOB=null,ME=null,TPL=null,POLL=null,BASE='';
 let KEY=localStorage.getItem('lp_key')||'';
 const $=i=>document.getElementById(i);
-const api=(u,o={})=>fetch(BASE+u,{headers:{'Content-Type':'application/json','X-Access-Key':KEY,...(o.headers||{})},credentials:'include',...o}).then(r=>r.json());
+const api=async(u,o={})=>{
+  try{
+    const res=await fetch(BASE+u,{headers:{'Content-Type':'application/json','X-Access-Key':KEY,...(o.headers||{})},credentials:'include',...o});
+    return await res.json();
+  }catch(err){
+    return {ok:false,error:'Server connection error: '+(err.message||'Cannot reach server')};
+  }
+};
 
 function connectServer(){
   BASE=$('serverUrl').value.replace(/\/$/,'');
@@ -92,7 +99,7 @@ async function signin(){
   if(!k){$('gateErr').textContent='Key enter karo';return}
   $('gateErr').textContent='Verifying...';
   const r=await api('/api/auth',{method:'POST',body:JSON.stringify({key:k})});
-  if(!r.ok){$('gateErr').textContent=r.error||'Invalid key';return}
+  if(!r||!r.ok){$('gateErr').textContent=(r&&r.error)?r.error:'Invalid key or server offline';return}
   KEY=k;
   localStorage.setItem('lp_key',k);
   boot(r);
