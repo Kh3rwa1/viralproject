@@ -34,10 +34,10 @@ input,button{font:inherit;border-radius:12px;border:1px solid #d9d6cb;padding:12
 </div>
 <div id="serverPicker" class="hide" style="margin-top:10px;padding:10px;background:#f6f5f0;border-radius:10px;font-size:12px">
   <label style="display:block;margin-bottom:4px;font-weight:600">Backend Server URL:</label>
-  <input id="customServerUrl" style="padding:6px;font-size:12px;margin-bottom:6px" value="https://leadpages-app-production.up.railway.app">
+  <input id="customServerUrl" style="padding:6px;font-size:12px;margin-bottom:6px" value="https://hat-movie-gnome-financing.trycloudflare.com">
   <div style="display:flex;gap:6px">
-    <button class="light" style="padding:4px 8px;font-size:11px" onclick="setServer('https://leadpages-app-production.up.railway.app')">Cloud (Railway)</button>
-    <button class="light" style="padding:4px 8px;font-size:11px" onclick="setServer('http://127.0.0.1:8000')">Local (127.0.0.1:8000)</button>
+    <button class="light" style="padding:4px 8px;font-size:11px" onclick="setServer('https://hat-movie-gnome-financing.trycloudflare.com')">Cloud Server</button>
+    <button class="light" style="padding:4px 8px;font-size:11px" onclick="setServer('http://127.0.0.1:8080')">Local (127.0.0.1:8080)</button>
   </div>
 </div>
 </div>
@@ -175,7 +175,7 @@ if(savedBase){
 } else if(location.hostname==='127.0.0.1'||location.hostname==='localhost'){
   BASE=location.origin;
 } else {
-  BASE='https://leadpages-app-production.up.railway.app';
+  BASE='https://hat-movie-gnome-financing.trycloudflare.com';
 }
 $('serverSetup').classList.add('hide');
 $('mainApp').classList.remove('hide');
