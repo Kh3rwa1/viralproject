@@ -120,11 +120,13 @@ function poll(){clearInterval(POLL);POLL=setInterval(async()=>{const j=await api
 async function deploy(){$('depBtn').disabled=true;$('depStatus').textContent='deploying...';const r=await api('/api/deploy/'+JOB,{method:'POST',body:JSON.stringify({token:$('token').value,site:$('site').value})});if(r.error){$('depStatus').textContent=r.error;$('depBtn').disabled=false;return}poll()}
 function dl(k){location.href=BASE+`/api/${k}/${JOB}`}
 
-// Auto-connect if running on same origin (local Flask server)
+// Auto-connect to live server or local origin
 if(location.hostname==='127.0.0.1'||location.hostname==='localhost'){
   BASE=location.origin;
-  $('serverSetup').classList.add('hide');
-  $('mainApp').classList.remove('hide');
-  api('/api/me').then(m=>{if(m.ok)boot(m)}).catch(()=>{});
+} else {
+  BASE='https://leadpages-app-production.up.railway.app';
 }
+$('serverSetup').classList.add('hide');
+$('mainApp').classList.remove('hide');
+api('/api/me').then(m=>{if(m.ok)boot(m)}).catch(()=>{});
 </script></body></html>

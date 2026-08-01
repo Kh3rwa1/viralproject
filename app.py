@@ -21,7 +21,7 @@ SITE = ROOT / "site"
 app = Flask(__name__)
 app.secret_key = os.getenv("APP_SECRET", os.urandom(24).hex())
 app.config["MAX_CONTENT_LENGTH"] = 8 * 1024 * 1024
-CORS(app, supports_credentials=True, origins=["https://leadpages-main.netlify.app", "http://127.0.0.1:8000", "http://localhost:8000"])
+CORS(app, supports_credentials=True, origins=["https://leadpages-main.netlify.app", "https://leadpages-app-production.up.railway.app", "http://127.0.0.1:8000", "http://localhost:8000"])
 
 
 def auth():
