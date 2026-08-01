@@ -329,7 +329,7 @@ let KEY=localStorage.getItem('lp_key')||'';
 const $=i=>document.getElementById(i);
 const api=async(u,o={})=>{
   try{
-    const res=await fetch(u,{headers:{'Content-Type':'application/json','X-Access-Key':KEY,...(o.headers||{})},credentials:'include',...o});
+    const res=await fetch(u,{headers:{'Content-Type':'application/json','X-Access-Key':KEY,...(o.headers||{})},...o});
     return await res.json();
   }catch(err){
     return {ok:false,error:'Server connection error: '+(err.message||'Cannot reach server')};

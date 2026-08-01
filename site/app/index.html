@@ -25,12 +25,22 @@ input,button{font:inherit;border-radius:12px;border:1px solid #d9d6cb;padding:12
   <div class=err id=serverErr></div>
 </div>
 
-<div id=mainApp class=hide>
-
-<div class=card id=gate><h3><span>0</span>Access key</h3>
+<div id=mainApp class=hide><div class=card id=gate><h3><span>0</span>Access key</h3>
 <input id=key placeholder="LP-XXXX-XXXX-XXXX" autocomplete=off>
 <button onclick=signin()>Unlock</button><div class=err id=gateErr></div>
-<p class=muted style=margin-top:12px>No key? Telegram pe <a href="https://t.me/dulork" target="_blank" style="color:#12634a;font-weight:700">@dulork</a> se key le lo.</p></div>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:12px" class=muted>
+  <span>No key? Telegram pe <a href="https://t.me/dulork" target="_blank" style="color:#12634a;font-weight:700">@dulork</a></span>
+  <span>Server: <a href="javascript:void(0)" onclick="toggleServerSetting()" id="serverLabel" style="color:#12634a;font-weight:600">Cloud Server</a></span>
+</div>
+<div id="serverPicker" class="hide" style="margin-top:10px;padding:10px;background:#f6f5f0;border-radius:10px;font-size:12px">
+  <label style="display:block;margin-bottom:4px;font-weight:600">Backend Server URL:</label>
+  <input id="customServerUrl" style="padding:6px;font-size:12px;margin-bottom:6px" value="https://leadpages-app-production.up.railway.app">
+  <div style="display:flex;gap:6px">
+    <button class="light" style="padding:4px 8px;font-size:11px" onclick="setServer('https://leadpages-app-production.up.railway.app')">Cloud (Railway)</button>
+    <button class="light" style="padding:4px 8px;font-size:11px" onclick="setServer('http://127.0.0.1:8000')">Local (127.0.0.1:8000)</button>
+  </div>
+</div>
+</div>
 
 <div id=app class=hide>
 <div class=card><h3>Your plan</h3><div id=me></div><button class=light onclick=logout()>Sign out</button></div>
@@ -68,14 +78,31 @@ input,button{font:inherit;border-radius:12px;border:1px solid #d9d6cb;padding:12
 let JOB=null,ME=null,TPL=null,POLL=null,BASE='';
 let KEY=localStorage.getItem('lp_key')||'';
 const $=i=>document.getElementById(i);
+
 const api=async(u,o={})=>{
   try{
-    const res=await fetch(BASE+u,{headers:{'Content-Type':'application/json','X-Access-Key':KEY,...(o.headers||{})},credentials:'include',...o});
+    const controller=new AbortController();
+    const tid=setTimeout(()=>controller.abort(),10000);
+    const res=await fetch(BASE+u,{headers:{'Content-Type':'application/json','X-Access-Key':KEY,...(o.headers||{})},signal:controller.signal,...o});
+    clearTimeout(tid);
     return await res.json();
   }catch(err){
-    return {ok:false,error:'Server connection error: '+(err.message||'Cannot reach server')};
+    return {ok:false,error:'Connection error ('+(err.name==='AbortError'?'Server timeout':(err.message||'Cannot reach server'))+')'};
   }
 };
+
+function toggleServerSetting(){
+  $('serverPicker').classList.toggle('hide');
+}
+
+function setServer(url){
+  BASE=url.replace(/\/$/,'');
+  localStorage.setItem('lp_base_url',BASE);
+  $('customServerUrl').value=BASE;
+  $('serverLabel').textContent=BASE.includes('127.0.0.1')?'Local Server':'Cloud Server';
+  $('serverPicker').classList.add('hide');
+  $('gateErr').textContent='Server changed to '+BASE;
+}
 
 function connectServer(){
   BASE=$('serverUrl').value.replace(/\/$/,'');
@@ -99,7 +126,7 @@ async function signin(){
   if(!k){$('gateErr').textContent='Key enter karo';return}
   $('gateErr').textContent='Verifying...';
   const r=await api('/api/auth',{method:'POST',body:JSON.stringify({key:k})});
-  if(!r||!r.ok){$('gateErr').textContent=(r&&r.error)?r.error:'Invalid key or server offline';return}
+  if(!r||!r.ok){$('gateErr').textContent=(r&&r.error)?r.error:'Invalid key or server connection failed';return}
   KEY=k;
   localStorage.setItem('lp_key',k);
   boot(r);
@@ -111,9 +138,9 @@ async function logout(){
   location.reload();
 }
 function boot(m){ME=m;$('gate').classList.add('hide');$('app').classList.remove('hide');$('me').innerHTML=`<span class=pill>${m.plan}</span><span class=pill>${m.remaining} credits left</span><span class=pill>max ${m.max_rows} rows/job</span>`;loadTypes()}
-async function loadTypes(){const ts=await api('/api/templates');if(ts.error){$('t1').textContent=ts.error;return}$('types').innerHTML=ts.map(t=>`<button class="type" data-n="${t.name}" onclick="pickType(this)"><span class="sw" style="background:${t.accent}"></span>${t.label}</button>`).join('')||'<p class=muted>No templates found.</p>'}
+async function loadTypes(){const ts=await api('/api/templates');if(!ts||ts.error){$('t1').textContent=(ts&&ts.error)||'Failed to load templates';return}$('types').innerHTML=ts.map(t=>`<button class="type" data-n="${t.name}" onclick="pickType(this)"><span class="sw" style="background:${t.accent}"></span>${t.label}</button>`).join('')||'<p class=muted>No templates found.</p>'}
 function pickType(b){document.querySelectorAll('.type').forEach(x=>x.classList.remove('on'));b.classList.add('on');TPL=b.dataset.n;$('t1').textContent='';unlock('s2')}
-async function upload(){if(!TPL){$('t1').textContent='Pehle business type chuno';return}const f=$('file').files[0];if(!f){$('statusErr').textContent='CSV file chuno';return}$('statusErr').textContent='';const fd=new FormData();fd.append('file',f);fd.append('template',TPL);const r=await fetch(BASE+'/api/upload',{method:'POST',headers:{'X-Access-Key':KEY},credentials:'include',body:fd}).then(r=>r.json());if(r.error){$('statusErr').textContent=r.error;return}JOB=r.job;$('report').classList.remove('hide');const noteNotice=r.notice?`<div style="background:#fef3c7;color:#92400e;padding:8px 12px;border-radius:10px;margin:8px 0;font-size:13px">⚠️ ${r.notice}</div>`:'';$('report').innerHTML=`${noteNotice}<b>${r.buildable}</b> websites banengi · ${r.dropped} hate<table>${r.sample.map(s=>`<tr><td>${s.name}</td><td>${s.city}</td><td>${s.phone}</td><td>${s.wa?'WhatsApp':'call only'}</td></tr>`).join('')}</table><p class=muted>Skipped: ${r.dropped_detail.map(d=>d.why).join(', ')||'none'}</p>`;$('terms').disabled=false;$('buildBtn').disabled=false;$('buildBtn').classList.remove('hide')}
+async function upload(){if(!TPL){$('t1').textContent='Pehle business type chuno';return}const f=$('file').files[0];if(!f){$('statusErr').textContent='CSV file chuno';return}$('statusErr').textContent='';const fd=new FormData();fd.append('file',f);fd.append('template',TPL);try{const r=await fetch(BASE+'/api/upload',{method:'POST',headers:{'X-Access-Key':KEY},body:fd}).then(r=>r.json());if(r.error){$('statusErr').textContent=r.error;return}JOB=r.job;$('report').classList.remove('hide');const noteNotice=r.notice?`<div style="background:#fef3c7;color:#92400e;padding:8px 12px;border-radius:10px;margin:8px 0;font-size:13px">⚠️ ${r.notice}</div>`:'';$('report').innerHTML=`${noteNotice}<b>${r.buildable}</b> websites banengi · ${r.dropped} hate<table>${r.sample.map(s=>`<tr><td>${s.name}</td><td>${s.city}</td><td>${s.phone}</td><td>${s.wa?'WhatsApp':'call only'}</td></tr>`).join('')}</table><p class=muted>Skipped: ${r.dropped_detail.map(d=>d.why).join(', ')||'none'}</p>`;$('terms').disabled=false;$('buildBtn').disabled=false;$('buildBtn').classList.remove('hide')}catch(e){$('statusErr').textContent='Upload failed: '+e.message}}
 async function build(){if(!$('terms').checked){alert('fair-use box tick karo');return}$('buildBtn').disabled=true;const r=await api('/api/build/'+JOB,{method:'POST',body:JSON.stringify({site_name:$('site').value||'Previews',accept_terms:true})});if(r.error){$('statusErr').textContent=r.error;$('buildBtn').disabled=false;return}poll()}
 async function loadLiveAndCsv(j){
   const data = await api('/api/csv_data/' + JOB);
@@ -141,14 +168,18 @@ function poll(){clearInterval(POLL);POLL=setInterval(async()=>{const j=await api
 async function deploy(){$('depBtn').disabled=true;$('depStatus').textContent='deploying...';const r=await api('/api/deploy/'+JOB,{method:'POST',body:JSON.stringify({token:$('token').value,site:$('site').value})});if(r.error){$('depStatus').textContent=r.error;$('depBtn').disabled=false;return}poll()}
 function dl(k){location.href=BASE+`/api/${k}/${JOB}?key=${encodeURIComponent(KEY)}`}
 
-// Auto-connect to live server or local origin
-if(location.hostname==='127.0.0.1'||location.hostname==='localhost'){
+// Auto-connect server initialization
+let savedBase = localStorage.getItem('lp_base_url');
+if(savedBase){
+  BASE=savedBase;
+} else if(location.hostname==='127.0.0.1'||location.hostname==='localhost'){
   BASE=location.origin;
 } else {
   BASE='https://leadpages-app-production.up.railway.app';
 }
 $('serverSetup').classList.add('hide');
 $('mainApp').classList.remove('hide');
+$('serverLabel').textContent = BASE.includes('127.0.0.1') ? 'Local Server' : 'Cloud Server';
 if(KEY){
   api('/api/me').then(m=>{if(m.ok)boot(m)}).catch(()=>{});
 }
