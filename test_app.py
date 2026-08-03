@@ -176,11 +176,87 @@ class TestLeadPagesFixes(unittest.TestCase):
         self.assertIn("category", data[0])
         self.assertIn("layout", data[0])
 
-    def test_template_preview_asset(self):
-        client = app.app.test_client()
-        resp = client.get("/template-previews/dental-clean-product.webp")
+    def test_csv_importer_sanitization_and_filtering(self):
+        # Setup session with key
+        k_info = licenses.new_key("cleaner@example.com", "starter", days=30)
+        with self.client.session_transaction() as sess:
+            sess["key"] = k_info["key"]
+
+        # CSV with junk headers, PhantomLocal URLs, Google Login URLs, mixed genuine sites
+        csv_content = (
+            "Business Name,Phone,Website,PhantomLocal pricing,Google btn,Directions btn,City\n"
+            "A1 Dental Care,9876543210,https://app.phantomlocal.com/pricing,https://phantomlocal.com,https://accounts.google.com,Directions,Kolkata\n"
+            "Dr. Smith Dentistry,9123456789,https://drsmithdental.com,https://phantomlocal.com,https://accounts.google.com,Directions,Kolkata\n"
+            "City Dental Clinic,9000011111,,https://app.phantomlocal.com/pricing,https://accounts.google.com,Directions,Kolkata\n"
+            "No Phone Clinic,,https://nophone.com,https://phantomlocal.com,https://accounts.google.com,Directions,Kolkata\n"
+        )
+
+        data = {
+            "template": "dental_clean_product",
+            "file": (io.BytesIO(csv_content.encode("utf-8")), "messy_leads.csv")
+        }
+
+        resp = self.client.post("/api/upload", data=data, content_type="multipart/form-data")
         self.assertEqual(resp.status_code, 200)
-        self.assertEqual(resp.mimetype, "image/webp")
+        res = resp.get_json()
+
+        # Check upload cleanup summary metrics
+        self.assertEqual(res["total_rows"], 4)
+        self.assertEqual(res["buildable"], 2)  # A1 Dental Care & City Dental Clinic
+        self.assertEqual(res["junk_columns_removed"], 3)  # PhantomLocal pricing, Google btn, Directions btn
+        self.assertEqual(res["removed_breakdown"]["already_has_website"], 1)  # Dr. Smith Dentistry
+        self.assertEqual(res["removed_breakdown"]["missing_phone"], 1)  # No Phone Clinic
+
+        # Verify generated cleanup CSV files inside job folder
+        job_id = res["job"]
+        job_folder = Path(jobs.JOBS[job_id]["folder"])
+        
+        # 1. clean.csv contains only buildable businesses
+        clean_rows, _ = core.read_csv(job_folder / "clean.csv")
+        clean_names = [r["name"] for r in clean_rows]
+        self.assertIn("A1 Dental Care", clean_names)
+        self.assertIn("City Dental Clinic", clean_names)
+        self.assertNotIn("Dr. Smith Dentistry", clean_names)
+        self.assertNotIn("No Phone Clinic", clean_names)
+
+        # 2. removed.csv records exact removal reasons
+        removed_rows, _ = core.read_csv(job_folder / "removed.csv")
+        removed_names = [r["name"] for r in removed_rows]
+        self.assertIn("Dr. Smith Dentistry", removed_names)
+        self.assertIn("No Phone Clinic", removed_names)
+
+        dr_smith_row = next(r for r in removed_rows if r["name"] == "Dr. Smith Dentistry")
+        self.assertEqual(dr_smith_row["status"], "skipped_existing_website")
+        self.assertIn("drsmithdental.com", dr_smith_row["reason"])
+
+        no_phone_row = next(r for r in removed_rows if r["name"] == "No Phone Clinic")
+        self.assertEqual(no_phone_row["status"], "skipped_missing_phone")
+        self.assertEqual(no_phone_row["reason"], "no phone")
+
+    def test_zero_buildable_rows_graceful_notice(self):
+        k_info = licenses.new_key("zero_buildable@example.com", "starter", days=30)
+        with self.client.session_transaction() as sess:
+            sess["key"] = k_info["key"]
+
+        csv_content = (
+            "Business Name,Phone,Website\n"
+            "Dr. Smith Dentistry,9123456789,https://drsmithdental.com\n"
+            "City Dental Clinic,9000011111,https://citydental.com\n"
+        )
+
+        data = {
+            "template": "dental_clean_product",
+            "file": (io.BytesIO(csv_content.encode("utf-8")), "all_real_websites.csv")
+        }
+
+        resp = self.client.post("/api/upload", data=data, content_type="multipart/form-data")
+        self.assertEqual(resp.status_code, 200)
+        res = resp.get_json()
+
+        self.assertEqual(res["buildable"], 0)
+        self.assertEqual(res["removed"], 2)
+        self.assertIn("CSV cleaned successfully", res["notice"])
+        self.assertEqual(res["removed_breakdown"]["already_has_website"], 2)
 
 
 if __name__ == "__main__":

@@ -37,6 +37,24 @@ BUILDER = {"business.site": "Google business site", "wixsite.com": "Wix site",
 SKIP_HOSTS = ("google.com", "google.co", "gstatic.com", "schema.org", "goo.gl",
               "maps.app.goo.gl", "ggpht.com", "googleusercontent.com")
 
+JUNK_SERVICE_HOSTS = {
+    "app.phantomlocal.com",
+    "phantomlocal.com",
+    "accounts.google.com",
+    "support.google.com",
+}
+
+JUNK_HEADER_RE = re.compile(
+    r"(phantom|must.?login|google.?btn|pricing|sign.?in|"
+    r"directions.?btn|share.?btn|save.?btn)",
+    re.I,
+)
+
+
+def is_junk_header(header: str) -> bool:
+    return bool(JUNK_HEADER_RE.search(str(header or "").strip()))
+
+
 CATEGORY_HINT = re.compile(r"^(?:[\w&/' -]{3,40})$")
 CATEGORY_WORDS = re.compile(
     r"(lawyer|advocate|attorney|law firm|legal|notary|dentist|dental|clinic|hospital|"
@@ -58,7 +76,7 @@ def classify_website(url: str):
     if not url:
         return "none", ""
     h = host(url)
-    if not h or any(s in h for s in SKIP_HOSTS):
+    if not h or h in JUNK_SERVICE_HOSTS or any(s in h for s in SKIP_HOSTS) or any(s in h for s in JUNK_SERVICE_HOSTS):
         return "none", ""
     for dom, lab in SOCIAL.items():
         if dom in h:
@@ -166,14 +184,16 @@ def _by_header(row: dict) -> dict:
 def normalise(rows: list[dict], fieldnames: list[str]) -> list[dict]:
     """Returns canonical records; keeps `_row` = index in the source CSV."""
     out = []
-    blob = " ".join(str(x) for x in (fieldnames or []))
+    clean_fieldnames = [f for f in (fieldnames or []) if not is_junk_header(f)]
+    blob = " ".join(str(x) for x in clean_fieldnames)
     niche_h, city_h = search_context(blob)
 
     for i, row in enumerate(rows):
-        cells = [str(v or "") for v in row.values()]
+        clean_row = {k: v for k, v in row.items() if not is_junk_header(k)}
+        cells = [str(v or "") for v in clean_row.values()]
         raw_blob = " ".join(cells)
         niche_r, city_r = search_context(raw_blob)
-        named = _by_header(row)
+        named = _by_header(clean_row)
         scan = _scan(cells)
 
         urls = named.get("website", "") and [named["website"]] or scan["urls"]

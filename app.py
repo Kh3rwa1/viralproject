@@ -9,6 +9,7 @@ from pathlib import Path
 from flask import (Flask, jsonify, request, send_file, send_from_directory,
                    session)
 
+import adapters
 import core
 import engine
 import jobs
@@ -145,9 +146,24 @@ def api_upload():
     f.save(dest)
 
     rows, fields = core.read_csv(dest)
-    kept, dropped = core.plan_rows(rows, fields, keep_real=False)
+    junk_columns_removed = len([hdr for hdr in fields if adapters.is_junk_header(hdr)])
+    kept, dropped, breakdown = core.plan_rows(rows, fields, keep_real=False)
+
+    core.write_cleanup_files(
+        Path(job["folder"]), rows, fields, kept, dropped, template=template
+    )
+
     if not kept:
-        return jsonify({"error": "No valid leads found in CSV."}), 400
+        return jsonify({
+            "job": job["id"],
+            "total_rows": len(rows),
+            "buildable": 0,
+            "removed": len(dropped),
+            "junk_columns_removed": junk_columns_removed,
+            "removed_breakdown": breakdown,
+            "notice": "CSV cleaned successfully, but no buildable businesses remain. All rows were removed because they have websites, missing phone numbers, or duplicate details.",
+            "message": "CSV cleaned successfully, but no buildable businesses remain. All rows were removed because they have websites, missing phone numbers, or duplicate details."
+        }), 200
 
     if row["remaining"] <= 0:
         return jsonify({"error": "You have 0 credits remaining. Please top up or enter a new key."}), 402
@@ -160,11 +176,24 @@ def api_upload():
     kept = kept[:max_allowed]
     job["limit"] = max_allowed
 
-    return jsonify({"job": job["id"], "total_rows": len(rows), "buildable": len(kept),
-                    "dropped": len(dropped) + extra_dropped, "dropped_detail": dropped[:8],
-                    "sample": [{"name": r["name"], "city": r["city"],
-                                "phone": r["phone"], "wa": r["phone_kind"] == "mobile"}
-                               for r in kept[:5]]})
+    return jsonify({
+        "job": job["id"],
+        "total_rows": len(rows),
+        "buildable": len(kept),
+        "removed": len(dropped) + extra_dropped,
+        "junk_columns_removed": junk_columns_removed,
+        "removed_breakdown": breakdown,
+        "dropped_detail": dropped[:8],
+        "sample": [
+            {
+                "name": r["name"],
+                "city": r["city"],
+                "phone": r["phone"],
+                "wa": r["phone_kind"] == "mobile"
+            }
+            for r in kept[:5]
+        ]
+    })
 
 
 @app.post("/api/build/<jid>")

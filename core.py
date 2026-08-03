@@ -20,38 +20,145 @@ def read_csv(path: Path):
 
 
 def plan_rows(rows, fieldnames, *, limit=0, city="", only="", keep_real=False):
-    """Dry-run friendly: returns (kept, dropped) without writing anything."""
+    """Dry-run friendly: returns (kept, dropped, breakdown) without writing anything."""
     records = adapters.normalise(rows, fieldnames)
     kept, dropped, seen_phone, seen_slug = [], [], set(), {}
+    breakdown = {
+        "already_has_website": 0,
+        "missing_phone": 0,
+        "missing_name": 0,
+        "duplicate_phone": 0,
+    }
+
     for r in records:
-        why = ""
+        why, status = "", ""
         if not r["name"]:
-            why = "no name"
+            why, status = "no name", "skipped_missing_name"
+            breakdown["missing_name"] += 1
         elif not engine.digits(r["phone"]):
-            why = "no phone"
+            why, status = "no phone", "skipped_missing_phone"
+            breakdown["missing_phone"] += 1
         elif r["website_kind"] == "real" and not keep_real:
-            why = f"already has a site ({adapters.host(r['website'])})"
+            why, status = f"already has a site ({adapters.host(r['website'])})", "skipped_existing_website"
+            breakdown["already_has_website"] += 1
         elif city and city.lower() not in (r["city"] or "").lower():
-            why = "city filter"
+            why, status = "city filter", "skipped_filter"
         elif only and only.lower() not in r["name"].lower():
-            why = "name filter"
+            why, status = "name filter", "skipped_filter"
         else:
             key = engine.phone_intl(r["phone"])
             if key in seen_phone:
-                why = "duplicate phone"
+                why, status = "duplicate phone", "skipped_duplicate_phone"
+                breakdown["duplicate_phone"] += 1
             else:
                 seen_phone.add(key)
+
         if why:
-            dropped.append({"name": r["name"] or f"row {r['_row'] + 2}", "why": why})
+            r["page_status"] = status
+            r["why"] = why
+            dropped.append({
+                "name": r["name"] or f"row {r['_row'] + 2}",
+                "why": why,
+                "status": status,
+                "row_index": r["_row"],
+                "record": r,
+            })
             continue
+
         base = engine.slugify(r["name"] or r["city"])
         n = seen_slug.get(base, 0) + 1
         seen_slug[base] = n
         r["slug"] = base if n == 1 else f"{base}-{n}"
+        r["page_status"] = "buildable"
         kept.append(r)
         if limit and len(kept) >= limit:
             break
-    return kept, dropped
+
+    return kept, dropped, breakdown
+
+
+def write_cleanup_files(outdir: Path, rows: list[dict], fieldnames: list[str],
+                        kept: list[dict], dropped: list[dict],
+                        template: str = "", base_url: str = "", built_at: str = ""):
+    outdir = Path(outdir)
+    outdir.mkdir(parents=True, exist_ok=True)
+
+    # 1. clean.csv — buildable businesses only
+    clean_cols = ["slug", "name", "category", "city", "address", "phone", "share_url"]
+    with (outdir / "clean.csv").open("w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=clean_cols)
+        w.writeheader()
+        for r in kept:
+            url = f"{base_url.rstrip('/')}/{r['slug']}/" if base_url else f"/{r['slug']}/"
+            w.writerow({
+                "slug": r.get("slug", ""),
+                "name": r.get("name") or r.get("name_full") or r.get("slug", ""),
+                "category": r.get("category", ""),
+                "city": r.get("city", ""),
+                "address": r.get("address", ""),
+                "phone": r.get("phone", ""),
+                "share_url": url,
+            })
+
+    # 2. removed.csv — excluded businesses with reason and status column
+    removed_cols = ["name", "phone", "city", "category", "website", "reason", "status"]
+    with (outdir / "removed.csv").open("w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=removed_cols)
+        w.writeheader()
+        for d in dropped:
+            r = d.get("record", {})
+            w.writerow({
+                "name": d.get("name", r.get("name", "")),
+                "phone": r.get("phone", ""),
+                "city": r.get("city", ""),
+                "category": r.get("category", ""),
+                "website": r.get("website", ""),
+                "reason": d.get("why", ""),
+                "status": d.get("status", "skipped"),
+            })
+
+    # 3. updated.csv — original rows with status information
+    dropped_by_row = {d.get("row_index"): d for d in dropped if "row_index" in d}
+    kept_by_row = {r["_row"]: r for r in kept}
+    out_fields = list(fieldnames or []) + ["status", "reason"] + [c for c in ADDED if c not in (fieldnames or [])]
+
+    formatted_rows = []
+    for i, row in enumerate(rows):
+        row_copy = dict(row)
+        k = kept_by_row.get(i)
+        d = dropped_by_row.get(i)
+        if k:
+            url = f"{base_url.rstrip('/')}/{k['slug']}/" if base_url else f"/{k['slug']}/"
+            row_copy.update({
+                "status": "buildable",
+                "reason": "",
+                "slug": k["slug"],
+                "share_url": url,
+                "whatsapp_ready": "yes" if k.get("_wa") else "no",
+                "page_status": "built" if built_at else "buildable",
+                "built_at": built_at,
+                "template": template
+            })
+        elif d:
+            row_copy.update({
+                "status": d.get("status", "skipped"),
+                "reason": d.get("why", ""),
+                "page_status": d.get("status", "skipped"),
+            })
+            for c in ADDED:
+                row_copy.setdefault(c, "")
+        else:
+            row_copy.setdefault("status", "skipped")
+            row_copy.setdefault("reason", "")
+            row_copy.setdefault("page_status", "skipped")
+            for c in ADDED:
+                row_copy.setdefault(c, "")
+        formatted_rows.append(row_copy)
+
+    with (outdir / "updated.csv").open("w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=out_fields, extrasaction="ignore")
+        w.writeheader()
+        w.writerows(formatted_rows)
 
 
 def build_console(records, base_url, console_path: Path):
@@ -146,8 +253,8 @@ def generate(csv_path, template, outdir, *, limit=0, city="", only="",
     dist = outdir / "dist"
 
     rows, fieldnames = read_csv(csv_path)
-    kept, dropped = plan_rows(rows, fieldnames, limit=limit, city=city,
-                              only=only, keep_real=keep_real)
+    kept, dropped, breakdown = plan_rows(rows, fieldnames, limit=limit, city=city,
+                                         only=only, keep_real=keep_real)
     if not kept:
         raise ValueError("every row was filtered out - nothing to build")
 
@@ -225,37 +332,8 @@ def generate(csv_path, template, outdir, *, limit=0, city="", only="",
     (outdir / "build-manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
 
     if update_csv:
-        by_row = {r["_row"]: r for r in kept}
-        out_fields = list(fieldnames) + [c for c in ADDED if c not in fieldnames]
-        for i, row in enumerate(rows):
-            r = by_row.get(i)
-            if r:
-                url = f"{base_url.rstrip('/')}/{r['slug']}/" if base_url else f"/{r['slug']}/"
-                row.update({"slug": r["slug"], "share_url": url,
-                            "whatsapp_ready": "yes" if r["_wa"] else "no",
-                            "page_status": "built", "built_at": built_at,
-                            "template": template})
-            else:
-                row.setdefault("page_status", "skipped")
-                for c in ADDED:
-                    row.setdefault(c, "")
-        with (outdir / "updated.csv").open("w", newline="", encoding="utf-8") as f:
-            w = csv.DictWriter(f, fieldnames=out_fields, extrasaction="ignore")
-            w.writeheader()
-            w.writerows(rows)
-
-        clean_cols = ["name", "city", "phone", "share_url"]
-        with (outdir / "clean.csv").open("w", newline="", encoding="utf-8") as f:
-            w = csv.DictWriter(f, fieldnames=clean_cols)
-            w.writeheader()
-            for r in kept:
-                url = f"{base_url.rstrip('/')}/{r['slug']}/" if base_url else f"/{r['slug']}/"
-                w.writerow({
-                    "name": r.get("name") or r.get("name_full") or r.get("slug", ""),
-                    "city": r.get("city") or "",
-                    "phone": r.get("phone") or "",
-                    "share_url": url,
-                })
+        write_cleanup_files(outdir, rows, fieldnames, kept, dropped,
+                            template=template, base_url=base_url, built_at=built_at)
 
         cols = ["slug", "name", "category", "city", "address", "phone", "whatsapp_ready",
                 "rating", "reviews", "hours", "website", "maps_url", "share_url",
