@@ -56,7 +56,7 @@ def main():
         core.generate(
             csv_path=Path(state["source_csv"]),
             template=state["template"],
-            outdir=B.OUT,
+            outdir=B.ROOT,
             limit=state.get("limit", 0),
             city=state.get("city", ""),
             only=state.get("only", ""),

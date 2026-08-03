@@ -77,6 +77,8 @@ def main():
         "built_at": summary["built_at"], "count": summary["built"],
         "live": summary["live"], "base_url": summary["base_url"],
         "partial": summary["partial"], "slugs": summary["slugs"],
+        "limit": args.limit, "city": args.city, "only": args.only,
+        "keep_real": args.keep_real_sites, "site_name": args.site_name,
     }, indent=2), encoding="utf-8")
 
     if console_source.exists():
