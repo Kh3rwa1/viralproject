@@ -66,14 +66,20 @@ def ensure_site(site_name: str, token: str) -> dict:
     if not site_name:
         site_name = "lead-previews"
 
+    last_error = ""
+
     # 1. Obtain account identifier via /user (always allowed for all PAT tokens)
     account_id = ""
     try:
         u = _req("/user", token)
         if isinstance(u, dict):
             account_id = u.get("account_id") or u.get("id") or ""
+    except DeployError as e:
+        if "401" in str(e):
+            raise DeployError("Netlify 401 Unauthorized: Invalid or expired access token. Please check your token at https://app.netlify.com/user/applications#personal-access-tokens")
+        last_error = str(e)
     except Exception as e:
-        print("[NETLIFY DEBUG] /user error:", e)
+        last_error = str(e)
 
     # Fallback to /accounts if /user did not yield account_id
     if not account_id:
@@ -81,10 +87,13 @@ def ensure_site(site_name: str, token: str) -> dict:
             accs = _req("/accounts", token)
             if isinstance(accs, list) and len(accs) > 0:
                 account_id = accs[0].get("slug") or accs[0].get("id") or ""
+        except DeployError as e:
+            if "401" in str(e):
+                raise DeployError("Netlify 401 Unauthorized: Invalid or expired access token.")
+            last_error = str(e)
         except Exception as e:
-            print("[NETLIFY DEBUG] /accounts error:", e)
+            last_error = str(e)
 
-    print("[NETLIFY DEBUG] account_id:", account_id)
     site = None
 
     # 2. Search for existing site by name or ID
@@ -94,7 +103,7 @@ def ensure_site(site_name: str, token: str) -> dict:
             if isinstance(sites, list):
                 site = next((s for s in sites if isinstance(s, dict) and (s.get("name") == site_name or s.get("id") == site_name)), None)
         except Exception as e:
-            print(f"[NETLIFY DEBUG] /{account_id}/sites error:", e)
+            last_error = str(e)
 
     if not site:
         try:
@@ -102,31 +111,34 @@ def ensure_site(site_name: str, token: str) -> dict:
             if isinstance(sites, list):
                 site = next((s for s in sites if isinstance(s, dict) and (s.get("name") == site_name or s.get("id") == site_name)), None)
         except Exception as e:
-            print("[NETLIFY DEBUG] /sites?filter=all error:", e)
+            last_error = str(e)
 
-    # 3. Create site under account_id if not found
-    if not site and account_id:
-        try:
-            print(f"[NETLIFY DEBUG] Creating site under /{account_id}/sites...")
-            site = _req(f"/{account_id}/sites", token, "POST", {"name": site_name})
-        except Exception as e:
-            print(f"[NETLIFY DEBUG] POST /{account_id}/sites error:", e)
+    # 3. Create site if not found
+    if not site:
+        if account_id:
             try:
-                sites = _req(f"/{account_id}/sites", token)
-                if isinstance(sites, list):
-                    site = next((s for s in sites if isinstance(s, dict) and s.get("name") == site_name), None)
-            except Exception:
-                pass
-            if not site:
-                import secrets
-                try:
-                    site = _req(f"/{account_id}/sites", token, "POST", {"name": f"{site_name}-{secrets.token_hex(2)}"})
-                except Exception as e2:
-                    print(f"[NETLIFY DEBUG] POST /{account_id}/sites suffix error:", e2)
+                site = _req(f"/{account_id}/sites", token, "POST", {"name": site_name})
+            except Exception as e:
+                last_error = str(e)
+        
+        if not site:
+            try:
+                site = _req("/sites", token, "POST", {"name": site_name})
+            except Exception as e:
+                last_error = str(e)
 
-    print("[NETLIFY DEBUG] Final site:", site.get("id") if site else None)
+        if not site:
+            import secrets
+            suffix_name = f"{site_name}-{secrets.token_hex(2)}"
+            try:
+                target_endpoint = f"/{account_id}/sites" if account_id else "/sites"
+                site = _req(target_endpoint, token, "POST", {"name": suffix_name})
+            except Exception as e2:
+                last_error = str(e2)
+
     if not site or not site.get("id"):
-        raise DeployError(f"Could not find or create site '{site_name}' on Netlify. Please check your Netlify Access Token.")
+        detail = f" ({last_error})" if last_error else ""
+        raise DeployError(f"Could not find or create site '{site_name}' on Netlify{detail}. Please check your Netlify Personal Access Token.")
 
     url = site.get("ssl_url") or site.get("url") or f"https://{site.get('name', site_name)}.netlify.app"
     return {
