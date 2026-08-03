@@ -11,8 +11,13 @@ from pathlib import Path
 
 import ssl
 
+try:
+    import certifi
+    SSL_CTX = ssl.create_default_context(cafile=certifi.where())
+except Exception:
+    SSL_CTX = ssl.create_default_context()
+
 API = "https://api.netlify.com/api/v1"
-SSL_CTX = ssl.create_default_context()
 
 
 class DeployError(Exception):
