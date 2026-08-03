@@ -78,6 +78,8 @@ input,button{font:inherit;border-radius:12px;border:1px solid #d9d6cb;padding:12
 let JOB=null,ME=null,TPL=null,POLL=null,BASE='';
 let KEY=localStorage.getItem('lp_key')||'';
 const $=i=>document.getElementById(i);
+function escHtml(s){const d=document.createElement('div');d.textContent=String(s??'');return d.innerHTML}
+function safeUrl(u){try{const p=new URL(String(u||''),location.href);return['http:','https:'].includes(p.protocol)?p.href:'#'}catch{return '#'}}
 
 const api=async(u,o={})=>{
   try{
@@ -145,21 +147,21 @@ async function logout(){
   await api('/api/logout',{method:'POST'});
   location.reload();
 }
-function boot(m){ME=m;$('gate').classList.add('hide');$('app').classList.remove('hide');$('me').innerHTML=`<span class=pill>${m.plan}</span><span class=pill>${m.remaining} credits left</span><span class=pill>max ${m.max_rows} rows/job</span>`;loadTypes()}
-async function loadTypes(){const ts=await api('/api/templates');if(!ts||ts.error){$('t1').textContent=(ts&&ts.error)||'Failed to load templates';return}$('types').innerHTML=ts.map(t=>`<button class="type" data-n="${t.name}" onclick="pickType(this)"><span class="sw" style="background:${t.accent}"></span>${t.label}</button>`).join('')||'<p class=muted>No templates found.</p>'}
+function boot(m){ME=m;$('gate').classList.add('hide');$('app').classList.remove('hide');$('me').innerHTML=`<span class=pill>${escHtml(m.plan)}</span><span class=pill>${escHtml(m.remaining)} credits left</span><span class=pill>max ${escHtml(m.max_rows)} rows/job</span>`;loadTypes()}
+async function loadTypes(){const ts=await api('/api/templates');if(!ts||ts.error){$('t1').textContent=(ts&&ts.error)||'Failed to load templates';return}$('types').innerHTML=ts.map(t=>`<button class="type" data-n="${escHtml(t.name)}" onclick="pickType(this)"><span class="sw" style="background:${escHtml(t.accent)}"></span>${escHtml(t.label)}</button>`).join('')||'<p class=muted>No templates found.</p>'}
 function pickType(b){document.querySelectorAll('.type').forEach(x=>x.classList.remove('on'));b.classList.add('on');TPL=b.dataset.n;$('t1').textContent='';unlock('s2')}
-async function upload(){if(!TPL){$('t1').textContent='Pehle business type chuno';return}const f=$('file').files[0];if(!f){$('statusErr').textContent='CSV file chuno';return}$('statusErr').textContent='';const fd=new FormData();fd.append('file',f);fd.append('template',TPL);try{const r=await fetch(BASE+'/api/upload',{method:'POST',headers:{'X-Access-Key':KEY},body:fd}).then(r=>r.json());if(r.error){$('statusErr').textContent=r.error;return}JOB=r.job;$('report').classList.remove('hide');const noteNotice=r.notice?`<div style="background:#fef3c7;color:#92400e;padding:8px 12px;border-radius:10px;margin:8px 0;font-size:13px">⚠️ ${r.notice}</div>`:'';$('report').innerHTML=`${noteNotice}<b>${r.buildable}</b> websites banengi · ${r.dropped} hate<table>${r.sample.map(s=>`<tr><td>${s.name}</td><td>${s.city}</td><td>${s.phone}</td><td>${s.wa?'WhatsApp':'call only'}</td></tr>`).join('')}</table><p class=muted>Skipped: ${r.dropped_detail.map(d=>d.why).join(', ')||'none'}</p>`;$('terms').disabled=false;$('buildBtn').disabled=false;$('buildBtn').classList.remove('hide')}catch(e){$('statusErr').textContent='Upload failed: '+e.message}}
+async function upload(){if(!TPL){$('t1').textContent='Pehle business type chuno';return}const f=$('file').files[0];if(!f){$('statusErr').textContent='CSV file chuno';return}$('statusErr').textContent='';const fd=new FormData();fd.append('file',f);fd.append('template',TPL);try{const r=await fetch(BASE+'/api/upload',{method:'POST',headers:{'X-Access-Key':KEY},body:fd}).then(r=>r.json());if(r.error){$('statusErr').textContent=r.error;return}JOB=r.job;$('report').classList.remove('hide');const noteNotice=r.notice?`<div style="background:#fef3c7;color:#92400e;padding:8px 12px;border-radius:10px;margin:8px 0;font-size:13px">⚠️ ${r.notice}</div>`:'';$('report').innerHTML=`${noteNotice}<b>${escHtml(r.buildable)}</b> websites banengi · ${escHtml(r.dropped)} hate<table>${r.sample.map(s=>`<tr><td>${escHtml(s.name)}</td><td>${escHtml(s.city)}</td><td>${escHtml(s.phone)}</td><td>${s.wa?'WhatsApp':'call only'}</td></tr>`).join('')}</table><p class=muted>Skipped: ${r.dropped_detail.map(d=>escHtml(d.why)).join(', ')||'none'}</p>`;$('terms').disabled=false;$('buildBtn').disabled=false;$('buildBtn').classList.remove('hide')}catch(e){$('statusErr').textContent='Upload failed: '+e.message}}
 async function build(){if(!$('terms').checked){alert('fair-use box tick karo');return}$('buildBtn').disabled=true;const r=await api('/api/build/'+JOB,{method:'POST',body:JSON.stringify({site_name:$('site').value||'Previews',accept_terms:true})});if(r.error){$('statusErr').textContent=r.error;$('buildBtn').disabled=false;return}poll()}
 async function loadLiveAndCsv(j){
   const data = await api('/api/csv_data/' + JOB);
   if (data && data.rows && data.rows.length) {
     const baseUrl = (j.live_url || '').replace(/\/$/, '');
     $('liveList').classList.remove('hide');
-    $('liveList').innerHTML = `<h4 style="margin:12px 0 6px">All Deployed Websites (${data.rows.length}):</h4><div class=table-scroll><table><thead><tr><th>#</th><th>Business Name</th><th>City</th><th>Live Link</th></tr></thead><tbody>${data.rows.map((r,i)=>{
+    $('liveList').innerHTML = `<h4 style="margin:12px 0 6px">All Deployed Websites (${escHtml(data.rows.length)}):</h4><div class=table-scroll><table><thead><tr><th>#</th><th>Business Name</th><th>City</th><th>Live Link</th></tr></thead><tbody>${data.rows.map((r,i)=>{
       const name = r.name || r.name_full || r.slug || 'Business';
       const city = r.city || '';
       const url = r.share_url || (baseUrl + '/' + (r.slug || '') + '/');
-      return `<tr><td>${i+1}</td><td><b>${name}</b></td><td>${city}</td><td><a href="${url}" target=_blank style="font-weight:700;color:#12634a">Open Site ↗</a></td></tr>`;
+      return `<tr><td>${i+1}</td><td><b>${escHtml(name)}</b></td><td>${escHtml(city)}</td><td><a href="${safeUrl(url)}" target=_blank style="font-weight:700;color:#12634a">Open Site ↗</a></td></tr>`;
     }).join('')}</tbody></table></div>`;
     
     $('csvPreview').classList.remove('hide');
@@ -168,11 +170,11 @@ async function loadLiveAndCsv(j){
       const city = r.city || '';
       const phone = r.phone || '';
       const url = r.share_url || (baseUrl + '/' + (r.slug || '') + '/');
-      return `<tr><td>${i+1}</td><td><b>${name}</b></td><td>${city}</td><td>${phone}</td><td><a href="${url}" target=_blank style="color:#12634a">${url}</a></td></tr>`;
+      return `<tr><td>${i+1}</td><td><b>${escHtml(name)}</b></td><td>${escHtml(city)}</td><td>${escHtml(phone)}</td><td><a href="${safeUrl(url)}" target=_blank style="color:#12634a">${escHtml(url)}</a></td></tr>`;
     }).join('')}</tbody></table>`;
   }
 }
-function poll(){clearInterval(POLL);POLL=setInterval(async()=>{const j=await api('/api/job/'+JOB);if(j.error){$('status').textContent=j.error;clearInterval(POLL);return}$('status').textContent=j.message||j.state;if(j.total)$('barI').style.width=(100*j.progress/j.total)+'%';if(j.state==='done'){clearInterval(POLL);$('barI').style.width='100%';$('status').innerHTML=`${j.summary.built} pages ready · <a href="${BASE}/p/${JOB}/${j.summary.slugs[0]}/" target=_blank>preview one</a>`;unlock('s3');api('/api/me').then(m=>$('me').innerHTML=`<span class=pill>${m.plan}</span><span class=pill>${m.remaining} credits left</span>`)}if(j.state==='deployed'){clearInterval(POLL);$('depStatus').innerHTML=`live -> <a href="${j.live_url}" target=_blank>${j.live_url}</a>`;unlock('s4');loadLiveAndCsv(j)}if(j.state==='error'){clearInterval(POLL);$('status').textContent='error: '+j.message;$('depStatus').textContent=j.message}},1500)}
+function poll(){clearInterval(POLL);POLL=setInterval(async()=>{const j=await api('/api/job/'+JOB);if(j.error){$('status').textContent=j.error;clearInterval(POLL);return}$('status').textContent=j.message||j.state;if(j.total)$('barI').style.width=(100*j.progress/j.total)+'%';if(j.state==='done'){clearInterval(POLL);$('barI').style.width='100%';$('status').innerHTML=`${escHtml(j.summary.built)} pages ready · <a href="${safeUrl(BASE+'/p/'+JOB+'/'+j.summary.slugs[0]+'/')}" target=_blank>preview one</a>`;unlock('s3');api('/api/me').then(m=>$('me').innerHTML=`<span class=pill>${escHtml(m.plan)}</span><span class=pill>${escHtml(m.remaining)} credits left</span>`)}if(j.state==='deployed'){clearInterval(POLL);$('depStatus').innerHTML=`live -> <a href="${safeUrl(j.live_url)}" target=_blank>${escHtml(j.live_url)}</a>`;unlock('s4');loadLiveAndCsv(j)}if(j.state==='error'){clearInterval(POLL);$('status').textContent='error: '+j.message;$('depStatus').textContent=j.message}},1500)}
 async function deploy(){$('depBtn').disabled=true;$('depStatus').textContent='deploying...';const r=await api('/api/deploy/'+JOB,{method:'POST',body:JSON.stringify({token:$('token').value,site:$('site').value})});if(r.error){$('depStatus').textContent=r.error;$('depBtn').disabled=false;return}poll()}
 function dl(k){location.href=BASE+`/api/${k}/${JOB}?key=${encodeURIComponent(KEY)}`}
 

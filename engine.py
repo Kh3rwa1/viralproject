@@ -612,12 +612,21 @@ TEMPLATE_DEMO_VALUES = {
 }
 
 
+REQUIRED_TEMPLATE_FIELDS = [
+    "lead.fullName", "lead.shortName", "lead.category",
+    "lead.phoneIntl", "lead.pageTitle", "lead.pageDescription", "lead.pageUrl",
+]
+
+
 def validate_template(src: str) -> list[str]:
     errs = []
     if "<title>" not in src:
         errs.append("Missing <title> tag")
     if "lead." not in src:
         errs.append("No {{ lead.* }} variables found")
+    for field in REQUIRED_TEMPLATE_FIELDS:
+        if field not in src:
+            errs.append(f"Missing required field: {field}")
     return errs
 
 

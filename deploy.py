@@ -1,46 +1,16 @@
-"""deploy.py - zip dist/ -> Netlify -> write live URLs back into both CSVs."""
+"""deploy.py - zip dist/ -> Netlify -> write live URLs back into CSVs."""
 from __future__ import annotations
 
 import argparse
 import csv
-import io
 import json
 import os
 import sys
-import time
-import urllib.error
-import urllib.request
-import zipfile
 from pathlib import Path
 
 import build as B
+import engine
 import netlify
-import ssl
-
-API = "https://api.netlify.com/api/v1"
-SSL_CTX = ssl.create_default_context()
-
-
-def req(path, token, method="GET", data=None, ctype="application/json"):
-    url = path if path.startswith("http") else API + path
-    body = data if isinstance(data, (bytes, type(None))) else json.dumps(data).encode()
-    r = urllib.request.Request(url, data=body, method=method, headers={
-        "Authorization": f"Bearer {token}", "Content-Type": ctype})
-    try:
-        with urllib.request.urlopen(r, timeout=300, context=SSL_CTX) as resp:
-            raw = resp.read().decode() or "{}"
-            return json.loads(raw)
-    except urllib.error.HTTPError as e:
-        sys.exit(f"netlify {e.code}: {e.read().decode()[:400]}")
-
-
-def zip_dist(folder: Path) -> bytes:
-    buf = io.BytesIO()
-    with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as z:
-        for p in folder.rglob("*"):
-            if p.is_file():
-                z.write(p, p.relative_to(folder).as_posix())
-    return buf.getvalue()
 
 
 def patch_csv(path: Path, base: str):
@@ -77,7 +47,10 @@ def main():
     if state.get("partial") and not args.force:
         sys.exit("last build was filtered (--limit/--city/--only). Rebuild full or use --force.")
 
-    base = netlify.deploy(engine.DIST, args.site, args.token)
+    site_info = netlify.ensure_site(args.site, args.token)
+    base = site_info["url"]
+    netlify.deploy_to_site(engine.DIST, site_info["id"], args.token)
+
     patch_csv(B.LEADS_CSV, base)
     if state.get("source_csv"):
         patch_csv(Path(state["source_csv"]), base)
