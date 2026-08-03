@@ -8,7 +8,7 @@ import urllib.parse
 from datetime import datetime, timezone
 from pathlib import Path
 
-from jinja2 import Environment, StrictUndefined, select_autoescape
+from jinja2 import Environment, FileSystemLoader, StrictUndefined, select_autoescape
 
 ROOT = Path(__file__).resolve().parent
 TEMPLATE_DIR = ROOT / "templates_store"
@@ -16,6 +16,7 @@ DIST = ROOT / "dist"
 DATA = ROOT / "data"
 
 JINJA = Environment(
+    loader=FileSystemLoader([str(TEMPLATE_DIR), str(TEMPLATE_DIR / "layouts"), str(TEMPLATE_DIR / "partials")]),
     autoescape=select_autoescape(
         enabled_extensions=("html", "xml"),
         default_for_string=True,
@@ -163,6 +164,23 @@ def lead_record(row: dict, slug: str, *, base_url="", site_name="Previews") -> d
     short_n = short_name(row.get("name") or full_name)
     category = row.get("category") or "Local Business"
     city = row.get("city") or ""
+    latitude = str(row.get("lat") or row.get("latitude") or "").strip()
+    longitude = str(row.get("lng") or row.get("longitude") or "").strip()
+    address = str(row.get("address") or "").strip()
+
+    if latitude and longitude:
+        map_query = f"{latitude},{longitude}"
+    elif address:
+        map_query = ", ".join(x for x in [address, city] if x)
+    elif full_name and city:
+        map_query = f"{full_name}, {city}"
+    else:
+        map_query = ""
+
+    maps_embed_url = (
+        "https://www.google.com/maps?q=" + urllib.parse.quote(map_query) + "&z=17&output=embed"
+        if map_query else ""
+    )
 
     return {
         "slug": slug,
@@ -170,8 +188,8 @@ def lead_record(row: dict, slug: str, *, base_url="", site_name="Previews") -> d
         "shortName": short_n,
         "category": category,
         "city": city,
-        "address": row.get("address") or "",
-        "fullAddress": row.get("address") or "",
+        "address": address,
+        "fullAddress": address,
         "phone": phone_raw or "",
         "phoneDisplay": phone_display(phone_raw),
         "phoneIntl": phone_intl_num,
@@ -190,9 +208,9 @@ def lead_record(row: dict, slug: str, *, base_url="", site_name="Previews") -> d
         "website": sanitize_url(row.get("website") or ""),
         "websiteLabel": row.get("website_label") or "",
         "mapsUrl": sanitize_url(row.get("maps_url") or ""),
-        "mapsEmbedUrl": f"https://maps.google.com/maps?q={urllib.parse.quote(full_name + ' ' + city)}&output=embed" if (full_name and city) else "",
-        "latitude": str(row.get("lat") or row.get("latitude") or ""),
-        "longitude": str(row.get("lng") or row.get("longitude") or ""),
+        "mapsEmbedUrl": maps_embed_url,
+        "latitude": latitude,
+        "longitude": longitude,
         "pageUrl": page_url,
         "pageTitle": f"{full_name} — {category} in {city}" if city else f"{full_name} — {category}",
         "pageDescription": (
@@ -277,40 +295,56 @@ def load_category_pack(category_id: str) -> dict:
     return {}
 
 
-def render_full_page(template_name: str, lead: dict, *, schema=None, live=False) -> str:
-    tpl_name = (template_name or "coaching_modern").lower().strip()
-    if tpl_name in ("coaching", "dentist", "lawyer"):
-        alias_map = {"coaching": "coaching_modern", "dentist": "dental_modern", "lawyer": "law_modern"}
-        tpl_name = alias_map[tpl_name]
+def get_template_meta(template_id: str) -> dict:
+    tpl_id = (template_id or "coaching_modern").strip().lower()
+    aliases = {
+        "dentist": "dental_modern",
+        "lawyer": "law_modern",
+        "coaching": "coaching_modern",
+    }
+    tpl_id = aliases.get(tpl_id, tpl_id)
 
-    parts = tpl_name.split("_", 1)
+    for item in list_templates():
+        if item.get("id") == tpl_id:
+            return item
+
+    # Fallback if unknown
+    parts = tpl_id.rsplit("_", 1)
     cat_id = parts[0] if len(parts) > 1 else "coaching"
     layout_id = parts[1] if len(parts) > 1 else "modern"
+    return {
+        "id": tpl_id,
+        "name": tpl_id.replace("_", " ").title(),
+        "category": cat_id,
+        "layout": layout_id,
+        "active": True
+    }
+
+
+def render_full_page(template_name: str, lead: dict, *, schema=None, live=False) -> str:
+    meta = get_template_meta(template_name)
+    cat_id = meta.get("category", "coaching")
+    layout_id = meta.get("layout", "modern")
 
     category_pack = load_category_pack(cat_id)
-
-    from jinja2 import FileSystemLoader
-    loader_env = Environment(
-        loader=FileSystemLoader([str(TEMPLATE_DIR), str(TEMPLATE_DIR / "layouts"), str(TEMPLATE_DIR / "partials")]),
-        autoescape=select_autoescape(enabled_extensions=("html", "xml"), default_for_string=True),
-        undefined=StrictUndefined,
-    )
 
     layout_file = f"layouts/{layout_id}.html"
     if not (TEMPLATE_DIR / layout_file).exists():
         layout_file = "layouts/modern.html"
 
-    template = loader_env.get_template(layout_file)
+    template = JINJA.get_template(layout_file)
 
     if schema is None:
         schema = {
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
             "name": lead["fullName"],
-            "telephone": f"+{lead['phoneIntl']}" if lead["phoneIntl"] else "",
-            "address": lead["address"],
+            "description": lead.get("pageDescription", ""),
             "url": lead["pageUrl"],
+            "address": lead.get("fullAddress") or lead.get("address") or "",
         }
+        if lead.get("phoneIntl"):
+            schema["telephone"] = f"+{lead['phoneIntl']}"
 
     return template.render(
         lead=lead,
@@ -332,13 +366,8 @@ def list_templates() -> list[dict]:
 
 
 def template_path(name: str) -> Path:
-    tpl_name = (name or "coaching_modern").lower().strip()
-    if tpl_name in ("coaching", "dentist", "lawyer"):
-        alias_map = {"coaching": "coaching_modern", "dentist": "dental_modern", "lawyer": "law_modern"}
-        tpl_name = alias_map[tpl_name]
-
-    parts = tpl_name.split("_", 1)
-    layout_id = parts[1] if len(parts) > 1 else "modern"
+    meta = get_template_meta(name)
+    layout_id = meta.get("layout", "modern")
     p = TEMPLATE_DIR / "layouts" / f"{layout_id}.html"
     if p.exists():
         return p

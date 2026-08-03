@@ -6,7 +6,7 @@
     "category": "dental",
     "layout": "modern",
     "description": "Modern SaaS landing page tailored for Dental Clinics",
-    "thumbnail": "/template-previews/dental_modern.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -29,7 +29,7 @@
     "category": "dental",
     "layout": "local",
     "description": "Local Business landing page tailored for Dental Clinics",
-    "thumbnail": "/template-previews/dental_local.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -52,7 +52,7 @@
     "category": "dental",
     "layout": "premium",
     "description": "Premium Luxury landing page tailored for Dental Clinics",
-    "thumbnail": "/template-previews/dental_premium.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -73,7 +73,7 @@
     "category": "dental",
     "layout": "minimal",
     "description": "Minimal Editorial landing page tailored for Dental Clinics",
-    "thumbnail": "/template-previews/dental_minimal.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -94,7 +94,7 @@
     "category": "dental",
     "layout": "bold",
     "description": "Bold High-Contrast landing page tailored for Dental Clinics",
-    "thumbnail": "/template-previews/dental_bold.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -115,7 +115,7 @@
     "category": "dental",
     "layout": "friendly",
     "description": "Friendly Card landing page tailored for Dental Clinics",
-    "thumbnail": "/template-previews/dental_friendly.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -136,7 +136,7 @@
     "category": "dental",
     "layout": "professional",
     "description": "Professional Corporate landing page tailored for Dental Clinics",
-    "thumbnail": "/template-previews/dental_professional.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -157,7 +157,7 @@
     "category": "dental",
     "layout": "emergency",
     "description": "Emergency Phone-First landing page tailored for Dental Clinics",
-    "thumbnail": "/template-previews/dental_emergency.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -178,7 +178,7 @@
     "category": "dental",
     "layout": "video",
     "description": "Hero Video landing page tailored for Dental Clinics",
-    "thumbnail": "/template-previews/dental_video.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -201,7 +201,7 @@
     "category": "dental",
     "layout": "classic",
     "description": "Classic Trust landing page tailored for Dental Clinics",
-    "thumbnail": "/template-previews/dental_classic.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -222,7 +222,7 @@
     "category": "medical",
     "layout": "modern",
     "description": "Modern SaaS landing page tailored for Medical Clinics",
-    "thumbnail": "/template-previews/medical_modern.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -245,7 +245,7 @@
     "category": "medical",
     "layout": "local",
     "description": "Local Business landing page tailored for Medical Clinics",
-    "thumbnail": "/template-previews/medical_local.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -268,7 +268,7 @@
     "category": "medical",
     "layout": "premium",
     "description": "Premium Luxury landing page tailored for Medical Clinics",
-    "thumbnail": "/template-previews/medical_premium.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -289,7 +289,7 @@
     "category": "medical",
     "layout": "minimal",
     "description": "Minimal Editorial landing page tailored for Medical Clinics",
-    "thumbnail": "/template-previews/medical_minimal.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -310,7 +310,7 @@
     "category": "medical",
     "layout": "bold",
     "description": "Bold High-Contrast landing page tailored for Medical Clinics",
-    "thumbnail": "/template-previews/medical_bold.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -331,7 +331,7 @@
     "category": "medical",
     "layout": "friendly",
     "description": "Friendly Card landing page tailored for Medical Clinics",
-    "thumbnail": "/template-previews/medical_friendly.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -352,7 +352,7 @@
     "category": "medical",
     "layout": "professional",
     "description": "Professional Corporate landing page tailored for Medical Clinics",
-    "thumbnail": "/template-previews/medical_professional.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -373,7 +373,7 @@
     "category": "medical",
     "layout": "emergency",
     "description": "Emergency Phone-First landing page tailored for Medical Clinics",
-    "thumbnail": "/template-previews/medical_emergency.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -394,7 +394,7 @@
     "category": "medical",
     "layout": "video",
     "description": "Hero Video landing page tailored for Medical Clinics",
-    "thumbnail": "/template-previews/medical_video.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -417,7 +417,7 @@
     "category": "medical",
     "layout": "classic",
     "description": "Classic Trust landing page tailored for Medical Clinics",
-    "thumbnail": "/template-previews/medical_classic.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -438,7 +438,7 @@
     "category": "law",
     "layout": "modern",
     "description": "Modern SaaS landing page tailored for Law Firms",
-    "thumbnail": "/template-previews/law_modern.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -461,7 +461,7 @@
     "category": "law",
     "layout": "local",
     "description": "Local Business landing page tailored for Law Firms",
-    "thumbnail": "/template-previews/law_local.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -484,7 +484,7 @@
     "category": "law",
     "layout": "premium",
     "description": "Premium Luxury landing page tailored for Law Firms",
-    "thumbnail": "/template-previews/law_premium.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -505,7 +505,7 @@
     "category": "law",
     "layout": "minimal",
     "description": "Minimal Editorial landing page tailored for Law Firms",
-    "thumbnail": "/template-previews/law_minimal.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -526,7 +526,7 @@
     "category": "law",
     "layout": "bold",
     "description": "Bold High-Contrast landing page tailored for Law Firms",
-    "thumbnail": "/template-previews/law_bold.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -547,7 +547,7 @@
     "category": "law",
     "layout": "friendly",
     "description": "Friendly Card landing page tailored for Law Firms",
-    "thumbnail": "/template-previews/law_friendly.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -568,7 +568,7 @@
     "category": "law",
     "layout": "professional",
     "description": "Professional Corporate landing page tailored for Law Firms",
-    "thumbnail": "/template-previews/law_professional.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -589,7 +589,7 @@
     "category": "law",
     "layout": "emergency",
     "description": "Emergency Phone-First landing page tailored for Law Firms",
-    "thumbnail": "/template-previews/law_emergency.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -610,7 +610,7 @@
     "category": "law",
     "layout": "video",
     "description": "Hero Video landing page tailored for Law Firms",
-    "thumbnail": "/template-previews/law_video.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -633,7 +633,7 @@
     "category": "law",
     "layout": "classic",
     "description": "Classic Trust landing page tailored for Law Firms",
-    "thumbnail": "/template-previews/law_classic.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -654,7 +654,7 @@
     "category": "home_services",
     "layout": "modern",
     "description": "Modern SaaS landing page tailored for Home Services",
-    "thumbnail": "/template-previews/home_services_modern.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -677,7 +677,7 @@
     "category": "home_services",
     "layout": "local",
     "description": "Local Business landing page tailored for Home Services",
-    "thumbnail": "/template-previews/home_services_local.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -700,7 +700,7 @@
     "category": "home_services",
     "layout": "premium",
     "description": "Premium Luxury landing page tailored for Home Services",
-    "thumbnail": "/template-previews/home_services_premium.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -721,7 +721,7 @@
     "category": "home_services",
     "layout": "minimal",
     "description": "Minimal Editorial landing page tailored for Home Services",
-    "thumbnail": "/template-previews/home_services_minimal.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -742,7 +742,7 @@
     "category": "home_services",
     "layout": "bold",
     "description": "Bold High-Contrast landing page tailored for Home Services",
-    "thumbnail": "/template-previews/home_services_bold.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -763,7 +763,7 @@
     "category": "home_services",
     "layout": "friendly",
     "description": "Friendly Card landing page tailored for Home Services",
-    "thumbnail": "/template-previews/home_services_friendly.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -784,7 +784,7 @@
     "category": "home_services",
     "layout": "professional",
     "description": "Professional Corporate landing page tailored for Home Services",
-    "thumbnail": "/template-previews/home_services_professional.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -805,7 +805,7 @@
     "category": "home_services",
     "layout": "emergency",
     "description": "Emergency Phone-First landing page tailored for Home Services",
-    "thumbnail": "/template-previews/home_services_emergency.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -826,7 +826,7 @@
     "category": "home_services",
     "layout": "video",
     "description": "Hero Video landing page tailored for Home Services",
-    "thumbnail": "/template-previews/home_services_video.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -849,7 +849,7 @@
     "category": "home_services",
     "layout": "classic",
     "description": "Classic Trust landing page tailored for Home Services",
-    "thumbnail": "/template-previews/home_services_classic.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -870,7 +870,7 @@
     "category": "cosmetic",
     "layout": "modern",
     "description": "Modern SaaS landing page tailored for Cosmetic Clinics",
-    "thumbnail": "/template-previews/cosmetic_modern.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -893,7 +893,7 @@
     "category": "cosmetic",
     "layout": "local",
     "description": "Local Business landing page tailored for Cosmetic Clinics",
-    "thumbnail": "/template-previews/cosmetic_local.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -916,7 +916,7 @@
     "category": "cosmetic",
     "layout": "premium",
     "description": "Premium Luxury landing page tailored for Cosmetic Clinics",
-    "thumbnail": "/template-previews/cosmetic_premium.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -937,7 +937,7 @@
     "category": "cosmetic",
     "layout": "minimal",
     "description": "Minimal Editorial landing page tailored for Cosmetic Clinics",
-    "thumbnail": "/template-previews/cosmetic_minimal.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -958,7 +958,7 @@
     "category": "cosmetic",
     "layout": "bold",
     "description": "Bold High-Contrast landing page tailored for Cosmetic Clinics",
-    "thumbnail": "/template-previews/cosmetic_bold.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -979,7 +979,7 @@
     "category": "cosmetic",
     "layout": "friendly",
     "description": "Friendly Card landing page tailored for Cosmetic Clinics",
-    "thumbnail": "/template-previews/cosmetic_friendly.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1000,7 +1000,7 @@
     "category": "cosmetic",
     "layout": "professional",
     "description": "Professional Corporate landing page tailored for Cosmetic Clinics",
-    "thumbnail": "/template-previews/cosmetic_professional.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1021,7 +1021,7 @@
     "category": "cosmetic",
     "layout": "emergency",
     "description": "Emergency Phone-First landing page tailored for Cosmetic Clinics",
-    "thumbnail": "/template-previews/cosmetic_emergency.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1042,7 +1042,7 @@
     "category": "cosmetic",
     "layout": "video",
     "description": "Hero Video landing page tailored for Cosmetic Clinics",
-    "thumbnail": "/template-previews/cosmetic_video.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1065,7 +1065,7 @@
     "category": "cosmetic",
     "layout": "classic",
     "description": "Classic Trust landing page tailored for Cosmetic Clinics",
-    "thumbnail": "/template-previews/cosmetic_classic.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1086,7 +1086,7 @@
     "category": "real_estate",
     "layout": "modern",
     "description": "Modern SaaS landing page tailored for Real Estate Agencies",
-    "thumbnail": "/template-previews/real_estate_modern.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1109,7 +1109,7 @@
     "category": "real_estate",
     "layout": "local",
     "description": "Local Business landing page tailored for Real Estate Agencies",
-    "thumbnail": "/template-previews/real_estate_local.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1132,7 +1132,7 @@
     "category": "real_estate",
     "layout": "premium",
     "description": "Premium Luxury landing page tailored for Real Estate Agencies",
-    "thumbnail": "/template-previews/real_estate_premium.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1153,7 +1153,7 @@
     "category": "real_estate",
     "layout": "minimal",
     "description": "Minimal Editorial landing page tailored for Real Estate Agencies",
-    "thumbnail": "/template-previews/real_estate_minimal.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1174,7 +1174,7 @@
     "category": "real_estate",
     "layout": "bold",
     "description": "Bold High-Contrast landing page tailored for Real Estate Agencies",
-    "thumbnail": "/template-previews/real_estate_bold.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1195,7 +1195,7 @@
     "category": "real_estate",
     "layout": "friendly",
     "description": "Friendly Card landing page tailored for Real Estate Agencies",
-    "thumbnail": "/template-previews/real_estate_friendly.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1216,7 +1216,7 @@
     "category": "real_estate",
     "layout": "professional",
     "description": "Professional Corporate landing page tailored for Real Estate Agencies",
-    "thumbnail": "/template-previews/real_estate_professional.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1237,7 +1237,7 @@
     "category": "real_estate",
     "layout": "emergency",
     "description": "Emergency Phone-First landing page tailored for Real Estate Agencies",
-    "thumbnail": "/template-previews/real_estate_emergency.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1258,7 +1258,7 @@
     "category": "real_estate",
     "layout": "video",
     "description": "Hero Video landing page tailored for Real Estate Agencies",
-    "thumbnail": "/template-previews/real_estate_video.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1281,7 +1281,7 @@
     "category": "real_estate",
     "layout": "classic",
     "description": "Classic Trust landing page tailored for Real Estate Agencies",
-    "thumbnail": "/template-previews/real_estate_classic.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1302,7 +1302,7 @@
     "category": "coaching",
     "layout": "modern",
     "description": "Modern SaaS landing page tailored for Coaching Institutes",
-    "thumbnail": "/template-previews/coaching_modern.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1325,7 +1325,7 @@
     "category": "coaching",
     "layout": "local",
     "description": "Local Business landing page tailored for Coaching Institutes",
-    "thumbnail": "/template-previews/coaching_local.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1348,7 +1348,7 @@
     "category": "coaching",
     "layout": "premium",
     "description": "Premium Luxury landing page tailored for Coaching Institutes",
-    "thumbnail": "/template-previews/coaching_premium.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1369,7 +1369,7 @@
     "category": "coaching",
     "layout": "minimal",
     "description": "Minimal Editorial landing page tailored for Coaching Institutes",
-    "thumbnail": "/template-previews/coaching_minimal.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1390,7 +1390,7 @@
     "category": "coaching",
     "layout": "bold",
     "description": "Bold High-Contrast landing page tailored for Coaching Institutes",
-    "thumbnail": "/template-previews/coaching_bold.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1411,7 +1411,7 @@
     "category": "coaching",
     "layout": "friendly",
     "description": "Friendly Card landing page tailored for Coaching Institutes",
-    "thumbnail": "/template-previews/coaching_friendly.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1432,7 +1432,7 @@
     "category": "coaching",
     "layout": "professional",
     "description": "Professional Corporate landing page tailored for Coaching Institutes",
-    "thumbnail": "/template-previews/coaching_professional.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1453,7 +1453,7 @@
     "category": "coaching",
     "layout": "emergency",
     "description": "Emergency Phone-First landing page tailored for Coaching Institutes",
-    "thumbnail": "/template-previews/coaching_emergency.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1474,7 +1474,7 @@
     "category": "coaching",
     "layout": "video",
     "description": "Hero Video landing page tailored for Coaching Institutes",
-    "thumbnail": "/template-previews/coaching_video.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1497,7 +1497,7 @@
     "category": "coaching",
     "layout": "classic",
     "description": "Classic Trust landing page tailored for Coaching Institutes",
-    "thumbnail": "/template-previews/coaching_classic.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1518,7 +1518,7 @@
     "category": "accounting",
     "layout": "modern",
     "description": "Modern SaaS landing page tailored for Accounting Firms",
-    "thumbnail": "/template-previews/accounting_modern.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1541,7 +1541,7 @@
     "category": "accounting",
     "layout": "local",
     "description": "Local Business landing page tailored for Accounting Firms",
-    "thumbnail": "/template-previews/accounting_local.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1564,7 +1564,7 @@
     "category": "accounting",
     "layout": "premium",
     "description": "Premium Luxury landing page tailored for Accounting Firms",
-    "thumbnail": "/template-previews/accounting_premium.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1585,7 +1585,7 @@
     "category": "accounting",
     "layout": "minimal",
     "description": "Minimal Editorial landing page tailored for Accounting Firms",
-    "thumbnail": "/template-previews/accounting_minimal.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1606,7 +1606,7 @@
     "category": "accounting",
     "layout": "bold",
     "description": "Bold High-Contrast landing page tailored for Accounting Firms",
-    "thumbnail": "/template-previews/accounting_bold.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1627,7 +1627,7 @@
     "category": "accounting",
     "layout": "friendly",
     "description": "Friendly Card landing page tailored for Accounting Firms",
-    "thumbnail": "/template-previews/accounting_friendly.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1648,7 +1648,7 @@
     "category": "accounting",
     "layout": "professional",
     "description": "Professional Corporate landing page tailored for Accounting Firms",
-    "thumbnail": "/template-previews/accounting_professional.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1669,7 +1669,7 @@
     "category": "accounting",
     "layout": "emergency",
     "description": "Emergency Phone-First landing page tailored for Accounting Firms",
-    "thumbnail": "/template-previews/accounting_emergency.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1690,7 +1690,7 @@
     "category": "accounting",
     "layout": "video",
     "description": "Hero Video landing page tailored for Accounting Firms",
-    "thumbnail": "/template-previews/accounting_video.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1713,7 +1713,7 @@
     "category": "accounting",
     "layout": "classic",
     "description": "Classic Trust landing page tailored for Accounting Firms",
-    "thumbnail": "/template-previews/accounting_classic.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1734,7 +1734,7 @@
     "category": "auto",
     "layout": "modern",
     "description": "Modern SaaS landing page tailored for Auto Repair Shops",
-    "thumbnail": "/template-previews/auto_modern.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1757,7 +1757,7 @@
     "category": "auto",
     "layout": "local",
     "description": "Local Business landing page tailored for Auto Repair Shops",
-    "thumbnail": "/template-previews/auto_local.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1780,7 +1780,7 @@
     "category": "auto",
     "layout": "premium",
     "description": "Premium Luxury landing page tailored for Auto Repair Shops",
-    "thumbnail": "/template-previews/auto_premium.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1801,7 +1801,7 @@
     "category": "auto",
     "layout": "minimal",
     "description": "Minimal Editorial landing page tailored for Auto Repair Shops",
-    "thumbnail": "/template-previews/auto_minimal.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1822,7 +1822,7 @@
     "category": "auto",
     "layout": "bold",
     "description": "Bold High-Contrast landing page tailored for Auto Repair Shops",
-    "thumbnail": "/template-previews/auto_bold.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1843,7 +1843,7 @@
     "category": "auto",
     "layout": "friendly",
     "description": "Friendly Card landing page tailored for Auto Repair Shops",
-    "thumbnail": "/template-previews/auto_friendly.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1864,7 +1864,7 @@
     "category": "auto",
     "layout": "professional",
     "description": "Professional Corporate landing page tailored for Auto Repair Shops",
-    "thumbnail": "/template-previews/auto_professional.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1885,7 +1885,7 @@
     "category": "auto",
     "layout": "emergency",
     "description": "Emergency Phone-First landing page tailored for Auto Repair Shops",
-    "thumbnail": "/template-previews/auto_emergency.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1906,7 +1906,7 @@
     "category": "auto",
     "layout": "video",
     "description": "Hero Video landing page tailored for Auto Repair Shops",
-    "thumbnail": "/template-previews/auto_video.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1929,7 +1929,7 @@
     "category": "auto",
     "layout": "classic",
     "description": "Classic Trust landing page tailored for Auto Repair Shops",
-    "thumbnail": "/template-previews/auto_classic.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1950,7 +1950,7 @@
     "category": "veterinary",
     "layout": "modern",
     "description": "Modern SaaS landing page tailored for Veterinary Clinics",
-    "thumbnail": "/template-previews/veterinary_modern.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1973,7 +1973,7 @@
     "category": "veterinary",
     "layout": "local",
     "description": "Local Business landing page tailored for Veterinary Clinics",
-    "thumbnail": "/template-previews/veterinary_local.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -1996,7 +1996,7 @@
     "category": "veterinary",
     "layout": "premium",
     "description": "Premium Luxury landing page tailored for Veterinary Clinics",
-    "thumbnail": "/template-previews/veterinary_premium.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -2017,7 +2017,7 @@
     "category": "veterinary",
     "layout": "minimal",
     "description": "Minimal Editorial landing page tailored for Veterinary Clinics",
-    "thumbnail": "/template-previews/veterinary_minimal.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -2038,7 +2038,7 @@
     "category": "veterinary",
     "layout": "bold",
     "description": "Bold High-Contrast landing page tailored for Veterinary Clinics",
-    "thumbnail": "/template-previews/veterinary_bold.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -2059,7 +2059,7 @@
     "category": "veterinary",
     "layout": "friendly",
     "description": "Friendly Card landing page tailored for Veterinary Clinics",
-    "thumbnail": "/template-previews/veterinary_friendly.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -2080,7 +2080,7 @@
     "category": "veterinary",
     "layout": "professional",
     "description": "Professional Corporate landing page tailored for Veterinary Clinics",
-    "thumbnail": "/template-previews/veterinary_professional.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -2101,7 +2101,7 @@
     "category": "veterinary",
     "layout": "emergency",
     "description": "Emergency Phone-First landing page tailored for Veterinary Clinics",
-    "thumbnail": "/template-previews/veterinary_emergency.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -2122,7 +2122,7 @@
     "category": "veterinary",
     "layout": "video",
     "description": "Hero Video landing page tailored for Veterinary Clinics",
-    "thumbnail": "/template-previews/veterinary_video.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [
@@ -2145,7 +2145,7 @@
     "category": "veterinary",
     "layout": "classic",
     "description": "Classic Trust landing page tailored for Veterinary Clinics",
-    "thumbnail": "/template-previews/veterinary_classic.webp",
+    "thumbnail": "",
     "version": 1,
     "active": true,
     "contract": [

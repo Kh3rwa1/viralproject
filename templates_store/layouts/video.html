@@ -19,7 +19,7 @@
     .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
     
     /* VIDEO HERO */
-    .video-hero { position: relative; height: 80vh; min-height: 500px; display: flex; align-items: center; justify-content: center; overflow: hidden; text-align: center; }
+    .video-hero { position: relative; height: 80vh; min-height: 500px; display: flex; align-items: center; justify-content: center; overflow: hidden; text-align: center; background: linear-gradient(135deg, #161b22 0%, #0d1117 100%); }
     .video-hero video { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); min-width: 100%; min-height: 100%; object-fit: cover; z-index: 1; filter: brightness(0.45); }
     .video-overlay { position: relative; z-index: 2; color: #fff; max-width: 800px; padding: 20px; }
     .video-title { font-size: 42px; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.03em; }
@@ -108,5 +108,12 @@
   {% include 'partials/mobile_actions.html' %}
   {% include 'partials/structured_data.html' %}
 
+  <script>
+    document.querySelectorAll('video').forEach(function(v) {
+      v.addEventListener('error', function() {
+        v.style.display = 'none';
+      }, true);
+    });
+  </script>
 </body>
 </html>

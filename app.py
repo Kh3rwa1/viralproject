@@ -96,8 +96,22 @@ def api_templates():
     row, err = auth()
     if err:
         return jsonify({"error": err}), 401
-    return jsonify([{"name": t["name"], "label": t["label"], "accent": t["accent"],
-                     "contract": t["contract"]} for t in engine.list_templates()])
+    templates = [
+        {
+            "id": t.get("id", ""),
+            "name": t.get("name", ""),
+            "label": t.get("label", t.get("name", "")),
+            "category": t.get("category", ""),
+            "layout": t.get("layout", ""),
+            "description": t.get("description", ""),
+            "thumbnail": t.get("thumbnail", ""),
+            "badges": t.get("badges", []),
+            "version": t.get("version", 1),
+        }
+        for t in engine.list_templates()
+        if t.get("active", True)
+    ]
+    return jsonify(templates)
 
 
 @app.post("/api/upload")

@@ -216,5 +216,60 @@ class TestStandaloneGenerator(unittest.TestCase):
         print(f"\n[BENCHMARK] 5,000 leads built in {elapsed:.2f} seconds")
 
 
+    def test_all_registered_templates_render(self):
+        templates = engine.list_templates()
+        self.assertEqual(len(templates), 100)
+
+        ids = [t["id"] for t in templates]
+        self.assertEqual(len(set(ids)), 100)
+
+        lead = engine.lead_record({
+            "name": "Apex Business Services",
+            "category": "Dental Clinic",
+            "city": "Kolkata",
+            "address": "12 Park Street",
+            "phone": "9876543210",
+            "lat": "22.5726",
+            "lng": "88.3639",
+        }, "apex-business", base_url="https://example.netlify.app")
+
+        for item in templates:
+            with self.subTest(template=item["id"]):
+                html = engine.render_full_page(item["id"], lead, live=False)
+                engine.validate_rendered_page(html, lead, template_name=item["id"])
+                self.assertIn("22.5726%2C88.3639", html)
+
+    def test_multiword_category_resolution(self):
+        meta_home = engine.get_template_meta("home_services_modern")
+        self.assertEqual(meta_home["category"], "home_services")
+        self.assertEqual(meta_home["layout"], "modern")
+
+        meta_estate = engine.get_template_meta("real_estate_premium")
+        self.assertEqual(meta_estate["category"], "real_estate")
+        self.assertEqual(meta_estate["layout"], "premium")
+
+        lead = engine.lead_record({
+            "name": "Quick Fix Plumbing",
+            "category": "Plumber",
+            "city": "Mumbai",
+            "address": "45 MG Road",
+            "phone": "9820098200"
+        }, "quick-fix-plumbing")
+
+        html_home = engine.render_full_page("home_services_modern", lead)
+        self.assertIn("Emergency Plumbing", html_home)
+
+    def test_map_coordinate_priority(self):
+        lead = engine.lead_record({
+            "name": "Random Clinic",
+            "city": "Delhi",
+            "address": "10 Connaught Place",
+            "lat": "28.6139",
+            "lng": "77.2090"
+        }, "random-clinic")
+
+        self.assertIn("q=28.6139%2C77.2090", lead["mapsEmbedUrl"])
+
+
 if __name__ == "__main__":
     unittest.main()

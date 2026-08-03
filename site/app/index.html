@@ -61,13 +61,6 @@ input,button{font:inherit;border-radius:12px;border:1px solid #d9d6cb;padding:12
     <button class="pill-tab" onclick="filterCat('auto')">Automotive</button>
     <button class="pill-tab" onclick="filterCat('veterinary')">Veterinary</button>
   </div>
-  <div id="subCategoryFilter" class="hide" style="margin-bottom:10px;font-size:12px">
-    <span class="muted" style="margin-right:6px">Specialization:</span>
-    <button class="pill-tab" onclick="filterSubCat('hvac')">HVAC</button>
-    <button class="pill-tab" onclick="filterSubCat('plumbing')">Plumbing</button>
-    <button class="pill-tab" onclick="filterSubCat('roofing')">Roofing</button>
-    <button class="pill-tab" onclick="filterSubCat('electrical')">Electrical</button>
-  </div>
   <div id=types class=types style="max-height:360px;overflow-y:auto"></div>
   <div class=err id=t1 role="alert" aria-live="polite"></div></div>
 
@@ -211,15 +204,6 @@ function filterCat(cat){
   ACTIVE_CAT=cat;
   document.querySelectorAll('#catTabs .pill-tab').forEach(b=>b.classList.remove('on'));
   if(window.event && window.event.target) window.event.target.classList.add('on');
-  if(cat==='home_services'){
-    $('subCategoryFilter').classList.remove('hide');
-  } else {
-    $('subCategoryFilter').classList.add('hide');
-  }
-  renderTemplates();
-}
-
-function filterSubCat(sub){
   renderTemplates();
 }
 

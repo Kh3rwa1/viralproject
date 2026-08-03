@@ -119,27 +119,21 @@ ROOT_INDEX = """<!doctype html>
 """
 
 
-CATEGORY_KEYWORDS = {
-    "coaching": ["coaching", "education", "tuition", "classes", "school", "academy", "learning", "institute"],
-    "dentist": ["dentist", "dental", "teeth", "orthodontist", "clinic"],
-    "lawyer": ["lawyer", "advocate", "legal", "attorney", "law", "solicitor"],
-}
-
-
 def check_category_compatibility(template: str, kept: list[dict]) -> list[str]:
     warnings = []
-    tpl_key = template.lower()
-    expected = tpl_key.split("_")[0]
+    meta = engine.get_template_meta(template)
+    expected_cat = meta.get("category", "")
 
     mismatched = []
     for r in kept:
         detected = engine.detect_business_category(r.get("category") or "")
-        if detected and detected != expected:
+        if detected and expected_cat and detected != expected_cat:
             mismatched.append(r.get("name", "Unknown lead"))
 
     if mismatched:
+        tpl_label = meta.get("name", template.replace("_", " ").title())
         warnings.append(
-            f"Warning: {len(mismatched)} lead(s) may not match the selected {template.replace('_', ' ').title()} template."
+            f"Warning: {len(mismatched)} lead(s) may not match the selected {tpl_label} template."
         )
     return warnings
 

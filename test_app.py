@@ -162,8 +162,19 @@ class TestLeadPagesFixes(unittest.TestCase):
             self.assertTrue(mock_generate.called)
             called_kwargs = mock_generate.call_args.kwargs if mock_generate.call_args.kwargs else {}
             if not called_kwargs and len(mock_generate.call_args.args) >= 7:
-                called_kwargs["live"] = mock_generate.call_args.args[6]
-            self.assertFalse(called_kwargs.get("live"))
+                self.assertIn("live", mock_generate.call_args[1])
+            self.assertFalse(mock_generate.call_args[1]["live"])
+
+    def test_api_templates_response(self):
+        client = app.app.test_client()
+        k_info = licenses.new_key("tpl_tester@example.com", "starter", days=30)
+        resp = client.get("/api/templates", headers={"X-Access-Key": k_info["key"]})
+        self.assertEqual(resp.status_code, 200)
+        data = resp.get_json()
+        self.assertEqual(len(data), 100)
+        self.assertIn("id", data[0])
+        self.assertIn("category", data[0])
+        self.assertIn("layout", data[0])
 
 
 if __name__ == "__main__":
