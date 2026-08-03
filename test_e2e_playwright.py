@@ -74,8 +74,9 @@ class TestE2EPlaywright(unittest.TestCase):
             )
 
             try:
-                # Upload CSV file
+                # Upload CSV file and trigger upload()
                 page.set_input_files("#file", str(csv_path))
+                page.evaluate("upload()")
 
                 # Verify clean notice appears without JS exceptions
                 page.wait_for_selector("#report")
