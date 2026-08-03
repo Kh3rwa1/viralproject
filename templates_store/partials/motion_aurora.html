@@ -1,4 +1,4 @@
-<!-- Motion & Animation System for Aurora Dreamscape -->
+<!-- Motion & Animation System for White Aurora Dreamscape -->
 <style>
   @keyframes dreamCloudDrift {
     0% { transform: translate3d(0, 0, 0); }
@@ -8,10 +8,6 @@
   @keyframes dreamStarTwinkle {
     0%, 100% { opacity: 0.3; transform: scale(0.9); }
     50% { opacity: 0.9; transform: scale(1.1); }
-  }
-  @keyframes dreamPulse {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
   }
 
   .reveal-dream {
@@ -32,6 +28,8 @@
       scroll-behavior: auto !important;
     }
     .reveal-dream { opacity: 1 !important; transform: none !important; }
+    .cloud-hero__video { display: none !important; }
+    .cloud-hero__poster { opacity: 1 !important; }
   }
 </style>
 
@@ -39,26 +37,37 @@
 document.addEventListener("DOMContentLoaded", () => {
   // 1. Video Hero Setup & Fallback Handling
   document.querySelectorAll("[data-video-hero]").forEach((hero) => {
-    const video = hero.querySelector("video");
-    const poster = hero.querySelector(".dream-hero__poster");
+    const video = hero.querySelector(".cloud-hero__video") || hero.querySelector("video");
+    const poster = hero.querySelector(".cloud-hero__poster") || hero.querySelector("img");
     if (!video) return;
 
-    const playVideo = () => {
-      const p = video.play();
-      if (p && p.then) {
-        p.then(() => {
-          video.classList.add("is-playing");
-          if (poster) poster.style.opacity = "0.3";
-        }).catch(() => {
-          video.style.display = "none";
-          if (poster) poster.style.opacity = "1";
-        });
+    const showVideo = () => {
+      hero.classList.add("video-ready");
+      hero.classList.remove("video-failed");
+    };
+
+    const showPoster = () => {
+      hero.classList.remove("video-ready");
+      hero.classList.add("video-failed");
+      if (poster) {
+        poster.hidden = false;
       }
     };
 
-    if (video.readyState >= 3) playVideo();
-    else video.addEventListener("canplay", playVideo, { once: true });
-    setTimeout(() => { if (video.paused) playVideo(); }, 2000);
+    video.addEventListener("playing", showVideo);
+    video.addEventListener("canplay", showVideo);
+    video.addEventListener("error", showPoster);
+    const source = video.querySelector("source");
+    source?.addEventListener("error", showPoster);
+
+    if (video.readyState >= 2) {
+      showVideo();
+    }
+
+    const playback = video.play();
+    if (playback?.catch) {
+      playback.catch(showPoster);
+    }
   });
 
   // 2. Scroll Reveals
@@ -76,49 +85,5 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     reveals.forEach((r) => r.classList.add("active"));
   }
-
-  // 3. Interactive Service Universe Tab Switcher
-  const serviceItems = document.querySelectorAll(".dream-service-tab");
-  const serviceVisualTitle = document.getElementById("active-service-title");
-  const serviceVisualDesc = document.getElementById("active-service-desc");
-
-  serviceItems.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      serviceItems.forEach(t => t.classList.remove("active"));
-      tab.classList.add("active");
-
-      if (serviceVisualTitle && serviceVisualDesc) {
-        serviceVisualTitle.textContent = tab.getAttribute("data-title") || "";
-        serviceVisualDesc.textContent = tab.getAttribute("data-desc") || "";
-      }
-    });
-  });
-
-  // 4. Patient Journey Console Tab Switcher
-  const journeySteps = document.querySelectorAll(".journey-step-btn");
-  const journeyTitle = document.getElementById("journey-title");
-  const journeyDesc = document.getElementById("journey-desc");
-
-  journeySteps.forEach((step) => {
-    step.addEventListener("click", () => {
-      journeySteps.forEach(s => s.classList.remove("active"));
-      step.classList.add("active");
-
-      if (journeyTitle && journeyDesc) {
-        journeyTitle.textContent = step.getAttribute("data-title") || "";
-        journeyDesc.textContent = step.getAttribute("data-desc") || "";
-      }
-    });
-  });
-
-  // 5. FAQ Constellation Accordion
-  document.querySelectorAll(".dream-faq-trigger").forEach((trigger) => {
-    trigger.addEventListener("click", () => {
-      const item = trigger.closest(".dream-faq-item");
-      const isOpen = item.classList.contains("open");
-      document.querySelectorAll(".dream-faq-item").forEach(i => i.classList.remove("open"));
-      if (!isOpen) item.classList.add("open");
-    });
-  });
 });
 </script>

@@ -1,4 +1,4 @@
-"""test_aurora_glass.py - Visual approval gate test for Template 1: Aurora Dreamscape."""
+"""test_aurora_glass.py - Visual approval gate test for Template 1: White Aurora Dreamscape."""
 import unittest
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -44,9 +44,20 @@ class TestAuroraGlassVisualGate(unittest.TestCase):
             self.assertIsNotNone(hero_sec, "Missing section.cloud-hero in aurora_glass.html")
             self.assertIsNotNone(video_el, "Missing video.cloud-hero__video in aurora_glass.html")
             self.assertIsNotNone(poster_el, "Missing img.cloud-hero__poster in aurora_glass.html")
+
+            # Assert video source equals Pexels download link or local asset
+            source_el = page_desktop.query_selector("video.cloud-hero__video source")
+            source_url = source_el.get_attribute("src") if source_el else ""
+            self.assertTrue("pexels" in source_url or "dental-check" in source_url, f"Unexpected source URL: {source_url}")
+
+            # Assert video is positioned absolutely inside hero
+            video_position = page_desktop.eval_on_selector("video.cloud-hero__video", "el => getComputedStyle(el).position")
+            self.assertEqual(video_position, "absolute")
+
+            # Assert no page errors
             self.assertEqual(len(page_errors), 0, f"Page error in aurora_glass: {page_errors}")
 
-            # Capture Desktop Hero Screenshot (1440x900 viewport)
+            # Capture Desktop Hero Screenshot
             page_desktop.screenshot(path=str(artifact_dir / "aurora_desktop_hero.png"))
             # Capture Desktop Full-Page Screenshot
             page_desktop.screenshot(path=str(artifact_dir / "aurora_desktop_fullpage.png"), full_page=True)

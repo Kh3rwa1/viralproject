@@ -47,19 +47,35 @@
 
     .cloud-eyebrow { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: #8b5cf6; margin-bottom: 12px; display: inline-block; }
 
-    /* 1. White Aurora Dreamscape Hero */
-    .cloud-hero { position: relative; width: 100%; min-height: 100svh; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; background: var(--bg-cream); color: var(--text-dark); padding: 24px 0 40px; }
-    .cloud-hero__media { position: absolute; inset: 0; z-index: 0; }
-    .cloud-hero__poster, .cloud-hero__video { width: 100%; height: 100%; object-fit: cover; opacity: 0.65; filter: contrast(1.05) saturate(1.1); transition: opacity 1s ease; }
-    .cloud-hero__white-wash { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(253, 251, 247, 0.75) 0%, rgba(244, 240, 249, 0.45) 45%, rgba(253, 251, 247, 1) 100%); }
-    .cloud-hero__grain { position: absolute; inset: 0; background-image: radial-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 0); background-size: 28px 28px; opacity: 0.5; }
+    /* 1. Hero Layout & Layering */
+    .cloud-hero { position: relative; min-height: 100svh; overflow: hidden; isolation: isolate; background: #fdfbf7; display: flex; flex-direction: column; justify-content: space-between; padding: 24px 0 40px; }
+    .cloud-hero__media { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+    .cloud-hero__poster, .cloud-hero__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .cloud-hero__poster { z-index: 1; opacity: 1; transition: opacity 800ms ease; }
+    .cloud-hero__video { z-index: 2; opacity: 0; filter: saturate(0.9) contrast(1.04) brightness(1.05); transition: opacity 800ms ease; }
+    .cloud-hero.video-ready .cloud-hero__video { opacity: 0.82; }
+    .cloud-hero.video-ready .cloud-hero__poster { opacity: 0; }
 
-    /* Nav inside Hero */
-    .cloud-nav { position: relative; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 0 32px; }
+    .cloud-hero__white-wash {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+      background: linear-gradient(
+        180deg,
+        rgba(253, 251, 247, 0.38) 0%,
+        rgba(253, 251, 247, 0.12) 42%,
+        rgba(253, 251, 247, 0.88) 100%
+      );
+    }
+    .cloud-hero__grain { position: absolute; inset: 0; z-index: 4; pointer-events: none; background-image: radial-gradient(rgba(139, 92, 246, 0.04) 1px, transparent 0); background-size: 28px 28px; }
+
+    /* Nav & Content Z-Indexing */
+    .cloud-nav, .cloud-hero__content { position: relative; z-index: 10; }
+    .cloud-nav { display: flex; align-items: center; justify-content: space-between; padding: 0 32px; }
     .cloud-brand { font-family: var(--font-serif); font-size: 26px; font-weight: 700; color: var(--text-dark); text-decoration: none; letter-spacing: -0.5px; }
 
-    /* Hero Content */
-    .cloud-hero__content { position: relative; z-index: 10; text-align: center; max-width: 860px; margin: auto; padding: 40px 24px; }
+    .cloud-hero__content { text-align: center; max-width: 860px; margin: auto; padding: 40px 24px; }
     .cloud-hero__content h1 { font-family: var(--font-serif); font-size: 64px; font-weight: 600; line-height: 1.08; letter-spacing: -1.5px; color: var(--text-dark); margin-bottom: 20px; }
     .cloud-hero__content h1 em { font-style: italic; font-weight: 400; color: #7c3aed; display: block; }
     .cloud-hero__content p { font-size: 19px; color: var(--text-muted); max-width: 680px; margin: 0 auto 32px; line-height: 1.65; }
@@ -76,7 +92,6 @@
     .service-card { background: #fff; border: 1px solid var(--border-light); padding: 36px; border-radius: var(--radius-xl); box-shadow: 0 10px 30px -10px rgba(192, 132, 252, 0.12); transition: all 0.3s ease; }
     .service-card:hover { transform: translateY(-4px); border-color: var(--accent-lavender); box-shadow: 0 15px 35px -10px rgba(192, 132, 252, 0.25); }
 
-    /* White Luminous Interlude */
     .luminous-interlude { background: linear-gradient(135deg, #fef3c7 0%, #f4f0f9 100%); border-radius: var(--radius-xl); padding: 56px; border: 1px solid var(--border-light); }
 
     /* FAQ Section */
@@ -92,7 +107,16 @@
     footer { padding: 50px 0; border-top: 1px solid var(--border-light); color: var(--text-muted); font-size: 14px; text-align: center; background: var(--bg-cream); }
 
     /* Mobile Adaptations */
-    @media (max-width: 900px) {
+    @media (max-width: 700px) {
+      .cloud-hero__video, .cloud-hero__poster { object-position: 58% center; }
+      .cloud-hero__white-wash {
+        background: linear-gradient(
+          180deg,
+          rgba(253, 251, 247, 0.28),
+          rgba(253, 251, 247, 0.20) 48%,
+          rgba(253, 251, 247, 0.94)
+        );
+      }
       .cloud-hero__content h1 { font-size: 40px; }
       .cloud-hero__content h1 em { font-size: 32px; }
       .cloud-nav { padding: 0 16px; }
@@ -106,15 +130,15 @@
   <section class="cloud-hero" data-video-hero>
     <div class="cloud-hero__media">
       <img class="cloud-hero__poster" src="{{ category_pack.video_poster }}" alt="{{ lead.fullName }}" width="1920" height="1080">
-      <video class="cloud-hero__video" autoplay muted loop playsinline preload="metadata" poster="{{ category_pack.video_poster }}" aria-hidden="true">
-        <source src="{{ category_pack.hero_video_webm }}" type="video/webm">
-        <source src="{{ category_pack.hero_video_mp4 }}" type="video/mp4">
+      <video class="cloud-hero__video" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="{{ category_pack.video_poster }}" aria-hidden="true">
+        {% if category_pack.hero_video_webm %}<source src="{{ category_pack.hero_video_webm }}" type="video/webm">{% endif %}
+        <source src="{{ category_pack.hero_video_mp4 or category_pack.pexels_video }}" type="video/mp4">
       </video>
       <div class="cloud-hero__white-wash"></div>
       <div class="cloud-hero__grain"></div>
     </div>
 
-    <!-- Navigation (Business Name in Nav!) -->
+    <!-- Navigation -->
     <nav class="cloud-nav">
       <a href="#" class="cloud-brand">{{ lead.fullName }}</a>
       <div style="display:flex;gap:12px">
@@ -123,7 +147,7 @@
       </div>
     </nav>
 
-    <!-- Hero Content (Natural Indian Copy) -->
+    <!-- Hero Content -->
     <div class="cloud-hero__content reveal-dream">
       <p class="cloud-eyebrow">
         Modern dental care in {{ lead.city }}
