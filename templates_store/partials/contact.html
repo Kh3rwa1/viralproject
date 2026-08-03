@@ -1,8 +1,10 @@
 <!-- Shared Contact Partial -->
+{% if lead.fullAddress or lead.city or lead.phoneHref or lead.whatsappHref %}
 <section id="contact" class="section contact-section">
   <div class="container">
-    <h2 class="section-title">Get in Touch with {{ lead.shortName }}</h2>
+    <h2 class="section-title">{{ category_pack.contact_heading if (category_pack and category_pack.contact_heading) else ('Contact ' + lead.shortName) }}</h2>
     <div class="contact-grid">
+      {% if lead.fullAddress or lead.city %}
       <div class="contact-card">
         <div class="contact-icon">📍</div>
         <h3>Location</h3>
@@ -11,20 +13,26 @@
         <a href="{{ lead.mapsUrl }}" target="_blank" class="link-btn">View on Google Maps ↗</a>
         {% endif %}
       </div>
+      {% endif %}
+
+      {% if lead.phoneHref %}
       <div class="contact-card">
         <div class="contact-icon">📞</div>
         <h3>Phone</h3>
         <p><a href="{{ lead.phoneHref }}">{{ lead.phoneIntl }}</a></p>
         <span class="subtext">Available for calls & inquiries</span>
       </div>
+      {% endif %}
+
+      {% if lead.whatsappHref %}
       <div class="contact-card">
         <div class="contact-icon">💬</div>
         <h3>WhatsApp Outreach</h3>
         <p>Connect instantly for quick questions.</p>
-        {% if lead.whatsappHref %}
         <a href="{{ lead.whatsappHref }}" target="_blank" class="btn btn-whatsapp">Chat on WhatsApp</a>
-        {% endif %}
       </div>
+      {% endif %}
     </div>
   </div>
 </section>
+{% endif %}

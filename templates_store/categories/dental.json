@@ -25,5 +25,9 @@
   "primary_action": "Book appointment",
   "secondary_action": "Call clinic",
   "disclaimer": "Discuss individual dental treatment suitability with your dentist. Results vary by patient.",
-  "pexels_video": "https://images.pexels.com/videos/3845946/free-video-3845946.mp4"
+  "pexels_video": "https://videos.pexels.com/video-files/5356060/5356060-hd_1920_1080_25fps.mp4",
+  "location_heading": "Visit Our Dental Clinic",
+  "contact_heading": "Book Your Dental Consultation",
+  "hero_image": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=80",
+  "video_poster": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=80"
 }

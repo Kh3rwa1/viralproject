@@ -25,5 +25,9 @@
   "primary_action": "Request consultation",
   "secondary_action": "Call office",
   "disclaimer": "Information on this page does not constitute formal legal advice. Past outcomes do not guarantee future results.",
-  "pexels_video": "https://images.pexels.com/videos/5669637/free-video-5669637.mp4"
+  "pexels_video": "https://videos.pexels.com/video-files/5356060/5356060-hd_1920_1080_25fps.mp4",
+  "location_heading": "Visit Our Law Office",
+  "contact_heading": "Request a Legal Consultation",
+  "hero_image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1200&q=80",
+  "video_poster": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1200&q=80"
 }

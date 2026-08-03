@@ -9,7 +9,9 @@
       <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#contact">Contact</a>
+      {% if lead.phoneHref %}
       <a href="{{ lead.phoneHref }}" class="btn btn-sm btn-primary">Call {{ lead.phoneIntl }}</a>
+      {% endif %}
     </nav>
   </div>
 </header>

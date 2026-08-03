@@ -25,5 +25,9 @@
   "primary_action": "Enrol now",
   "secondary_action": "Download syllabus",
   "disclaimer": "Course duration and batch timings subject to institute schedule.",
-  "pexels_video": "https://images.pexels.com/videos/5200371/free-video-5200371.mp4"
+  "pexels_video": "https://videos.pexels.com/video-files/5356060/5356060-hd_1920_1080_25fps.mp4",
+  "location_heading": "Visit Our Training Campus",
+  "contact_heading": "Enquire for Admissions & Batches",
+  "hero_image": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1200&q=80",
+  "video_poster": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1200&q=80"
 }

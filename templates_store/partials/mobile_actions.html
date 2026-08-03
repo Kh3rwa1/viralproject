@@ -1,8 +1,11 @@
 <!-- Shared Mobile Sticky Actions Bar Partial -->
+{% if lead.phoneHref or lead.whatsappHref or lead.mapsUrl %}
 <div class="mobile-sticky-bar">
+  {% if lead.phoneHref %}
   <a href="{{ lead.phoneHref }}" class="bar-btn bar-call">
     <span class="icon">📞</span> Call Now
   </a>
+  {% endif %}
   {% if lead.whatsappHref %}
   <a href="{{ lead.whatsappHref }}" target="_blank" class="bar-btn bar-wa">
     <span class="icon">💬</span> WhatsApp
@@ -14,3 +17,4 @@
   </a>
   {% endif %}
 </div>
+{% endif %}

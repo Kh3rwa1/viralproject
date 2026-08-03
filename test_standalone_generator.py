@@ -217,13 +217,22 @@ class TestStandaloneGenerator(unittest.TestCase):
 
 
     def test_all_registered_templates_render(self):
+        from collections import Counter
         templates = engine.list_templates()
-        self.assertEqual(len(templates), 100)
+        self.assertEqual(len(templates), 50)
 
-        ids = [t["id"] for t in templates]
-        self.assertEqual(len(set(ids)), 100)
+        counts = Counter(t["category"] for t in templates)
+        self.assertEqual(len(counts), 10)
+        self.assertTrue(all(c == 5 for c in counts.values()))
 
-        lead = engine.lead_record({
+        expected_layouts = {
+            "clean_product", "dark_cinematic", "aurora_glass", "retro_editorial", "friendly_illustrated"
+        }
+        for cat in counts:
+            cat_layouts = {t["layout"] for t in templates if t["category"] == cat}
+            self.assertEqual(cat_layouts, expected_layouts)
+
+        full_lead = engine.lead_record({
             "name": "Apex Business Services",
             "category": "Dental Clinic",
             "city": "Kolkata",
@@ -231,22 +240,36 @@ class TestStandaloneGenerator(unittest.TestCase):
             "phone": "9876543210",
             "lat": "22.5726",
             "lng": "88.3639",
+            "rating": "4.9",
+            "reviews": "85",
+            "hours": "9 AM - 7 PM"
         }, "apex-business", base_url="https://example.netlify.app")
 
+        sparse_lead = engine.lead_record({
+            "name": "Minimal Clinic",
+            "category": "Medical Clinic"
+        }, "minimal-clinic", base_url="https://example.netlify.app")
+
         for item in templates:
-            with self.subTest(template=item["id"]):
-                html = engine.render_full_page(item["id"], lead, live=False)
-                engine.validate_rendered_page(html, lead, template_name=item["id"])
+            with self.subTest(template=item["id"], condition="full"):
+                html = engine.render_full_page(item["id"], full_lead, live=False)
+                engine.validate_rendered_page(html, full_lead, template_name=item["id"])
                 self.assertIn("22.5726%2C88.3639", html)
 
-    def test_multiword_category_resolution(self):
-        meta_home = engine.get_template_meta("home_services_modern")
-        self.assertEqual(meta_home["category"], "home_services")
-        self.assertEqual(meta_home["layout"], "modern")
+            with self.subTest(template=item["id"], condition="sparse"):
+                html = engine.render_full_page(item["id"], sparse_lead, live=False)
+                engine.validate_rendered_page(html, sparse_lead, template_name=item["id"])
+                self.assertNotIn("undefined", html)
+                self.assertNotIn("{{", html)
 
-        meta_estate = engine.get_template_meta("real_estate_premium")
+    def test_multiword_category_resolution(self):
+        meta_home = engine.get_template_meta("home_services_clean_product")
+        self.assertEqual(meta_home["category"], "home_services")
+        self.assertEqual(meta_home["layout"], "clean_product")
+
+        meta_estate = engine.get_template_meta("real_estate_aurora_glass")
         self.assertEqual(meta_estate["category"], "real_estate")
-        self.assertEqual(meta_estate["layout"], "premium")
+        self.assertEqual(meta_estate["layout"], "aurora_glass")
 
         lead = engine.lead_record({
             "name": "Quick Fix Plumbing",
@@ -256,7 +279,7 @@ class TestStandaloneGenerator(unittest.TestCase):
             "phone": "9820098200"
         }, "quick-fix-plumbing")
 
-        html_home = engine.render_full_page("home_services_modern", lead)
+        html_home = engine.render_full_page("home_services_clean_product", lead)
         self.assertIn("Emergency Plumbing", html_home)
 
     def test_map_coordinate_priority(self):

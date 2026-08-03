@@ -2,7 +2,7 @@
 {% if lead.mapsEmbedUrl %}
 <section class="section map-section">
   <div class="container">
-    <h2 class="section-title">Visit Our Office / Clinic</h2>
+    <h2 class="section-title">{{ category_pack.location_heading if (category_pack and category_pack.location_heading) else 'Find Us' }}</h2>
     <div class="map-container">
       <iframe src="{{ lead.mapsEmbedUrl }}" width="100%" height="360" style="border:0;border-radius:16px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>

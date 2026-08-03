@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  {% include 'partials/seo.html' %}
+  <style>
+    :root {
+      --primary: #f59e0b;
+      --accent: #10b981;
+      --bg: #090d16;
+      --card-bg: #111827;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --border: rgba(255,255,255,0.1);
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; padding-bottom: 70px; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+    /* Dark Cinematic Header */
+    .site-header { background: rgba(17, 24, 39, 0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 16px 0; position: sticky; top: 0; z-index: 100; }
+    .header-wrap { display: flex; justify-content: space-between; align-items: center; }
+    .logo-text { font-size: 22px; font-weight: 900; color: #fff; text-decoration: none; letter-spacing: -0.02em; background: linear-gradient(90deg, #f59e0b, #10b981); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .nav-links a { color: var(--muted); text-decoration: none; margin-left: 20px; font-size: 14px; font-weight: 600; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px; border-radius: 99px; font-weight: 700; text-decoration: none; border: 0; transition: transform 0.2s; }
+    .btn-primary { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #000; box-shadow: 0 0 20px rgba(245, 158, 11, 0.3); }
+    .btn-whatsapp { background: #25D366; color: #111; }
+    .btn-sm { padding: 8px 18px; font-size: 13px; }
+
+    /* Hero Video / Media Frame */
+    .video-hero { position: relative; min-height: 520px; display: flex; align-items: center; justify-content: center; overflow: hidden; text-align: center; background: linear-gradient(135deg, #1e1b4b 0%, #090d16 100%); border-bottom: 1px solid var(--border); }
+    .video-hero video { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); min-width: 100%; min-height: 100%; object-fit: cover; z-index: 1; filter: brightness(0.4); }
+    .video-overlay { position: relative; z-index: 2; color: #fff; max-width: 820px; padding: 40px 20px; }
+    .video-title { font-size: 46px; font-weight: 900; margin-bottom: 16px; letter-spacing: -0.03em; text-shadow: 0 4px 20px rgba(0,0,0,0.8); }
+    .video-sub { font-size: 20px; color: #d1d5db; margin-bottom: 32px; }
+
+    .section { padding: 70px 0; }
+    .section-title { font-size: 30px; text-align: center; margin-bottom: 44px; color: #fff; font-weight: 800; }
+    
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .service-card { background: var(--card-bg); padding: 28px; border-radius: var(--radius); border: 1px solid var(--border); transition: all 0.3s; position: relative; overflow: hidden; }
+    .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #f59e0b, #10b981); }
+    .service-card h3 { font-size: 19px; color: #fff; margin-bottom: 10px; }
+    .service-card p { font-size: 14px; color: var(--muted); }
+
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; text-align: center; }
+    .contact-card { background: var(--card-bg); padding: 32px; border-radius: var(--radius); border: 1px solid var(--border); }
+
+    .site-footer { background: #030712; color: var(--muted); padding: 40px 0; text-align: center; margin-top: 40px; border-top: 1px solid var(--border); }
+
+    .mobile-sticky-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #111827; border-top: 1px solid var(--border); display: flex; z-index: 999; height: 60px; }
+    .bar-btn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none; font-weight: 700; font-size: 14px; color: #fff; }
+    .bar-call { background: #d97706; }
+    .bar-wa { background: #25D366; color: #111; }
+
+    @media (max-width: 768px) {
+      .video-title { font-size: 32px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Dark Cinematic Header -->
+  <header class="site-header">
+    <div class="container header-wrap">
+      <a href="#top" class="logo-text">{{ lead.fullName }}</a>
+      <nav class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+        {% if lead.phoneHref %}
+        <a href="{{ lead.phoneHref }}" class="btn btn-sm btn-primary">Call {{ lead.phoneIntl }}</a>
+        {% endif %}
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Media Frame -->
+  <section class="video-hero">
+    {% if category_pack and category_pack.pexels_video %}
+    <video autoplay loop muted playsinline poster="">
+      <source src="{{ category_pack.pexels_video }}" type="video/mp4">
+    </video>
+    {% endif %}
+    <div class="video-overlay">
+      <h1 class="video-title">{{ lead.fullName }}</h1>
+      <p class="video-sub">{{ category_pack.headline if category_pack else lead.pageDescription }}</p>
+      <div>
+        {% if lead.phoneHref %}
+        <a href="{{ lead.phoneHref }}" class="btn btn-primary">{{ category_pack.primary_action if category_pack else 'Call Now' }} ({{ lead.phoneIntl }})</a>
+        {% endif %}
+        {% if lead.whatsappHref %}
+        <a href="{{ lead.whatsappHref }}" target="_blank" class="btn btn-whatsapp" style="margin-left:12px">WhatsApp Us</a>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section id="services" class="section">
+    <div class="container">
+      <h2 class="section-title">Featured Solutions</h2>
+      <div class="services-grid">
+        {% if category_pack and category_pack.services %}
+          {% for s in category_pack.services %}
+          <div class="service-card">
+            <h3>{{ s.title }}</h3>
+            <p>{{ s.description }}</p>
+          </div>
+          {% endfor %}
+        {% else %}
+          <div class="service-card">
+            <h3>Professional Services</h3>
+            <p>Quality solutions tailored by {{ lead.shortName }}.</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  {% include 'partials/contact.html' %}
+  {% include 'partials/map.html' %}
+  {% include 'partials/footer.html' %}
+  {% include 'partials/mobile_actions.html' %}
+  {% include 'partials/structured_data.html' %}
+
+  <script>
+    document.querySelectorAll('video').forEach(function(v) {
+      v.addEventListener('error', function() { v.style.display = 'none'; }, true);
+    });
+  </script>
+</body>
+</html>
