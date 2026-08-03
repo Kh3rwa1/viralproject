@@ -20,20 +20,22 @@ input,button{font:inherit;border-radius:12px;border:1px solid #d9d6cb;padding:12
 <div id=serverSetup class=server-box>
   <h3>🔗 Connect to your server</h3>
   <p>Enter your LeadPages server URL below. If running locally, use <code>http://127.0.0.1:8000</code></p>
+  <label for="serverUrl" class="muted" style="display:block;margin-bottom:4px">Server Endpoint URL</label>
   <input id=serverUrl placeholder="http://127.0.0.1:8000" value="http://127.0.0.1:8000">
   <button onclick=connectServer()>Connect</button>
-  <div class=err id=serverErr></div>
+  <div class=err id=serverErr role="alert" aria-live="polite"></div>
 </div>
 
 <div id=mainApp class=hide><div class=card id=gate><h3><span>0</span>Access key</h3>
+<label for="key" class="muted" style="display:block;margin-bottom:4px">Enter your access key</label>
 <input id=key placeholder="LP-XXXX-XXXX-XXXX" autocomplete=off>
-<button onclick=signin()>Unlock</button><div class=err id=gateErr></div>
+<button onclick=signin()>Unlock</button><div class=err id=gateErr role="alert" aria-live="polite"></div>
 <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:12px" class=muted>
   <span>No key? Telegram pe <a href="https://t.me/dulork" target="_blank" style="color:#12634a;font-weight:700">@dulork</a></span>
   <span>Server: <a href="javascript:void(0)" onclick="toggleServerSetting()" id="serverLabel" style="color:#12634a;font-weight:600">Cloud Server</a></span>
 </div>
 <div id="serverPicker" class="hide" style="margin-top:10px;padding:10px;background:#f6f5f0;border-radius:10px;font-size:12px">
-  <label style="display:block;margin-bottom:4px;font-weight:600">Backend Server URL:</label>
+  <label for="customServerUrl" style="display:block;margin-bottom:4px;font-weight:600">Backend Server URL:</label>
   <input id="customServerUrl" style="padding:6px;font-size:12px;margin-bottom:6px" value="https://leadpages-backend.onrender.com">
   <div style="display:flex;gap:6px">
     <button class="light" style="padding:4px 8px;font-size:11px" onclick="setServer('https://leadpages-backend.onrender.com')">Cloud Server (24/7)</button>
@@ -47,26 +49,55 @@ input,button{font:inherit;border-radius:12px;border:1px solid #d9d6cb;padding:12
 
 <div class=card id=s1><h3><span>1</span>Kaunsa business?</h3>
   <div id=types class=types></div>
-  <div class=err id=t1></div></div>
+  <div class=err id=t1 role="alert" aria-live="polite"></div></div>
 
 <div class=card id=s2 data-lock><h3><span>2</span>List upload karo</h3>
+  <label for="file" class="muted" style="display:block;margin-bottom:4px">Upload CSV lead list</label>
   <input type=file id=file accept=.csv disabled>
   <button id=upBtn disabled onclick=upload()>Check karo</button>
-  <div class=err id=statusErr></div>
+  <div class=err id=statusErr role="alert" aria-live="polite"></div>
   <div id=report class=hide></div>
   <div class=chk><input type=checkbox id=terms disabled><label for=terms class=muted style=margin:0>I confirm I can contact these businesses and will not publish pages that impersonate them. Pages stay noindex until a client signs.</label></div>
   <button id=buildBtn class=hide onclick=build()>Websites banao</button>
-  <div class=bar><i id=barI></i></div><div class=muted id=status></div></div>
+  <div class=bar><i id=barI></i></div><div class=muted id=status aria-live="polite"></div></div>
 
-<div class=card id=s3 data-lock><h3><span>3</span>Live karo</h3>
-  <div class=row><input id=site placeholder="jsr-previews" disabled><input id=token type=password placeholder="Netlify token (save nahi hota)" disabled></div>
+<div class=card id=s3 data-lock><h3><span>3</span>Live karo (Netlify Publish)</h3>
+  <div style="margin-bottom:8px">
+    <button class="light" style="font-size:12px;padding:6px 12px;width:auto" onclick="toggleNetlifyHelp()">❓ Netlify Token Kaise Milega?</button>
+  </div>
+  <div id="netlifyHelp" class="hide" style="background:#e8f0ea;border:1px solid #cfe0d5;padding:12px;border-radius:12px;margin-bottom:12px;font-size:13px;color:#12634a">
+    <b>Quick 3-step Netlify Token Guide:</b>
+    <ol style="margin:6px 0 6px 18px;padding:0">
+      <li>Log in to Netlify and click <a href="https://app.netlify.com/user/applications#personal-access-tokens" target="_blank" style="font-weight:700;color:#12634a">Personal Access Tokens ↗</a></li>
+      <li>Click "New Access Token", give it a name (e.g., LeadPages), and copy the generated token.</li>
+      <li>Paste the token into the "Netlify Token" input below. Your token is only used client-side for this deployment and is never stored.</li>
+    </ol>
+  </div>
+  <div class=row>
+    <div>
+      <label for="site" class="muted" style="font-size:12px;display:block">Subdomain Site Name</label>
+      <input id=site placeholder="jsr-previews" disabled>
+    </div>
+    <div>
+      <label for="token" class="muted" style="font-size:12px;display:block">Netlify Personal Token</label>
+      <input id=token type=password placeholder="nfp_..." disabled>
+    </div>
+  </div>
   <button id=depBtn disabled onclick=deploy()>Publish karo</button>
-  <div class=muted id=depStatus></div>
+  <div class=muted id=depStatus aria-live="polite"></div>
   <div id=liveList class=hide></div></div>
 
 <div class=card id=s4 data-lock><h3><span>4</span>Saaf CSV download</h3>
-  <p class=muted>Har lead ka live link isi file me aayega.</p>
+  <p class=muted>Har lead ka direct link isi file me aayega.</p>
+  <div id="tableSearchBox" class="hide" style="margin-bottom:8px">
+    <input id="tableSearchInput" placeholder="🔍 Search business name or city..." style="font-size:13px;padding:8px 12px" oninput="filterResultsTable()">
+  </div>
   <div id=csvPreview class="hide table-scroll"></div>
+  <div id="paginationControls" class="hide" style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-size:12px">
+    <button class="light" id="prevPageBtn" style="width:auto;padding:4px 12px" onclick="changePage(-1)">← Prev</button>
+    <span id="pageInfo" class="muted">Page 1 of 1</span>
+    <button class="light" id="nextPageBtn" style="width:auto;padding:4px 12px" onclick="changePage(1)">Next →</button>
+  </div>
   <div style="margin-top:12px">
     <button id=csvBtn disabled onclick=dl('csv')>CSV download karo</button>
     <button class=ghost id=zipBtn disabled onclick=dl('zip')>Backup .zip</button>
@@ -75,7 +106,7 @@ input,button{font:inherit;border-radius:12px;border:1px solid #d9d6cb;padding:12
 
 </div>
 </div><script>
-let JOB=null,ME=null,TPL=null,POLL=null,BASE='';
+let JOB=null,ME=null,TPL=null,POLL=null,BASE='',TABLE_ROWS=[],PAGE=1,PER_PAGE=50,FILTERED_ROWS=[];
 let KEY=localStorage.getItem('lp_key')||'';
 const $=i=>document.getElementById(i);
 function escHtml(s){const d=document.createElement('div');d.textContent=String(s??'');return d.innerHTML}
@@ -101,9 +132,8 @@ const api=async(u,o={})=>{
   }
 };
 
-function toggleServerSetting(){
-  $('serverPicker').classList.toggle('hide');
-}
+function toggleServerSetting(){$('serverPicker').classList.toggle('hide')}
+function toggleNetlifyHelp(){$('netlifyHelp').classList.toggle('hide')}
 
 function setServer(url){
   BASE=url.replace(/\/$/,'');
@@ -152,29 +182,87 @@ async function loadTypes(){const ts=await api('/api/templates');if(!ts||ts.error
 function pickType(b){document.querySelectorAll('.type').forEach(x=>x.classList.remove('on'));b.classList.add('on');TPL=b.dataset.n;$('t1').textContent='';unlock('s2')}
 async function upload(){if(!TPL){$('t1').textContent='Pehle business type chuno';return}const f=$('file').files[0];if(!f){$('statusErr').textContent='CSV file chuno';return}$('statusErr').textContent='';const fd=new FormData();fd.append('file',f);fd.append('template',TPL);try{const r=await fetch(BASE+'/api/upload',{method:'POST',headers:{'X-Access-Key':KEY},body:fd}).then(r=>r.json());if(r.error){$('statusErr').textContent=r.error;return}JOB=r.job;$('report').classList.remove('hide');const noteNotice=r.notice?`<div style="background:#fef3c7;color:#92400e;padding:8px 12px;border-radius:10px;margin:8px 0;font-size:13px">⚠️ ${r.notice}</div>`:'';$('report').innerHTML=`${noteNotice}<b>${escHtml(r.buildable)}</b> websites banengi · ${escHtml(r.dropped)} hate<table>${r.sample.map(s=>`<tr><td>${escHtml(s.name)}</td><td>${escHtml(s.city)}</td><td>${escHtml(s.phone)}</td><td>${s.wa?'WhatsApp':'call only'}</td></tr>`).join('')}</table><p class=muted>Skipped: ${r.dropped_detail.map(d=>escHtml(d.why)).join(', ')||'none'}</p>`;$('terms').disabled=false;$('buildBtn').disabled=false;$('buildBtn').classList.remove('hide')}catch(e){$('statusErr').textContent='Upload failed: '+e.message}}
 async function build(){if(!$('terms').checked){alert('fair-use box tick karo');return}$('buildBtn').disabled=true;const r=await api('/api/build/'+JOB,{method:'POST',body:JSON.stringify({site_name:$('site').value||'Previews',accept_terms:true})});if(r.error){$('statusErr').textContent=r.error;$('buildBtn').disabled=false;return}poll()}
+
+function renderPaginatedTable(j){
+  const totalPages = Math.ceil(FILTERED_ROWS.length / PER_PAGE) || 1;
+  PAGE = Math.max(1, Math.min(PAGE, totalPages));
+  const start = (PAGE - 1) * PER_PAGE;
+  const pageRows = FILTERED_ROWS.slice(start, start + PER_PAGE);
+  const baseUrl = (j && j.live_url || '').replace(/\/$/, '');
+
+  $('csvPreview').classList.remove('hide');
+  $('tableSearchBox').classList.remove('hide');
+  $('paginationControls').classList.remove('hide');
+  $('pageInfo').textContent = `Page ${PAGE} of ${totalPages} (${FILTERED_ROWS.length} leads)`;
+  $('prevPageBtn').disabled = (PAGE <= 1);
+  $('nextPageBtn').disabled = (PAGE >= totalPages);
+
+  $('csvPreview').innerHTML = `<table><thead><tr><th>#</th><th>Business Name</th><th>City</th><th>Phone</th><th>Website Link</th></tr></thead><tbody>${pageRows.map((r,i)=>{
+    const idx = start + i + 1;
+    const name = r.name || r.name_full || r.slug || 'Business';
+    const city = r.city || '';
+    const phone = r.phone || '';
+    const url = r.share_url || (baseUrl ? (baseUrl + '/' + (r.slug || '') + '/') : '');
+    return `<tr><td>${idx}</td><td><b>${escHtml(name)}</b></td><td>${escHtml(city)}</td><td>${escHtml(phone)}</td><td>${url ? `<a href="${safeUrl(url)}" target=_blank style="color:#12634a">${escHtml(url)}</a>` : '<span class=muted>Built (deploy to get live link)</span>'}</td></tr>`;
+  }).join('')}</tbody></table>`;
+}
+
+function filterResultsTable(){
+  const query = ($('tableSearchInput').value || '').toLowerCase().trim();
+  FILTERED_ROWS = TABLE_ROWS.filter(r => {
+    const name = (r.name || r.name_full || r.slug || '').toLowerCase();
+    const city = (r.city || '').toLowerCase();
+    return name.includes(query) || city.includes(query);
+  });
+  PAGE = 1;
+  renderPaginatedTable(null);
+}
+
+function changePage(delta){
+  PAGE += delta;
+  renderPaginatedTable(null);
+}
+
 async function loadLiveAndCsv(j){
   const data = await api('/api/csv_data/' + JOB);
   if (data && data.rows && data.rows.length) {
-    const baseUrl = (j.live_url || '').replace(/\/$/, '');
-    $('liveList').classList.remove('hide');
-    $('liveList').innerHTML = `<h4 style="margin:12px 0 6px">All Deployed Websites (${escHtml(data.rows.length)}):</h4><div class=table-scroll><table><thead><tr><th>#</th><th>Business Name</th><th>City</th><th>Live Link</th></tr></thead><tbody>${data.rows.map((r,i)=>{
-      const name = r.name || r.name_full || r.slug || 'Business';
-      const city = r.city || '';
-      const url = r.share_url || (baseUrl + '/' + (r.slug || '') + '/');
-      return `<tr><td>${i+1}</td><td><b>${escHtml(name)}</b></td><td>${escHtml(city)}</td><td><a href="${safeUrl(url)}" target=_blank style="font-weight:700;color:#12634a">Open Site ↗</a></td></tr>`;
-    }).join('')}</tbody></table></div>`;
-    
-    $('csvPreview').classList.remove('hide');
-    $('csvPreview').innerHTML = `<table><thead><tr><th>#</th><th>Business Name</th><th>City</th><th>Phone</th><th>Deployed Website</th></tr></thead><tbody>${data.rows.map((r,i)=>{
-      const name = r.name || r.name_full || r.slug || 'Business';
-      const city = r.city || '';
-      const phone = r.phone || '';
-      const url = r.share_url || (baseUrl + '/' + (r.slug || '') + '/');
-      return `<tr><td>${i+1}</td><td><b>${escHtml(name)}</b></td><td>${escHtml(city)}</td><td>${escHtml(phone)}</td><td><a href="${safeUrl(url)}" target=_blank style="color:#12634a">${escHtml(url)}</a></td></tr>`;
-    }).join('')}</tbody></table>`;
+    TABLE_ROWS = data.rows;
+    FILTERED_ROWS = TABLE_ROWS;
+    PAGE = 1;
+    renderPaginatedTable(j);
   }
 }
-function poll(){clearInterval(POLL);POLL=setInterval(async()=>{const j=await api('/api/job/'+JOB);if(j.error){$('status').textContent=j.error;clearInterval(POLL);return}$('status').textContent=j.message||j.state;if(j.total)$('barI').style.width=(100*j.progress/j.total)+'%';if(j.state==='done'){clearInterval(POLL);$('barI').style.width='100%';$('status').innerHTML=`${escHtml(j.summary.built)} pages ready · <a href="${safeUrl(BASE+'/p/'+JOB+'/'+j.summary.slugs[0]+'/')}" target=_blank>preview one</a>`;unlock('s3');api('/api/me').then(m=>$('me').innerHTML=`<span class=pill>${escHtml(m.plan)}</span><span class=pill>${escHtml(m.remaining)} credits left</span>`)}if(j.state==='deployed'){clearInterval(POLL);$('depStatus').innerHTML=`live -> <a href="${safeUrl(j.live_url)}" target=_blank>${escHtml(j.live_url)}</a>`;unlock('s4');loadLiveAndCsv(j)}if(j.state==='error'){clearInterval(POLL);$('status').textContent='error: '+j.message;$('depStatus').textContent=j.message}},1500)}
+
+function poll(){
+  clearInterval(POLL);
+  POLL=setInterval(async()=>{
+    const j=await api('/api/job/'+JOB);
+    if(j.error){$('status').textContent=j.error;clearInterval(POLL);return}
+    $('status').textContent=j.message||j.state;
+    if(j.total)$('barI').style.width=(100*j.progress/j.total)+'%';
+    if(j.state==='done'){
+      clearInterval(POLL);
+      $('barI').style.width='100%';
+      $('status').innerHTML=`${escHtml(j.summary.built)} pages ready · <a href="${safeUrl(BASE+'/p/'+JOB+'/'+j.summary.slugs[0]+'/')}" target=_blank>preview one</a>`;
+      unlock('s3');
+      unlock('s4');
+      loadLiveAndCsv(j);
+      api('/api/me').then(m=>$('me').innerHTML=`<span class=pill>${escHtml(m.plan)}</span><span class=pill>${escHtml(m.remaining)} credits left</span>`)
+    }
+    if(j.state==='deployed'){
+      clearInterval(POLL);
+      $('depStatus').innerHTML=`live -> <a href="${safeUrl(j.live_url)}" target=_blank>${escHtml(j.live_url)}</a>`;
+      unlock('s4');
+      loadLiveAndCsv(j)
+    }
+    if(j.state==='error'){
+      clearInterval(POLL);
+      $('status').textContent='error: '+j.message;
+      $('depStatus').textContent=j.message
+    }
+  },1500)
+}
+
 async function deploy(){$('depBtn').disabled=true;$('depStatus').textContent='deploying...';const r=await api('/api/deploy/'+JOB,{method:'POST',body:JSON.stringify({token:$('token').value,site:$('site').value})});if(r.error){$('depStatus').textContent=r.error;$('depBtn').disabled=false;return}poll()}
 function dl(k){location.href=BASE+`/api/${k}/${JOB}?key=${encodeURIComponent(KEY)}`}
 

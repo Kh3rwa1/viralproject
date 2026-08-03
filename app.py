@@ -61,7 +61,7 @@ def og_jpg_alias():
 
 @app.get("/app")
 def tool():
-    return UI
+    return send_from_directory(SITE / "app", "index.html")
 
 
 @app.post("/api/auth")
@@ -71,7 +71,8 @@ def api_auth():
         return jsonify({"ok": False, "error": err}), 401
     session["key"] = row["key"]
     return jsonify({"ok": True, "plan": row["plan"], "remaining": row["remaining"],
-                    "max_rows": row["max_rows"], "can_live": bool(row["can_live"])})
+                    "max_rows": row["max_rows"], "can_deploy": bool(row.get("can_deploy")),
+                    "can_index": bool(row.get("can_index")), "can_live": bool(row.get("can_deploy"))})
 
 
 @app.post("/api/logout")
@@ -86,7 +87,8 @@ def api_me():
     if err:
         return jsonify({"ok": False, "error": err}), 401
     return jsonify({"ok": True, "plan": row["plan"], "remaining": row["remaining"],
-                    "max_rows": row["max_rows"], "can_live": bool(row["can_live"])})
+                    "max_rows": row["max_rows"], "can_deploy": bool(row.get("can_deploy")),
+                    "can_index": bool(row.get("can_index")), "can_live": bool(row.get("can_deploy"))})
 
 
 @app.get("/api/templates")
@@ -122,7 +124,7 @@ def api_upload():
     f.save(dest)
 
     rows, fields = core.read_csv(dest)
-    kept, dropped = core.plan_rows(rows, fields, keep_real=True)
+    kept, dropped = core.plan_rows(rows, fields, keep_real=False)
     if not kept:
         return jsonify({"error": "No valid leads found in CSV."}), 400
 
@@ -153,8 +155,8 @@ def api_build(jid):
     if not job:
         return jsonify({"error": "job not found"}), 404
     o = request.json or {}
-    if o.get("live") and not row["can_live"]:
-        return jsonify({"error": "publishing indexable pages needs the Pro plan"}), 402
+    if o.get("live") and not row.get("can_index"):
+        return jsonify({"error": "publishing indexable (dofollow) pages requires the Pro or Agency plan"}), 402
     if not o.get("accept_terms"):
         return jsonify({"error": "you must accept the fair-use terms"}), 400
     if not job.get("template"):
@@ -184,8 +186,8 @@ def api_deploy(jid):
     row, err = auth()
     if err:
         return jsonify({"error": err}), 401
-    if not row.get("can_live"):
-        return jsonify({"error": "Live publishing requires Pro or Agency plan"}), 403
+    if not row.get("can_deploy"):
+        return jsonify({"error": "Netlify publishing requires Starter, Pro, or Agency plan"}), 403
     job = jobs.get(jid, row["key"])
     if not job or job["state"] not in ("done", "deployed"):
         return jsonify({"error": "build not ready"}), 400
@@ -266,120 +268,7 @@ def preview(jid, sub="index.html"):
     return send_from_directory(Path(job["folder"]) / "dist", sub)
 
 
-UI = r"""<!doctype html><html lang=en><head><meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<title>LeadPages - generator</title><style>
-*{box-sizing:border-box}body{margin:0;font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;background:#f6f5f0;color:#141414}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(#e2e0d8 1px,transparent 1px),linear-gradient(90deg,#e2e0d8 1px,transparent 1px);background-size:80px 80px;opacity:.45}
-.wrap{position:relative;max-width:780px;margin:0 auto;padding:30px 20px 90px}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:18px}
-h1{font-size:25px;margin:0;color:#12634a;letter-spacing:-.03em}.sub{color:#6b6963;margin:4px 0 0;font-size:14px}.card{background:#fffefb;border:1px solid #e2e0d8;border-radius:18px;padding:20px;margin-bottom:14px;box-shadow:0 18px 44px -30px rgba(20,20,20,.35);transition:.35s}
-.card h3{margin:0 0 12px;font-size:15px;letter-spacing:.02em}.card h3 span{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:99px;background:#e8f0ea;color:#12634a;margin-right:8px;font-size:13px}
-input,button{font:inherit;border-radius:12px;border:1px solid #d9d6cb;padding:12px 13px;background:#fbfaf6;color:#141414;width:100%}button{background:#12634a;color:white;border:0;font-weight:700;cursor:pointer;margin-top:10px;box-shadow:0 10px 22px -15px rgba(18,99,74,.9)}button.ghost{background:#141414;color:white}button.light{background:#fffefb;color:#12634a;border:1px solid #cfe0d5;box-shadow:none}button:disabled{opacity:.45;cursor:not-allowed}.err{color:#b42318;font-size:13px;margin-top:8px}.muted{color:#6b6963;font-size:13px}.hide{display:none}
-.pill{display:inline-block;background:#e8f0ea;color:#12634a;border:1px solid #cfe0d5;border-radius:999px;padding:5px 11px;font-size:12px;margin:4px 6px 0 0}.types{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}.type{display:flex;align-items:center;justify-content:flex-start;gap:9px;background:#fbfaf6;color:#141414;border:1px solid #e2e0d8;box-shadow:none;margin:0;text-align:left}.type.on{border-color:#12634a;background:#e8f0ea;color:#12634a}.type:disabled{opacity:.38}.sw{width:16px;height:16px;border-radius:5px;border:1px solid rgba(0,0,0,.12)}
-[data-lock]{opacity:.42;pointer-events:none}[data-lock].open{opacity:1;pointer-events:auto}.bar{height:8px;background:#ece9df;border-radius:99px;overflow:hidden;margin-top:12px}.bar i{display:block;height:100%;background:#12634a;width:0;transition:.3s}.chk{display:flex;gap:9px;margin-top:12px;align-items:flex-start}.chk input{width:auto;margin-top:4px}.row{display:flex;gap:10px}.row>*{flex:1}table{width:100%;border-collapse:collapse;font-size:13px;margin-top:9px}td,th{padding:8px;border-bottom:1px solid #ece9df;text-align:left}a{color:#12634a}@media(max-width:620px){.row,.top{display:block}.wrap{padding-inline:14px}}
-.table-scroll{max-height:300px;overflow-y:auto;margin-top:10px;border:1px solid #e2e0d8;border-radius:12px;background:#fff}
-</style></head><body><div class=wrap>
-<div class=top><div><h1>leadpages.</h1><p class=sub>Business type chuno, list upload karo, live karo, CSV le lo.</p></div><a href=/ class=muted>Sales page</a></div>
-
-<div class=card id=gate><h3><span>0</span>Access key</h3>
-<input id=key placeholder="LP-XXXX-XXXX-XXXX" autocomplete=off>
-<button onclick=signin()>Unlock</button><div class=err id=gateErr></div>
-<p class=muted style=margin-top:12px>No key? Telegram pe <a href="https://t.me/dulork" target="_blank" style="color:#12634a;font-weight:700">@dulork</a> se key le lo.</p></div>
-
-<div id=app class=hide>
-<div class=card><h3>Your plan</h3><div id=me></div><button class=light onclick=logout()>Sign out</button></div>
-
-<div class=card id=s1><h3><span>1</span>Kaunsa business?</h3>
-  <div id=types class=types></div>
-  <div class=err id=t1></div></div>
-
-<div class=card id=s2 data-lock><h3><span>2</span>List upload karo</h3>
-  <input type=file id=file accept=.csv disabled>
-  <button id=upBtn disabled onclick=upload()>Check karo</button>
-  <div class=err id=statusErr></div>
-  <div id=report class=hide></div>
-  <div class=chk><input type=checkbox id=terms disabled><label for=terms class=muted style=margin:0>I confirm I can contact these businesses and will not publish pages that impersonate them. Pages stay noindex until a client signs.</label></div>
-  <button id=buildBtn class=hide onclick=build()>Websites banao</button>
-  <div class=bar><i id=barI></i></div><div class=muted id=status></div></div>
-
-<div class=card id=s3 data-lock><h3><span>3</span>Live karo</h3>
-  <div class=row><input id=site placeholder="jsr-previews" disabled><input id=token type=password placeholder="Netlify token (save nahi hota)" disabled></div>
-  <button id=depBtn disabled onclick=deploy()>Publish karo</button>
-  <div class=muted id=depStatus></div>
-  <div id=liveList class=hide></div></div>
-
-<div class=card id=s4 data-lock><h3><span>4</span>Saaf CSV download</h3>
-  <p class=muted>Har lead ka live link isi file me aayega.</p>
-  <div id=csvPreview class="hide table-scroll"></div>
-  <div style="margin-top:12px">
-    <button id=csvBtn disabled onclick=dl('csv')>CSV download karo</button>
-    <button class=ghost id=zipBtn disabled onclick=dl('zip')>Backup .zip</button>
-  </div></div>
-</div></div><script>
-let JOB=null,ME=null,TPL=null,POLL=null;
-let KEY=localStorage.getItem('lp_key')||'';
-const $=i=>document.getElementById(i);
-function escHtml(s){const d=document.createElement('div');d.textContent=String(s??'');return d.innerHTML}
-function safeUrl(u){try{const p=new URL(String(u||''),location.href);return['http:','https:'].includes(p.protocol)?p.href:'#'}catch{return '#'}}
-const api=async(u,o={})=>{
-  try{
-    const res=await fetch(u,{headers:{'Content-Type':'application/json','X-Access-Key':KEY,...(o.headers||{})},...o});
-    return await res.json();
-  }catch(err){
-    return {ok:false,error:'Server connection error: '+(err.message||'Cannot reach server')};
-  }
-};
-function unlock(id){const el=$(id);el.classList.add('open');el.querySelectorAll('input,button').forEach(e=>e.disabled=false);el.scrollIntoView({behavior:'smooth',block:'center'})}
-async function signin(){
-  const k=($('key').value||'').trim();
-  if(!k){$('gateErr').textContent='Key enter karo';return}
-  $('gateErr').textContent='Verifying...';
-  const r=await api('/api/auth',{method:'POST',body:JSON.stringify({key:k})});
-  if(!r||!r.ok){$('gateErr').textContent=(r&&r.error)?r.error:'Invalid key or server offline';return}
-  KEY=k;
-  localStorage.setItem('lp_key',k);
-  boot(r);
-}
-async function logout(){
-  localStorage.removeItem('lp_key');
-  KEY='';
-  await api('/api/logout',{method:'POST'});
-  location.reload();
-}
-function boot(m){ME=m;$('gate').classList.add('hide');$('app').classList.remove('hide');$('me').innerHTML=`<span class=pill>${escHtml(m.plan)}</span><span class=pill>${escHtml(m.remaining)} credits left</span><span class=pill>max ${escHtml(m.max_rows)} rows/job</span>`;loadTypes()}
-async function loadTypes(){const ts=await api('/api/templates');if(ts.error){$('t1').textContent=ts.error;return}$('types').innerHTML=ts.map(t=>`<button class="type" data-n="${escHtml(t.name)}" onclick="pickType(this)"><span class="sw" style="background:${escHtml(t.accent)}"></span>${escHtml(t.label)}</button>`).join('')||'<p class=muted>No templates found.</p>'}
-function pickType(b){document.querySelectorAll('.type').forEach(x=>x.classList.remove('on'));b.classList.add('on');TPL=b.dataset.n;$('t1').textContent='';unlock('s2')}
-async function upload(){if(!TPL){$('t1').textContent='Pehle business type chuno';return}const f=$('file').files[0];if(!f){$('statusErr').textContent='CSV file chuno';return}$('statusErr').textContent='';const fd=new FormData();fd.append('file',f);fd.append('template',TPL);const r=await fetch('/api/upload',{method:'POST',headers:{'X-Access-Key':KEY},credentials:'include',body:fd}).then(r=>r.json());if(r.error){$('statusErr').textContent=r.error;return}JOB=r.job;$('report').classList.remove('hide');const noteNotice=r.notice?`<div style="background:#fef3c7;color:#92400e;padding:8px 12px;border-radius:10px;margin:8px 0;font-size:13px">⚠️ ${r.notice}</div>`:'';$('report').innerHTML=`${noteNotice}<b>${escHtml(r.buildable)}</b> websites banengi · ${escHtml(r.dropped)} hate<table>${r.sample.map(s=>`<tr><td>${escHtml(s.name)}</td><td>${escHtml(s.city)}</td><td>${escHtml(s.phone)}</td><td>${s.wa?'WhatsApp':'call only'}</td></tr>`).join('')}</table><p class=muted>Skipped: ${r.dropped_detail.map(d=>escHtml(d.why)).join(', ')||'none'}</p>`;$('terms').disabled=false;$('buildBtn').disabled=false;$('buildBtn').classList.remove('hide')}
-async function build(){if(!$('terms').checked){alert('fair-use box tick karo');return}$('buildBtn').disabled=true;const r=await api('/api/build/'+JOB,{method:'POST',body:JSON.stringify({site_name:$('site').value||'Previews',accept_terms:true})});if(r.error){$('statusErr').textContent=r.error;$('buildBtn').disabled=false;return}poll()}
-async function loadLiveAndCsv(j){
-  const data = await api('/api/csv_data/' + JOB);
-  if (data && data.rows && data.rows.length) {
-    const baseUrl = (j.live_url || '').replace(/\/$/, '');
-    $('liveList').classList.remove('hide');
-    $('liveList').innerHTML = `<h4 style="margin:12px 0 6px">All Deployed Websites (${escHtml(data.rows.length)}):</h4><div class=table-scroll><table><thead><tr><th>#</th><th>Business Name</th><th>City</th><th>Live Link</th></tr></thead><tbody>${data.rows.map((r,i)=>{
-      const name = r.name || r.name_full || r.slug || 'Business';
-      const city = r.city || '';
-      const url = r.share_url || (baseUrl + '/' + (r.slug || '') + '/');
-      return `<tr><td>${i+1}</td><td><b>${escHtml(name)}</b></td><td>${escHtml(city)}</td><td><a href="${safeUrl(url)}" target=_blank style="font-weight:700;color:#12634a">Open Site ↗</a></td></tr>`;
-    }).join('')}</tbody></table></div>`;
-    
-    $('csvPreview').classList.remove('hide');
-    $('csvPreview').innerHTML = `<table><thead><tr><th>#</th><th>Business Name</th><th>City</th><th>Phone</th><th>Deployed Website</th></tr></thead><tbody>${data.rows.map((r,i)=>{
-      const name = r.name || r.name_full || r.slug || 'Business';
-      const city = r.city || '';
-      const phone = r.phone || '';
-      const url = r.share_url || (baseUrl + '/' + (r.slug || '') + '/');
-      return `<tr><td>${i+1}</td><td><b>${escHtml(name)}</b></td><td>${escHtml(city)}</td><td>${escHtml(phone)}</td><td><a href="${safeUrl(url)}" target=_blank style="color:#12634a">${escHtml(url)}</a></td></tr>`;
-    }).join('')}</tbody></table>`;
-  }
-}
-function poll(){clearInterval(POLL);POLL=setInterval(async()=>{const j=await api('/api/job/'+JOB);if(j.error){$('status').textContent=j.error;clearInterval(POLL);return}$('status').textContent=j.message||j.state;if(j.total)$('barI').style.width=(100*j.progress/j.total)+'%';if(j.state==='done'){clearInterval(POLL);$('barI').style.width='100%';$('status').innerHTML=`${escHtml(j.summary.built)} pages ready · <a href="${safeUrl('/p/'+JOB+'/'+j.summary.slugs[0]+'/')}" target=_blank>preview one</a>`;unlock('s3');api('/api/me').then(m=>$('me').innerHTML=`<span class=pill>${escHtml(m.plan)}</span><span class=pill>${escHtml(m.remaining)} credits left</span>`)}if(j.state==='deployed'){clearInterval(POLL);$('depStatus').innerHTML=`live -> <a href="${safeUrl(j.live_url)}" target=_blank>${escHtml(j.live_url)}</a>`;unlock('s4');loadLiveAndCsv(j)}if(j.state==='error'){clearInterval(POLL);$('status').textContent='error: '+j.message;$('depStatus').textContent=j.message}},1500)}
-async function deploy(){$('depBtn').disabled=true;$('depStatus').textContent='deploying...';const r=await api('/api/deploy/'+JOB,{method:'POST',body:JSON.stringify({token:$('token').value,site:$('site').value})});if(r.error){$('depStatus').textContent=r.error;$('depBtn').disabled=false;return}poll()}
-function dl(k){location.href=`/api/${k}/${JOB}?key=${encodeURIComponent(KEY)}`}
-if(KEY){
-  api('/api/me').then(m=>{if(m.ok)boot(m)}).catch(()=>{});
-}
-</script></body></html>"""
+# Ensure workspace exists on import (for gunicorn)
 
 # Ensure workspace exists on import (for gunicorn)
 jobs.WORKSPACE.mkdir(exist_ok=True)

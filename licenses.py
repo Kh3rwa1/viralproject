@@ -12,11 +12,11 @@ DB = Path(__file__).resolve().parent / "licenses.db"
 ALPHA = string.ascii_uppercase + string.digits
 
 PLANS = {
-    # name:      (credits, max_rows_per_job, can_publish_live)
-    "trial":     (25,    25,   False),
-    "starter":   (500,   400,  False),
-    "pro":       (3000,  1500, True),
-    "agency":    (12000, 5000, True),
+    # name:      (credits, max_rows_per_job, can_deploy, can_index)
+    "trial":     (25,    25,   False, False),
+    "starter":   (500,   400,  True,  False),
+    "pro":       (3000,  1500, True,  True),
+    "agency":    (12000, 5000, True,  True),
 }
 
 
@@ -90,7 +90,8 @@ def check(key: str):
             pass
     d = dict(row)
     d["remaining"] = max(0, d["credits"] - d["used"])
-    d["max_rows"], d["can_live"] = PLANS.get(d["plan"], PLANS["starter"])[1:]
+    d["max_rows"], d["can_deploy"], d["can_index"] = PLANS.get(d["plan"], PLANS["starter"])[1:]
+    d["can_live"] = d["can_deploy"]
     return d, None
 
 

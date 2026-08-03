@@ -393,8 +393,18 @@ function buy(p){const l=CONFIG.pay[p];if(l){open(l,"_blank","noopener");return}
 demoLink.href=CONFIG.demo; mailLink.href="https://t.me/dulork"; yr.textContent=new Date().getFullYear();
 
 /* rotating word */
-const words=["","banao","kamao","shuru karo"];let wi=0;const rot=document.querySelector(".rot");
-setInterval(()=>{wi=(wi+1)%2;},4000);
+const words=["banao","kamao","shuru karo"];let wi=0;const rot=document.querySelector(".rot");
+if(rot){
+  setInterval(()=>{
+    wi=(wi+1)%words.length;
+    rot.style.transition="opacity 0.2s";
+    rot.style.opacity="0";
+    setTimeout(()=>{
+      rot.textContent=" — "+words[wi];
+      rot.style.opacity="1";
+    },200);
+  },3000);
+}
 
 /* logo marquee */
 const brands=["Solo freelancers","Web design studios","Digital marketing walas","Instagram agencies",
