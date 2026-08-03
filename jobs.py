@@ -110,7 +110,7 @@ def start_deploy(job, site_name, token):
             template = (job.get("summary") or {}).get("template") or job.get("template") or "coaching"
             core.generate(Path(job["folder"]) / "input.csv", template,
                           job["folder"], limit=opts.get("limit", 0), city=opts.get("city", ""),
-                          only=opts.get("only", ""), live=True,
+                          only=opts.get("only", ""), live=bool(opts.get("live", False)),
                           keep_real=opts.get("keep_real", False), base_url=url, site_name=site_name)
 
             job["message"] = "uploading to Netlify..."

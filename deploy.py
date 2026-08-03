@@ -60,7 +60,7 @@ def main():
             limit=state.get("limit", 0),
             city=state.get("city", ""),
             only=state.get("only", ""),
-            live=True,
+            live=state.get("live", False),
             keep_real=state.get("keep_real", True),
             base_url=base,
             site_name=state.get("site_name", "Previews"),

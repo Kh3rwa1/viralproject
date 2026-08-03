@@ -164,7 +164,7 @@ def api_build(jid):
     jobs.start_build(job, {"template": job["template"],
                            "limit": job.get("limit", row["max_rows"]),
                            "city": o.get("city", ""), "only": o.get("only", ""),
-                           "live": bool(o.get("live")), "keep_real": True,
+                           "live": bool(o.get("live")), "keep_real": False,
                            "site_name": o.get("site_name", "Previews")})
     return jsonify({"ok": True})
 

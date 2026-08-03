@@ -137,5 +137,34 @@ class TestLeadPagesFixes(unittest.TestCase):
         self.assertEqual(recovered["summary"]["built"], 10)
 
 
+    def test_starter_deploy_preserves_noindex(self):
+        k_info = licenses.new_key("starter_user@example.com", "starter", days=30)
+        key = k_info["key"]
+        row, err = licenses.check(key)
+        self.assertTrue(row["can_deploy"])
+        self.assertFalse(row["can_index"])
+
+        job = jobs.new_job(key)
+        opts = {"template": "coaching", "live": False, "keep_real": False}
+        job["opts"] = opts
+
+        with patch("netlify.ensure_site") as mock_ensure, \
+             patch("netlify.deploy_to_site") as mock_deploy, \
+             patch("core.generate") as mock_generate:
+            mock_ensure.return_value = {"id": "test_site_id", "url": "https://test.netlify.app"}
+            mock_deploy.return_value = None
+
+            jobs.start_deploy(job, "test-subdomain", "token_123")
+            import time
+            time.sleep(0.5)
+
+            # Ensure core.generate was called with live=False (noindex preserved for Starter)
+            self.assertTrue(mock_generate.called)
+            called_kwargs = mock_generate.call_args.kwargs if mock_generate.call_args.kwargs else {}
+            if not called_kwargs and len(mock_generate.call_args.args) >= 7:
+                called_kwargs["live"] = mock_generate.call_args.args[6]
+            self.assertFalse(called_kwargs.get("live"))
+
+
 if __name__ == "__main__":
     unittest.main()
