@@ -1,0 +1,103 @@
+<!-- Motion & Animation System for Playful 3D Dental -->
+<style>
+  @keyframes playFloatSlow {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-14px) rotate(4deg); }
+  }
+  @keyframes playRingSpin {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.05); }
+    100% { transform: rotate(360deg) scale(1); }
+  }
+
+  .play-object--ring { animation: playRingSpin 24s linear infinite; }
+  .play-object--sphere { animation: playFloatSlow 7s ease-in-out infinite; }
+  .play-object--capsule { animation: playFloatSlow 9s ease-in-out 1s infinite; }
+  .play-object--star { animation: playFloatSlow 6s ease-in-out 0.5s infinite; }
+
+  .reveal-play {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-play.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    .reveal-play { opacity: 1 !important; transform: none !important; }
+    .play-object, .play-video, [data-tilt] {
+      animation: none !important;
+      transform: none !important;
+      transition: none !important;
+    }
+    .play-video { display: none !important; }
+    .play-video-poster { opacity: 1 !important; }
+  }
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Video Hero Setup & Fallback Handling
+  document.querySelectorAll("[data-video-hero]").forEach((hero) => {
+    const video = hero.querySelector(".play-video");
+    const poster = hero.querySelector(".play-video-poster");
+
+    if (!video) return;
+
+    const ready = () => {
+      hero.classList.add("video-ready");
+      hero.classList.remove("video-failed");
+    };
+
+    const failed = () => {
+      hero.classList.remove("video-ready");
+      hero.classList.add("video-failed");
+      if (poster) {
+        poster.hidden = false;
+      }
+    };
+
+    video.addEventListener("playing", ready);
+    video.addEventListener("canplay", ready);
+    video.addEventListener("error", failed);
+
+    video.querySelectorAll("source").forEach((source) => {
+      source.addEventListener("error", failed);
+    });
+
+    if (video.readyState >= 2) {
+      ready();
+    }
+
+    const playback = video.play();
+
+    if (playback?.catch) {
+      playback.catch(failed);
+    }
+  });
+
+  // Scroll Reveals
+  const reveals = document.querySelectorAll(".reveal-play");
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("active");
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach((r) => observer.observe(r));
+  } else {
+    reveals.forEach((r) => r.classList.add("active"));
+  }
+});
+</script>
