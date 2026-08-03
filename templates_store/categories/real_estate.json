@@ -1,9 +1,9 @@
 {
   "id": "real_estate",
   "name": "Real Estate Agencies",
-  "singular": "Real Estate Agency",
-  "headline": "Find Your Dream Property with Expert Local Real Estate Advice",
-  "description": "Residential, commercial, and investment property consulting in prime locations.",
+  "singular": "Real Estate Brokerage",
+  "headline": "Find Your Dream Home or Investment Property",
+  "description": "Expert real estate guidance for buyers, sellers, and investors in top local neighborhoods.",
   "services": [
     {
       "title": "Residential Property Sales",
@@ -29,5 +29,25 @@
   "location_heading": "Visit Our Property Lounge",
   "contact_heading": "Connect with a Real Estate Consultant",
   "hero_image": "https://images.pexels.com/photos/7578848/pexels-photo-7578848.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "video_poster": "https://images.pexels.com/photos/7578848/pexels-photo-7578848.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  "video_poster": "https://images.pexels.com/photos/7578848/pexels-photo-7578848.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "hero_eyebrow": "Premier Residential & Commercial Properties",
+  "story_heading": "Your Local Property Experts",
+  "story_body": "With deep market knowledge and negotiation expertise, we turn complex property transactions into seamless experiences.",
+  "process_steps": [
+    {
+      "step": "01",
+      "title": "Property Discovery",
+      "desc": "Matching your requirements with curated listings."
+    },
+    {
+      "step": "02",
+      "title": "Private Tour",
+      "desc": "Exclusive walkthroughs with market insight."
+    },
+    {
+      "step": "03",
+      "title": "Seamless Closing",
+      "desc": "Expert contract negotiation and hassle-free handover."
+    }
+  ]
 }

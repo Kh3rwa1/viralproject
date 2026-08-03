@@ -1,9 +1,9 @@
 {
   "id": "accounting",
-  "name": "Accounting & Tax Firms",
-  "singular": "Accounting Firm",
-  "headline": "Precision Accounting, Tax Compliance, and Financial Growth Advisory",
-  "description": "Helping individuals and businesses stay compliant and optimize financial health.",
+  "name": "Accounting Firms",
+  "singular": "Financial Firm",
+  "headline": "Maximize Efficiency & Ensure Tax Compliance",
+  "description": "Professional tax planning, bookkeeping, auditing, and business accounting solutions.",
   "services": [
     {
       "title": "Income Tax Return Filing",
@@ -29,5 +29,25 @@
   "location_heading": "Visit Our Financial Office",
   "contact_heading": "Consult with a Tax Expert",
   "hero_image": "https://images.pexels.com/photos/7688460/pexels-photo-7688460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "video_poster": "https://images.pexels.com/photos/7688460/pexels-photo-7688460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  "video_poster": "https://images.pexels.com/photos/7688460/pexels-photo-7688460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "hero_eyebrow": "Strategic Financial & Tax Advisory",
+  "story_heading": "Financial Clarity for Individuals & Businesses",
+  "story_body": "We simplify complex financial regulations, optimize tax strategy, and keep your business financially healthy.",
+  "process_steps": [
+    {
+      "step": "01",
+      "title": "Financial Audit",
+      "desc": "Reviewing your records for tax-saving opportunities."
+    },
+    {
+      "step": "02",
+      "title": "Custom Advisory",
+      "desc": "Tailored accounting and compliance strategy."
+    },
+    {
+      "step": "03",
+      "title": "Ongoing Filing",
+      "desc": "Timely tax returns, payroll, and bookkeeping."
+    }
+  ]
 }

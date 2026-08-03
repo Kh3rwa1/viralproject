@@ -1,9 +1,9 @@
 {
   "id": "cosmetic",
   "name": "Cosmetic & Plastic Surgery Clinics",
-  "singular": "Cosmetic Clinic",
-  "headline": "Advanced Aesthetic Procedures & Personalized Cosmetic Care",
-  "description": "State-of-the-art cosmetic treatments delivered by certified medical specialists.",
+  "singular": "Aesthetic Clinic",
+  "headline": "Reveal Your Natural Radiance & Beauty",
+  "description": "State-of-the-art non-surgical treatments, skin rejuvenation, and cosmetic procedures.",
   "services": [
     {
       "title": "Skin Rejuvenation",
@@ -29,5 +29,25 @@
   "location_heading": "Visit Our Aesthetic Clinic",
   "contact_heading": "Book Your Personal Consultation",
   "hero_image": "https://images.pexels.com/photos/3764013/pexels-photo-3764013.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "video_poster": "https://images.pexels.com/photos/3764013/pexels-photo-3764013.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  "video_poster": "https://images.pexels.com/photos/3764013/pexels-photo-3764013.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "hero_eyebrow": "Advanced Aesthetic Enhancement",
+  "story_heading": "Artistry Meets Medical Precision",
+  "story_body": "Our board-certified specialists customize every aesthetic procedure to enhance your natural features safely.",
+  "process_steps": [
+    {
+      "step": "01",
+      "title": "Personal Consultation",
+      "desc": "In-depth skin and facial analysis with our specialist."
+    },
+    {
+      "step": "02",
+      "title": "Bespoke Care Plan",
+      "desc": "Custom treatment program tailored to your vision."
+    },
+    {
+      "step": "03",
+      "title": "Refined Results",
+      "desc": "Expert treatment with minimal downtime and maximum radiance."
+    }
+  ]
 }

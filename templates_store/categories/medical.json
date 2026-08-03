@@ -1,9 +1,9 @@
 {
   "id": "medical",
   "name": "Medical Clinics",
-  "singular": "Medical Clinic",
-  "headline": "Trusted Healthcare & Medical Consultations in Your Community",
-  "description": "Experienced doctors, modern diagnostic equipment, and personalized patient care.",
+  "singular": "Medical Center",
+  "headline": "Compassionate Healthcare When You Need It Most",
+  "description": "Dedicated medical professionals offering primary care, health screenings, and wellness checks.",
   "services": [
     {
       "title": "General Physician Consultation",
@@ -29,5 +29,25 @@
   "location_heading": "Visit Our Medical Center",
   "contact_heading": "Schedule an Appointment",
   "hero_image": "https://images.pexels.com/photos/4056853/pexels-photo-4056853.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "video_poster": "https://images.pexels.com/photos/4056853/pexels-photo-4056853.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  "video_poster": "https://images.pexels.com/photos/4056853/pexels-photo-4056853.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "hero_eyebrow": "Trusted Primary & Urgent Care",
+  "story_heading": "Dedicated to Your Health & Well-being",
+  "story_body": "Our clinic delivers patient-centered medical services using evidence-based medicine and personalized treatment plans.",
+  "process_steps": [
+    {
+      "step": "01",
+      "title": "Easy Booking",
+      "desc": "Book online or call for immediate consultation slots."
+    },
+    {
+      "step": "02",
+      "title": "Thorough Diagnosis",
+      "desc": "In-depth consultation with experienced physicians."
+    },
+    {
+      "step": "03",
+      "title": "Ongoing Wellness",
+      "desc": "Comprehensive follow-up care and health management."
+    }
+  ]
 }

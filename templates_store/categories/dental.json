@@ -1,9 +1,9 @@
 {
   "id": "dental",
   "name": "Dental Clinics",
-  "singular": "Dental Clinic",
-  "headline": "Gentle, Professional Dental Care for Your Whole Family",
-  "description": "Comprehensive dental check-ups, teeth whitening, orthodontics, and restorative treatments near you.",
+  "singular": "Dental Practice",
+  "headline": "Comprehensive Care for Healthy, Beautiful Smiles",
+  "description": "Modern dental care tailored for your family. From routine cleanings to painless implants.",
   "services": [
     {
       "title": "General Dental Check-ups",
@@ -29,5 +29,25 @@
   "location_heading": "Visit Our Dental Clinic",
   "contact_heading": "Book Your Dental Consultation",
   "hero_image": "https://images.pexels.com/photos/3845766/pexels-photo-3845766.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "video_poster": "https://images.pexels.com/photos/3845766/pexels-photo-3845766.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  "video_poster": "https://images.pexels.com/photos/3845766/pexels-photo-3845766.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "hero_eyebrow": "Gentle & Advanced Family Dentistry",
+  "story_heading": "Why Patients Choose Our Practice",
+  "story_body": "We combine state-of-the-art dental technology with a compassionate, gentle approach to ensure your comfort at every visit.",
+  "process_steps": [
+    {
+      "step": "01",
+      "title": "Gentle Exam",
+      "desc": "Comprehensive checkup with digital low-radiation X-rays."
+    },
+    {
+      "step": "02",
+      "title": "Personalized Plan",
+      "desc": "Clear, transparent treatment options tailored to your budget."
+    },
+    {
+      "step": "03",
+      "title": "Comfort Treatment",
+      "desc": "Relax in our modern clinic with painless dental care."
+    }
+  ]
 }

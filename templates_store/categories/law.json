@@ -1,9 +1,9 @@
 {
   "id": "law",
   "name": "Law Firms",
-  "singular": "Law Firm",
-  "headline": "Strategic Legal Guidance & Trusted Representation",
-  "description": "Protecting your rights, business interests, and personal legal matters with dedication.",
+  "singular": "Law Office",
+  "headline": "Protecting Your Rights & Legal Interests",
+  "description": "Experienced attorneys offering legal counsel in personal injury, business law, and family matters.",
   "services": [
     {
       "title": "Corporate & Business Law",
@@ -29,5 +29,25 @@
   "location_heading": "Visit Our Law Office",
   "contact_heading": "Request a Legal Consultation",
   "hero_image": "https://images.pexels.com/photos/5668772/pexels-photo-5668772.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "video_poster": "https://images.pexels.com/photos/5668772/pexels-photo-5668772.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  "video_poster": "https://images.pexels.com/photos/5668772/pexels-photo-5668772.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "hero_eyebrow": "Strategic Legal Representation",
+  "story_heading": "Uncompromising Legal Expertise",
+  "story_body": "We advocate tirelessly for our clients, delivering tailored legal strategies backed by years of courtroom success.",
+  "process_steps": [
+    {
+      "step": "01",
+      "title": "Case Evaluation",
+      "desc": "Confidential initial assessment of your legal position."
+    },
+    {
+      "step": "02",
+      "title": "Strategic Planning",
+      "desc": "Building a strong legal roadmap tailored to your goals."
+    },
+    {
+      "step": "03",
+      "title": "Determined Representation",
+      "desc": "Relentless advocacy to secure the best outcome."
+    }
+  ]
 }

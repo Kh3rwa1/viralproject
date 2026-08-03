@@ -1,9 +1,9 @@
 {
   "id": "coaching",
-  "name": "Coaching Institutes & Training Centers",
-  "singular": "Coaching Institute",
-  "headline": "Empowering Students with World-Class Academic & Skill Coaching",
-  "description": "Experienced faculty, structured study material, and proven track records.",
+  "name": "Coaching Institutes",
+  "singular": "Training Institute",
+  "headline": "Expert Instruction for Top Exam & Skill Performance",
+  "description": "Structured courses, small batch sizes, and proven study material designed for high achievement.",
   "services": [
     {
       "title": "Competitive Exam Prep",
@@ -29,5 +29,25 @@
   "location_heading": "Visit Our Training Campus",
   "contact_heading": "Enquire for Admissions & Batches",
   "hero_image": "https://images.pexels.com/photos/8553868/pexels-photo-8553868.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "video_poster": "https://images.pexels.com/photos/8553868/pexels-photo-8553868.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  "video_poster": "https://images.pexels.com/photos/8553868/pexels-photo-8553868.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "hero_eyebrow": "Empowering Academic & Career Success",
+  "story_heading": "Proven Results Through Expert Mentorship",
+  "story_body": "Our experienced educators provide individual attention and rigorous practice to help students achieve their goals.",
+  "process_steps": [
+    {
+      "step": "01",
+      "title": "Free Demo Class",
+      "desc": "Experience our teaching methodology firsthand."
+    },
+    {
+      "step": "02",
+      "title": "Structured Module",
+      "desc": "Comprehensive curriculum covering all concepts."
+    },
+    {
+      "step": "03",
+      "title": "Mock Assessment",
+      "desc": "Regular testing and personalized progress feedback."
+    }
+  ]
 }

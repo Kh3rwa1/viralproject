@@ -1,9 +1,9 @@
 {
   "id": "home_services",
   "name": "Home Services",
-  "singular": "Home Services Provider",
-  "headline": "Fast, Reliable Home Repair & Maintenance Services",
-  "description": "Licensed technicians for plumbing, HVAC, electrical, and roofing needs.",
+  "singular": "Home Service Provider",
+  "headline": "Expert Repairs, Maintenance & Installation",
+  "description": "Prompt, licensed technicians ready to solve your plumbing, electrical, and HVAC issues.",
   "services": [
     {
       "title": "Emergency Plumbing",
@@ -29,5 +29,25 @@
   "location_heading": "Service Area & Headquarters",
   "contact_heading": "Request Emergency Home Service",
   "hero_image": "https://images.pexels.com/photos/5691589/pexels-photo-5691589.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "video_poster": "https://images.pexels.com/photos/5691589/pexels-photo-5691589.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  "video_poster": "https://images.pexels.com/photos/5691589/pexels-photo-5691589.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "hero_eyebrow": "Fast & Reliable Local Repairs",
+  "story_heading": "Trusted by Homeowners Across Town",
+  "story_body": "We arrive on time, provide upfront pricing, and back all our work with a 100% satisfaction guarantee.",
+  "process_steps": [
+    {
+      "step": "01",
+      "title": "Call & Dispatch",
+      "desc": "Reach out 24/7 for fast local technician dispatch."
+    },
+    {
+      "step": "02",
+      "title": "Upfront Estimate",
+      "desc": "Clear, flat-rate pricing before any work begins."
+    },
+    {
+      "step": "03",
+      "title": "Guaranteed Repair",
+      "desc": "Quality workmanship backed by full service warranty."
+    }
+  ]
 }

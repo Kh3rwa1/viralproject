@@ -1,9 +1,9 @@
 {
   "id": "veterinary",
   "name": "Veterinary Clinics",
-  "singular": "Veterinary Clinic",
-  "headline": "Compassionate Healthcare & Wellness for the Pets You Love",
-  "description": "Experienced veterinarians, routine check-ups, vaccinations, and pet care advice.",
+  "singular": "Animal Hospital",
+  "headline": "Loving & Expert Medical Care for Your Pets",
+  "description": "Comprehensive veterinary services, vaccinations, dental care, surgery, and wellness exams.",
   "services": [
     {
       "title": "General Pet Health Exams",
@@ -29,5 +29,25 @@
   "location_heading": "Visit Our Animal Hospital",
   "contact_heading": "Schedule Pet Consultation",
   "hero_image": "https://images.pexels.com/photos/6235115/pexels-photo-6235115.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "video_poster": "https://images.pexels.com/photos/6235115/pexels-photo-6235115.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  "video_poster": "https://images.pexels.com/photos/6235115/pexels-photo-6235115.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "hero_eyebrow": "Compassionate Pet Healthcare",
+  "story_heading": "Treating Your Pets Like Family",
+  "story_body": "Our gentle veterinary team creates a calm, welcoming space for dogs, cats, and small animals.",
+  "process_steps": [
+    {
+      "step": "01",
+      "title": "Nose-to-Tail Exam",
+      "desc": "Thorough health check in a stress-free environment."
+    },
+    {
+      "step": "02",
+      "title": "Custom Wellness",
+      "desc": "Vaccinations, nutrition, and preventive plans."
+    },
+    {
+      "step": "03",
+      "title": "Gentle Care",
+      "desc": "Attentive treatment and follow-up support."
+    }
+  ]
 }

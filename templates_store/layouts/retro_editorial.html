@@ -8,70 +8,69 @@
     :root {
       --primary: #78350f;
       --accent: #92400e;
-      --bg: #fcfbaf;
+      --bg: #faf7f2;
       --card-bg: #fffcf7;
       --text: #1c1917;
       --muted: #57534e;
       --border: #d6d3d1;
-      --radius: 4px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif; background: #faf7f2; color: var(--text); line-height: 1.7; padding-bottom: 70px; }
+    body { font-family: 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif; background: var(--bg); color: var(--text); line-height: 1.7; padding-bottom: 70px; }
     .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
 
-    /* Retro Editorial Header */
-    .site-header { background: #faf7f2; border-bottom: 2px solid #292524; padding: 20px 0; position: sticky; top: 0; z-index: 100; }
+    /* Editorial Newspaper Masthead */
+    .site-header { background: var(--bg); border-bottom: 2px solid #1c1917; padding: 20px 0; position: sticky; top: 0; z-index: 100; }
     .header-wrap { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; }
-    .logo-text { font-size: 32px; font-weight: 900; color: #1c1917; text-decoration: none; letter-spacing: -0.01em; text-transform: uppercase; font-family: 'Playfair Display', Georgia, serif; }
-    .editorial-tag { font-family: -apple-system, sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; color: var(--primary); border-top: 1px solid #292524; border-bottom: 1px solid #292524; padding: 4px 16px; margin-top: 4px; }
+    .logo-text { font-size: 32px; font-weight: 900; color: #1c1917; text-decoration: none; text-transform: uppercase; letter-spacing: -0.01em; }
+    .editorial-tag { font-family: -apple-system, sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; color: var(--primary); border-top: 1px solid #1c1917; border-bottom: 1px solid #1c1917; padding: 4px 16px; margin-top: 4px; }
     
     .nav-links { margin-top: 10px; font-family: -apple-system, sans-serif; }
     .nav-links a { color: var(--text); text-decoration: none; margin: 0 14px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
 
-    .btn { display: inline-block; padding: 12px 24px; border-radius: var(--radius); font-weight: 700; font-family: -apple-system, sans-serif; text-decoration: none; cursor: pointer; border: 2px solid #1c1917; transition: all 0.2s; }
+    .btn { display: inline-block; padding: 12px 24px; font-weight: 700; font-family: -apple-system, sans-serif; text-decoration: none; cursor: pointer; border: 2px solid #1c1917; transition: all 0.2s; }
     .btn-primary { background: #1c1917; color: #fff; }
     .btn-whatsapp { background: #25D366; color: #fff; border-color: #128C7E; }
 
-    /* Editorial Hero */
-    .hero { padding: 60px 0; text-align: center; border-bottom: 1px solid var(--border); }
+    /* Editorial Spread Hero */
+    .hero { padding: 50px 0; text-align: center; border-bottom: 1px solid var(--border); }
     .hero-title { font-size: 44px; font-weight: 900; color: #1c1917; margin-bottom: 16px; line-height: 1.15; }
     .hero-sub { font-size: 20px; font-style: italic; color: var(--muted); max-width: 720px; margin: 0 auto 28px; }
     .hero-divider { width: 80px; height: 2px; background: #1c1917; margin: 20px auto; }
 
-    .section { padding: 50px 0; }
-    .section-title { font-size: 30px; text-align: center; margin-bottom: 36px; color: #1c1917; font-weight: 800; border-bottom: 2px solid #1c1917; display: inline-block; padding-bottom: 8px; }
-    .section-wrap { text-align: center; }
+    /* 2-Column Story Spread */
+    .story-spread { padding: 50px 0; border-bottom: 1px solid var(--border); }
+    .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+    .story-img { border: 2px solid #1c1917; box-shadow: 6px 6px 0 #1c1917; }
+    .story-img img { width: 100%; height: 300px; object-fit: cover; display: block; }
 
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
-    .service-card { background: var(--card-bg); padding: 30px; border: 1px solid var(--border); box-shadow: 4px 4px 0 #1c1917; text-align: left; }
-    .service-card h3 { font-size: 20px; color: #1c1917; margin-bottom: 10px; font-weight: 700; }
-    .service-card p { font-size: 15px; color: var(--muted); font-family: -apple-system, sans-serif; }
-
-    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; text-align: center; }
-    .contact-card { background: var(--card-bg); padding: 30px; border: 1px solid var(--border); box-shadow: 4px 4px 0 #1c1917; }
+    /* Numbered Service Index */
+    .services-section { padding: 60px 0; }
+    .section-title { font-size: 28px; text-align: center; margin-bottom: 36px; color: #1c1917; font-weight: 800; border-bottom: 2px solid #1c1917; display: inline-block; padding-bottom: 6px; }
+    .index-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+    .index-card { background: var(--card-bg); padding: 28px; border: 1px solid var(--border); box-shadow: 4px 4px 0 #1c1917; text-align: left; }
+    .index-num { font-family: -apple-system, sans-serif; font-size: 13px; font-weight: 900; color: var(--primary); margin-bottom: 6px; }
+    .index-card h3 { font-size: 19px; color: #1c1917; margin-bottom: 8px; font-weight: 700; }
+    .index-card p { font-size: 14px; color: var(--muted); font-family: -apple-system, sans-serif; }
 
     .site-footer { background: #1c1917; color: #d6d3d1; padding: 40px 0; text-align: center; margin-top: 40px; font-family: -apple-system, sans-serif; }
 
-    .mobile-sticky-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #faf7f2; border-top: 2px solid #1c1917; display: flex; z-index: 999; height: 60px; font-family: -apple-system, sans-serif; }
-    .bar-btn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none; font-weight: 700; font-size: 14px; color: #1c1917; border-right: 1px solid #1c1917; }
-    .bar-call { background: #1c1917; color: #fff; }
-    .bar-wa { background: #25D366; color: #fff; }
-
     @media (max-width: 768px) {
       .hero-title { font-size: 32px; }
+      .story-grid { grid-template-columns: 1fr; }
       .logo-text { font-size: 24px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Retro Editorial Header -->
+  <!-- Editorial Header -->
   <header class="site-header">
     <div class="container header-wrap">
       <a href="#top" class="logo-text">{{ lead.fullName }}</a>
-      <span class="editorial-tag">Established Service · {{ category_pack.name if category_pack else lead.category }}</span>
+      <span class="editorial-tag">Professional Service · {{ category_pack.name if category_pack else lead.category }}</span>
       <nav class="nav-links">
-        <a href="#services">Services</a>
+        <a href="#story">Story</a>
+        <a href="#services">Offerings</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
@@ -94,22 +93,41 @@
     </div>
   </section>
 
-  <!-- Services Grid -->
-  <section id="services" class="section">
-    <div class="container section-wrap">
-      <h2 class="section-title">Specialized Offerings</h2>
-      <div class="services-grid">
+  <!-- 2-Column Story Spread -->
+  {% if category_pack and category_pack.story_heading %}
+  <section id="story" class="story-spread">
+    <div class="container story-grid">
+      <div>
+        <h2 style="font-size:26px;font-weight:900;margin-bottom:12px">{{ category_pack.story_heading }}</h2>
+        <p style="font-size:16px;color:var(--muted);font-family:-apple-system, sans-serif">{{ category_pack.story_body }}</p>
+      </div>
+      {% if category_pack.hero_image %}
+      <div class="story-img">
+        <img src="{{ category_pack.hero_image }}" alt="{{ lead.fullName }}" loading="lazy">
+      </div>
+      {% endif %}
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- Numbered Service Index -->
+  <section id="services" class="services-section">
+    <div class="container" style="text-align:center">
+      <h2 class="section-title">Index of Services</h2>
+      <div class="index-grid">
         {% if category_pack and category_pack.services %}
           {% for s in category_pack.services %}
-          <div class="service-card">
+          <div class="index-card">
+            <div class="index-num">0{{ loop.index }}.</div>
             <h3>{{ s.title }}</h3>
             <p>{{ s.description }}</p>
           </div>
           {% endfor %}
         {% else %}
-          <div class="service-card">
+          <div class="index-card">
+            <div class="index-num">01.</div>
             <h3>Professional Services</h3>
-            <p>Quality services provided directly by {{ lead.shortName }}.</p>
+            <p>Quality care provided directly by {{ lead.shortName }}.</p>
           </div>
         {% endif %}
       </div>
