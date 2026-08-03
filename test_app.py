@@ -176,6 +176,12 @@ class TestLeadPagesFixes(unittest.TestCase):
         self.assertIn("category", data[0])
         self.assertIn("layout", data[0])
 
+    def test_template_preview_asset(self):
+        client = app.app.test_client()
+        resp = client.get("/template-previews/dental-clean-product.webp")
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.mimetype, "image/webp")
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -59,6 +59,16 @@
       .video-title { font-size: 32px; }
       .nav-links { display: none; }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      .video-hero video { display: none !important; }
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
   </style>
 </head>
 <body>

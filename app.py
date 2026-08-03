@@ -64,6 +64,11 @@ def tool():
     return send_from_directory(SITE / "app", "index.html")
 
 
+@app.get("/template-previews/<path:filename>")
+def template_preview(filename):
+    return send_from_directory(SITE / "template-previews", filename)
+
+
 @app.post("/api/auth")
 def api_auth():
     row, err = licenses.check((request.json or {}).get("key", ""))
