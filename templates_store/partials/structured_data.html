@@ -1,0 +1,16 @@
+<!-- Shared JSON-LD Structured Data Partial -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "{{ lead.fullName }}",
+  "description": "{{ lead.pageDescription }}",
+  "url": "{{ lead.pageUrl }}",
+  "telephone": "{{ lead.phoneIntl }}",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "{{ lead.city }}",
+    "streetAddress": "{{ lead.fullAddress or lead.city }}"
+  }
+}
+</script>

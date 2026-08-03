@@ -1,0 +1,29 @@
+{
+  "id": "veterinary",
+  "name": "Veterinary Clinics",
+  "singular": "Veterinary Clinic",
+  "headline": "Compassionate Healthcare & Wellness for the Pets You Love",
+  "description": "Experienced veterinarians, routine check-ups, vaccinations, and pet care advice.",
+  "services": [
+    {
+      "title": "General Pet Health Exams",
+      "description": "Routine physical examinations, weight monitoring, and wellness check-ups."
+    },
+    {
+      "title": "Pet Vaccinations",
+      "description": "Essential core and non-core vaccines for dogs, cats, and small animals."
+    },
+    {
+      "title": "Nutritional & Behavioral Advice",
+      "description": "Custom diet plans and behavioral guidance for pet owners."
+    },
+    {
+      "title": "Dental & Preventive Care",
+      "description": "Pet dental cleaning, flea/tick prevention, and long-term care support."
+    }
+  ],
+  "primary_action": "Book vet appointment",
+  "secondary_action": "Call clinic",
+  "disclaimer": "Emergency pet care subject to clinic operating hours. Consult vet for specific health advice.",
+  "pexels_video": "https://images.pexels.com/videos/6566865/free-video-6566865.mp4"
+}

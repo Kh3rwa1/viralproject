@@ -1,0 +1,29 @@
+{
+  "id": "cosmetic",
+  "name": "Cosmetic & Plastic Surgery Clinics",
+  "singular": "Cosmetic Clinic",
+  "headline": "Advanced Aesthetic Procedures & Personalized Cosmetic Care",
+  "description": "State-of-the-art cosmetic treatments delivered by certified medical specialists.",
+  "services": [
+    {
+      "title": "Skin Rejuvenation",
+      "description": "Laser therapy, chemical peels, and advanced facial treatments."
+    },
+    {
+      "title": "Non-Surgical Aesthetics",
+      "description": "Dermal fillers, contouring, and anti-aging consultations."
+    },
+    {
+      "title": "Hair Restoration",
+      "description": "PRP therapy and modern hair transplant consultations."
+    },
+    {
+      "title": "Cosmetic Consultations",
+      "description": "In-depth aesthetic evaluation and custom procedure planning."
+    }
+  ],
+  "primary_action": "Schedule consultation",
+  "secondary_action": "Call clinic",
+  "disclaimer": "Discuss procedure suitability with a certified specialist. Treatment outcomes and recovery vary by individual.",
+  "pexels_video": "https://images.pexels.com/videos/3845624/free-video-3845624.mp4"
+}

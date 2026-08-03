@@ -1,0 +1,30 @@
+<!-- Shared Contact Partial -->
+<section id="contact" class="section contact-section">
+  <div class="container">
+    <h2 class="section-title">Get in Touch with {{ lead.shortName }}</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-icon">📍</div>
+        <h3>Location</h3>
+        <p>{{ lead.fullAddress or lead.city }}</p>
+        {% if lead.mapsUrl %}
+        <a href="{{ lead.mapsUrl }}" target="_blank" class="link-btn">View on Google Maps ↗</a>
+        {% endif %}
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">📞</div>
+        <h3>Phone</h3>
+        <p><a href="{{ lead.phoneHref }}">{{ lead.phoneIntl }}</a></p>
+        <span class="subtext">Available for calls & inquiries</span>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">💬</div>
+        <h3>WhatsApp Outreach</h3>
+        <p>Connect instantly for quick questions.</p>
+        {% if lead.whatsappHref %}
+        <a href="{{ lead.whatsappHref }}" target="_blank" class="btn btn-whatsapp">Chat on WhatsApp</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,29 @@
+{
+  "id": "medical",
+  "name": "Medical Clinics",
+  "singular": "Medical Clinic",
+  "headline": "Trusted Healthcare & Medical Consultations in Your Community",
+  "description": "Experienced doctors, modern diagnostic equipment, and personalized patient care.",
+  "services": [
+    {
+      "title": "General Physician Consultation",
+      "description": "Routine health check-ups and medical advice for everyday health concerns."
+    },
+    {
+      "title": "Diagnostic Testing",
+      "description": "On-site lab tests, blood work, and health screening packages."
+    },
+    {
+      "title": "Preventive Health Checks",
+      "description": "Comprehensive wellness evaluations tailored to your age and lifestyle."
+    },
+    {
+      "title": "Chronic Disease Management",
+      "description": "Ongoing support for diabetes, hypertension, and long-term conditions."
+    }
+  ],
+  "primary_action": "Book consultation",
+  "secondary_action": "Call clinic",
+  "disclaimer": "Information provided is for informational purposes. Consult a doctor for medical advice. Individual results vary.",
+  "pexels_video": "https://images.pexels.com/videos/7579831/free-video-7579831.mp4"
+}

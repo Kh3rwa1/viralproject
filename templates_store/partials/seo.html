@@ -1,0 +1,21 @@
+<!-- Shared SEO Partial -->
+<title>{{ lead.pageTitle }}</title>
+<meta name="description" content="{{ lead.pageDescription }}">
+{% if not live %}
+<meta name="robots" content="noindex,nofollow">
+{% else %}
+<meta name="robots" content="index,follow">
+{% endif %}
+<link rel="canonical" href="{{ lead.pageUrl }}">
+
+<!-- OpenGraph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ lead.pageTitle }}">
+<meta property="og:description" content="{{ lead.pageDescription }}">
+<meta property="og:url" content="{{ lead.pageUrl }}">
+<meta property="og:site_name" content="{{ lead.fullName }}">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ lead.pageTitle }}">
+<meta name="twitter:description" content="{{ lead.pageDescription }}">

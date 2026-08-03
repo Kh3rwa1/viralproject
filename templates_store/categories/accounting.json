@@ -1,0 +1,29 @@
+{
+  "id": "accounting",
+  "name": "Accounting & Tax Firms",
+  "singular": "Accounting Firm",
+  "headline": "Precision Accounting, Tax Compliance, and Financial Growth Advisory",
+  "description": "Helping individuals and businesses stay compliant and optimize financial health.",
+  "services": [
+    {
+      "title": "Income Tax Return Filing",
+      "description": "Timely, accurate tax filing for individuals and corporate entities."
+    },
+    {
+      "title": "GST & Indirect Tax Support",
+      "description": "Registration, return filing, reconciliation, and audit representation."
+    },
+    {
+      "title": "Bookkeeping & Payroll",
+      "description": "Monthly ledger maintenance, financial reporting, and payroll management."
+    },
+    {
+      "title": "Financial Audits",
+      "description": "Statutory audits, internal financial controls, and compliance reporting."
+    }
+  ],
+  "primary_action": "Schedule tax review",
+  "secondary_action": "Call accountant",
+  "disclaimer": "Tax outcomes depend on individual circumstances and applicable government tax laws.",
+  "pexels_video": "https://images.pexels.com/videos/6863385/free-video-6863385.mp4"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "law",
+  "name": "Law Firms",
+  "singular": "Law Firm",
+  "headline": "Strategic Legal Guidance & Trusted Representation",
+  "description": "Protecting your rights, business interests, and personal legal matters with dedication.",
+  "services": [
+    {
+      "title": "Corporate & Business Law",
+      "description": "Contract drafting, entity formation, and regulatory compliance."
+    },
+    {
+      "title": "Civil & Commercial Litigation",
+      "description": "Representation in court disputes, arbitration, and resolution."
+    },
+    {
+      "title": "Property & Real Estate Law",
+      "description": "Title verification, property documentation, and dispute assistance."
+    },
+    {
+      "title": "Family & Estate Planning",
+      "description": "Wills, trusts, estate management, and family legal matters."
+    }
+  ],
+  "primary_action": "Request consultation",
+  "secondary_action": "Call office",
+  "disclaimer": "Information on this page does not constitute formal legal advice. Past outcomes do not guarantee future results.",
+  "pexels_video": "https://images.pexels.com/videos/5669637/free-video-5669637.mp4"
+}

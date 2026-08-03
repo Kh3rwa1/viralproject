@@ -47,8 +47,28 @@ input,button{font:inherit;border-radius:12px;border:1px solid #d9d6cb;padding:12
 <div id=app class=hide>
 <div class=card><h3>Your plan</h3><div id=me></div><button class=light onclick=logout()>Sign out</button></div>
 
-<div class=card id=s1><h3><span>1</span>Kaunsa business?</h3>
-  <div id=types class=types></div>
+<div class=card id=s1><h3><span>1</span>Select Template (100 Combinations)</h3>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px" id="catTabs">
+    <button class="pill-tab on" onclick="filterCat('all')">All (100)</button>
+    <button class="pill-tab" onclick="filterCat('dental')">Dental</button>
+    <button class="pill-tab" onclick="filterCat('medical')">Medical</button>
+    <button class="pill-tab" onclick="filterCat('law')">Law</button>
+    <button class="pill-tab" onclick="filterCat('home_services')">Home Services</button>
+    <button class="pill-tab" onclick="filterCat('cosmetic')">Cosmetic</button>
+    <button class="pill-tab" onclick="filterCat('real_estate')">Real Estate</button>
+    <button class="pill-tab" onclick="filterCat('coaching')">Coaching</button>
+    <button class="pill-tab" onclick="filterCat('accounting')">Accounting</button>
+    <button class="pill-tab" onclick="filterCat('auto')">Automotive</button>
+    <button class="pill-tab" onclick="filterCat('veterinary')">Veterinary</button>
+  </div>
+  <div id="subCategoryFilter" class="hide" style="margin-bottom:10px;font-size:12px">
+    <span class="muted" style="margin-right:6px">Specialization:</span>
+    <button class="pill-tab" onclick="filterSubCat('hvac')">HVAC</button>
+    <button class="pill-tab" onclick="filterSubCat('plumbing')">Plumbing</button>
+    <button class="pill-tab" onclick="filterSubCat('roofing')">Roofing</button>
+    <button class="pill-tab" onclick="filterSubCat('electrical')">Electrical</button>
+  </div>
+  <div id=types class=types style="max-height:360px;overflow-y:auto"></div>
   <div class=err id=t1 role="alert" aria-live="polite"></div></div>
 
 <div class=card id=s2 data-lock><h3><span>2</span>List upload karo</h3>
@@ -178,7 +198,52 @@ function boot(m){
   if(m.can_index){ $('indexRow').classList.remove('hide'); }
   loadTypes();
 }
-async function loadTypes(){const ts=await api('/api/templates');if(!ts||ts.error){$('t1').textContent=(ts&&ts.error)||'Failed to load templates';return}$('types').innerHTML=ts.map(t=>`<button class="type" data-n="${escHtml(t.name)}" onclick="pickType(this)"><span class="sw" style="background:${escHtml(t.accent)}"></span>${escHtml(t.label)}</button>`).join('')||'<p class=muted>No templates found.</p>'}
+let ALL_TEMPLATES=[], ACTIVE_CAT='all';
+
+async function loadTypes(){
+  const ts=await api('/api/templates');
+  if(!ts||ts.error){$('t1').textContent=(ts&&ts.error)||'Failed to load templates';return}
+  ALL_TEMPLATES=ts;
+  renderTemplates();
+}
+
+function filterCat(cat){
+  ACTIVE_CAT=cat;
+  document.querySelectorAll('#catTabs .pill-tab').forEach(b=>b.classList.remove('on'));
+  if(window.event && window.event.target) window.event.target.classList.add('on');
+  if(cat==='home_services'){
+    $('subCategoryFilter').classList.remove('hide');
+  } else {
+    $('subCategoryFilter').classList.add('hide');
+  }
+  renderTemplates();
+}
+
+function filterSubCat(sub){
+  renderTemplates();
+}
+
+function renderTemplates(){
+  let list=ALL_TEMPLATES;
+  if(ACTIVE_CAT!=='all'){
+    list=list.filter(t=>t.category===ACTIVE_CAT);
+  }
+  $('types').innerHTML=list.map(t=>{
+    const isVid=(t.badges||[]).includes('Video');
+    const isRec=(t.badges||[]).includes('Recommended');
+    const badgeHtml=isVid?'<span class=pill style="background:#4f46e5;color:#fff;font-size:10px">🎬 Video</span>':isRec?'<span class=pill style="background:#16a34a;color:#fff;font-size:10px">⭐ Rec</span>':'';
+    const name=t.id||t.name;
+    const label=t.label||t.name;
+    return `<button class="type" data-n="${escHtml(name)}" onclick="pickType(this)" style="display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding:10px;text-align:left">
+      <div style="display:flex;align-items:center;justify-content:space-between;width:100%">
+        <span style="font-weight:700">${escHtml(label)}</span>
+        ${badgeHtml}
+      </div>
+      <span class="muted" style="font-size:11px">${escHtml(t.description||'Professional landing page')}</span>
+    </button>`;
+  }).join('')||'<p class=muted>No templates found for this category.</p>';
+}
+
 function pickType(b){document.querySelectorAll('.type').forEach(x=>x.classList.remove('on'));b.classList.add('on');TPL=b.dataset.n;$('t1').textContent='';unlock('s2')}
 async function upload(){if(!TPL){$('t1').textContent='Pehle business type chuno';return}const f=$('file').files[0];if(!f){$('statusErr').textContent='CSV file chuno';return}$('statusErr').textContent='';const fd=new FormData();fd.append('file',f);fd.append('template',TPL);try{const r=await fetch(BASE+'/api/upload',{method:'POST',headers:{'X-Access-Key':KEY},body:fd}).then(r=>r.json());if(r.error){$('statusErr').textContent=r.error;return}JOB=r.job;$('report').classList.remove('hide');const noteNotice=r.notice?`<div style="background:#fef3c7;color:#92400e;padding:8px 12px;border-radius:10px;margin:8px 0;font-size:13px">⚠️ ${r.notice}</div>`:'';$('report').innerHTML=`${noteNotice}<b>${escHtml(r.buildable)}</b> websites banengi · ${escHtml(r.dropped)} hate<table>${r.sample.map(s=>`<tr><td>${escHtml(s.name)}</td><td>${escHtml(s.city)}</td><td>${escHtml(s.phone)}</td><td>${s.wa?'WhatsApp':'call only'}</td></tr>`).join('')}</table><p class=muted>Skipped: ${r.dropped_detail.map(d=>escHtml(d.why)).join(', ')||'none'}</p>`;$('terms').disabled=false;$('buildBtn').disabled=false;$('buildBtn').classList.remove('hide')}catch(e){$('statusErr').textContent='Upload failed: '+e.message}}
 async function build(){

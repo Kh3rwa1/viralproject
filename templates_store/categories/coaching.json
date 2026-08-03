@@ -1,0 +1,29 @@
+{
+  "id": "coaching",
+  "name": "Coaching Institutes & Training Centers",
+  "singular": "Coaching Institute",
+  "headline": "Empowering Students with World-Class Academic & Skill Coaching",
+  "description": "Experienced faculty, structured study material, and proven track records.",
+  "services": [
+    {
+      "title": "Competitive Exam Prep",
+      "description": "Comprehensive coaching for national and state entrance exams."
+    },
+    {
+      "title": "Academic Tuition Classes",
+      "description": "Subject-focused classes for school and college students."
+    },
+    {
+      "title": "Professional Skill Courses",
+      "description": "IT skills, digital marketing, and industry certification training."
+    },
+    {
+      "title": "Mock Tests & Mentorship",
+      "description": "Regular evaluations, performance analytics, and 1-on-1 guidance."
+    }
+  ],
+  "primary_action": "Enrol now",
+  "secondary_action": "Download syllabus",
+  "disclaimer": "Course duration and batch timings subject to institute schedule.",
+  "pexels_video": "https://images.pexels.com/videos/5200371/free-video-5200371.mp4"
+}

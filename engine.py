@@ -171,9 +171,12 @@ def lead_record(row: dict, slug: str, *, base_url="", site_name="Previews") -> d
         "category": category,
         "city": city,
         "address": row.get("address") or "",
+        "fullAddress": row.get("address") or "",
         "phone": phone_raw or "",
         "phoneDisplay": phone_display(phone_raw),
         "phoneIntl": phone_intl_num,
+        "phoneHref": f"tel:+{phone_intl_num}" if phone_intl_num else "",
+        "whatsappHref": f"https://wa.me/{phone_intl_num}" if wa_enabled and phone_intl_num else "",
         "whatsappUrl": (
             f"https://wa.me/{phone_intl_num}"
             if wa_enabled and phone_intl_num
@@ -187,6 +190,7 @@ def lead_record(row: dict, slug: str, *, base_url="", site_name="Previews") -> d
         "website": sanitize_url(row.get("website") or ""),
         "websiteLabel": row.get("website_label") or "",
         "mapsUrl": sanitize_url(row.get("maps_url") or ""),
+        "mapsEmbedUrl": f"https://maps.google.com/maps?q={urllib.parse.quote(full_name + ' ' + city)}&output=embed" if (full_name and city) else "",
         "latitude": str(row.get("lat") or row.get("latitude") or ""),
         "longitude": str(row.get("lng") or row.get("longitude") or ""),
         "pageUrl": page_url,
@@ -199,7 +203,105 @@ def lead_record(row: dict, slug: str, *, base_url="", site_name="Previews") -> d
     }
 
 
-def render_full_page(template_source: str, lead: dict, *, schema=None, live=False) -> str:
+BUSINESS_CATEGORIES = {
+    "dental": "Dental Clinics",
+    "medical": "Medical Clinics",
+    "law": "Law Firms",
+    "home_services": "Home Services",
+    "cosmetic": "Cosmetic & Plastic Surgery Clinics",
+    "real_estate": "Real Estate Agencies",
+    "coaching": "Coaching Institutes & Training Centers",
+    "accounting": "Accounting & Tax Firms",
+    "auto": "Auto Repair & Car Detailing Shops",
+    "veterinary": "Veterinary Clinics",
+}
+
+CATEGORY_ALIASES = {
+    "dental": [
+        "dentist", "dental clinic", "dental care", "orthodontist",
+        "prosthodontist", "periodontist", "oral surgeon",
+    ],
+    "medical": [
+        "medical clinic", "doctor", "physician", "health clinic",
+        "hospital", "diagnostic center", "polyclinic",
+    ],
+    "law": [
+        "lawyer", "law firm", "advocate", "attorney", "legal services", "solicitor",
+    ],
+    "home_services": [
+        "plumber", "plumbing", "electrician", "electrical", "roofing contractor",
+        "roofer", "hvac contractor", "air conditioning repair", "heating contractor", "home services",
+    ],
+    "cosmetic": [
+        "plastic surgeon", "cosmetic surgeon", "cosmetic clinic", "aesthetic clinic",
+        "hair transplant clinic", "skin clinic", "dermatologist",
+    ],
+    "real_estate": [
+        "real estate agency", "real estate agent", "property consultant",
+        "realtor", "property dealer", "real estate consultant",
+    ],
+    "coaching": [
+        "coaching center", "coaching institute", "training center",
+        "tuition center", "education center", "academy", "computer training school",
+    ],
+    "accounting": [
+        "accountant", "accounting firm", "tax consultant", "chartered accountant",
+        "certified public accountant", "cpa", "ca firm", "bookkeeping service",
+    ],
+    "auto": [
+        "auto repair shop", "car repair", "car detailing", "auto body shop",
+        "mechanic", "car service center", "vehicle repair",
+    ],
+    "veterinary": [
+        "veterinarian", "veterinary clinic", "animal hospital",
+        "pet clinic", "veterinary hospital", "pet care",
+    ],
+}
+
+
+def detect_business_category(raw_category: str) -> str:
+    value = (raw_category or "").strip().lower()
+    for category_id, aliases in CATEGORY_ALIASES.items():
+        if any(alias in value for alias in aliases):
+            return category_id
+    return ""
+
+
+def load_category_pack(category_id: str) -> dict:
+    pack_file = TEMPLATE_DIR / "categories" / f"{category_id}.json"
+    if pack_file.exists():
+        try:
+            return json.loads(pack_file.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+    return {}
+
+
+def render_full_page(template_name: str, lead: dict, *, schema=None, live=False) -> str:
+    tpl_name = (template_name or "coaching_modern").lower().strip()
+    if tpl_name in ("coaching", "dentist", "lawyer"):
+        alias_map = {"coaching": "coaching_modern", "dentist": "dental_modern", "lawyer": "law_modern"}
+        tpl_name = alias_map[tpl_name]
+
+    parts = tpl_name.split("_", 1)
+    cat_id = parts[0] if len(parts) > 1 else "coaching"
+    layout_id = parts[1] if len(parts) > 1 else "modern"
+
+    category_pack = load_category_pack(cat_id)
+
+    from jinja2 import FileSystemLoader
+    loader_env = Environment(
+        loader=FileSystemLoader([str(TEMPLATE_DIR), str(TEMPLATE_DIR / "layouts"), str(TEMPLATE_DIR / "partials")]),
+        autoescape=select_autoescape(enabled_extensions=("html", "xml"), default_for_string=True),
+        undefined=StrictUndefined,
+    )
+
+    layout_file = f"layouts/{layout_id}.html"
+    if not (TEMPLATE_DIR / layout_file).exists():
+        layout_file = "layouts/modern.html"
+
+    template = loader_env.get_template(layout_file)
+
     if schema is None:
         schema = {
             "@context": "https://schema.org",
@@ -209,98 +311,50 @@ def render_full_page(template_source: str, lead: dict, *, schema=None, live=Fals
             "address": lead["address"],
             "url": lead["pageUrl"],
         }
-    template = JINJA.from_string(template_source)
+
     return template.render(
         lead=lead,
+        category_pack=category_pack,
         schema=schema,
         live=live,
+        current_year=datetime.now(timezone.utc).year,
     )
 
 
-
-def page_title(lead: dict) -> str:
-    bits = [b for b in [lead["shortName"], lead["category"], lead["city"]] if b]
-    if len(bits) >= 3:
-        return f"{bits[0]} - {bits[1]} in {bits[2]}"
-    return " - ".join(bits) or "Consultation"
-
-
-def page_desc(lead: dict) -> str:
-    who = lead["shortName"] or "this business"
-    cat = (lead["category"] or "professional").lower()
-    city = lead["city"]
-    tail = f" in {city}" if city else ""
-    return f"Request a consultation with {who}, {cat}{tail}. Tap to call or message directly."
-
-
-
-# ------------------------------------------------------------------ template introspection
-
-LEAD_BLOCK = re.compile(r"const\s+LEAD\s*=\s*\{.*?\}\s*;", re.S)
-SITE_BLOCK = re.compile(r"const\s+SITE\s*=\s*\{.*?\}\s*;", re.S)
-PEXELS_VIDEO = re.compile(r"videos\.pexels\.com/video-files/(\d+)/", re.I)
-OG_IMAGE = re.compile(r"""<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)""", re.I)
-POSTER = re.compile(r"""<video[^>]+poster=["']([^"']+)""", re.I)
-THEME = re.compile(r"""<meta[^>]+name=["']theme-color["'][^>]+content=["']([^"']+)""", re.I)
-TITLE = re.compile(r"<title[^>]*>(.*?)</title>", re.S | re.I)
-FIELD = re.compile(r"""data-field=["']([\w-]+)["']""")
-SITE_FIELD = re.compile(r"""data-site=["']([\w-]+)["']""")
+def list_templates() -> list[dict]:
+    reg_path = TEMPLATE_DIR / "registry.json"
+    if reg_path.exists():
+        try:
+            return json.loads(reg_path.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+    return []
 
 
 def template_path(name: str) -> Path:
-    for cand in (
-        TEMPLATE_DIR / f"{name}.html",
-        TEMPLATE_DIR / name / "source.html",
-        TEMPLATE_DIR / name,
-    ):
-        if cand.is_file():
-            return cand
-    raise SystemExit(f"template not found: {name} (looked in {TEMPLATE_DIR})")
+    tpl_name = (name or "coaching_modern").lower().strip()
+    if tpl_name in ("coaching", "dentist", "lawyer"):
+        alias_map = {"coaching": "coaching_modern", "dentist": "dental_modern", "lawyer": "law_modern"}
+        tpl_name = alias_map[tpl_name]
 
-
-def list_templates() -> list[dict]:
-    out = []
-    if not TEMPLATE_DIR.exists():
-        return out
-    for p in sorted(TEMPLATE_DIR.glob("*.html")):
-        out.append(inspect_template(p))
-    for d in sorted(x for x in TEMPLATE_DIR.iterdir() if x.is_dir()):
-        src = d / "source.html"
-        if src.exists():
-            out.append(inspect_template(src))
-    return out
-
-
-def guess_og_image(src: str) -> str:
-    m = OG_IMAGE.search(src)
-    if m and "__" not in m.group(1):
-        return m.group(1)
-    m = PEXELS_VIDEO.search(src)
-    if m:
-        vid = m.group(1)
-        return (
-            f"https://images.pexels.com/videos/{vid}/"
-            f"pexels-photo-{vid}.jpeg?auto=compress&w=1200"
-        )
-    m = POSTER.search(src)
-    return m.group(1) if m else ""
+    parts = tpl_name.split("_", 1)
+    layout_id = parts[1] if len(parts) > 1 else "modern"
+    p = TEMPLATE_DIR / "layouts" / f"{layout_id}.html"
+    if p.exists():
+        return p
+    return TEMPLATE_DIR / "layouts" / "modern.html"
 
 
 def inspect_template(path: Path) -> dict:
-    src = path.read_text(encoding="utf-8")
-    name = path.stem if path.suffix == ".html" and path.stem != "source" else path.parent.name
-    t = TITLE.search(src)
-    accent = THEME.search(src)
-    contract = "LEAD" if LEAD_BLOCK.search(src) else "SITE" if SITE_BLOCK.search(src) else "GENERIC"
     return {
-        "name": name,
+        "name": path.stem,
         "file": str(path),
-        "label": name.replace("-", " ").replace("_", " ").title(),
-        "title_sample": re.sub(r"\s+", " ", t.group(1)).strip() if t else "",
-        "accent": accent.group(1) if accent else "#120d0b",
-        "contract": contract,
-        "fields": sorted(set(FIELD.findall(src) + SITE_FIELD.findall(src))),
-        "og_image": guess_og_image(src),
+        "label": path.stem.replace("-", " ").replace("_", " ").title(),
+        "title_sample": "Sample Business",
+        "accent": "#12634a",
+        "contract": "LEAD",
+        "fields": ["fullName", "shortName", "category", "phoneIntl", "pageTitle", "pageDescription", "pageUrl"],
+        "og_image": "",
     }
 
 

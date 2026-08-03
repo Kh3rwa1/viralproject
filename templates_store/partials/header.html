@@ -1,0 +1,15 @@
+<!-- Shared Header Partial -->
+<header class="site-header">
+  <div class="container header-wrap">
+    <div class="brand">
+      <a href="#top" class="logo-text">{{ lead.shortName }}</a>
+      <span class="category-tag">{{ category_pack.name if category_pack else lead.category }}</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+      <a href="{{ lead.phoneHref }}" class="btn btn-sm btn-primary">Call {{ lead.phoneIntl }}</a>
+    </nav>
+  </div>
+</header>

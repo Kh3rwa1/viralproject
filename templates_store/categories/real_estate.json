@@ -1,0 +1,29 @@
+{
+  "id": "real_estate",
+  "name": "Real Estate Agencies",
+  "singular": "Real Estate Agency",
+  "headline": "Find Your Dream Property with Expert Local Real Estate Advice",
+  "description": "Residential, commercial, and investment property consulting in prime locations.",
+  "services": [
+    {
+      "title": "Residential Property Sales",
+      "description": "Apartments, villas, and family homes in prime neighborhoods."
+    },
+    {
+      "title": "Commercial Leasing",
+      "description": "Office spaces, retail shops, and commercial property listings."
+    },
+    {
+      "title": "Property Valuation",
+      "description": "Accurate market valuation and pricing insights."
+    },
+    {
+      "title": "Investment Advisory",
+      "description": "High-yield real estate investment guidance and portfolio consulting."
+    }
+  ],
+  "primary_action": "Browse listings",
+  "secondary_action": "Call agent",
+  "disclaimer": "Property availability and pricing subject to market updates and seller confirmation.",
+  "pexels_video": "https://images.pexels.com/videos/7578546/free-video-7578546.mp4"
+}

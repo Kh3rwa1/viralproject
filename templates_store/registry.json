@@ -1,0 +1,2162 @@
+[
+  {
+    "id": "dental_modern",
+    "name": "Dental Clinics \u2014 Modern SaaS",
+    "label": "Dental Clinics (Modern SaaS)",
+    "category": "dental",
+    "layout": "modern",
+    "description": "Modern SaaS landing page tailored for Dental Clinics",
+    "thumbnail": "/template-previews/dental_modern.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Recommended"
+    ]
+  },
+  {
+    "id": "dental_local",
+    "name": "Dental Clinics \u2014 Local Business",
+    "label": "Dental Clinics (Local Business)",
+    "category": "dental",
+    "layout": "local",
+    "description": "Local Business landing page tailored for Dental Clinics",
+    "thumbnail": "/template-previews/dental_local.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Recommended"
+    ]
+  },
+  {
+    "id": "dental_premium",
+    "name": "Dental Clinics \u2014 Premium Luxury",
+    "label": "Dental Clinics (Premium Luxury)",
+    "category": "dental",
+    "layout": "premium",
+    "description": "Premium Luxury landing page tailored for Dental Clinics",
+    "thumbnail": "/template-previews/dental_premium.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "dental_minimal",
+    "name": "Dental Clinics \u2014 Minimal Editorial",
+    "label": "Dental Clinics (Minimal Editorial)",
+    "category": "dental",
+    "layout": "minimal",
+    "description": "Minimal Editorial landing page tailored for Dental Clinics",
+    "thumbnail": "/template-previews/dental_minimal.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "dental_bold",
+    "name": "Dental Clinics \u2014 Bold High-Contrast",
+    "label": "Dental Clinics (Bold High-Contrast)",
+    "category": "dental",
+    "layout": "bold",
+    "description": "Bold High-Contrast landing page tailored for Dental Clinics",
+    "thumbnail": "/template-previews/dental_bold.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "dental_friendly",
+    "name": "Dental Clinics \u2014 Friendly Card",
+    "label": "Dental Clinics (Friendly Card)",
+    "category": "dental",
+    "layout": "friendly",
+    "description": "Friendly Card landing page tailored for Dental Clinics",
+    "thumbnail": "/template-previews/dental_friendly.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "dental_professional",
+    "name": "Dental Clinics \u2014 Professional Corporate",
+    "label": "Dental Clinics (Professional Corporate)",
+    "category": "dental",
+    "layout": "professional",
+    "description": "Professional Corporate landing page tailored for Dental Clinics",
+    "thumbnail": "/template-previews/dental_professional.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "dental_emergency",
+    "name": "Dental Clinics \u2014 Emergency Phone-First",
+    "label": "Dental Clinics (Emergency Phone-First)",
+    "category": "dental",
+    "layout": "emergency",
+    "description": "Emergency Phone-First landing page tailored for Dental Clinics",
+    "thumbnail": "/template-previews/dental_emergency.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "dental_video",
+    "name": "Dental Clinics \u2014 Hero Video",
+    "label": "Dental Clinics (Hero Video)",
+    "category": "dental",
+    "layout": "video",
+    "description": "Hero Video landing page tailored for Dental Clinics",
+    "thumbnail": "/template-previews/dental_video.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Video"
+    ]
+  },
+  {
+    "id": "dental_classic",
+    "name": "Dental Clinics \u2014 Classic Trust",
+    "label": "Dental Clinics (Classic Trust)",
+    "category": "dental",
+    "layout": "classic",
+    "description": "Classic Trust landing page tailored for Dental Clinics",
+    "thumbnail": "/template-previews/dental_classic.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "medical_modern",
+    "name": "Medical Clinics \u2014 Modern SaaS",
+    "label": "Medical Clinics (Modern SaaS)",
+    "category": "medical",
+    "layout": "modern",
+    "description": "Modern SaaS landing page tailored for Medical Clinics",
+    "thumbnail": "/template-previews/medical_modern.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Recommended"
+    ]
+  },
+  {
+    "id": "medical_local",
+    "name": "Medical Clinics \u2014 Local Business",
+    "label": "Medical Clinics (Local Business)",
+    "category": "medical",
+    "layout": "local",
+    "description": "Local Business landing page tailored for Medical Clinics",
+    "thumbnail": "/template-previews/medical_local.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Recommended"
+    ]
+  },
+  {
+    "id": "medical_premium",
+    "name": "Medical Clinics \u2014 Premium Luxury",
+    "label": "Medical Clinics (Premium Luxury)",
+    "category": "medical",
+    "layout": "premium",
+    "description": "Premium Luxury landing page tailored for Medical Clinics",
+    "thumbnail": "/template-previews/medical_premium.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "medical_minimal",
+    "name": "Medical Clinics \u2014 Minimal Editorial",
+    "label": "Medical Clinics (Minimal Editorial)",
+    "category": "medical",
+    "layout": "minimal",
+    "description": "Minimal Editorial landing page tailored for Medical Clinics",
+    "thumbnail": "/template-previews/medical_minimal.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "medical_bold",
+    "name": "Medical Clinics \u2014 Bold High-Contrast",
+    "label": "Medical Clinics (Bold High-Contrast)",
+    "category": "medical",
+    "layout": "bold",
+    "description": "Bold High-Contrast landing page tailored for Medical Clinics",
+    "thumbnail": "/template-previews/medical_bold.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "medical_friendly",
+    "name": "Medical Clinics \u2014 Friendly Card",
+    "label": "Medical Clinics (Friendly Card)",
+    "category": "medical",
+    "layout": "friendly",
+    "description": "Friendly Card landing page tailored for Medical Clinics",
+    "thumbnail": "/template-previews/medical_friendly.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "medical_professional",
+    "name": "Medical Clinics \u2014 Professional Corporate",
+    "label": "Medical Clinics (Professional Corporate)",
+    "category": "medical",
+    "layout": "professional",
+    "description": "Professional Corporate landing page tailored for Medical Clinics",
+    "thumbnail": "/template-previews/medical_professional.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "medical_emergency",
+    "name": "Medical Clinics \u2014 Emergency Phone-First",
+    "label": "Medical Clinics (Emergency Phone-First)",
+    "category": "medical",
+    "layout": "emergency",
+    "description": "Emergency Phone-First landing page tailored for Medical Clinics",
+    "thumbnail": "/template-previews/medical_emergency.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "medical_video",
+    "name": "Medical Clinics \u2014 Hero Video",
+    "label": "Medical Clinics (Hero Video)",
+    "category": "medical",
+    "layout": "video",
+    "description": "Hero Video landing page tailored for Medical Clinics",
+    "thumbnail": "/template-previews/medical_video.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Video"
+    ]
+  },
+  {
+    "id": "medical_classic",
+    "name": "Medical Clinics \u2014 Classic Trust",
+    "label": "Medical Clinics (Classic Trust)",
+    "category": "medical",
+    "layout": "classic",
+    "description": "Classic Trust landing page tailored for Medical Clinics",
+    "thumbnail": "/template-previews/medical_classic.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "law_modern",
+    "name": "Law Firms \u2014 Modern SaaS",
+    "label": "Law Firms (Modern SaaS)",
+    "category": "law",
+    "layout": "modern",
+    "description": "Modern SaaS landing page tailored for Law Firms",
+    "thumbnail": "/template-previews/law_modern.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Recommended"
+    ]
+  },
+  {
+    "id": "law_local",
+    "name": "Law Firms \u2014 Local Business",
+    "label": "Law Firms (Local Business)",
+    "category": "law",
+    "layout": "local",
+    "description": "Local Business landing page tailored for Law Firms",
+    "thumbnail": "/template-previews/law_local.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Recommended"
+    ]
+  },
+  {
+    "id": "law_premium",
+    "name": "Law Firms \u2014 Premium Luxury",
+    "label": "Law Firms (Premium Luxury)",
+    "category": "law",
+    "layout": "premium",
+    "description": "Premium Luxury landing page tailored for Law Firms",
+    "thumbnail": "/template-previews/law_premium.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "law_minimal",
+    "name": "Law Firms \u2014 Minimal Editorial",
+    "label": "Law Firms (Minimal Editorial)",
+    "category": "law",
+    "layout": "minimal",
+    "description": "Minimal Editorial landing page tailored for Law Firms",
+    "thumbnail": "/template-previews/law_minimal.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "law_bold",
+    "name": "Law Firms \u2014 Bold High-Contrast",
+    "label": "Law Firms (Bold High-Contrast)",
+    "category": "law",
+    "layout": "bold",
+    "description": "Bold High-Contrast landing page tailored for Law Firms",
+    "thumbnail": "/template-previews/law_bold.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "law_friendly",
+    "name": "Law Firms \u2014 Friendly Card",
+    "label": "Law Firms (Friendly Card)",
+    "category": "law",
+    "layout": "friendly",
+    "description": "Friendly Card landing page tailored for Law Firms",
+    "thumbnail": "/template-previews/law_friendly.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "law_professional",
+    "name": "Law Firms \u2014 Professional Corporate",
+    "label": "Law Firms (Professional Corporate)",
+    "category": "law",
+    "layout": "professional",
+    "description": "Professional Corporate landing page tailored for Law Firms",
+    "thumbnail": "/template-previews/law_professional.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "law_emergency",
+    "name": "Law Firms \u2014 Emergency Phone-First",
+    "label": "Law Firms (Emergency Phone-First)",
+    "category": "law",
+    "layout": "emergency",
+    "description": "Emergency Phone-First landing page tailored for Law Firms",
+    "thumbnail": "/template-previews/law_emergency.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "law_video",
+    "name": "Law Firms \u2014 Hero Video",
+    "label": "Law Firms (Hero Video)",
+    "category": "law",
+    "layout": "video",
+    "description": "Hero Video landing page tailored for Law Firms",
+    "thumbnail": "/template-previews/law_video.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Video"
+    ]
+  },
+  {
+    "id": "law_classic",
+    "name": "Law Firms \u2014 Classic Trust",
+    "label": "Law Firms (Classic Trust)",
+    "category": "law",
+    "layout": "classic",
+    "description": "Classic Trust landing page tailored for Law Firms",
+    "thumbnail": "/template-previews/law_classic.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "home_services_modern",
+    "name": "Home Services \u2014 Modern SaaS",
+    "label": "Home Services (Modern SaaS)",
+    "category": "home_services",
+    "layout": "modern",
+    "description": "Modern SaaS landing page tailored for Home Services",
+    "thumbnail": "/template-previews/home_services_modern.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Recommended"
+    ]
+  },
+  {
+    "id": "home_services_local",
+    "name": "Home Services \u2014 Local Business",
+    "label": "Home Services (Local Business)",
+    "category": "home_services",
+    "layout": "local",
+    "description": "Local Business landing page tailored for Home Services",
+    "thumbnail": "/template-previews/home_services_local.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Recommended"
+    ]
+  },
+  {
+    "id": "home_services_premium",
+    "name": "Home Services \u2014 Premium Luxury",
+    "label": "Home Services (Premium Luxury)",
+    "category": "home_services",
+    "layout": "premium",
+    "description": "Premium Luxury landing page tailored for Home Services",
+    "thumbnail": "/template-previews/home_services_premium.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "home_services_minimal",
+    "name": "Home Services \u2014 Minimal Editorial",
+    "label": "Home Services (Minimal Editorial)",
+    "category": "home_services",
+    "layout": "minimal",
+    "description": "Minimal Editorial landing page tailored for Home Services",
+    "thumbnail": "/template-previews/home_services_minimal.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "home_services_bold",
+    "name": "Home Services \u2014 Bold High-Contrast",
+    "label": "Home Services (Bold High-Contrast)",
+    "category": "home_services",
+    "layout": "bold",
+    "description": "Bold High-Contrast landing page tailored for Home Services",
+    "thumbnail": "/template-previews/home_services_bold.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "home_services_friendly",
+    "name": "Home Services \u2014 Friendly Card",
+    "label": "Home Services (Friendly Card)",
+    "category": "home_services",
+    "layout": "friendly",
+    "description": "Friendly Card landing page tailored for Home Services",
+    "thumbnail": "/template-previews/home_services_friendly.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "home_services_professional",
+    "name": "Home Services \u2014 Professional Corporate",
+    "label": "Home Services (Professional Corporate)",
+    "category": "home_services",
+    "layout": "professional",
+    "description": "Professional Corporate landing page tailored for Home Services",
+    "thumbnail": "/template-previews/home_services_professional.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "home_services_emergency",
+    "name": "Home Services \u2014 Emergency Phone-First",
+    "label": "Home Services (Emergency Phone-First)",
+    "category": "home_services",
+    "layout": "emergency",
+    "description": "Emergency Phone-First landing page tailored for Home Services",
+    "thumbnail": "/template-previews/home_services_emergency.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "home_services_video",
+    "name": "Home Services \u2014 Hero Video",
+    "label": "Home Services (Hero Video)",
+    "category": "home_services",
+    "layout": "video",
+    "description": "Hero Video landing page tailored for Home Services",
+    "thumbnail": "/template-previews/home_services_video.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Video"
+    ]
+  },
+  {
+    "id": "home_services_classic",
+    "name": "Home Services \u2014 Classic Trust",
+    "label": "Home Services (Classic Trust)",
+    "category": "home_services",
+    "layout": "classic",
+    "description": "Classic Trust landing page tailored for Home Services",
+    "thumbnail": "/template-previews/home_services_classic.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "cosmetic_modern",
+    "name": "Cosmetic Clinics \u2014 Modern SaaS",
+    "label": "Cosmetic Clinics (Modern SaaS)",
+    "category": "cosmetic",
+    "layout": "modern",
+    "description": "Modern SaaS landing page tailored for Cosmetic Clinics",
+    "thumbnail": "/template-previews/cosmetic_modern.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Recommended"
+    ]
+  },
+  {
+    "id": "cosmetic_local",
+    "name": "Cosmetic Clinics \u2014 Local Business",
+    "label": "Cosmetic Clinics (Local Business)",
+    "category": "cosmetic",
+    "layout": "local",
+    "description": "Local Business landing page tailored for Cosmetic Clinics",
+    "thumbnail": "/template-previews/cosmetic_local.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Recommended"
+    ]
+  },
+  {
+    "id": "cosmetic_premium",
+    "name": "Cosmetic Clinics \u2014 Premium Luxury",
+    "label": "Cosmetic Clinics (Premium Luxury)",
+    "category": "cosmetic",
+    "layout": "premium",
+    "description": "Premium Luxury landing page tailored for Cosmetic Clinics",
+    "thumbnail": "/template-previews/cosmetic_premium.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "cosmetic_minimal",
+    "name": "Cosmetic Clinics \u2014 Minimal Editorial",
+    "label": "Cosmetic Clinics (Minimal Editorial)",
+    "category": "cosmetic",
+    "layout": "minimal",
+    "description": "Minimal Editorial landing page tailored for Cosmetic Clinics",
+    "thumbnail": "/template-previews/cosmetic_minimal.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "cosmetic_bold",
+    "name": "Cosmetic Clinics \u2014 Bold High-Contrast",
+    "label": "Cosmetic Clinics (Bold High-Contrast)",
+    "category": "cosmetic",
+    "layout": "bold",
+    "description": "Bold High-Contrast landing page tailored for Cosmetic Clinics",
+    "thumbnail": "/template-previews/cosmetic_bold.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "cosmetic_friendly",
+    "name": "Cosmetic Clinics \u2014 Friendly Card",
+    "label": "Cosmetic Clinics (Friendly Card)",
+    "category": "cosmetic",
+    "layout": "friendly",
+    "description": "Friendly Card landing page tailored for Cosmetic Clinics",
+    "thumbnail": "/template-previews/cosmetic_friendly.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "cosmetic_professional",
+    "name": "Cosmetic Clinics \u2014 Professional Corporate",
+    "label": "Cosmetic Clinics (Professional Corporate)",
+    "category": "cosmetic",
+    "layout": "professional",
+    "description": "Professional Corporate landing page tailored for Cosmetic Clinics",
+    "thumbnail": "/template-previews/cosmetic_professional.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "cosmetic_emergency",
+    "name": "Cosmetic Clinics \u2014 Emergency Phone-First",
+    "label": "Cosmetic Clinics (Emergency Phone-First)",
+    "category": "cosmetic",
+    "layout": "emergency",
+    "description": "Emergency Phone-First landing page tailored for Cosmetic Clinics",
+    "thumbnail": "/template-previews/cosmetic_emergency.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "cosmetic_video",
+    "name": "Cosmetic Clinics \u2014 Hero Video",
+    "label": "Cosmetic Clinics (Hero Video)",
+    "category": "cosmetic",
+    "layout": "video",
+    "description": "Hero Video landing page tailored for Cosmetic Clinics",
+    "thumbnail": "/template-previews/cosmetic_video.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Video"
+    ]
+  },
+  {
+    "id": "cosmetic_classic",
+    "name": "Cosmetic Clinics \u2014 Classic Trust",
+    "label": "Cosmetic Clinics (Classic Trust)",
+    "category": "cosmetic",
+    "layout": "classic",
+    "description": "Classic Trust landing page tailored for Cosmetic Clinics",
+    "thumbnail": "/template-previews/cosmetic_classic.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "real_estate_modern",
+    "name": "Real Estate Agencies \u2014 Modern SaaS",
+    "label": "Real Estate Agencies (Modern SaaS)",
+    "category": "real_estate",
+    "layout": "modern",
+    "description": "Modern SaaS landing page tailored for Real Estate Agencies",
+    "thumbnail": "/template-previews/real_estate_modern.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Recommended"
+    ]
+  },
+  {
+    "id": "real_estate_local",
+    "name": "Real Estate Agencies \u2014 Local Business",
+    "label": "Real Estate Agencies (Local Business)",
+    "category": "real_estate",
+    "layout": "local",
+    "description": "Local Business landing page tailored for Real Estate Agencies",
+    "thumbnail": "/template-previews/real_estate_local.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Recommended"
+    ]
+  },
+  {
+    "id": "real_estate_premium",
+    "name": "Real Estate Agencies \u2014 Premium Luxury",
+    "label": "Real Estate Agencies (Premium Luxury)",
+    "category": "real_estate",
+    "layout": "premium",
+    "description": "Premium Luxury landing page tailored for Real Estate Agencies",
+    "thumbnail": "/template-previews/real_estate_premium.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "real_estate_minimal",
+    "name": "Real Estate Agencies \u2014 Minimal Editorial",
+    "label": "Real Estate Agencies (Minimal Editorial)",
+    "category": "real_estate",
+    "layout": "minimal",
+    "description": "Minimal Editorial landing page tailored for Real Estate Agencies",
+    "thumbnail": "/template-previews/real_estate_minimal.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "real_estate_bold",
+    "name": "Real Estate Agencies \u2014 Bold High-Contrast",
+    "label": "Real Estate Agencies (Bold High-Contrast)",
+    "category": "real_estate",
+    "layout": "bold",
+    "description": "Bold High-Contrast landing page tailored for Real Estate Agencies",
+    "thumbnail": "/template-previews/real_estate_bold.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "real_estate_friendly",
+    "name": "Real Estate Agencies \u2014 Friendly Card",
+    "label": "Real Estate Agencies (Friendly Card)",
+    "category": "real_estate",
+    "layout": "friendly",
+    "description": "Friendly Card landing page tailored for Real Estate Agencies",
+    "thumbnail": "/template-previews/real_estate_friendly.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "real_estate_professional",
+    "name": "Real Estate Agencies \u2014 Professional Corporate",
+    "label": "Real Estate Agencies (Professional Corporate)",
+    "category": "real_estate",
+    "layout": "professional",
+    "description": "Professional Corporate landing page tailored for Real Estate Agencies",
+    "thumbnail": "/template-previews/real_estate_professional.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "real_estate_emergency",
+    "name": "Real Estate Agencies \u2014 Emergency Phone-First",
+    "label": "Real Estate Agencies (Emergency Phone-First)",
+    "category": "real_estate",
+    "layout": "emergency",
+    "description": "Emergency Phone-First landing page tailored for Real Estate Agencies",
+    "thumbnail": "/template-previews/real_estate_emergency.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "real_estate_video",
+    "name": "Real Estate Agencies \u2014 Hero Video",
+    "label": "Real Estate Agencies (Hero Video)",
+    "category": "real_estate",
+    "layout": "video",
+    "description": "Hero Video landing page tailored for Real Estate Agencies",
+    "thumbnail": "/template-previews/real_estate_video.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Video"
+    ]
+  },
+  {
+    "id": "real_estate_classic",
+    "name": "Real Estate Agencies \u2014 Classic Trust",
+    "label": "Real Estate Agencies (Classic Trust)",
+    "category": "real_estate",
+    "layout": "classic",
+    "description": "Classic Trust landing page tailored for Real Estate Agencies",
+    "thumbnail": "/template-previews/real_estate_classic.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "coaching_modern",
+    "name": "Coaching Institutes \u2014 Modern SaaS",
+    "label": "Coaching Institutes (Modern SaaS)",
+    "category": "coaching",
+    "layout": "modern",
+    "description": "Modern SaaS landing page tailored for Coaching Institutes",
+    "thumbnail": "/template-previews/coaching_modern.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Recommended"
+    ]
+  },
+  {
+    "id": "coaching_local",
+    "name": "Coaching Institutes \u2014 Local Business",
+    "label": "Coaching Institutes (Local Business)",
+    "category": "coaching",
+    "layout": "local",
+    "description": "Local Business landing page tailored for Coaching Institutes",
+    "thumbnail": "/template-previews/coaching_local.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Recommended"
+    ]
+  },
+  {
+    "id": "coaching_premium",
+    "name": "Coaching Institutes \u2014 Premium Luxury",
+    "label": "Coaching Institutes (Premium Luxury)",
+    "category": "coaching",
+    "layout": "premium",
+    "description": "Premium Luxury landing page tailored for Coaching Institutes",
+    "thumbnail": "/template-previews/coaching_premium.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "coaching_minimal",
+    "name": "Coaching Institutes \u2014 Minimal Editorial",
+    "label": "Coaching Institutes (Minimal Editorial)",
+    "category": "coaching",
+    "layout": "minimal",
+    "description": "Minimal Editorial landing page tailored for Coaching Institutes",
+    "thumbnail": "/template-previews/coaching_minimal.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "coaching_bold",
+    "name": "Coaching Institutes \u2014 Bold High-Contrast",
+    "label": "Coaching Institutes (Bold High-Contrast)",
+    "category": "coaching",
+    "layout": "bold",
+    "description": "Bold High-Contrast landing page tailored for Coaching Institutes",
+    "thumbnail": "/template-previews/coaching_bold.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "coaching_friendly",
+    "name": "Coaching Institutes \u2014 Friendly Card",
+    "label": "Coaching Institutes (Friendly Card)",
+    "category": "coaching",
+    "layout": "friendly",
+    "description": "Friendly Card landing page tailored for Coaching Institutes",
+    "thumbnail": "/template-previews/coaching_friendly.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "coaching_professional",
+    "name": "Coaching Institutes \u2014 Professional Corporate",
+    "label": "Coaching Institutes (Professional Corporate)",
+    "category": "coaching",
+    "layout": "professional",
+    "description": "Professional Corporate landing page tailored for Coaching Institutes",
+    "thumbnail": "/template-previews/coaching_professional.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "coaching_emergency",
+    "name": "Coaching Institutes \u2014 Emergency Phone-First",
+    "label": "Coaching Institutes (Emergency Phone-First)",
+    "category": "coaching",
+    "layout": "emergency",
+    "description": "Emergency Phone-First landing page tailored for Coaching Institutes",
+    "thumbnail": "/template-previews/coaching_emergency.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "coaching_video",
+    "name": "Coaching Institutes \u2014 Hero Video",
+    "label": "Coaching Institutes (Hero Video)",
+    "category": "coaching",
+    "layout": "video",
+    "description": "Hero Video landing page tailored for Coaching Institutes",
+    "thumbnail": "/template-previews/coaching_video.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Video"
+    ]
+  },
+  {
+    "id": "coaching_classic",
+    "name": "Coaching Institutes \u2014 Classic Trust",
+    "label": "Coaching Institutes (Classic Trust)",
+    "category": "coaching",
+    "layout": "classic",
+    "description": "Classic Trust landing page tailored for Coaching Institutes",
+    "thumbnail": "/template-previews/coaching_classic.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "accounting_modern",
+    "name": "Accounting Firms \u2014 Modern SaaS",
+    "label": "Accounting Firms (Modern SaaS)",
+    "category": "accounting",
+    "layout": "modern",
+    "description": "Modern SaaS landing page tailored for Accounting Firms",
+    "thumbnail": "/template-previews/accounting_modern.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Recommended"
+    ]
+  },
+  {
+    "id": "accounting_local",
+    "name": "Accounting Firms \u2014 Local Business",
+    "label": "Accounting Firms (Local Business)",
+    "category": "accounting",
+    "layout": "local",
+    "description": "Local Business landing page tailored for Accounting Firms",
+    "thumbnail": "/template-previews/accounting_local.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Recommended"
+    ]
+  },
+  {
+    "id": "accounting_premium",
+    "name": "Accounting Firms \u2014 Premium Luxury",
+    "label": "Accounting Firms (Premium Luxury)",
+    "category": "accounting",
+    "layout": "premium",
+    "description": "Premium Luxury landing page tailored for Accounting Firms",
+    "thumbnail": "/template-previews/accounting_premium.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "accounting_minimal",
+    "name": "Accounting Firms \u2014 Minimal Editorial",
+    "label": "Accounting Firms (Minimal Editorial)",
+    "category": "accounting",
+    "layout": "minimal",
+    "description": "Minimal Editorial landing page tailored for Accounting Firms",
+    "thumbnail": "/template-previews/accounting_minimal.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "accounting_bold",
+    "name": "Accounting Firms \u2014 Bold High-Contrast",
+    "label": "Accounting Firms (Bold High-Contrast)",
+    "category": "accounting",
+    "layout": "bold",
+    "description": "Bold High-Contrast landing page tailored for Accounting Firms",
+    "thumbnail": "/template-previews/accounting_bold.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "accounting_friendly",
+    "name": "Accounting Firms \u2014 Friendly Card",
+    "label": "Accounting Firms (Friendly Card)",
+    "category": "accounting",
+    "layout": "friendly",
+    "description": "Friendly Card landing page tailored for Accounting Firms",
+    "thumbnail": "/template-previews/accounting_friendly.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "accounting_professional",
+    "name": "Accounting Firms \u2014 Professional Corporate",
+    "label": "Accounting Firms (Professional Corporate)",
+    "category": "accounting",
+    "layout": "professional",
+    "description": "Professional Corporate landing page tailored for Accounting Firms",
+    "thumbnail": "/template-previews/accounting_professional.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "accounting_emergency",
+    "name": "Accounting Firms \u2014 Emergency Phone-First",
+    "label": "Accounting Firms (Emergency Phone-First)",
+    "category": "accounting",
+    "layout": "emergency",
+    "description": "Emergency Phone-First landing page tailored for Accounting Firms",
+    "thumbnail": "/template-previews/accounting_emergency.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "accounting_video",
+    "name": "Accounting Firms \u2014 Hero Video",
+    "label": "Accounting Firms (Hero Video)",
+    "category": "accounting",
+    "layout": "video",
+    "description": "Hero Video landing page tailored for Accounting Firms",
+    "thumbnail": "/template-previews/accounting_video.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Video"
+    ]
+  },
+  {
+    "id": "accounting_classic",
+    "name": "Accounting Firms \u2014 Classic Trust",
+    "label": "Accounting Firms (Classic Trust)",
+    "category": "accounting",
+    "layout": "classic",
+    "description": "Classic Trust landing page tailored for Accounting Firms",
+    "thumbnail": "/template-previews/accounting_classic.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "auto_modern",
+    "name": "Auto Repair Shops \u2014 Modern SaaS",
+    "label": "Auto Repair Shops (Modern SaaS)",
+    "category": "auto",
+    "layout": "modern",
+    "description": "Modern SaaS landing page tailored for Auto Repair Shops",
+    "thumbnail": "/template-previews/auto_modern.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Recommended"
+    ]
+  },
+  {
+    "id": "auto_local",
+    "name": "Auto Repair Shops \u2014 Local Business",
+    "label": "Auto Repair Shops (Local Business)",
+    "category": "auto",
+    "layout": "local",
+    "description": "Local Business landing page tailored for Auto Repair Shops",
+    "thumbnail": "/template-previews/auto_local.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Recommended"
+    ]
+  },
+  {
+    "id": "auto_premium",
+    "name": "Auto Repair Shops \u2014 Premium Luxury",
+    "label": "Auto Repair Shops (Premium Luxury)",
+    "category": "auto",
+    "layout": "premium",
+    "description": "Premium Luxury landing page tailored for Auto Repair Shops",
+    "thumbnail": "/template-previews/auto_premium.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "auto_minimal",
+    "name": "Auto Repair Shops \u2014 Minimal Editorial",
+    "label": "Auto Repair Shops (Minimal Editorial)",
+    "category": "auto",
+    "layout": "minimal",
+    "description": "Minimal Editorial landing page tailored for Auto Repair Shops",
+    "thumbnail": "/template-previews/auto_minimal.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "auto_bold",
+    "name": "Auto Repair Shops \u2014 Bold High-Contrast",
+    "label": "Auto Repair Shops (Bold High-Contrast)",
+    "category": "auto",
+    "layout": "bold",
+    "description": "Bold High-Contrast landing page tailored for Auto Repair Shops",
+    "thumbnail": "/template-previews/auto_bold.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "auto_friendly",
+    "name": "Auto Repair Shops \u2014 Friendly Card",
+    "label": "Auto Repair Shops (Friendly Card)",
+    "category": "auto",
+    "layout": "friendly",
+    "description": "Friendly Card landing page tailored for Auto Repair Shops",
+    "thumbnail": "/template-previews/auto_friendly.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "auto_professional",
+    "name": "Auto Repair Shops \u2014 Professional Corporate",
+    "label": "Auto Repair Shops (Professional Corporate)",
+    "category": "auto",
+    "layout": "professional",
+    "description": "Professional Corporate landing page tailored for Auto Repair Shops",
+    "thumbnail": "/template-previews/auto_professional.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "auto_emergency",
+    "name": "Auto Repair Shops \u2014 Emergency Phone-First",
+    "label": "Auto Repair Shops (Emergency Phone-First)",
+    "category": "auto",
+    "layout": "emergency",
+    "description": "Emergency Phone-First landing page tailored for Auto Repair Shops",
+    "thumbnail": "/template-previews/auto_emergency.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "auto_video",
+    "name": "Auto Repair Shops \u2014 Hero Video",
+    "label": "Auto Repair Shops (Hero Video)",
+    "category": "auto",
+    "layout": "video",
+    "description": "Hero Video landing page tailored for Auto Repair Shops",
+    "thumbnail": "/template-previews/auto_video.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Video"
+    ]
+  },
+  {
+    "id": "auto_classic",
+    "name": "Auto Repair Shops \u2014 Classic Trust",
+    "label": "Auto Repair Shops (Classic Trust)",
+    "category": "auto",
+    "layout": "classic",
+    "description": "Classic Trust landing page tailored for Auto Repair Shops",
+    "thumbnail": "/template-previews/auto_classic.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "veterinary_modern",
+    "name": "Veterinary Clinics \u2014 Modern SaaS",
+    "label": "Veterinary Clinics (Modern SaaS)",
+    "category": "veterinary",
+    "layout": "modern",
+    "description": "Modern SaaS landing page tailored for Veterinary Clinics",
+    "thumbnail": "/template-previews/veterinary_modern.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Recommended"
+    ]
+  },
+  {
+    "id": "veterinary_local",
+    "name": "Veterinary Clinics \u2014 Local Business",
+    "label": "Veterinary Clinics (Local Business)",
+    "category": "veterinary",
+    "layout": "local",
+    "description": "Local Business landing page tailored for Veterinary Clinics",
+    "thumbnail": "/template-previews/veterinary_local.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Recommended"
+    ]
+  },
+  {
+    "id": "veterinary_premium",
+    "name": "Veterinary Clinics \u2014 Premium Luxury",
+    "label": "Veterinary Clinics (Premium Luxury)",
+    "category": "veterinary",
+    "layout": "premium",
+    "description": "Premium Luxury landing page tailored for Veterinary Clinics",
+    "thumbnail": "/template-previews/veterinary_premium.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "veterinary_minimal",
+    "name": "Veterinary Clinics \u2014 Minimal Editorial",
+    "label": "Veterinary Clinics (Minimal Editorial)",
+    "category": "veterinary",
+    "layout": "minimal",
+    "description": "Minimal Editorial landing page tailored for Veterinary Clinics",
+    "thumbnail": "/template-previews/veterinary_minimal.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "veterinary_bold",
+    "name": "Veterinary Clinics \u2014 Bold High-Contrast",
+    "label": "Veterinary Clinics (Bold High-Contrast)",
+    "category": "veterinary",
+    "layout": "bold",
+    "description": "Bold High-Contrast landing page tailored for Veterinary Clinics",
+    "thumbnail": "/template-previews/veterinary_bold.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "veterinary_friendly",
+    "name": "Veterinary Clinics \u2014 Friendly Card",
+    "label": "Veterinary Clinics (Friendly Card)",
+    "category": "veterinary",
+    "layout": "friendly",
+    "description": "Friendly Card landing page tailored for Veterinary Clinics",
+    "thumbnail": "/template-previews/veterinary_friendly.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "veterinary_professional",
+    "name": "Veterinary Clinics \u2014 Professional Corporate",
+    "label": "Veterinary Clinics (Professional Corporate)",
+    "category": "veterinary",
+    "layout": "professional",
+    "description": "Professional Corporate landing page tailored for Veterinary Clinics",
+    "thumbnail": "/template-previews/veterinary_professional.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "veterinary_emergency",
+    "name": "Veterinary Clinics \u2014 Emergency Phone-First",
+    "label": "Veterinary Clinics (Emergency Phone-First)",
+    "category": "veterinary",
+    "layout": "emergency",
+    "description": "Emergency Phone-First landing page tailored for Veterinary Clinics",
+    "thumbnail": "/template-previews/veterinary_emergency.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  },
+  {
+    "id": "veterinary_video",
+    "name": "Veterinary Clinics \u2014 Hero Video",
+    "label": "Veterinary Clinics (Hero Video)",
+    "category": "veterinary",
+    "layout": "video",
+    "description": "Hero Video landing page tailored for Veterinary Clinics",
+    "thumbnail": "/template-previews/veterinary_video.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": [
+      "Video"
+    ]
+  },
+  {
+    "id": "veterinary_classic",
+    "name": "Veterinary Clinics \u2014 Classic Trust",
+    "label": "Veterinary Clinics (Classic Trust)",
+    "category": "veterinary",
+    "layout": "classic",
+    "description": "Classic Trust landing page tailored for Veterinary Clinics",
+    "thumbnail": "/template-previews/veterinary_classic.webp",
+    "version": 1,
+    "active": true,
+    "contract": [
+      "lead.fullName",
+      "lead.shortName",
+      "lead.category",
+      "lead.phoneIntl",
+      "lead.pageTitle",
+      "lead.pageDescription",
+      "lead.pageUrl"
+    ],
+    "badges": []
+  }
+]

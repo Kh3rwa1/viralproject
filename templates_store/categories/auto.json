@@ -1,0 +1,29 @@
+{
+  "id": "auto",
+  "name": "Auto Repair & Car Detailing Shops",
+  "singular": "Auto Repair Shop",
+  "headline": "Expert Car Repair, Maintenance, and Premium Auto Detailing",
+  "description": "Certified mechanics, genuine spare parts, and quick turnaround times.",
+  "services": [
+    {
+      "title": "Engine & Mechanical Repair",
+      "description": "Diagnostic scans, engine tuning, brake repairs, and suspension service."
+    },
+    {
+      "title": "Periodic Car Servicing",
+      "description": "Oil change, filter replacement, fluid top-up, and multi-point inspection."
+    },
+    {
+      "title": "Car Washing & Detailing",
+      "description": "Ceramic coating, paint protection, deep interior cleaning, and polishing."
+    },
+    {
+      "title": "AC & Electrical Repair",
+      "description": "Compressor service, gas refilling, battery testing, and electrical fixes."
+    }
+  ],
+  "primary_action": "Book service",
+  "secondary_action": "Call mechanic",
+  "disclaimer": "Part costs depend on vehicle make and model. Warranty subject to service agreement.",
+  "pexels_video": "https://images.pexels.com/videos/4489740/free-video-4489740.mp4"
+}

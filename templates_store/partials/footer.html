@@ -1,0 +1,17 @@
+<!-- Shared Footer Partial -->
+<footer class="site-footer">
+  <div class="container footer-wrap">
+    <div class="footer-brand">
+      <h4>{{ lead.fullName }}</h4>
+      <p>{{ lead.fullAddress or lead.city }}</p>
+    </div>
+    {% if category_pack and category_pack.disclaimer %}
+    <div class="footer-disclaimer">
+      <p><small><strong>Disclaimer:</strong> {{ category_pack.disclaimer }}</small></p>
+    </div>
+    {% endif %}
+    <div class="footer-copy">
+      <p>&copy; {{ current_year or 2026 }} {{ lead.fullName }}. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

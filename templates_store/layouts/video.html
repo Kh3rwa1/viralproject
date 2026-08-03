@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  {% include 'partials/seo.html' %}
+  <style>
+    :root {
+      --primary: #12634a;
+      --accent: #25D366;
+      --bg: #0d1117;
+      --card-bg: #161b22;
+      --text: #f0f6fc;
+      --muted: #8b949e;
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; padding-bottom: 70px; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+    
+    /* VIDEO HERO */
+    .video-hero { position: relative; height: 80vh; min-height: 500px; display: flex; align-items: center; justify-content: center; overflow: hidden; text-align: center; }
+    .video-hero video { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); min-width: 100%; min-height: 100%; object-fit: cover; z-index: 1; filter: brightness(0.45); }
+    .video-overlay { position: relative; z-index: 2; color: #fff; max-width: 800px; padding: 20px; }
+    .video-title { font-size: 42px; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.03em; }
+    .video-sub { font-size: 20px; opacity: 0.9; margin-bottom: 28px; }
+
+    .btn { display: inline-block; padding: 14px 28px; border-radius: 99px; font-weight: 700; text-decoration: none; transition: transform 0.2s; }
+    .btn-primary { background: #25D366; color: #111; }
+    .btn-secondary { background: rgba(255,255,255,0.2); color: #fff; backdrop-filter: blur(10px); margin-left: 12px; }
+
+    .section { padding: 60px 0; }
+    .section-title { font-size: 28px; text-align: center; margin-bottom: 40px; color: #fff; }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+    .service-card { background: var(--card-bg); padding: 26px; border-radius: var(--radius); border: 1px solid #30363d; }
+    .service-card h3 { font-size: 18px; color: #58a6ff; margin-bottom: 10px; }
+    .service-card p { font-size: 14px; color: var(--muted); }
+
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; text-align: center; }
+    .contact-card { background: var(--card-bg); padding: 28px; border-radius: var(--radius); border: 1px solid #30363d; }
+
+    .site-header { background: rgba(13,17,23,0.9); backdrop-filter: blur(12px); border-bottom: 1px solid #30363d; padding: 16px 0; position: sticky; top:0; z-index:100; }
+    .header-wrap { display: flex; justify-content: space-between; align-items: center; }
+    .logo-text { font-size: 20px; font-weight: 700; color: #fff; text-decoration: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; margin-left: 18px; font-size: 14px; }
+
+    .site-footer { background: #010409; color: var(--muted); padding: 40px 0; text-align: center; margin-top: 40px; border-top: 1px solid #30363d; }
+
+    .mobile-sticky-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #161b22; border-top: 1px solid #30363d; display: flex; z-index: 999; height: 60px; }
+    .bar-btn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none; font-weight: 700; font-size: 14px; color: #fff; }
+    .bar-call { background: #238636; }
+    .bar-wa { background: #25D366; color: #111; }
+
+    @media (max-width: 768px) {
+      .video-title { font-size: 30px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  {% include 'partials/header.html' %}
+
+  <!-- HERO VIDEO SECTION -->
+  <section class="video-hero">
+    {% if category_pack and category_pack.pexels_video %}
+    <video autoplay loop muted playsinline poster="">
+      <source src="{{ category_pack.pexels_video }}" type="video/mp4">
+    </video>
+    {% endif %}
+    <div class="video-overlay">
+      <h1 class="video-title">{{ lead.fullName }}</h1>
+      <p class="video-sub">{{ category_pack.headline if category_pack else lead.pageDescription }}</p>
+      <div>
+        <a href="{{ lead.phoneHref }}" class="btn btn-primary">{{ category_pack.primary_action if category_pack else 'Call Now' }} ({{ lead.phoneIntl }})</a>
+        {% if lead.whatsappHref %}
+        <a href="{{ lead.whatsappHref }}" target="_blank" class="btn btn-secondary">WhatsApp Us</a>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES SECTION -->
+  <section id="services" class="section">
+    <div class="container">
+      <h2 class="section-title">Featured Services</h2>
+      <div class="services-grid">
+        {% if category_pack and category_pack.services %}
+          {% for s in category_pack.services %}
+          <div class="service-card">
+            <h3>{{ s.title }}</h3>
+            <p>{{ s.description }}</p>
+          </div>
+          {% endfor %}
+        {% else %}
+          <div class="service-card">
+            <h3>Professional Services</h3>
+            <p>Quality services provided directly by {{ lead.shortName }}.</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  {% include 'partials/contact.html' %}
+  {% include 'partials/map.html' %}
+  {% include 'partials/footer.html' %}
+  {% include 'partials/mobile_actions.html' %}
+  {% include 'partials/structured_data.html' %}
+
+</body>
+</html>

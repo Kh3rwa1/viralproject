@@ -129,19 +129,17 @@ CATEGORY_KEYWORDS = {
 def check_category_compatibility(template: str, kept: list[dict]) -> list[str]:
     warnings = []
     tpl_key = template.lower()
-    keywords = CATEGORY_KEYWORDS.get(tpl_key, [])
-    if not keywords:
-        return warnings
+    expected = tpl_key.split("_")[0]
 
-    mismatched = 0
+    mismatched = []
     for r in kept:
-        cat = (r.get("category") or "").lower()
-        if cat and not any(kw in cat for kw in keywords):
-            mismatched += 1
+        detected = engine.detect_business_category(r.get("category") or "")
+        if detected and detected != expected:
+            mismatched.append(r.get("name", "Unknown lead"))
 
-    if mismatched > 0:
+    if mismatched:
         warnings.append(
-            f"Warning: {mismatched} lead(s) may not match the selected {template.title()} template."
+            f"Warning: {len(mismatched)} lead(s) may not match the selected {template.replace('_', ' ').title()} template."
         )
     return warnings
 
@@ -152,14 +150,6 @@ def generate(csv_path, template, outdir, *, limit=0, city="", only="",
     """Writes outdir/dist/** and outdir/leads.csv. Returns a summary dict."""
     outdir = Path(outdir)
     dist = outdir / "dist"
-    tpl_path = engine.template_path(template)
-    meta = engine.inspect_template(tpl_path)
-    tpl_src = tpl_path.read_text(encoding="utf-8")
-
-    # Validate template before generating
-    tpl_errs = engine.validate_template(tpl_src)
-    if tpl_errs:
-        raise ValueError(f"Template validation failed for {template}: {'; '.join(tpl_errs)}")
 
     rows, fieldnames = read_csv(csv_path)
     kept, dropped = plan_rows(rows, fieldnames, limit=limit, city=city,
@@ -197,7 +187,7 @@ def generate(csv_path, template, outdir, *, limit=0, city="", only="",
     # Write standalone full index.html for each lead
     for i, slug in enumerate(order):
         lead = leads[slug]
-        html = engine.render_full_page(tpl_src, lead, live=live)
+        html = engine.render_full_page(template, lead, live=live)
         page_dir = dist / slug
         page_dir.mkdir(parents=True, exist_ok=True)
         (page_dir / "index.html").write_text(html, encoding="utf-8")
@@ -221,7 +211,7 @@ def generate(csv_path, template, outdir, *, limit=0, city="", only="",
 
     # Write build manifest inside private job directory (not in public dist/)
     manifest = {
-        "template": meta["name"],
+        "template": template,
         "templateVersion": 2,
         "expectedPages": len(order),
         "generatedPages": len(order),
@@ -250,7 +240,7 @@ def generate(csv_path, template, outdir, *, limit=0, city="", only="",
                 row.update({"slug": r["slug"], "share_url": url,
                             "whatsapp_ready": "yes" if r["_wa"] else "no",
                             "page_status": "built", "built_at": built_at,
-                            "template": meta["name"]})
+                            "template": template})
             else:
                 row.setdefault("page_status", "skipped")
                 for c in ADDED:
@@ -286,7 +276,7 @@ def generate(csv_path, template, outdir, *, limit=0, city="", only="",
                             "share_url": url, "page_status": "built",
                             "built_at": built_at})
 
-    summary = {"template": meta["name"], "built": len(kept), "dropped": len(dropped),
+    summary = {"template": template, "built": len(kept), "dropped": len(dropped),
                "dropped_detail": dropped[:50], "slugs": order, "live": live,
                "built_at": built_at, "base_url": base_url, "warnings": warnings,
                "partial": bool(limit or city or only),

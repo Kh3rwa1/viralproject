@@ -1,0 +1,29 @@
+{
+  "id": "home_services",
+  "name": "Home Services",
+  "singular": "Home Services Provider",
+  "headline": "Fast, Reliable Home Repair & Maintenance Services",
+  "description": "Licensed technicians for plumbing, HVAC, electrical, and roofing needs.",
+  "services": [
+    {
+      "title": "Emergency Plumbing",
+      "description": "Leak repair, pipe fitting, drain clearing, and water heater service."
+    },
+    {
+      "title": "HVAC & Air Conditioning",
+      "description": "AC installation, repair, duct cleaning, and heating systems."
+    },
+    {
+      "title": "Electrical Repairs & Wiring",
+      "description": "Safety inspections, panel upgrades, and lighting installations."
+    },
+    {
+      "title": "Roofing & Exterior Repairs",
+      "description": "Roof inspection, leak prevention, tile repair, and gutter maintenance."
+    }
+  ],
+  "primary_action": "Call for service",
+  "secondary_action": "Get instant quote",
+  "disclaimer": "Emergency availability subject to local scheduling. Estimates provided upon inspection.",
+  "pexels_video": "https://images.pexels.com/videos/5644116/free-video-5644116.mp4"
+}

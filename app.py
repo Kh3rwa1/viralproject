@@ -109,8 +109,10 @@ def api_upload():
         return jsonify({"error": "you already have a build running"}), 429
 
     template = (request.form.get("template") or "").strip()
-    templates = {t["name"] for t in engine.list_templates()}
-    if not template or template not in templates:
+    valid_templates = {t.get("id", t.get("name")) for t in engine.list_templates()}
+    valid_templates.update({"coaching", "dentist", "lawyer"})
+    valid_templates.update(engine.BUSINESS_CATEGORIES.keys())
+    if not template or template not in valid_templates:
         return jsonify({"error": "step 1: pick a business type first"}), 400
 
     f = request.files.get("file")

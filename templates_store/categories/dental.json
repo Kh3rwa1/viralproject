@@ -1,0 +1,29 @@
+{
+  "id": "dental",
+  "name": "Dental Clinics",
+  "singular": "Dental Clinic",
+  "headline": "Gentle, Professional Dental Care for Your Whole Family",
+  "description": "Comprehensive dental check-ups, teeth whitening, orthodontics, and restorative treatments near you.",
+  "services": [
+    {
+      "title": "General Dental Check-ups",
+      "description": "Comprehensive examinations, digital X-rays, and professional teeth cleaning."
+    },
+    {
+      "title": "Teeth Whitening",
+      "description": "Safe, effective in-clinic and at-home whitening solutions."
+    },
+    {
+      "title": "Orthodontics & Aligners",
+      "description": "Modern clear aligners and traditional braces for a confident smile."
+    },
+    {
+      "title": "Dental Implants & Restorations",
+      "description": "Durable, natural-looking tooth replacement options."
+    }
+  ],
+  "primary_action": "Book appointment",
+  "secondary_action": "Call clinic",
+  "disclaimer": "Discuss individual dental treatment suitability with your dentist. Results vary by patient.",
+  "pexels_video": "https://images.pexels.com/videos/3845946/free-video-3845946.mp4"
+}
