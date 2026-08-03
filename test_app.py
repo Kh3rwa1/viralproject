@@ -46,28 +46,38 @@ class TestLeadPagesFixes(unittest.TestCase):
         mock_deploy_to_site.return_value = "deploy123"
 
         tmp_dir = Path(tempfile.mkdtemp())
-        csv_path = tmp_dir / "input.csv"
-        csv_path.write_text("name,phone,city,category\nApex Coaching,+919831194050,Kolkata,Coaching\n", encoding="utf-8")
+        try:
+            csv_path = tmp_dir / "input.csv"
+            csv_path.write_text("name,phone,city,category\nApex Coaching,+919831194050,Kolkata,Coaching\n", encoding="utf-8")
 
-        core.generate(csv_path, "coaching", engine.ROOT, limit=5, city="Kolkata", base_url="http://localhost:8080")
+            tmp_state = tmp_dir / "state.json"
+            tmp_dist = tmp_dir / "dist"
+            tmp_leads = tmp_dir / "leads.csv"
 
-        state_data = {
-            "template": "coaching", "source_csv": str(csv_path),
-            "limit": 5, "city": "Kolkata", "only": "", "keep_real": True,
-            "site_name": "test-site", "partial": False, "slugs": ["apex-coaching"]
-        }
-        B.STATE.write_text(json.dumps(state_data), encoding="utf-8")
+            with patch.object(B, "ROOT", tmp_dir), \
+                 patch.object(B, "STATE", tmp_state), \
+                 patch.object(B, "LEADS_CSV", tmp_leads), \
+                 patch.object(engine, "DIST", tmp_dist):
 
-        with unittest.mock.patch("sys.argv", ["deploy.py", "--site", "test-site", "--token", "fake_token"]):
-            deploy.main()
+                core.generate(csv_path, "coaching", tmp_dir, limit=5, city="Kolkata", base_url="http://localhost:8080")
 
-        mock_ensure_site.assert_called_once_with("test-site", "fake_token")
-        mock_deploy_to_site.assert_called_once_with(engine.DIST, "site123", "fake_token")
+                state_data = {
+                    "template": "coaching", "source_csv": str(csv_path),
+                    "limit": 5, "city": "Kolkata", "only": "", "keep_real": True,
+                    "site_name": "test-site", "partial": False, "slugs": ["apex-coaching"]
+                }
+                tmp_state.write_text(json.dumps(state_data), encoding="utf-8")
 
-        updated_state = json.loads(B.STATE.read_text())
-        self.assertEqual(updated_state["base_url"], "https://test-site.netlify.app")
+                with patch("sys.argv", ["deploy.py", "--site", "test-site", "--token", "fake_token"]):
+                    deploy.main()
 
-        shutil.rmtree(tmp_dir, ignore_errors=True)
+                mock_ensure_site.assert_called_once_with("test-site", "fake_token")
+                mock_deploy_to_site.assert_called_once_with(tmp_dist, "site123", "fake_token")
+
+                updated_state = json.loads(tmp_state.read_text())
+                self.assertEqual(updated_state["base_url"], "https://test-site.netlify.app")
+        finally:
+            shutil.rmtree(tmp_dir, ignore_errors=True)
 
     def test_licenses_check_and_conn_safety(self):
         # Issue a new key
