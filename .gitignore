@@ -4,7 +4,13 @@ __pycache__/
 licenses.db
 keys_issued.csv
 workspace/
-updated.csv
+clean.csv
 leads.csv
+updated.csv
 state.json
 preview.html
+*.bak
+netlify_debug.log
+dist/*
+!dist/.gitkeep
+

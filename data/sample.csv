@@ -1,0 +1,4 @@
+name,category,city,phone,address,rating,reviews,maps_url,slug,share_url,whatsapp_ready,page_status,built_at,template
+BrightPath Coaching Centre,Coaching Centre,Kolkata,+91 98765 43210,12 Park Street Kolkata,4.9,150,https://maps.google.com/?q=BrightPath+Coaching,brightpath-coaching-centre,https://test.app/brightpath-coaching-centre/,no,built,2026-08-03T08:25:43+05:30,coaching
+Apex Dental Clinic,Dental Clinic,Mumbai,+91 98311 94050,45 MG Road Mumbai,4.8,92,https://maps.google.com/?q=Apex+Dental,apex-dental-clinic,https://test.app/apex-dental-clinic/,no,built,2026-08-03T08:25:43+05:30,coaching
+Pandey Legal Services,Lawyer,Jamshedpur,+91 94705 50524,Sharda Bhavan Jamshedpur,4.7,65,https://maps.google.com/?q=Pandey+Legal,pandey-legal-services,https://test.app/pandey-legal-services/,no,built,2026-08-03T08:25:43+05:30,coaching

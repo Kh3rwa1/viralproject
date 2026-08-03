@@ -100,16 +100,21 @@ def start_deploy(job, site_name, token):
     def run():
         try:
             job["state"] = "deploying"
-            job["message"] = "uploading to your Netlify..."
-            url = netlify.deploy(Path(job["folder"]) / "dist", site_name, token)
+            job["message"] = "verifying Netlify site..."
+            site_info = netlify.ensure_site(site_name, token)
+            url = site_info["url"]
             job["live_url"] = url
+
+            job["message"] = "generating pages with live URL..."
             opts = job.get("opts", {})
             template = (job.get("summary") or {}).get("template") or job.get("template") or "coaching"
             core.generate(Path(job["folder"]) / "input.csv", template,
                           job["folder"], limit=opts.get("limit", 0), city=opts.get("city", ""),
                           only=opts.get("only", ""), live=True,
                           keep_real=opts.get("keep_real", False), base_url=url, site_name=site_name)
-            netlify.deploy(Path(job["folder"]) / "dist", site_name, token)
+
+            job["message"] = "uploading to Netlify..."
+            netlify.deploy_to_site(Path(job["folder"]) / "dist", site_info["id"], token)
             job["state"] = "deployed"
             job["stage"] = "deployed"
             job["message"] = url

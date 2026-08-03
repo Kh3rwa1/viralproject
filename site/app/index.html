@@ -34,9 +34,9 @@ input,button{font:inherit;border-radius:12px;border:1px solid #d9d6cb;padding:12
 </div>
 <div id="serverPicker" class="hide" style="margin-top:10px;padding:10px;background:#f6f5f0;border-radius:10px;font-size:12px">
   <label style="display:block;margin-bottom:4px;font-weight:600">Backend Server URL:</label>
-  <input id="customServerUrl" style="padding:6px;font-size:12px;margin-bottom:6px" value="https://hat-movie-gnome-financing.trycloudflare.com">
+  <input id="customServerUrl" style="padding:6px;font-size:12px;margin-bottom:6px" value="https://leadpages-backend.onrender.com">
   <div style="display:flex;gap:6px">
-    <button class="light" style="padding:4px 8px;font-size:11px" onclick="setServer('https://hat-movie-gnome-financing.trycloudflare.com')">Cloud Server</button>
+    <button class="light" style="padding:4px 8px;font-size:11px" onclick="setServer('https://leadpages-backend.onrender.com')">Cloud Server (24/7)</button>
     <button class="light" style="padding:4px 8px;font-size:11px" onclick="setServer('http://127.0.0.1:8080')">Local (127.0.0.1:8080)</button>
   </div>
 </div>
@@ -82,11 +82,19 @@ const $=i=>document.getElementById(i);
 const api=async(u,o={})=>{
   try{
     const controller=new AbortController();
-    const tid=setTimeout(()=>controller.abort(),10000);
+    const tid=setTimeout(()=>controller.abort(),15000);
     const res=await fetch(BASE+u,{headers:{'Content-Type':'application/json','X-Access-Key':KEY,...(o.headers||{})},signal:controller.signal,...o});
     clearTimeout(tid);
     return await res.json();
   }catch(err){
+    if(BASE !== 'https://leadpages-backend.onrender.com' && location.hostname !== '127.0.0.1' && location.hostname !== 'localhost'){
+      try {
+        BASE = 'https://leadpages-backend.onrender.com';
+        localStorage.setItem('lp_base_url', BASE);
+        const res = await fetch(BASE+u,{headers:{'Content-Type':'application/json','X-Access-Key':KEY,...(o.headers||{})},...o});
+        return await res.json();
+      } catch(e2) {}
+    }
     return {ok:false,error:'Connection error ('+(err.name==='AbortError'?'Server timeout':(err.message||'Cannot reach server'))+')'};
   }
 };
@@ -124,8 +132,8 @@ function unlock(id){const el=$(id);el.classList.add('open');el.querySelectorAll(
 async function signin(){
   const k=($('key').value||'').trim();
   if(!k){$('gateErr').textContent='Key enter karo';return}
-  $('gateErr').textContent='Verifying...';
-  const r=await api('/api/auth',{method:'POST',body:JSON.stringify({key:k})});
+  $('gateErr').textContent='Verifying... (Render cloud server standard boot ~10s)';
+  let r=await api('/api/auth',{method:'POST',body:JSON.stringify({key:k})});
   if(!r||!r.ok){$('gateErr').textContent=(r&&r.error)?r.error:'Invalid key or server connection failed';return}
   KEY=k;
   localStorage.setItem('lp_key',k);
@@ -170,13 +178,12 @@ function dl(k){location.href=BASE+`/api/${k}/${JOB}?key=${encodeURIComponent(KEY
 
 // Auto-connect server initialization
 let savedBase = localStorage.getItem('lp_base_url');
-if(savedBase){
-  BASE=savedBase;
-} else if(location.hostname==='127.0.0.1'||location.hostname==='localhost'){
-  BASE=location.origin;
+if(location.hostname==='127.0.0.1'||location.hostname==='localhost'){
+  BASE=savedBase||location.origin;
 } else {
-  BASE='https://hat-movie-gnome-financing.trycloudflare.com';
+  BASE=(savedBase && savedBase.startsWith('https://')) ? savedBase : 'https://leadpages-backend.onrender.com';
 }
+localStorage.setItem('lp_base_url', BASE);
 $('serverSetup').classList.add('hide');
 $('mainApp').classList.remove('hide');
 $('serverLabel').textContent = BASE.includes('127.0.0.1') ? 'Local Server' : 'Cloud Server';
