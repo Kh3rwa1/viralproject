@@ -1,0 +1,124 @@
+<!-- Motion & Animation System for Aurora Dreamscape -->
+<style>
+  @keyframes dreamCloudDrift {
+    0% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(-30px, -10px, 0); }
+    100% { transform: translate3d(0, 0, 0); }
+  }
+  @keyframes dreamStarTwinkle {
+    0%, 100% { opacity: 0.3; transform: scale(0.9); }
+    50% { opacity: 0.9; transform: scale(1.1); }
+  }
+  @keyframes dreamPulse {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .reveal-dream {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-dream.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    .reveal-dream { opacity: 1 !important; transform: none !important; }
+  }
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // 1. Video Hero Setup & Fallback Handling
+  document.querySelectorAll("[data-video-hero]").forEach((hero) => {
+    const video = hero.querySelector("video");
+    const poster = hero.querySelector(".dream-hero__poster");
+    if (!video) return;
+
+    const playVideo = () => {
+      const p = video.play();
+      if (p && p.then) {
+        p.then(() => {
+          video.classList.add("is-playing");
+          if (poster) poster.style.opacity = "0.3";
+        }).catch(() => {
+          video.style.display = "none";
+          if (poster) poster.style.opacity = "1";
+        });
+      }
+    };
+
+    if (video.readyState >= 3) playVideo();
+    else video.addEventListener("canplay", playVideo, { once: true });
+    setTimeout(() => { if (video.paused) playVideo(); }, 2000);
+  });
+
+  // 2. Scroll Reveals
+  const reveals = document.querySelectorAll(".reveal-dream");
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("active");
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach((r) => observer.observe(r));
+  } else {
+    reveals.forEach((r) => r.classList.add("active"));
+  }
+
+  // 3. Interactive Service Universe Tab Switcher
+  const serviceItems = document.querySelectorAll(".dream-service-tab");
+  const serviceVisualTitle = document.getElementById("active-service-title");
+  const serviceVisualDesc = document.getElementById("active-service-desc");
+
+  serviceItems.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      serviceItems.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+
+      if (serviceVisualTitle && serviceVisualDesc) {
+        serviceVisualTitle.textContent = tab.getAttribute("data-title") || "";
+        serviceVisualDesc.textContent = tab.getAttribute("data-desc") || "";
+      }
+    });
+  });
+
+  // 4. Patient Journey Console Tab Switcher
+  const journeySteps = document.querySelectorAll(".journey-step-btn");
+  const journeyTitle = document.getElementById("journey-title");
+  const journeyDesc = document.getElementById("journey-desc");
+
+  journeySteps.forEach((step) => {
+    step.addEventListener("click", () => {
+      journeySteps.forEach(s => s.classList.remove("active"));
+      step.classList.add("active");
+
+      if (journeyTitle && journeyDesc) {
+        journeyTitle.textContent = step.getAttribute("data-title") || "";
+        journeyDesc.textContent = step.getAttribute("data-desc") || "";
+      }
+    });
+  });
+
+  // 5. FAQ Constellation Accordion
+  document.querySelectorAll(".dream-faq-trigger").forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      const item = trigger.closest(".dream-faq-item");
+      const isOpen = item.classList.contains("open");
+      document.querySelectorAll(".dream-faq-item").forEach(i => i.classList.remove("open"));
+      if (!isOpen) item.classList.add("open");
+    });
+  });
+});
+</script>
