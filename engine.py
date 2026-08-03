@@ -131,7 +131,7 @@ def slugify(text: str) -> str:
     return re.sub(r"-{2,}", "-", t)[:60] or "lead"
 
 
-def sanitize_url(url: str, allowed_schemes=("http", "https", "tel", "mailto", "whatsapp")) -> str:
+def sanitize_url(url: str, allowed_schemes=("http", "https")) -> str:
     if not url:
         return ""
     u = str(url).strip()
@@ -140,12 +140,8 @@ def sanitize_url(url: str, allowed_schemes=("http", "https", "tel", "mailto", "w
     parsed = urllib.parse.urlparse(u)
     if parsed.scheme.lower() in allowed_schemes:
         return u
-    if u.startswith(("https://wa.me/", "whatsapp://", "//")):
-        return u
     if not parsed.scheme and "." in u and not u.startswith(("/", "\\")):
         return f"https://{u}"
-    if u.startswith("/"):
-        return u
     return ""
 
 
@@ -220,30 +216,6 @@ def render_full_page(template_source: str, lead: dict, *, schema=None, live=Fals
         live=live,
     )
 
-
-REQUIRED_TEMPLATE_FIELDS = [
-    "lead.fullName",
-    "lead.category",
-    "lead.city",
-    "lead.phoneIntl",
-]
-
-DEMO_VALUES = [
-    "BrightPath",
-    "9876543210",
-    "Sample Business",
-]
-
-
-def validate_template(template_source: str) -> list[str]:
-    errors = []
-    for field in REQUIRED_TEMPLATE_FIELDS:
-        if field not in template_source:
-            errors.append(f"Missing template field: {field}")
-    for demo in DEMO_VALUES:
-        if demo in template_source:
-            errors.append(f"Found hardcoded demo value: '{demo}'")
-    return errors
 
 
 def page_title(lead: dict) -> str:
@@ -333,14 +305,6 @@ def inspect_template(path: Path) -> dict:
 
 
 # ------------------------------------------------------------------ injected JS
-
-GATE_HTML = (
-    "<head><meta charset='utf-8'><meta name='robots' content='noindex,nofollow'>"
-    "<title>Preview</title></head>"
-    "<body style=\"margin:0;height:100vh;display:grid;place-items:center;"
-    "background:#120d0b;color:#f2ede4;font:15px system-ui\">"
-    "<p>This preview link is not active.</p></body>"
-)
 
 # ------------------------------------------------------------------ renderers
 

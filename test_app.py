@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import patch
 import io
 import json
 import shutil
@@ -27,14 +28,46 @@ class TestLeadPagesFixes(unittest.TestCase):
         # Valid URLs
         self.assertEqual(engine.sanitize_url("https://example.com"), "https://example.com")
         self.assertEqual(engine.sanitize_url("http://example.com"), "http://example.com")
-        self.assertEqual(engine.sanitize_url("tel:+919831194050"), "tel:+919831194050")
-        self.assertEqual(engine.sanitize_url("https://wa.me/919831194050"), "https://wa.me/919831194050")
         self.assertEqual(engine.sanitize_url("example.com"), "https://example.com")
 
-        # Dangerous malicious URLs stripped
+        # Dangerous malicious URLs or unsupported schemes stripped
         self.assertEqual(engine.sanitize_url("javascript:alert(1)"), "")
         self.assertEqual(engine.sanitize_url("data:text/html,<script>alert(1)</script>"), "")
         self.assertEqual(engine.sanitize_url("vbscript:msgbox(1)"), "")
+        self.assertEqual(engine.sanitize_url("tel:+919831194050"), "")
+
+    @unittest.mock.patch("netlify.ensure_site")
+    @unittest.mock.patch("netlify.deploy_to_site")
+    def test_cli_deploy_end_to_end(self, mock_deploy_to_site, mock_ensure_site):
+        import deploy
+        import build as B
+
+        mock_ensure_site.return_value = {"id": "site123", "name": "test-site", "url": "https://test-site.netlify.app"}
+        mock_deploy_to_site.return_value = "deploy123"
+
+        tmp_dir = Path(tempfile.mkdtemp())
+        csv_path = tmp_dir / "input.csv"
+        csv_path.write_text("name,phone,city,category\nApex Coaching,+919831194050,Kolkata,Coaching\n", encoding="utf-8")
+
+        core.generate(csv_path, "coaching", engine.ROOT, limit=5, city="Kolkata", base_url="http://localhost:8080")
+
+        state_data = {
+            "template": "coaching", "source_csv": str(csv_path),
+            "limit": 5, "city": "Kolkata", "only": "", "keep_real": True,
+            "site_name": "test-site", "partial": False, "slugs": ["apex-coaching"]
+        }
+        B.STATE.write_text(json.dumps(state_data), encoding="utf-8")
+
+        with unittest.mock.patch("sys.argv", ["deploy.py", "--site", "test-site", "--token", "fake_token"]):
+            deploy.main()
+
+        mock_ensure_site.assert_called_once_with("test-site", "fake_token")
+        mock_deploy_to_site.assert_called_once_with(engine.DIST, "site123", "fake_token")
+
+        updated_state = json.loads(B.STATE.read_text())
+        self.assertEqual(updated_state["base_url"], "https://test-site.netlify.app")
+
+        shutil.rmtree(tmp_dir, ignore_errors=True)
 
     def test_licenses_check_and_conn_safety(self):
         # Issue a new key
