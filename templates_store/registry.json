@@ -6,7 +6,7 @@
     "category": "dental",
     "layout": "clean_product",
     "description": "Clean Product design system tailored for Dental Clinics",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/dental-clean-product.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -20,7 +20,7 @@
     "category": "dental",
     "layout": "dark_cinematic",
     "description": "Dark Cinematic design system tailored for Dental Clinics",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/dental-dark-cinematic.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -34,7 +34,7 @@
     "category": "dental",
     "layout": "aurora_glass",
     "description": "Aurora Glass design system tailored for Dental Clinics",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/dental-aurora-glass.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -48,7 +48,7 @@
     "category": "dental",
     "layout": "retro_editorial",
     "description": "Retro Editorial design system tailored for Dental Clinics",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/dental-retro-editorial.webp",
     "version": 2,
     "active": true,
     "badges": []
@@ -60,7 +60,7 @@
     "category": "dental",
     "layout": "friendly_illustrated",
     "description": "Friendly Illustrated design system tailored for Dental Clinics",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/dental-friendly-illustrated.webp",
     "version": 2,
     "active": true,
     "badges": []
@@ -72,7 +72,7 @@
     "category": "medical",
     "layout": "clean_product",
     "description": "Clean Product design system tailored for Medical Clinics",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/medical-clean-product.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -86,7 +86,7 @@
     "category": "medical",
     "layout": "dark_cinematic",
     "description": "Dark Cinematic design system tailored for Medical Clinics",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/medical-dark-cinematic.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -100,7 +100,7 @@
     "category": "medical",
     "layout": "aurora_glass",
     "description": "Aurora Glass design system tailored for Medical Clinics",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/medical-aurora-glass.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -114,7 +114,7 @@
     "category": "medical",
     "layout": "retro_editorial",
     "description": "Retro Editorial design system tailored for Medical Clinics",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/medical-retro-editorial.webp",
     "version": 2,
     "active": true,
     "badges": []
@@ -126,7 +126,7 @@
     "category": "medical",
     "layout": "friendly_illustrated",
     "description": "Friendly Illustrated design system tailored for Medical Clinics",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/medical-friendly-illustrated.webp",
     "version": 2,
     "active": true,
     "badges": []
@@ -138,7 +138,7 @@
     "category": "law",
     "layout": "clean_product",
     "description": "Clean Product design system tailored for Law Firms",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/law-clean-product.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -152,7 +152,7 @@
     "category": "law",
     "layout": "dark_cinematic",
     "description": "Dark Cinematic design system tailored for Law Firms",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/law-dark-cinematic.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -166,7 +166,7 @@
     "category": "law",
     "layout": "aurora_glass",
     "description": "Aurora Glass design system tailored for Law Firms",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/law-aurora-glass.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -180,7 +180,7 @@
     "category": "law",
     "layout": "retro_editorial",
     "description": "Retro Editorial design system tailored for Law Firms",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/law-retro-editorial.webp",
     "version": 2,
     "active": true,
     "badges": []
@@ -192,7 +192,7 @@
     "category": "law",
     "layout": "friendly_illustrated",
     "description": "Friendly Illustrated design system tailored for Law Firms",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/law-friendly-illustrated.webp",
     "version": 2,
     "active": true,
     "badges": []
@@ -204,7 +204,7 @@
     "category": "home_services",
     "layout": "clean_product",
     "description": "Clean Product design system tailored for Home Services",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/home_services-clean-product.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -218,7 +218,7 @@
     "category": "home_services",
     "layout": "dark_cinematic",
     "description": "Dark Cinematic design system tailored for Home Services",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/home_services-dark-cinematic.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -232,7 +232,7 @@
     "category": "home_services",
     "layout": "aurora_glass",
     "description": "Aurora Glass design system tailored for Home Services",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/home_services-aurora-glass.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -246,7 +246,7 @@
     "category": "home_services",
     "layout": "retro_editorial",
     "description": "Retro Editorial design system tailored for Home Services",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/home_services-retro-editorial.webp",
     "version": 2,
     "active": true,
     "badges": []
@@ -258,7 +258,7 @@
     "category": "home_services",
     "layout": "friendly_illustrated",
     "description": "Friendly Illustrated design system tailored for Home Services",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/home_services-friendly-illustrated.webp",
     "version": 2,
     "active": true,
     "badges": []
@@ -270,7 +270,7 @@
     "category": "cosmetic",
     "layout": "clean_product",
     "description": "Clean Product design system tailored for Cosmetic Clinics",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/cosmetic-clean-product.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -284,7 +284,7 @@
     "category": "cosmetic",
     "layout": "dark_cinematic",
     "description": "Dark Cinematic design system tailored for Cosmetic Clinics",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/cosmetic-dark-cinematic.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -298,7 +298,7 @@
     "category": "cosmetic",
     "layout": "aurora_glass",
     "description": "Aurora Glass design system tailored for Cosmetic Clinics",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/cosmetic-aurora-glass.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -312,7 +312,7 @@
     "category": "cosmetic",
     "layout": "retro_editorial",
     "description": "Retro Editorial design system tailored for Cosmetic Clinics",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/cosmetic-retro-editorial.webp",
     "version": 2,
     "active": true,
     "badges": []
@@ -324,7 +324,7 @@
     "category": "cosmetic",
     "layout": "friendly_illustrated",
     "description": "Friendly Illustrated design system tailored for Cosmetic Clinics",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/cosmetic-friendly-illustrated.webp",
     "version": 2,
     "active": true,
     "badges": []
@@ -336,7 +336,7 @@
     "category": "real_estate",
     "layout": "clean_product",
     "description": "Clean Product design system tailored for Real Estate Agencies",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/real_estate-clean-product.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -350,7 +350,7 @@
     "category": "real_estate",
     "layout": "dark_cinematic",
     "description": "Dark Cinematic design system tailored for Real Estate Agencies",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/real_estate-dark-cinematic.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -364,7 +364,7 @@
     "category": "real_estate",
     "layout": "aurora_glass",
     "description": "Aurora Glass design system tailored for Real Estate Agencies",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/real_estate-aurora-glass.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -378,7 +378,7 @@
     "category": "real_estate",
     "layout": "retro_editorial",
     "description": "Retro Editorial design system tailored for Real Estate Agencies",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/real_estate-retro-editorial.webp",
     "version": 2,
     "active": true,
     "badges": []
@@ -390,7 +390,7 @@
     "category": "real_estate",
     "layout": "friendly_illustrated",
     "description": "Friendly Illustrated design system tailored for Real Estate Agencies",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/real_estate-friendly-illustrated.webp",
     "version": 2,
     "active": true,
     "badges": []
@@ -402,7 +402,7 @@
     "category": "coaching",
     "layout": "clean_product",
     "description": "Clean Product design system tailored for Coaching Institutes",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/coaching-clean-product.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -416,7 +416,7 @@
     "category": "coaching",
     "layout": "dark_cinematic",
     "description": "Dark Cinematic design system tailored for Coaching Institutes",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/coaching-dark-cinematic.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -430,7 +430,7 @@
     "category": "coaching",
     "layout": "aurora_glass",
     "description": "Aurora Glass design system tailored for Coaching Institutes",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/coaching-aurora-glass.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -444,7 +444,7 @@
     "category": "coaching",
     "layout": "retro_editorial",
     "description": "Retro Editorial design system tailored for Coaching Institutes",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/coaching-retro-editorial.webp",
     "version": 2,
     "active": true,
     "badges": []
@@ -456,7 +456,7 @@
     "category": "coaching",
     "layout": "friendly_illustrated",
     "description": "Friendly Illustrated design system tailored for Coaching Institutes",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/coaching-friendly-illustrated.webp",
     "version": 2,
     "active": true,
     "badges": []
@@ -468,7 +468,7 @@
     "category": "accounting",
     "layout": "clean_product",
     "description": "Clean Product design system tailored for Accounting Firms",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/accounting-clean-product.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -482,7 +482,7 @@
     "category": "accounting",
     "layout": "dark_cinematic",
     "description": "Dark Cinematic design system tailored for Accounting Firms",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/accounting-dark-cinematic.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -496,7 +496,7 @@
     "category": "accounting",
     "layout": "aurora_glass",
     "description": "Aurora Glass design system tailored for Accounting Firms",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/accounting-aurora-glass.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -510,7 +510,7 @@
     "category": "accounting",
     "layout": "retro_editorial",
     "description": "Retro Editorial design system tailored for Accounting Firms",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/accounting-retro-editorial.webp",
     "version": 2,
     "active": true,
     "badges": []
@@ -522,7 +522,7 @@
     "category": "accounting",
     "layout": "friendly_illustrated",
     "description": "Friendly Illustrated design system tailored for Accounting Firms",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/accounting-friendly-illustrated.webp",
     "version": 2,
     "active": true,
     "badges": []
@@ -534,7 +534,7 @@
     "category": "auto",
     "layout": "clean_product",
     "description": "Clean Product design system tailored for Auto Repair Shops",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/auto-clean-product.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -548,7 +548,7 @@
     "category": "auto",
     "layout": "dark_cinematic",
     "description": "Dark Cinematic design system tailored for Auto Repair Shops",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/auto-dark-cinematic.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -562,7 +562,7 @@
     "category": "auto",
     "layout": "aurora_glass",
     "description": "Aurora Glass design system tailored for Auto Repair Shops",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/auto-aurora-glass.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -576,7 +576,7 @@
     "category": "auto",
     "layout": "retro_editorial",
     "description": "Retro Editorial design system tailored for Auto Repair Shops",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/auto-retro-editorial.webp",
     "version": 2,
     "active": true,
     "badges": []
@@ -588,7 +588,7 @@
     "category": "auto",
     "layout": "friendly_illustrated",
     "description": "Friendly Illustrated design system tailored for Auto Repair Shops",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/auto-friendly-illustrated.webp",
     "version": 2,
     "active": true,
     "badges": []
@@ -600,7 +600,7 @@
     "category": "veterinary",
     "layout": "clean_product",
     "description": "Clean Product design system tailored for Veterinary Clinics",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/veterinary-clean-product.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -614,7 +614,7 @@
     "category": "veterinary",
     "layout": "dark_cinematic",
     "description": "Dark Cinematic design system tailored for Veterinary Clinics",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/veterinary-dark-cinematic.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -628,7 +628,7 @@
     "category": "veterinary",
     "layout": "aurora_glass",
     "description": "Aurora Glass design system tailored for Veterinary Clinics",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/veterinary-aurora-glass.webp",
     "version": 2,
     "active": true,
     "badges": [
@@ -642,7 +642,7 @@
     "category": "veterinary",
     "layout": "retro_editorial",
     "description": "Retro Editorial design system tailored for Veterinary Clinics",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/veterinary-retro-editorial.webp",
     "version": 2,
     "active": true,
     "badges": []
@@ -654,7 +654,7 @@
     "category": "veterinary",
     "layout": "friendly_illustrated",
     "description": "Friendly Illustrated design system tailored for Veterinary Clinics",
-    "thumbnail": "",
+    "thumbnail": "/template-previews/veterinary-friendly-illustrated.webp",
     "version": 2,
     "active": true,
     "badges": []

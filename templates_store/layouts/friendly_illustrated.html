@@ -85,6 +85,11 @@
   <section class="hero">
     <div class="container">
       <div class="hero-card">
+        {% if category_pack and category_pack.hero_image %}
+        <div style="margin-bottom:24px;border-radius:18px;overflow:hidden;max-height:280px">
+          <img src="{{ category_pack.hero_image }}" alt="{{ category_pack.name }}" style="width:100%;height:100%;object-fit:cover" loading="eager">
+        </div>
+        {% endif %}
         <h1 class="hero-title">{{ lead.fullName }}</h1>
         <p class="hero-sub">{{ category_pack.headline if category_pack else lead.pageDescription }}</p>
         <div class="hero-ctas">

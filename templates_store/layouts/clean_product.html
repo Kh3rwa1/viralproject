@@ -95,7 +95,7 @@
   <section class="hero">
     <div class="container hero-grid">
       <div>
-        <span class="hero-tag">Verified Service Provider</span>
+        <span class="hero-tag">Local {{ category_pack.name if category_pack else lead.category }}</span>
         <h1 class="hero-title">{{ lead.fullName }}</h1>
         <p class="hero-sub">{{ category_pack.headline if category_pack else lead.pageDescription }}</p>
         <div class="hero-ctas">
@@ -107,11 +107,20 @@
           {% endif %}
         </div>
       </div>
+      {% if lead.rating %}
       <div class="hero-card">
-        <div class="hero-card-stat">{{ lead.rating if lead.rating else '4.9★' }}</div>
-        <div class="hero-card-lbl">Verified Customer Satisfaction</div>
-        <p style="margin-top:12px;font-size:14px;color:var(--muted)">{{ lead.review if lead.review else 'Top rated services in ' + (lead.city if lead.city else 'your area') }}</p>
+        <div class="hero-card-stat">{{ lead.rating }}★</div>
+        <div class="hero-card-lbl">Customer Rating {% if lead.reviewCount %}({{ lead.reviewCount }} reviews){% endif %}</div>
+        {% if lead.review %}
+        <p style="margin-top:12px;font-size:14px;color:var(--muted)">"{{ lead.review }}"</p>
+        {% endif %}
       </div>
+      {% elif lead.city %}
+      <div class="hero-card">
+        <div class="hero-card-lbl">Serving {{ lead.city }}</div>
+        <p style="margin-top:12px;font-size:14px;color:var(--muted)">Quality local care by {{ lead.shortName }}</p>
+      </div>
+      {% endif %}
     </div>
   </section>
 

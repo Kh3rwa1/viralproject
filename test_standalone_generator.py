@@ -282,6 +282,17 @@ class TestStandaloneGenerator(unittest.TestCase):
         html_home = engine.render_full_page("home_services_clean_product", lead)
         self.assertIn("Emergency Plumbing", html_home)
 
+    def test_unique_category_videos(self):
+        packs = [engine.load_category_pack(category) for category in engine.BUSINESS_CATEGORIES]
+        videos = [pack.get("pexels_video") for pack in packs if pack.get("pexels_video")]
+        self.assertEqual(len(videos), 10)
+        self.assertEqual(len(set(videos)), 10)
+
+    def test_legacy_aliases_resolution(self):
+        self.assertEqual(engine.get_template_meta("dentist")["id"], "dental_clean_product")
+        self.assertEqual(engine.get_template_meta("lawyer")["id"], "law_clean_product")
+        self.assertEqual(engine.get_template_meta("coaching")["id"], "coaching_clean_product")
+
     def test_map_coordinate_priority(self):
         lead = engine.lead_record({
             "name": "Random Clinic",

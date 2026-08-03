@@ -296,11 +296,16 @@ def load_category_pack(category_id: str) -> dict:
 
 
 def get_template_meta(template_id: str) -> dict:
-    tpl_id = (template_id or "coaching_modern").strip().lower()
+    tpl_id = (template_id or "coaching_clean_product").strip().lower()
     aliases = {
-        "dentist": "dental_modern",
-        "lawyer": "law_modern",
-        "coaching": "coaching_modern",
+        "dentist": "dental_clean_product",
+        "dental": "dental_clean_product",
+        "lawyer": "law_clean_product",
+        "law": "law_clean_product",
+        "coaching": "coaching_clean_product",
+        "dental_modern": "dental_clean_product",
+        "law_modern": "law_clean_product",
+        "coaching_modern": "coaching_clean_product",
     }
     tpl_id = aliases.get(tpl_id, tpl_id)
 
@@ -311,7 +316,7 @@ def get_template_meta(template_id: str) -> dict:
     # Fallback if unknown
     parts = tpl_id.rsplit("_", 1)
     cat_id = parts[0] if len(parts) > 1 else "coaching"
-    layout_id = parts[1] if len(parts) > 1 else "modern"
+    layout_id = parts[1] if len(parts) > 1 else "clean_product"
     return {
         "id": tpl_id,
         "name": tpl_id.replace("_", " ").title(),

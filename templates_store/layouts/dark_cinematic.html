@@ -80,13 +80,18 @@
   <!-- Hero Media Frame -->
   <section class="video-hero">
     {% if category_pack and category_pack.pexels_video %}
-    <video autoplay loop muted playsinline poster="">
+    <video autoplay loop muted playsinline poster="{{ category_pack.video_poster if category_pack and category_pack.video_poster }}" onerror="this.hidden=true">
       <source src="{{ category_pack.pexels_video }}" type="video/mp4">
     </video>
     {% endif %}
     <div class="video-overlay">
       <h1 class="video-title">{{ lead.fullName }}</h1>
       <p class="video-sub">{{ category_pack.headline if category_pack else lead.pageDescription }}</p>
+      {% if lead.rating %}
+      <div style="margin-bottom:20px;font-weight:700;color:var(--primary);display:inline-block;padding:6px 16px;background:rgba(17,24,39,0.8);border-radius:99px;border:1px solid var(--border)">
+        ★ {{ lead.rating }} Rating {% if lead.reviewCount %}({{ lead.reviewCount }} reviews){% endif %}
+      </div>
+      {% endif %}
       <div>
         {% if lead.phoneHref %}
         <a href="{{ lead.phoneHref }}" class="btn btn-primary">{{ category_pack.primary_action if category_pack else 'Call Now' }} ({{ lead.phoneIntl }})</a>
