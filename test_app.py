@@ -23,17 +23,18 @@ class TestLeadPagesFixes(unittest.TestCase):
     def tearDown(self):
         self.app_context.pop()
 
-    def test_render_stub_target_url(self):
-        lead = {"slug": "test-coaching-center", "shortName": "Test Coaching", "category": "Coaching", "city": "Kolkata"}
-        meta = {"og_image": "https://example.com/img.jpg"}
-        
-        # Test relative path target for local preview
-        stub_local = engine.render_stub(lead, meta, "Previews", "", False)
-        self.assertIn('../?id=test-coaching-center', stub_local)
+    def test_sanitize_url(self):
+        # Valid URLs
+        self.assertEqual(engine.sanitize_url("https://example.com"), "https://example.com")
+        self.assertEqual(engine.sanitize_url("http://example.com"), "http://example.com")
+        self.assertEqual(engine.sanitize_url("tel:+919831194050"), "tel:+919831194050")
+        self.assertEqual(engine.sanitize_url("https://wa.me/919831194050"), "https://wa.me/919831194050")
+        self.assertEqual(engine.sanitize_url("example.com"), "https://example.com")
 
-        # Test absolute base URL target for Netlify deploy
-        stub_live = engine.render_stub(lead, meta, "Previews", "https://my-site.netlify.app", True)
-        self.assertIn('https://my-site.netlify.app/?id=test-coaching-center', stub_live)
+        # Dangerous malicious URLs stripped
+        self.assertEqual(engine.sanitize_url("javascript:alert(1)"), "")
+        self.assertEqual(engine.sanitize_url("data:text/html,<script>alert(1)</script>"), "")
+        self.assertEqual(engine.sanitize_url("vbscript:msgbox(1)"), "")
 
     def test_licenses_check_and_conn_safety(self):
         # Issue a new key

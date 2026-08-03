@@ -18,7 +18,13 @@ ROOT = Path(__file__).resolve().parent
 SITE = ROOT / "site"
 
 app = Flask(__name__)
-app.secret_key = os.environ.get("APP_SECRET") or os.getenv("APP_SECRET_FALLBACK", "dev-secret-key-change-in-production")
+is_prod = (os.getenv("FLASK_ENV") == "production" or
+           os.getenv("RENDER") is not None or
+           os.getenv("RAILWAY_ENVIRONMENT") is not None)
+app_secret = os.getenv("APP_SECRET")
+if is_prod and not app_secret:
+    raise RuntimeError("CRITICAL SECURITY ERROR: APP_SECRET environment variable must be set in production.")
+app.secret_key = app_secret or "dev-secret-key-change-in-production"
 app.config["MAX_CONTENT_LENGTH"] = 8 * 1024 * 1024
 
 

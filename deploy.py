@@ -49,6 +49,23 @@ def main():
 
     site_info = netlify.ensure_site(args.site, args.token)
     base = site_info["url"]
+
+    # Regenerate pages with live Netlify base URL before uploading
+    if state.get("template") and state.get("source_csv"):
+        import core
+        core.generate(
+            csv_path=Path(state["source_csv"]),
+            template=state["template"],
+            outdir=B.OUT,
+            limit=state.get("limit", 0),
+            city=state.get("city", ""),
+            only=state.get("only", ""),
+            live=True,
+            keep_real=state.get("keep_real", True),
+            base_url=base,
+            site_name=state.get("site_name", "Previews"),
+        )
+
     netlify.deploy_to_site(engine.DIST, site_info["id"], args.token)
 
     patch_csv(B.LEADS_CSV, base)

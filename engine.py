@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 import re
 import unicodedata
+import urllib.parse
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -130,6 +131,24 @@ def slugify(text: str) -> str:
     return re.sub(r"-{2,}", "-", t)[:60] or "lead"
 
 
+def sanitize_url(url: str, allowed_schemes=("http", "https", "tel", "mailto", "whatsapp")) -> str:
+    if not url:
+        return ""
+    u = str(url).strip()
+    if re.match(r'^(javascript|data|vbscript):', u, re.I):
+        return ""
+    parsed = urllib.parse.urlparse(u)
+    if parsed.scheme.lower() in allowed_schemes:
+        return u
+    if u.startswith(("https://wa.me/", "whatsapp://", "//")):
+        return u
+    if not parsed.scheme and "." in u and not u.startswith(("/", "\\")):
+        return f"https://{u}"
+    if u.startswith("/"):
+        return u
+    return ""
+
+
 # ------------------------------------------------------------------ lead record
 
 def lead_record(row: dict, slug: str, *, base_url="", site_name="Previews") -> dict:
@@ -169,9 +188,9 @@ def lead_record(row: dict, slug: str, *, base_url="", site_name="Previews") -> d
         "reviewCount": str(row.get("reviews") or ""),
         "review": row.get("review") or "",
         "hours": row.get("hours") or "",
-        "website": row.get("website") or "",
+        "website": sanitize_url(row.get("website") or ""),
         "websiteLabel": row.get("website_label") or "",
-        "mapsUrl": row.get("maps_url") or "",
+        "mapsUrl": sanitize_url(row.get("maps_url") or ""),
         "latitude": str(row.get("lat") or row.get("latitude") or ""),
         "longitude": str(row.get("lng") or row.get("longitude") or ""),
         "pageUrl": page_url,
@@ -544,65 +563,6 @@ GATE_HTML = (
     "background:#120d0b;color:#f2ede4;font:15px system-ui\">"
     "<p>This preview link is not active.</p></div>"
 )
-
-ROUTER = """
-/* ==== injected by build.py - multi-lead router ==== */
-const __LEADS__ = __PAYLOAD_JSON__;
-const __ORDER__ = __ORDER_JSON__;
-const __OWNED__ = __OWNED_JSON__;
-function __pickLeadId() {
-  var q = new URLSearchParams(location.search).get("id");
-  if (q && __LEADS__[q]) return q;
-  var segs = location.pathname.replace(/index\\.html?$/, "").split("/").filter(Boolean);
-  var last = segs.pop();
-  if (last && __LEADS__[last]) return last;
-  return (__ORDER__ && __ORDER__[0]) || Object.keys(__LEADS__)[0] || null;
-}
-const __ID__ = __pickLeadId();
-const LEAD = Object.assign({}, __LEADS__[__ID__] || {});
-/* ==== end router ==== */
-"""
-
-
-def render_app(src: str, leads: dict, order: list, meta: dict, live: bool = False) -> str:
-    """One index.html holding every lead. ~1 template + N * ~0.4 KB of JSON."""
-    router = (ROUTER
-              .replace("__PAYLOAD_JSON__", json.dumps(leads, ensure_ascii=False, separators=(",", ":")))
-              .replace("__ORDER_JSON__", json.dumps(order))
-              .replace("__OWNED_JSON__", json.dumps(OWNED)))
-
-    if LEAD_BLOCK.search(src):
-        out = LEAD_BLOCK.sub(lambda _: router, src, count=1)
-    elif SITE_BLOCK.search(src):
-        out = SITE_BLOCK.sub(lambda _: router + SITE_ADAPTER, src, count=1)
-    else:
-        out = re.sub(r"</body>", "<script>" + router + GENERIC_FILL + "</script></body>",
-                     src, count=1, flags=re.I)
-
-    out = re.sub(r'<meta[^>]+name=["\']robots["\'][^>]*>\s*', "", out, flags=re.I)
-    head = "" if live else '<meta name="robots" content="noindex,nofollow">\n'
-    head += (f'<meta property="og:image" content="{esc(meta.get("og_image", ""))}">\n'
-             if meta.get("og_image") else "")
-    out = _head_inject(out, head)
-
-    parts = out.rpartition("</body>")
-    if parts[1]:
-        return parts[0] + RUNTIME + "</body>" + parts[2]
-    return out + RUNTIME
-
-
-def render_stub(lead: dict, meta: dict, site_name: str, base_url: str, live: bool) -> str:
-    canon = f"{base_url.rstrip('/')}/{lead['slug']}/" if base_url else f"/{lead['slug']}/"
-    target = f"{base_url.rstrip('/')}/?id={lead['slug']}" if base_url else f"../?id={lead['slug']}"
-    img = meta.get("og_image", "")
-    return (STUB
-            .replace("__TITLE__", esc(page_title(lead)))
-            .replace("__DESC__", esc(page_desc(lead)))
-            .replace("__CANON__", esc(canon))
-            .replace("__SITE__", esc(site_name))
-            .replace("__TARGET__", target)
-            .replace("__OGIMG__", f'<meta property="og:image" content="{esc(img)}">\n' if img else "")
-            .replace("__ROBOTS__", "" if live else '<meta name="robots" content="noindex,nofollow">\n'))
 
 
 TEMPLATE_DEMO_VALUES = {
