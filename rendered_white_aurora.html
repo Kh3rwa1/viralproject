@@ -3,16 +3,139 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ lead.pageTitle }}</title>
-  <meta name="description" content="{{ lead.pageDescription }}">
-  {% if not live %}<meta name="robots" content="noindex, nofollow">{% endif %}
-  <link rel="canonical" href="{{ lead.pageUrl }}">
+  <title>Apex Dental Clinic — Dental Clinics in Kolkata</title>
+  <meta name="description" content="Contact Apex Dental Clinic, a Dental Clinics serving Kolkata.">
+  
+  <link rel="canonical" href="/apex-dental-clinic/">
 
   <!-- Fonts & Motion System -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  {% include "partials/motion_aurora.html" %}
+  <!-- Motion & Animation System for Aurora Dreamscape -->
+<style>
+  @keyframes dreamCloudDrift {
+    0% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(-30px, -10px, 0); }
+    100% { transform: translate3d(0, 0, 0); }
+  }
+  @keyframes dreamStarTwinkle {
+    0%, 100% { opacity: 0.3; transform: scale(0.9); }
+    50% { opacity: 0.9; transform: scale(1.1); }
+  }
+  @keyframes dreamPulse {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .reveal-dream {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-dream.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    .reveal-dream { opacity: 1 !important; transform: none !important; }
+  }
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // 1. Video Hero Setup & Fallback Handling
+  document.querySelectorAll("[data-video-hero]").forEach((hero) => {
+    const video = hero.querySelector("video");
+    const poster = hero.querySelector(".dream-hero__poster");
+    if (!video) return;
+
+    const playVideo = () => {
+      const p = video.play();
+      if (p && p.then) {
+        p.then(() => {
+          video.classList.add("is-playing");
+          if (poster) poster.style.opacity = "0.3";
+        }).catch(() => {
+          video.style.display = "none";
+          if (poster) poster.style.opacity = "1";
+        });
+      }
+    };
+
+    if (video.readyState >= 3) playVideo();
+    else video.addEventListener("canplay", playVideo, { once: true });
+    setTimeout(() => { if (video.paused) playVideo(); }, 2000);
+  });
+
+  // 2. Scroll Reveals
+  const reveals = document.querySelectorAll(".reveal-dream");
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("active");
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach((r) => observer.observe(r));
+  } else {
+    reveals.forEach((r) => r.classList.add("active"));
+  }
+
+  // 3. Interactive Service Universe Tab Switcher
+  const serviceItems = document.querySelectorAll(".dream-service-tab");
+  const serviceVisualTitle = document.getElementById("active-service-title");
+  const serviceVisualDesc = document.getElementById("active-service-desc");
+
+  serviceItems.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      serviceItems.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+
+      if (serviceVisualTitle && serviceVisualDesc) {
+        serviceVisualTitle.textContent = tab.getAttribute("data-title") || "";
+        serviceVisualDesc.textContent = tab.getAttribute("data-desc") || "";
+      }
+    });
+  });
+
+  // 4. Patient Journey Console Tab Switcher
+  const journeySteps = document.querySelectorAll(".journey-step-btn");
+  const journeyTitle = document.getElementById("journey-title");
+  const journeyDesc = document.getElementById("journey-desc");
+
+  journeySteps.forEach((step) => {
+    step.addEventListener("click", () => {
+      journeySteps.forEach(s => s.classList.remove("active"));
+      step.classList.add("active");
+
+      if (journeyTitle && journeyDesc) {
+        journeyTitle.textContent = step.getAttribute("data-title") || "";
+        journeyDesc.textContent = step.getAttribute("data-desc") || "";
+      }
+    });
+  });
+
+  // 5. FAQ Constellation Accordion
+  document.querySelectorAll(".dream-faq-trigger").forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      const item = trigger.closest(".dream-faq-item");
+      const isOpen = item.classList.contains("open");
+      document.querySelectorAll(".dream-faq-item").forEach(i => i.classList.remove("open"));
+      if (!isOpen) item.classList.add("open");
+    });
+  });
+});
+</script>
 
   <style>
     :root {
@@ -98,17 +221,17 @@
       .cloud-nav { padding: 0 16px; }
     }
   </style>
-  <script type="application/ld+json">{{ schema | tojson }}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LocalBusiness", "address": "12 Park Street, Opposite City Mall", "description": "Contact Apex Dental Clinic, a Dental Clinics serving Kolkata.", "name": "Apex Dental Clinic", "telephone": "+919876543210", "url": "/apex-dental-clinic/"}</script>
 </head>
 <body>
 
   <!-- 1. White Aurora Dreamscape Hero -->
   <section class="cloud-hero" data-video-hero>
     <div class="cloud-hero__media">
-      <img class="cloud-hero__poster" src="{{ category_pack.video_poster }}" alt="{{ lead.fullName }}" width="1920" height="1080">
-      <video class="cloud-hero__video" autoplay muted loop playsinline preload="metadata" poster="{{ category_pack.video_poster }}" aria-hidden="true">
-        <source src="{{ category_pack.hero_video_webm }}" type="video/webm">
-        <source src="{{ category_pack.hero_video_mp4 }}" type="video/mp4">
+      <img class="cloud-hero__poster" src="/static_assets/posters/dental-check-6192876.webp" alt="Apex Dental Clinic" width="1920" height="1080">
+      <video class="cloud-hero__video" autoplay muted loop playsinline preload="metadata" poster="/static_assets/posters/dental-check-6192876.webp" aria-hidden="true">
+        <source src="/static_assets/videos/dental-check-6192876.webm" type="video/webm">
+        <source src="/static_assets/videos/dental-check-6192876.mp4" type="video/mp4">
       </video>
       <div class="cloud-hero__white-wash"></div>
       <div class="cloud-hero__grain"></div>
@@ -116,9 +239,9 @@
 
     <!-- Navigation (Business Name in Nav!) -->
     <nav class="cloud-nav">
-      <a href="#" class="cloud-brand">{{ lead.fullName }}</a>
+      <a href="#" class="cloud-brand">Apex Dental Clinic</a>
       <div style="display:flex;gap:12px">
-        {% if lead.phoneHref %}<a href="{{ lead.phoneHref }}" class="button button--glass">Call {{ lead.phoneDisplay }}</a>{% endif %}
+        <a href="tel:+919876543210" class="button button--glass">Call 9876543210</a>
         <a href="#book" class="button button--primary">Book an appointment</a>
       </div>
     </nav>
@@ -126,7 +249,7 @@
     <!-- Hero Content (Natural Indian Copy) -->
     <div class="cloud-hero__content reveal-dream">
       <p class="cloud-eyebrow">
-        Modern dental care in {{ lead.city }}
+        Modern dental care in Kolkata
       </p>
       <h1>
         Comfortable dental care <em>for every Indian smile.</em>
@@ -138,25 +261,25 @@
         <a href="#book" class="button button--primary">
           Book an appointment
         </a>
-        {% if lead.whatsappHref %}
-        <a href="{{ lead.whatsappHref }}" class="button button--whatsapp">
+        
+        <a href="https://wa.me/919876543210" class="button button--whatsapp">
           Chat on WhatsApp
         </a>
-        {% endif %}
+        
       </div>
     </div>
 
     <div style="text-align:center;position:relative;z-index:10;font-size:13px;font-weight:700;color:var(--text-muted)">
-      <span>★ Rated {{ lead.rating or '4.9' }} by local patients</span> &nbsp;•&nbsp; <span>{{ lead.city }}</span>
+      <span>★ Rated 4.9 by local patients</span> &nbsp;•&nbsp; <span>Kolkata</span>
     </div>
   </section>
 
   <!-- 2. Trust Strip -->
   <section class="trust-strip">
     <div class="container trust-flex reveal-dream">
-      <div class="trust-item"><span>★</span> Rated {{ lead.rating or '4.9' }} by local patients</div>
-      <div class="trust-item"><span>✦</span> {{ lead.reviewCount or '120+' }} Google reviews</div>
-      <div class="trust-item"><span>📍</span> Conveniently located in {{ lead.city }}</div>
+      <div class="trust-item"><span>★</span> Rated 4.9 by local patients</div>
+      <div class="trust-item"><span>✦</span> 128 Google reviews</div>
+      <div class="trust-item"><span>📍</span> Conveniently located in Kolkata</div>
       <div class="trust-item"><span>💬</span> Call or WhatsApp for appointments</div>
     </div>
   </section>
@@ -184,12 +307,27 @@
         <h2 class="serif" style="font-size:44px">Comprehensive Care Near You</h2>
       </div>
       <div class="services-grid reveal-dream">
-        {% for s in category_pack.services %}
+        
           <div class="service-card">
-            <h3 class="serif" style="font-size:24px;margin-bottom:12px">{{ s.title }}</h3>
-            <p style="color:var(--text-muted)">{{ s.description }}</p>
+            <h3 class="serif" style="font-size:24px;margin-bottom:12px">Routine Check-ups &amp; Cleaning</h3>
+            <p style="color:var(--text-muted)">Comprehensive oral check-ups, tartar removal, and preventive plaque cleaning.</p>
           </div>
-        {% endfor %}
+        
+          <div class="service-card">
+            <h3 class="serif" style="font-size:24px;margin-bottom:12px">Teeth Aligners &amp; Braces</h3>
+            <p style="color:var(--text-muted)">Clear invisible aligners and orthodontic treatment options for all age groups.</p>
+          </div>
+        
+          <div class="service-card">
+            <h3 class="serif" style="font-size:24px;margin-bottom:12px">Dental Implants &amp; Crowns</h3>
+            <p style="color:var(--text-muted)">Durable tooth replacements and aesthetic porcelain crowns fitted to your natural bite.</p>
+          </div>
+        
+          <div class="service-card">
+            <h3 class="serif" style="font-size:24px;margin-bottom:12px">Restorative &amp; Root Canal Care</h3>
+            <p style="color:var(--text-muted)">Tooth-colored fillings and gentle root canal treatments under local anesthesia.</p>
+          </div>
+        
       </div>
     </div>
   </section>
@@ -202,16 +340,16 @@
           <span class="cloud-eyebrow">Book Your Visit</span>
           <h2 class="serif" style="font-size:40px;margin-bottom:16px">Quality dental care, closer to home.</h2>
           <p style="color:var(--text-muted);margin-bottom:28px">Find the clinic, check today’s timings and contact the team before your visit.</p>
-          {% if lead.phoneHref %}<a href="{{ lead.phoneHref }}" class="button button--primary" style="width:100%;margin-bottom:12px">Call the clinic ({{ lead.phoneDisplay }})</a>{% endif %}
-          {% if lead.whatsappHref %}<a href="{{ lead.whatsappHref }}" class="button button--whatsapp" style="width:100%">Chat on WhatsApp</a>{% endif %}
+          <a href="tel:+919876543210" class="button button--primary" style="width:100%;margin-bottom:12px">Call the clinic (9876543210)</a>
+          <a href="https://wa.me/919876543210" class="button button--whatsapp" style="width:100%">Chat on WhatsApp</a>
         </div>
         <div>
           <span class="cloud-eyebrow">Location & Hours</span>
-          <h3 class="serif" style="font-size:26px;margin-bottom:8px">{{ lead.fullName }}</h3>
-          <p style="color:var(--text-muted)">{{ lead.fullAddress or lead.address }}</p>
-          {% if lead.mapsEmbedUrl %}
-            <iframe class="map-frame" src="{{ lead.mapsEmbedUrl }}" loading="lazy" allowfullscreen></iframe>
-          {% endif %}
+          <h3 class="serif" style="font-size:26px;margin-bottom:8px">Apex Dental Clinic</h3>
+          <p style="color:var(--text-muted)">12 Park Street, Opposite City Mall</p>
+          
+            <iframe class="map-frame" src="https://www.google.com/maps?q=12%20Park%20Street%2C%20Opposite%20City%20Mall%2C%20Kolkata&amp;z=17&amp;output=embed" loading="lazy" allowfullscreen></iframe>
+          
         </div>
       </div>
     </div>
@@ -224,22 +362,64 @@
         <span class="cloud-eyebrow">Helpful Answers</span>
         <h2 class="serif" style="font-size:42px">Frequently Asked Questions</h2>
       </div>
-      {% for f in category_pack.faqs %}
+      
         <div class="faq-item reveal-dream">
           <button class="faq-trigger" onclick="this.parentElement.classList.toggle('open')">
-            <span>{{ f.q }}</span> <span style="color:#8b5cf6">+</span>
+            <span>How can I book an appointment?</span> <span style="color:#8b5cf6">+</span>
           </button>
-          <div class="faq-content"><p style="padding-top:10px">{{ f.a }}</p></div>
+          <div class="faq-content"><p style="padding-top:10px">You can click &#39;Book an appointment&#39;, call the clinic directly, or send us a message on WhatsApp for immediate assistance.</p></div>
         </div>
-      {% endfor %}
+      
+        <div class="faq-item reveal-dream">
+          <button class="faq-trigger" onclick="this.parentElement.classList.toggle('open')">
+            <span>Do I need an appointment for a dental check-up?</span> <span style="color:#8b5cf6">+</span>
+          </button>
+          <div class="faq-content"><p style="padding-top:10px">Prior appointments are recommended to ensure zero waiting time, though walk-ins are accommodated based on doctor availability.</p></div>
+        </div>
+      
+        <div class="faq-item reveal-dream">
+          <button class="faq-trigger" onclick="this.parentElement.classList.toggle('open')">
+            <span>What should I bring to my first consultation?</span> <span style="color:#8b5cf6">+</span>
+          </button>
+          <div class="faq-content"><p style="padding-top:10px">Please bring any previous dental X-rays or records if available, along with a list of any current medications.</p></div>
+        </div>
+      
+        <div class="faq-item reveal-dream">
+          <button class="faq-trigger" onclick="this.parentElement.classList.toggle('open')">
+            <span>Can I contact the clinic through WhatsApp?</span> <span style="color:#8b5cf6">+</span>
+          </button>
+          <div class="faq-content"><p style="padding-top:10px">Yes! You can message us on WhatsApp for slot availability, directions, and routine queries.</p></div>
+        </div>
+      
+        <div class="faq-item reveal-dream">
+          <button class="faq-trigger" onclick="this.parentElement.classList.toggle('open')">
+            <span>Where is the clinic located?</span> <span style="color:#8b5cf6">+</span>
+          </button>
+          <div class="faq-content"><p style="padding-top:10px">Our address and interactive map are listed below. We are located centrally with convenient local transit access.</p></div>
+        </div>
+      
+        <div class="faq-item reveal-dream">
+          <button class="faq-trigger" onclick="this.parentElement.classList.toggle('open')">
+            <span>What are the clinic timings?</span> <span style="color:#8b5cf6">+</span>
+          </button>
+          <div class="faq-content"><p style="padding-top:10px">Our clinic timings are displayed in the booking section below. Please call or message on WhatsApp to confirm holiday schedules.</p></div>
+        </div>
+      
+        <div class="faq-item reveal-dream">
+          <button class="faq-trigger" onclick="this.parentElement.classList.toggle('open')">
+            <span>Are treatment costs discussed before starting?</span> <span style="color:#8b5cf6">+</span>
+          </button>
+          <div class="faq-content"><p style="padding-top:10px">Yes, absolutely. We provide a complete overview of recommended procedures and costs before starting any treatment.</p></div>
+        </div>
+      
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
     <div class="container">
-      <p>© {{ current_year }} {{ lead.fullName }} — Serving {{ lead.city }}. All rights reserved.</p>
-      <p style="margin-top:6px;font-size:12px">{{ category_pack.disclaimer }}</p>
+      <p>© 2026 Apex Dental Clinic — Serving Kolkata. All rights reserved.</p>
+      <p style="margin-top:6px;font-size:12px">Medical Disclaimer: Information on this page is for general awareness. Please consult a qualified dentist for diagnosis and treatment.</p>
     </div>
   </footer>
 

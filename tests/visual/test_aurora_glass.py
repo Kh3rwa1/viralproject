@@ -36,14 +36,14 @@ class TestAuroraGlassVisualGate(unittest.TestCase):
             page_desktop.set_content(html)
             page_desktop.wait_for_timeout(500)
 
-            # Assert Hero Video & Poster exist inside section.dream-hero
-            hero_sec = page_desktop.query_selector("section.dream-hero")
-            video_el = page_desktop.query_selector("video.dream-hero__video")
-            poster_el = page_desktop.query_selector("img.dream-hero__poster")
+            # Assert Hero Video & Poster exist inside section.cloud-hero
+            hero_sec = page_desktop.query_selector("section.cloud-hero")
+            video_el = page_desktop.query_selector("video.cloud-hero__video")
+            poster_el = page_desktop.query_selector("img.cloud-hero__poster")
 
-            self.assertIsNotNone(hero_sec, "Missing section.dream-hero in aurora_glass.html")
-            self.assertIsNotNone(video_el, "Missing video.dream-hero__video in aurora_glass.html")
-            self.assertIsNotNone(poster_el, "Missing img.dream-hero__poster in aurora_glass.html")
+            self.assertIsNotNone(hero_sec, "Missing section.cloud-hero in aurora_glass.html")
+            self.assertIsNotNone(video_el, "Missing video.cloud-hero__video in aurora_glass.html")
+            self.assertIsNotNone(poster_el, "Missing img.cloud-hero__poster in aurora_glass.html")
             self.assertEqual(len(page_errors), 0, f"Page error in aurora_glass: {page_errors}")
 
             # Capture Desktop Hero Screenshot (1440x900 viewport)

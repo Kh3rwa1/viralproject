@@ -2,124 +2,134 @@
   "id": "dental",
   "name": "Dental Clinics",
   "singular": "Dental Practice",
-  "eyebrow": "Gentle & Advanced Family Dentistry",
-  "headline": "Comprehensive Care for Healthy, Radiant Smiles",
-  "description": "Modern dental care tailored for your family. From painless preventative cleanings to state-of-the-art implants and clear aligners.",
-  "hero_video_mp4": "https://videos.pexels.com/video-files/3845735/3845735-hd_1920_1080_25fps.mp4",
-  "hero_video_webm": "https://videos.pexels.com/video-files/3845735/3845735-hd_1920_1080_25fps.mp4",
-  "video_poster": "https://images.pexels.com/photos/3845766/pexels-photo-3845766.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "hero_image": "https://images.pexels.com/photos/3845766/pexels-photo-3845766.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "eyebrow": "Modern dental care",
+  "headline": "Comfortable dental care for every Indian smile.",
+  "description": "From routine check-ups and teeth cleaning to aligners, implants and restorative treatments—receive clear guidance and personalised care close to home.",
+  "hero_video_mp4": "/static_assets/videos/dental-check-6192876.mp4",
+  "hero_video_webm": "/static_assets/videos/dental-check-6192876.webm",
+  "video_poster": "/static_assets/posters/dental-check-6192876.webp",
+  "hero_image": "/static_assets/posters/dental-check-6192876.webp",
+  "video_source": "Pexels",
+  "video_source_url": "https://www.pexels.com/video/woman-having-dental-check-6192876/",
+  "video_id": "6192876",
+  "primary_action": "Book an appointment",
+  "secondary_action": "Chat on WhatsApp",
+  "phone_action": "Call the clinic",
   "trust_items": [
-    "IDA Accredited",
-    "Low-Radiation Digital X-Ray",
-    "100% Painless Guarantee",
-    "Sterile Hospital Standards"
+    "Google Reviewed Clinic",
+    "Strict Sterilization Protocols",
+    "Digital X-Ray Diagnostics",
+    "Flexible Appointments"
   ],
   "statistics": [
     {
-      "value": "15,000+",
-      "label": "Patients Treated"
+      "value": "4.9★",
+      "label": "Google Rating"
     },
     {
-      "value": "99.4%",
-      "label": "Satisfaction Rate"
+      "value": "100%",
+      "label": "Sanitized Care"
     },
     {
-      "value": "12+",
-      "label": "Years Experience"
+      "value": "All Ages",
+      "label": "Family Dentistry"
     },
     {
-      "value": "4.9\u2605",
-      "label": "Patient Reviews"
+      "value": "Same Day",
+      "label": "Emergency Slot"
     }
   ],
   "services": [
     {
-      "title": "General Dental Check-ups",
-      "description": "Comprehensive examinations, digital X-rays, and painless professional teeth cleaning."
+      "title": "Routine Check-ups & Cleaning",
+      "description": "Comprehensive oral check-ups, tartar removal, and preventive plaque cleaning."
     },
     {
-      "title": "Teeth Whitening & Aesthetics",
-      "description": "Safe, effective in-clinic laser whitening and custom porcelain veneers."
+      "title": "Teeth Aligners & Braces",
+      "description": "Clear invisible aligners and orthodontic treatment options for all age groups."
     },
     {
-      "title": "Orthodontics & Clear Aligners",
-      "description": "Discreet invisible aligners and modern braces for adults and teens."
+      "title": "Dental Implants & Crowns",
+      "description": "Durable tooth replacements and aesthetic porcelain crowns fitted to your natural bite."
     },
     {
-      "title": "Implants & Restorations",
-      "description": "Permanent, natural-looking tooth replacement with lifetime durability."
+      "title": "Restorative & Root Canal Care",
+      "description": "Tooth-colored fillings and gentle root canal treatments under local anesthesia."
     }
   ],
   "process_steps": [
     {
       "step": "01",
-      "title": "Initial Gentle Consultation",
-      "desc": "Comprehensive oral exam with instant 3D digital imaging."
+      "title": "Book Your Visit",
+      "desc": "Select a convenient time online or via WhatsApp with instant confirmation."
     },
     {
       "step": "02",
-      "title": "Custom Treatment Plan",
-      "desc": "Transparent cost breakdown with zero hidden fees."
+      "title": "Comprehensive Check-up",
+      "desc": "Detailed examination and digital imaging with clear explanation of your options."
     },
     {
       "step": "03",
-      "title": "Painless Care",
-      "desc": "Relax in our modern clinic equipped with gentle laser care."
+      "title": "Personalised Care",
+      "desc": "Step-by-step treatment plan with transparent costs discussed upfront."
+    },
+    {
+      "step": "04",
+      "title": "Follow-Up & Advice",
+      "desc": "Post-treatment guidance and routine maintenance reminders."
     }
   ],
   "story": {
-    "heading": "Restoring Confidence One Smile At A Time",
-    "body": "We combine state-of-the-art dental technology with a compassionate, gentle approach to ensure complete patient comfort at every visit.",
-    "badge": "Patient-Centric Care"
+    "heading": "Gentle dental care, made for every smile.",
+    "body": "We focus on patient comfort, transparent communication, and hygienic clinical standards. Whether you need a simple check-up or specialized care, our team ensures every visit is relaxed and stress-free."
   },
   "benefits": [
-    "Same-day emergency dental appointments",
-    "Flexible zero-percent installment options",
-    "Sedation options for anxious patients",
-    "Dedicated pediatric care room"
+    "Transparent cost discussion before treatment begins",
+    "Clean, sanitized, and reassuring clinical environment",
+    "Convenient location with easy parking and access",
+    "Prompt appointment scheduling with minimal waiting"
   ],
   "testimonials": [
     {
-      "name": "Ananya Sharma",
-      "text": "The most gentle dental clinic I have ever visited. Painless root canal treatment!",
-      "rating": "5"
+      "name": "Local Resident",
+      "text": "Very clean clinic and patient staff. The doctor explained every step clearly before starting."
     },
     {
-      "name": "Rahul Verma",
-      "text": "Got clear aligners here. Incredible results in just 6 months. Highly recommend!",
-      "rating": "5"
+      "name": "Family Patient",
+      "text": "Took my mother for a dental check-up. Extremely gentle and respectful treatment."
     }
   ],
   "faqs": [
     {
-      "q": "Are emergency appointments available?",
-      "a": "Yes, we reserve dedicated daily slots for urgent dental pain and trauma."
+      "q": "How can I book an appointment?",
+      "a": "You can click 'Book an appointment', call the clinic directly, or send us a message on WhatsApp for immediate assistance."
     },
     {
-      "q": "How long does teeth whitening last?",
-      "a": "In-office professional whitening results typically last 1 to 3 years with proper care."
+      "q": "Do I need an appointment for a dental check-up?",
+      "a": "Prior appointments are recommended to ensure zero waiting time, though walk-ins are accommodated based on doctor availability."
     },
     {
-      "q": "Do clear aligners hurt?",
-      "a": "You may feel mild pressure for 1\u20132 days per new tray, but aligners are much more comfortable than braces."
+      "q": "What should I bring to my first consultation?",
+      "a": "Please bring any previous dental X-rays or records if available, along with a list of any current medications."
+    },
+    {
+      "q": "Can I contact the clinic through WhatsApp?",
+      "a": "Yes! You can message us on WhatsApp for slot availability, directions, and routine queries."
+    },
+    {
+      "q": "Where is the clinic located?",
+      "a": "Our address and interactive map are listed below. We are located centrally with convenient local transit access."
+    },
+    {
+      "q": "What are the clinic timings?",
+      "a": "Our clinic timings are displayed in the booking section below. Please call or message on WhatsApp to confirm holiday schedules."
+    },
+    {
+      "q": "Are treatment costs discussed before starting?",
+      "a": "Yes, absolutely. We provide a complete overview of recommended procedures and costs before starting any treatment."
     }
   ],
-  "team": [
-    {
-      "name": "Dr. S. Mukherjee",
-      "role": "Lead Endodontist",
-      "exp": "14+ Yrs Exp"
-    },
-    {
-      "name": "Dr. R. Kapoor",
-      "role": "Orthodontist Specialist",
-      "exp": "10+ Yrs Exp"
-    }
-  ],
-  "primary_action": "Book Appointment",
-  "secondary_action": "Call Clinic",
-  "location_heading": "Visit Our Modern Clinic",
-  "contact_heading": "Reserve Your Consultation",
-  "disclaimer": "Individual treatment suitability verified during clinical examination."
+  "contact_heading": "Quality dental care, closer to home.",
+  "location_heading": "Find the clinic & timings",
+  "disclaimer": "Medical Disclaimer: Information on this page is for general awareness. Please consult a qualified dentist for diagnosis and treatment."
 }
