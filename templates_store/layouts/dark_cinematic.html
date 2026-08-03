@@ -28,14 +28,17 @@
     .btn-whatsapp { background: #25D366; color: #111; }
     .btn-sm { padding: 8px 18px; font-size: 13px; }
 
-    /* Full-Bleed Video Hero Frame */
+    /* Full-Viewport Background Video Hero */
     .video-hero { position: relative; min-height: 520px; display: flex; align-items: center; justify-content: center; overflow: hidden; text-align: center; background: linear-gradient(135deg, #1e1b4b 0%, #090d16 100%); border-bottom: 1px solid var(--border); }
-    .video-hero video { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); min-width: 100%; min-height: 100%; object-fit: cover; z-index: 1; filter: brightness(0.35); }
+    .hero-media { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .hero-video, .hero-fallback { width: 100%; height: 100%; object-fit: cover; }
+    .hero-fallback { position: absolute; inset: 0; z-index: 0; filter: brightness(0.35); }
+    .hero-video { position: relative; z-index: 1; filter: brightness(0.35); }
+
     .video-overlay { position: relative; z-index: 2; color: #fff; max-width: 840px; padding: 40px 20px; }
     .video-title { font-size: 46px; font-weight: 900; margin-bottom: 16px; letter-spacing: -0.03em; text-shadow: 0 4px 20px rgba(0,0,0,0.8); }
     .video-sub { font-size: 20px; color: #d1d5db; margin-bottom: 32px; }
 
-    /* Bento Grid Services Section */
     .bento-section { padding: 70px 0; }
     .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
     .bento-card { background: var(--card-bg); padding: 32px; border-radius: var(--radius); border: 1px solid var(--border); position: relative; overflow: hidden; }
@@ -44,7 +47,6 @@
     .bento-card h3 { font-size: 22px; color: #fff; margin-bottom: 12px; }
     .bento-card p { font-size: 15px; color: var(--muted); }
 
-    /* Storytelling Dark Section */
     .story-section { padding: 60px 0; background: #0f172a; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); text-align: center; }
     .story-title { font-size: 32px; font-weight: 900; color: #fff; margin-bottom: 16px; }
     .story-body { font-size: 18px; color: var(--muted); max-width: 760px; margin: 0 auto; }
@@ -59,7 +61,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .video-hero video { display: none !important; }
+      .hero-video { display: none !important; }
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
   </style>
@@ -81,18 +83,23 @@
     </div>
   </header>
 
-  <!-- Hero Media Frame -->
+  <!-- Full-Viewport Video Hero -->
   <section class="video-hero">
-    {% if category_pack and category_pack.pexels_video %}
-    <video autoplay loop muted playsinline poster="{{ category_pack.video_poster if category_pack and category_pack.video_poster }}" onerror="this.hidden=true">
-      <source src="{{ category_pack.pexels_video }}" type="video/mp4">
-    </video>
-    {% endif %}
+    <div class="hero-media">
+      {% if category_pack and category_pack.hero_image %}
+      <img class="hero-fallback" src="{{ category_pack.hero_image }}" alt="" loading="eager">
+      {% endif %}
+      {% if category_pack and category_pack.pexels_video %}
+      <video class="hero-video" autoplay muted loop playsinline preload="metadata" {% if category_pack.video_poster %}poster="{{ category_pack.video_poster }}"{% endif %} aria-hidden="true">
+        <source src="{{ category_pack.pexels_video }}" type="video/mp4">
+      </video>
+      {% endif %}
+    </div>
     <div class="video-overlay">
       <h1 class="video-title">{{ lead.fullName }}</h1>
       <p class="video-sub">{{ category_pack.headline if category_pack else lead.pageDescription }}</p>
       {% if lead.rating %}
-      <div style="margin-bottom:20px;font-weight:700;color:var(--primary);display:inline-block;padding:6px 16px;background:rgba(17,24,39,0.8);border-radius:99px;border:1px solid var(--border)">
+      <div style="margin-bottom:20px;font-weight:700;color:var(--primary);display:inline-block;padding:6px 16px;background:rgba(17,24,39,0.85);border-radius:99px;border:1px solid var(--border)">
         ★ {{ lead.rating }} Rating {% if lead.reviewCount %}({{ lead.reviewCount }} reviews){% endif %}
       </div>
       {% endif %}
@@ -145,5 +152,12 @@
   {% include 'partials/mobile_actions.html' %}
   {% include 'partials/structured_data.html' %}
 
+  <script>
+    document.querySelectorAll(.hero-video).forEach((video) => {
+      video.addEventListener(error, () => { video.hidden = true; });
+      const source = video.querySelector(source);
+      if (source) { source.addEventListener(error, () => { video.hidden = true; }); }
+    });
+  </script>
 </body>
 </html>

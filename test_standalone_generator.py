@@ -293,6 +293,37 @@ class TestStandaloneGenerator(unittest.TestCase):
         self.assertEqual(engine.get_template_meta("lawyer")["id"], "law_clean_product")
         self.assertEqual(engine.get_template_meta("coaching")["id"], "coaching_clean_product")
 
+    def test_every_template_has_category_video_hero(self):
+        templates = engine.list_templates()
+
+        for item in templates:
+            lead = engine.lead_record({
+                "name": "Example Business",
+                "category": item["category"],
+                "city": "Kolkata",
+                "phone": "9876543210"
+            }, "example-business")
+
+            html = engine.render_full_page(item["id"], lead, live=False)
+
+            with self.subTest(template=item["id"]):
+                self.assertIn("<video", html)
+                self.assertIn("autoplay", html)
+                self.assertIn("muted", html)
+                self.assertIn("loop", html)
+                self.assertIn("playsinline", html)
+                self.assertIn("poster=", html)
+
+    def test_all_categories_have_video_and_poster(self):
+        for category in engine.BUSINESS_CATEGORIES:
+            pack = engine.load_category_pack(category)
+
+            with self.subTest(category=category):
+                self.assertTrue(pack.get("pexels_video"))
+                self.assertTrue(pack.get("video_poster"))
+                self.assertTrue(pack["pexels_video"].startswith("https://"))
+                self.assertTrue(pack["video_poster"].startswith("https://"))
+
     def test_map_coordinate_priority(self):
         lead = engine.lead_record({
             "name": "Random Clinic",

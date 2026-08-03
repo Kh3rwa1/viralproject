@@ -18,7 +18,6 @@
     body { font-family: 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif; background: var(--bg); color: var(--text); line-height: 1.7; padding-bottom: 70px; }
     .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
 
-    /* Editorial Newspaper Masthead */
     .site-header { background: var(--bg); border-bottom: 2px solid #1c1917; padding: 20px 0; position: sticky; top: 0; z-index: 100; }
     .header-wrap { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; }
     .logo-text { font-size: 32px; font-weight: 900; color: #1c1917; text-decoration: none; text-transform: uppercase; letter-spacing: -0.01em; }
@@ -31,26 +30,26 @@
     .btn-primary { background: #1c1917; color: #fff; }
     .btn-whatsapp { background: #25D366; color: #fff; border-color: #128C7E; }
 
-    /* Editorial Spread Hero */
     .hero { padding: 50px 0; text-align: center; border-bottom: 1px solid var(--border); }
     .hero-title { font-size: 44px; font-weight: 900; color: #1c1917; margin-bottom: 16px; line-height: 1.15; }
     .hero-sub { font-size: 20px; font-style: italic; color: var(--muted); max-width: 720px; margin: 0 auto 28px; }
     .hero-divider { width: 80px; height: 2px; background: #1c1917; margin: 20px auto; }
 
-    /* 2-Column Story Spread */
+    /* Newspaper Film-Style Framed Video Media */
+    .hero-media { position: relative; overflow: hidden; border: 3px solid #1c1917; box-shadow: 8px 8px 0 #1c1917; max-width: 800px; height: 380px; margin: 24px auto 0; background: #1c1917; }
+    .hero-media::after { content: ''; position: absolute; inset: 0; background: radial-gradient(rgba(0,0,0,0.1), transparent); pointer-events: none; z-index: 2; }
+    .hero-video, .hero-fallback { width: 100%; height: 100%; object-fit: cover; }
+    .hero-fallback { position: absolute; inset: 0; z-index: 0; }
+    .hero-video { position: relative; z-index: 1; }
+
     .story-spread { padding: 50px 0; border-bottom: 1px solid var(--border); }
     .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-    .story-img { border: 2px solid #1c1917; box-shadow: 6px 6px 0 #1c1917; }
-    .story-img img { width: 100%; height: 300px; object-fit: cover; display: block; }
 
-    /* Numbered Service Index */
     .services-section { padding: 60px 0; }
     .section-title { font-size: 28px; text-align: center; margin-bottom: 36px; color: #1c1917; font-weight: 800; border-bottom: 2px solid #1c1917; display: inline-block; padding-bottom: 6px; }
     .index-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
     .index-card { background: var(--card-bg); padding: 28px; border: 1px solid var(--border); box-shadow: 4px 4px 0 #1c1917; text-align: left; }
     .index-num { font-family: -apple-system, sans-serif; font-size: 13px; font-weight: 900; color: var(--primary); margin-bottom: 6px; }
-    .index-card h3 { font-size: 19px; color: #1c1917; margin-bottom: 8px; font-weight: 700; }
-    .index-card p { font-size: 14px; color: var(--muted); font-family: -apple-system, sans-serif; }
 
     .site-footer { background: #1c1917; color: #d6d3d1; padding: 40px 0; text-align: center; margin-top: 40px; font-family: -apple-system, sans-serif; }
 
@@ -58,6 +57,11 @@
       .hero-title { font-size: 32px; }
       .story-grid { grid-template-columns: 1fr; }
       .logo-text { font-size: 24px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-video { display: none !important; }
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
   </style>
 </head>
@@ -76,7 +80,7 @@
     </div>
   </header>
 
-  <!-- Editorial Hero -->
+  <!-- Editorial Hero with Newspaper Film Frame -->
   <section class="hero">
     <div class="container">
       <h1 class="hero-title">{{ lead.fullName }}</h1>
@@ -90,10 +94,20 @@
         <a href="{{ lead.whatsappHref }}" target="_blank" class="btn btn-whatsapp" style="margin-left:10px">WhatsApp Us</a>
         {% endif %}
       </div>
+      <div class="hero-media">
+        {% if category_pack and category_pack.hero_image %}
+        <img class="hero-fallback" src="{{ category_pack.hero_image }}" alt="" loading="eager">
+        {% endif %}
+        {% if category_pack and category_pack.pexels_video %}
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata" {% if category_pack.video_poster %}poster="{{ category_pack.video_poster }}"{% endif %} aria-hidden="true">
+          <source src="{{ category_pack.pexels_video }}" type="video/mp4">
+        </video>
+        {% endif %}
+      </div>
     </div>
   </section>
 
-  <!-- 2-Column Story Spread -->
+  <!-- Story Spread -->
   {% if category_pack and category_pack.story_heading %}
   <section id="story" class="story-spread">
     <div class="container story-grid">
@@ -102,8 +116,8 @@
         <p style="font-size:16px;color:var(--muted);font-family:-apple-system, sans-serif">{{ category_pack.story_body }}</p>
       </div>
       {% if category_pack.hero_image %}
-      <div class="story-img">
-        <img src="{{ category_pack.hero_image }}" alt="{{ lead.fullName }}" loading="lazy">
+      <div style="border:2px solid #1c1917;box-shadow:6px 6px 0 #1c1917">
+        <img src="{{ category_pack.hero_image }}" alt="{{ lead.fullName }}" style="width:100%;height:260px;object-fit:cover" loading="lazy">
       </div>
       {% endif %}
     </div>
@@ -140,5 +154,12 @@
   {% include 'partials/mobile_actions.html' %}
   {% include 'partials/structured_data.html' %}
 
+  <script>
+    document.querySelectorAll(.hero-video).forEach((video) => {
+      video.addEventListener(error, () => { video.hidden = true; });
+      const source = video.querySelector(source);
+      if (source) { source.addEventListener(error, () => { video.hidden = true; }); }
+    });
+  </script>
 </body>
 </html>

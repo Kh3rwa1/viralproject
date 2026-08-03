@@ -17,8 +17,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #090d16; color: var(--text); line-height: 1.6; padding-bottom: 70px; min-height: 100vh; overflow-x: hidden; }
     
-    /* Aurora Gradient Multi-Orb Mesh Background */
-    .aurora-bg { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -1; background: radial-gradient(circle at 15% 25%, rgba(99, 102, 241, 0.3) 0%, transparent 45%), radial-gradient(circle at 85% 65%, rgba(168, 85, 247, 0.3) 0%, transparent 45%), radial-gradient(circle at 50% 90%, rgba(236, 72, 153, 0.25) 0%, transparent 50%); filter: blur(60px); }
+    .aurora-bg { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -1; background: radial-gradient(circle at 15% 25%, rgba(99, 102, 241, 0.35) 0%, transparent 45%), radial-gradient(circle at 85% 65%, rgba(168, 85, 247, 0.35) 0%, transparent 45%), radial-gradient(circle at 50% 90%, rgba(236, 72, 153, 0.3) 0%, transparent 50%); filter: blur(60px); }
 
     .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
 
@@ -31,15 +30,18 @@
     .btn-whatsapp { background: #25D366; color: #fff; border: 0; }
     .btn-sm { padding: 8px 16px; font-size: 13px; }
 
-    /* Asymmetric Layered Glass Hero */
+    /* Asymmetric Glass Hero with Floating Glass Video Frame */
     .hero { padding: 70px 0 50px; }
     .glass-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 32px; align-items: center; }
     .glass-panel { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--glass-border); border-radius: var(--radius); padding: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
     .hero-title { font-size: 38px; font-weight: 900; margin-bottom: 16px; background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .hero-sub { font-size: 17px; color: var(--muted); margin-bottom: 28px; }
     .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
-    .hero-glass-img { border-radius: 16px; overflow: hidden; border: 1px solid var(--glass-border); max-height: 320px; }
-    .hero-glass-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    .hero-media { position: relative; overflow: hidden; border-radius: var(--radius); border: 1px solid var(--glass-border); height: 340px; backdrop-filter: blur(20px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+    .hero-video, .hero-fallback { width: 100%; height: 100%; object-fit: cover; }
+    .hero-fallback { position: absolute; inset: 0; z-index: 0; }
+    .hero-video { position: relative; z-index: 1; }
 
     .section { padding: 60px 0; }
     .section-title { font-size: 28px; text-align: center; margin-bottom: 40px; color: #fff; font-weight: 800; }
@@ -56,6 +58,11 @@
       .glass-grid { grid-template-columns: 1fr; }
       .hero-title { font-size: 30px; }
       .nav-links { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-video { display: none !important; }
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
   </style>
 </head>
@@ -76,7 +83,7 @@
     </div>
   </header>
 
-  <!-- Glass Hero -->
+  <!-- Floating Glass Hero with Video Frame -->
   <section class="hero">
     <div class="container">
       <div class="glass-grid">
@@ -92,11 +99,16 @@
             {% endif %}
           </div>
         </div>
-        {% if category_pack and category_pack.hero_image %}
-        <div class="hero-glass-img">
-          <img src="{{ category_pack.hero_image }}" alt="{{ lead.fullName }}" loading="eager">
+        <div class="hero-media">
+          {% if category_pack and category_pack.hero_image %}
+          <img class="hero-fallback" src="{{ category_pack.hero_image }}" alt="" loading="eager">
+          {% endif %}
+          {% if category_pack and category_pack.pexels_video %}
+          <video class="hero-video" autoplay muted loop playsinline preload="metadata" {% if category_pack.video_poster %}poster="{{ category_pack.video_poster }}"{% endif %} aria-hidden="true">
+            <source src="{{ category_pack.pexels_video }}" type="video/mp4">
+          </video>
+          {% endif %}
         </div>
-        {% endif %}
       </div>
     </div>
   </section>
@@ -129,5 +141,12 @@
   {% include 'partials/mobile_actions.html' %}
   {% include 'partials/structured_data.html' %}
 
+  <script>
+    document.querySelectorAll(.hero-video).forEach((video) => {
+      video.addEventListener(error, () => { video.hidden = true; });
+      const source = video.querySelector(source);
+      if (source) { source.addEventListener(error, () => { video.hidden = true; }); }
+    });
+  </script>
 </body>
 </html>
