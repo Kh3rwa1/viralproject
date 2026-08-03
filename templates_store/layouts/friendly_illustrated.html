@@ -50,6 +50,14 @@
     .section { padding: 50px 0; }
     .section-title { font-size: 28px; text-align: center; margin-bottom: 36px; color: var(--text); font-weight: 900; }
     
+    
+    /* Friendly Illustrated Contact & Map Styling */
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; text-align: center; margin-top: 32px; }
+    .contact-card { background: var(--card-bg); padding: 32px; border-radius: var(--radius); border: 2px solid #fef3c7; box-shadow: 0 6px 20px rgba(0,0,0,0.04); }
+    .contact-icon { font-size: 36px; margin-bottom: 12px; color: var(--primary); }
+    .link-btn { display: inline-block; margin-top: 12px; color: var(--primary); font-weight: 800; text-decoration: none; }
+    .map-container { border-radius: var(--radius); overflow: hidden; border: 3px solid #fef3c7; box-shadow: 0 10px 24px rgba(217,119,6,0.08); }
+
     .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; }
     .service-card { background: var(--card-bg); padding: 30px; border-radius: var(--radius); border: 2px solid #fef3c7; box-shadow: 0 6px 20px rgba(0,0,0,0.04); transition: transform 0.2s; }
     .service-card:hover { transform: translateY(-3px); }
@@ -163,11 +171,12 @@
   {% include 'partials/structured_data.html' %}
 
   <script>
-    document.querySelectorAll(.hero-video).forEach((video) => {
-      video.addEventListener(error, () => { video.hidden = true; });
-      const source = video.querySelector(source);
-      if (source) { source.addEventListener(error, () => { video.hidden = true; }); }
-    });
-  </script>
+  document.querySelectorAll(".hero-video").forEach((video) => {
+    const hideVideo = () => { video.hidden = true; };
+    video.addEventListener("error", hideVideo);
+    const source = video.querySelector("source");
+    if (source) { source.addEventListener("error", hideVideo); }
+  });
+</script>
 </body>
 </html>

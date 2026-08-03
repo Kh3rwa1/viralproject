@@ -53,6 +53,14 @@
     .section { padding: 60px 0; }
     .section-title { font-size: 28px; text-align: center; margin-bottom: 44px; color: var(--text); font-weight: 800; letter-spacing: -0.02em; }
     
+    
+    /* Clean Product Contact & Map Styling */
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; text-align: center; margin-top: 32px; }
+    .contact-card { background: var(--card-bg); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+    .contact-icon { font-size: 32px; margin-bottom: 12px; color: var(--primary); }
+    .link-btn { display: inline-block; margin-top: 12px; color: var(--primary); font-weight: 700; text-decoration: none; }
+    .map-container { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 4px 14px rgba(0,0,0,0.04); }
+
     .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
     .service-card { background: var(--card-bg); padding: 28px; border-radius: 8px; border: 1px solid var(--border); border-left: 4px solid var(--primary); transition: transform 0.2s; }
     .service-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
@@ -175,11 +183,12 @@
   {% include 'partials/structured_data.html' %}
 
   <script>
-    document.querySelectorAll(.hero-video).forEach((video) => {
-      video.addEventListener(error, () => { video.hidden = true; });
-      const source = video.querySelector(source);
-      if (source) { source.addEventListener(error, () => { video.hidden = true; }); }
-    });
-  </script>
+  document.querySelectorAll(".hero-video").forEach((video) => {
+    const hideVideo = () => { video.hidden = true; };
+    video.addEventListener("error", hideVideo);
+    const source = video.querySelector("source");
+    if (source) { source.addEventListener("error", hideVideo); }
+  });
+</script>
 </body>
 </html>

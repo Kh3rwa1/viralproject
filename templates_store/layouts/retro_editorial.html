@@ -45,6 +45,14 @@
     .story-spread { padding: 50px 0; border-bottom: 1px solid var(--border); }
     .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
 
+    
+    /* Retro Editorial Directory Contact & Map Styling */
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; text-align: center; margin-top: 32px; }
+    .contact-card { background: var(--card-bg); padding: 30px; border: 1px solid var(--border); box-shadow: 4px 4px 0 #1c1917; }
+    .contact-icon { font-size: 32px; margin-bottom: 12px; color: var(--primary); }
+    .link-btn { display: inline-block; margin-top: 12px; color: #1c1917; font-weight: 700; text-decoration: underline; font-family: -apple-system, sans-serif; }
+    .map-container { border: 2px solid #1c1917; box-shadow: 6px 6px 0 #1c1917; background: #faf7f2; }
+
     .services-section { padding: 60px 0; }
     .section-title { font-size: 28px; text-align: center; margin-bottom: 36px; color: #1c1917; font-weight: 800; border-bottom: 2px solid #1c1917; display: inline-block; padding-bottom: 6px; }
     .index-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
@@ -155,11 +163,12 @@
   {% include 'partials/structured_data.html' %}
 
   <script>
-    document.querySelectorAll(.hero-video).forEach((video) => {
-      video.addEventListener(error, () => { video.hidden = true; });
-      const source = video.querySelector(source);
-      if (source) { source.addEventListener(error, () => { video.hidden = true; }); }
-    });
-  </script>
+  document.querySelectorAll(".hero-video").forEach((video) => {
+    const hideVideo = () => { video.hidden = true; };
+    video.addEventListener("error", hideVideo);
+    const source = video.querySelector("source");
+    if (source) { source.addEventListener("error", hideVideo); }
+  });
+</script>
 </body>
 </html>

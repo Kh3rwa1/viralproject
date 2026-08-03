@@ -313,6 +313,7 @@ class TestStandaloneGenerator(unittest.TestCase):
                 self.assertIn("loop", html)
                 self.assertIn("playsinline", html)
                 self.assertIn("poster=", html)
+                self.assertIn('document.querySelectorAll(".hero-video")', html)
 
     def test_all_categories_have_video_and_poster(self):
         for category in engine.BUSINESS_CATEGORIES:
