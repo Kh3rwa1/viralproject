@@ -7,10 +7,6 @@
   "description": "{{ lead.pageDescription }}",
   "url": "{{ lead.pageUrl }}",
   "telephone": "+{{ lead.phoneIntl }}",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "{{ lead.city }}",
-    "streetAddress": "{{ lead.fullAddress or lead.city }}"
-  }
+  "address": "{{ lead.fullAddress or lead.address }}"
 }
 </script>
