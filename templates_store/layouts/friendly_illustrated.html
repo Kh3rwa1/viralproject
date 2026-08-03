@@ -76,6 +76,13 @@
       .hero-video { display: none !important; }
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
+  
+    /* Mobile Sticky Bar CTA Styling */
+    .mobile-sticky-bar { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); padding: 10px 16px; display: flex; gap: 10px; z-index: 999; border-top: 1px solid var(--border, rgba(255,255,255,0.1)); }
+    .bar-btn { flex: 1; display: flex; align-items: center; justify-content: center; padding: 12px 14px; border-radius: 8px; font-weight: 700; font-size: 13px; text-decoration: none; color: #fff; background: var(--primary, #0f766e); }
+    .bar-btn.whatsapp { background: #25D366; color: #fff; }
+    @media (min-width: 769px) { .mobile-sticky-bar { display: none !important; } }
+
   </style>
 </head>
 <body>

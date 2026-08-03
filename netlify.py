@@ -161,13 +161,18 @@ def deploy_to_site(folder: Path, site_id: str, token: str) -> str:
     dep = _req(f"/sites/{site_id}/deploys", token, "POST",
                zip_folder(folder), "application/zip")
 
+    ready = False
     for _ in range(80):
         d = _req(f"/deploys/{dep['id']}", token)
         if d.get("state") in ("ready", "current"):
+            ready = True
             break
         if d.get("state") == "error":
             raise DeployError("Netlify build failed")
         time.sleep(3)
+
+    if not ready:
+        raise DeployError("Netlify deployment timed out before reaching ready state.")
 
     return dep.get("id", "")
 

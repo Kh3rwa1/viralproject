@@ -233,7 +233,59 @@ function renderTemplates(){
 }
 
 function pickType(b){document.querySelectorAll('.type').forEach(x=>x.classList.remove('on'));b.classList.add('on');TPL=b.dataset.n;$('t1').textContent='';unlock('s2')}
-async function upload(){if(!TPL){$('t1').textContent='Pehle business type chuno';return}const f=$('file').files[0];if(!f){$('statusErr').textContent='CSV file chuno';return}$('statusErr').textContent='';const fd=new FormData();fd.append('file',f);fd.append('template',TPL);try{const r=await fetch(BASE+'/api/upload',{method:'POST',headers:{'X-Access-Key':KEY},body:fd}).then(r=>r.json());if(r.error){$('statusErr').textContent=r.error;return}JOB=r.job;$('report').classList.remove('hide');const noteNotice=r.notice?`<div style="background:#fef3c7;color:#92400e;padding:8px 12px;border-radius:10px;margin:8px 0;font-size:13px">⚠️ ${r.notice}</div>`:'';$('report').innerHTML=`${noteNotice}<b>${escHtml(r.buildable)}</b> websites banengi · ${escHtml(r.dropped)} hate<table>${r.sample.map(s=>`<tr><td>${escHtml(s.name)}</td><td>${escHtml(s.city)}</td><td>${escHtml(s.phone)}</td><td>${s.wa?'WhatsApp':'call only'}</td></tr>`).join('')}</table><p class=muted>Skipped: ${r.dropped_detail.map(d=>escHtml(d.why)).join(', ')||'none'}</p>`;$('terms').disabled=false;$('buildBtn').disabled=false;$('buildBtn').classList.remove('hide')}catch(e){$('statusErr').textContent='Upload failed: '+e.message}}
+async function upload(){
+  if(!TPL){$('t1').textContent='Pehle business type chuno';return}
+  const f=$('file').files[0];
+  if(!f){$('statusErr').textContent='CSV file chuno';return}
+  $('statusErr').textContent='';
+  const fd=new FormData();
+  fd.append('file',f);
+  fd.append('template',TPL);
+  try{
+    const r=await fetch(BASE+'/api/upload',{method:'POST',headers:{'X-Access-Key':KEY},body:fd}).then(res=>res.json());
+    if(r.error){$('statusErr').textContent=r.error;return}
+    JOB=r.job;
+    $('report').classList.remove('hide');
+    
+    const sample = Array.isArray(r.sample) ? r.sample : [];
+    const droppedDetail = Array.isArray(r.dropped_detail) ? r.dropped_detail : [];
+    const removed = r.removed ?? r.dropped ?? 0;
+    const buildable = r.buildable || 0;
+    const noteNotice = (r.notice || r.message) ? `<div style="background:#fef3c7;color:#92400e;padding:10px 14px;border-radius:10px;margin:8px 0;font-size:13px;font-weight:600">⚠️ ${escHtml(r.notice || r.message)}</div>` : '';
+    
+    $('report').innerHTML = `
+      ${noteNotice}
+      <b>${escHtml(buildable)}</b> websites banengi · ${escHtml(removed)} hate
+      ${sample.length ? `
+        <table style="margin-top:10px">
+          ${sample.map(s => `
+            <tr>
+              <td>${escHtml(s.name)}</td>
+              <td>${escHtml(s.city)}</td>
+              <td>${escHtml(s.phone)}</td>
+              <td>${s.wa ? 'WhatsApp' : 'call only'}</td>
+            </tr>
+          `).join('')}
+        </table>
+      ` : ''}
+      <p class="muted" style="margin-top:8px;font-size:12px">
+        Skipped: ${droppedDetail.map(d => escHtml(d.why)).join(', ') || 'none'}
+      </p>
+    `;
+    
+    if (buildable > 0) {
+      $('terms').disabled = false;
+      $('buildBtn').disabled = false;
+      $('buildBtn').classList.remove('hide');
+    } else {
+      $('terms').disabled = true;
+      $('buildBtn').disabled = true;
+      $('buildBtn').classList.add('hide');
+    }
+  }catch(e){
+    $('statusErr').textContent='Upload failed: '+e.message;
+  }
+}
 async function build(){
   if(!$('terms').checked){alert('fair-use box tick karo');return}
   $('buildBtn').disabled=true;
