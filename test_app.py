@@ -7,11 +7,12 @@ import tempfile
 from pathlib import Path
 from datetime import datetime, timezone
 
+import adapters
 import app
-import licenses
+import core
 import engine
 import jobs
-import core
+import licenses
 
 
 class TestLeadPagesFixes(unittest.TestCase):
@@ -182,13 +183,13 @@ class TestLeadPagesFixes(unittest.TestCase):
         with self.client.session_transaction() as sess:
             sess["key"] = k_info["key"]
 
-        # CSV with junk headers, PhantomLocal URLs, Google Login URLs, mixed genuine sites
+        # CSV with junk headers, PhantomLocal URLs, Google Login URLs, bare domains, www domains
         csv_content = (
             "Business Name,Phone,Website,PhantomLocal pricing,Google btn,Directions btn,City\n"
             "A1 Dental Care,9876543210,https://app.phantomlocal.com/pricing,https://phantomlocal.com,https://accounts.google.com,Directions,Kolkata\n"
-            "Dr. Smith Dentistry,9123456789,https://drsmithdental.com,https://phantomlocal.com,https://accounts.google.com,Directions,Kolkata\n"
-            "City Dental Clinic,9000011111,,https://app.phantomlocal.com/pricing,https://accounts.google.com,Directions,Kolkata\n"
-            "No Phone Clinic,,https://nophone.com,https://phantomlocal.com,https://accounts.google.com,Directions,Kolkata\n"
+            "Dr. Smith Dentistry,9123456789,drsmithdental.com,https://phantomlocal.com,https://accounts.google.com,Directions,Kolkata\n"
+            "City Dental Clinic,9000011111,www.citydental.org,https://app.phantomlocal.com/pricing,https://accounts.google.com,Directions,Kolkata\n"
+            "No Phone Clinic,,nophone.com,https://phantomlocal.com,https://accounts.google.com,Directions,Kolkata\n"
         )
 
         data = {
@@ -202,9 +203,9 @@ class TestLeadPagesFixes(unittest.TestCase):
 
         # Check upload cleanup summary metrics
         self.assertEqual(res["total_rows"], 4)
-        self.assertEqual(res["buildable"], 2)  # A1 Dental Care & City Dental Clinic
+        self.assertEqual(res["buildable"], 1)  # A1 Dental Care only (Dr. Smith & City Dental have bare domains drsmithdental.com / www.citydental.org)
         self.assertEqual(res["junk_columns_removed"], 3)  # PhantomLocal pricing, Google btn, Directions btn
-        self.assertEqual(res["removed_breakdown"]["already_has_website"], 1)  # Dr. Smith Dentistry
+        self.assertEqual(res["removed_breakdown"]["already_has_website"], 2)  # Dr. Smith & City Dental
         self.assertEqual(res["removed_breakdown"]["missing_phone"], 1)  # No Phone Clinic
 
         # Verify generated cleanup CSV files inside job folder
@@ -215,23 +216,31 @@ class TestLeadPagesFixes(unittest.TestCase):
         clean_rows, _ = core.read_csv(job_folder / "clean.csv")
         clean_names = [r["name"] for r in clean_rows]
         self.assertIn("A1 Dental Care", clean_names)
-        self.assertIn("City Dental Clinic", clean_names)
         self.assertNotIn("Dr. Smith Dentistry", clean_names)
+        self.assertNotIn("City Dental Clinic", clean_names)
         self.assertNotIn("No Phone Clinic", clean_names)
 
-        # 2. removed.csv records exact removal reasons
+        # 2. removed.csv records exact removal reasons for bare domain sites
         removed_rows, _ = core.read_csv(job_folder / "removed.csv")
         removed_names = [r["name"] for r in removed_rows]
         self.assertIn("Dr. Smith Dentistry", removed_names)
-        self.assertIn("No Phone Clinic", removed_names)
+        self.assertIn("City Dental Clinic", removed_names)
 
         dr_smith_row = next(r for r in removed_rows if r["name"] == "Dr. Smith Dentistry")
         self.assertEqual(dr_smith_row["status"], "skipped_existing_website")
         self.assertIn("drsmithdental.com", dr_smith_row["reason"])
 
-        no_phone_row = next(r for r in removed_rows if r["name"] == "No Phone Clinic")
-        self.assertEqual(no_phone_row["status"], "skipped_missing_phone")
-        self.assertEqual(no_phone_row["reason"], "no phone")
+        city_dental_row = next(r for r in removed_rows if r["name"] == "City Dental Clinic")
+        self.assertEqual(city_dental_row["status"], "skipped_existing_website")
+        self.assertIn("citydental.org", city_dental_row["reason"])
+
+        # 3. updated.csv has status columns with junk headers stripped
+        _, updated_fields = core.read_csv(job_folder / "updated.csv")
+        self.assertNotIn("PhantomLocal pricing", updated_fields)
+        self.assertNotIn("Google btn", updated_fields)
+        self.assertNotIn("Directions btn", updated_fields)
+        self.assertIn("status", updated_fields)
+        self.assertIn("reason", updated_fields)
 
     def test_zero_buildable_rows_graceful_notice(self):
         k_info = licenses.new_key("zero_buildable@example.com", "starter", days=30)
@@ -240,8 +249,8 @@ class TestLeadPagesFixes(unittest.TestCase):
 
         csv_content = (
             "Business Name,Phone,Website\n"
-            "Dr. Smith Dentistry,9123456789,https://drsmithdental.com\n"
-            "City Dental Clinic,9000011111,https://citydental.com\n"
+            "Dr. Smith Dentistry,9123456789,drsmithdental.com\n"
+            "City Dental Clinic,9000011111,www.citydental.com\n"
         )
 
         data = {
@@ -257,6 +266,15 @@ class TestLeadPagesFixes(unittest.TestCase):
         self.assertEqual(res["removed"], 2)
         self.assertIn("CSV cleaned successfully", res["notice"])
         self.assertEqual(res["removed_breakdown"]["already_has_website"], 2)
+
+    def test_bare_domain_and_www_website_classification(self):
+        kind1, label1 = adapters.classify_website("drsmithdental.com")
+        self.assertEqual(kind1, "real")
+        self.assertEqual(label1, "drsmithdental.com")
+
+        kind2, label2 = adapters.classify_website("www.citydental.org/about")
+        self.assertEqual(kind2, "real")
+        self.assertEqual(label2, "citydental.org")
 
 
 if __name__ == "__main__":

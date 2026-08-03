@@ -64,9 +64,17 @@ CATEGORY_WORDS = re.compile(
     r"chartered|real estate|property|automobile|repair|service)", re.I)
 
 
+def normalize_url_candidate(url: str) -> str:
+    value = str(url or "").strip()
+    if value and not re.match(r"^[a-z][a-z0-9+.-]*://", value, re.I):
+        value = "https://" + value
+    return value
+
+
 def host(url: str) -> str:
     try:
-        return (urlparse(url).netloc or "").lower().replace("www.", "")
+        u = normalize_url_candidate(url)
+        return (urlparse(u).netloc or "").lower().replace("www.", "")
     except Exception:
         return ""
 

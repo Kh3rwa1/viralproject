@@ -117,14 +117,15 @@ def write_cleanup_files(outdir: Path, rows: list[dict], fieldnames: list[str],
                 "status": d.get("status", "skipped"),
             })
 
-    # 3. updated.csv — original rows with status information
+    # 3. updated.csv — original rows with status information (with junk headers stripped)
     dropped_by_row = {d.get("row_index"): d for d in dropped if "row_index" in d}
     kept_by_row = {r["_row"]: r for r in kept}
-    out_fields = list(fieldnames or []) + ["status", "reason"] + [c for c in ADDED if c not in (fieldnames or [])]
+    clean_fields = [f for f in (fieldnames or []) if not adapters.is_junk_header(f)]
+    out_fields = clean_fields + ["status", "reason"] + [c for c in ADDED if c not in clean_fields]
 
     formatted_rows = []
     for i, row in enumerate(rows):
-        row_copy = dict(row)
+        row_copy = {k: v for k, v in row.items() if not adapters.is_junk_header(k)}
         k = kept_by_row.get(i)
         d = dropped_by_row.get(i)
         if k:
