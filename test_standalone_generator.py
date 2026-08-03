@@ -138,8 +138,9 @@ class TestStandaloneGenerator(unittest.TestCase):
 
         core.generate(csv_path, "coaching", self.outdir, base_url="https://site.netlify.app")
 
-        manifest_file = self.outdir / "dist" / "build-manifest.json"
+        manifest_file = self.outdir / "build-manifest.json"
         self.assertTrue(manifest_file.exists())
+        self.assertFalse((self.outdir / "dist" / "build-manifest.json").exists())
 
         manifest = json.loads(manifest_file.read_text(encoding="utf-8"))
         self.assertEqual(manifest["template"], "coaching")

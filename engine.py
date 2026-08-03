@@ -605,5 +605,54 @@ def render_stub(lead: dict, meta: dict, site_name: str, base_url: str, live: boo
             .replace("__ROBOTS__", "" if live else '<meta name="robots" content="noindex,nofollow">\n'))
 
 
+TEMPLATE_DEMO_VALUES = {
+    "coaching": ["BrightPath", "9876543210", "Sample Business"],
+    "dentist": ["Dr Tanmoy Das", "9831194050", "K J Sanyal Road"],
+    "lawyer": ["Ravi Shankar Pandey", "9470550524", "Sharda Bhavan"],
+}
+
+
+def validate_template(src: str) -> list[str]:
+    errs = []
+    if "<title>" not in src:
+        errs.append("Missing <title> tag")
+    if "lead." not in src:
+        errs.append("No {{ lead.* }} variables found")
+    return errs
+
+
+def validate_rendered_page(html: str, lead: dict, template_name: str = ""):
+    if not html.strip():
+        raise ValueError(f"Empty page generated for {lead.get('slug')}")
+
+    if re.search(r'\{\{.*?\}\}|\{\%.*?\%\}', html, re.S):
+        raise ValueError(f"Unresolved Jinja tag found in page for {lead.get('slug')}")
+
+    if "<title>" not in html:
+        raise ValueError(f"Missing <title> tag in page for {lead.get('slug')}")
+
+    if 'rel="canonical"' not in html and "rel='canonical'" not in html:
+        raise ValueError(f"Missing canonical link in page for {lead.get('slug')}")
+
+    # Verify JSON-LD parsing
+    ld_matches = re.findall(r'<script type="application/ld\+json">(.*?)</script>', html, re.S)
+    for ld in ld_matches:
+        try:
+            data = json.loads(ld.strip())
+            if not isinstance(data, dict):
+                raise ValueError("JSON-LD is not a valid JSON object")
+        except Exception as e:
+            raise ValueError(f"Invalid JSON-LD in page for {lead.get('slug')}: {e}")
+
+    # Check for hardcoded demo values
+    tpl_key = (template_name or "").lower()
+    demos = TEMPLATE_DEMO_VALUES.get(tpl_key, [])
+    lead_str = json.dumps(lead)
+    for demo in demos:
+        if demo in html and demo not in lead_str:
+            raise ValueError(f"Hardcoded demo value '{demo}' found in generated page for {lead.get('slug')}")
+
+
 def now_iso() -> str:
     return datetime.now(timezone.utc).astimezone().isoformat(timespec="seconds")
+

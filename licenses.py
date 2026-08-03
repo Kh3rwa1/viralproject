@@ -20,14 +20,6 @@ PLANS = {
 }
 
 
-DEFAULT_KEYS = {
-    "trial": ["LP-7QK2-M4XR-9TVB", "LP-B3ND-7HSQ-2WKF", "LP-Z9MT-4PRC-6XJD", "LP-K5WV-8QNB-3HFT", "LP-CO4B-79HQ-R49B"],
-    "starter": ["LP-4HXB-2QNW-8TRD", "LP-9MKC-6FVJ-3PZS", "LP-2TWQ-7BDH-5XNR"],
-    "pro": ["LP-K7QM-3XTV-9BND", "LP-R4WC-8JZP-5HFS", "LP-M9BT-2VKD-7QXN"],
-    "agency": ["LP-3KUF-GPDN-3HZQ", "LP-A5TN-7RQW-2FMC", "LP-E8KD-3BVJ-9XHS", "LP-U2WM-6ZPT-5CNR"]
-}
-
-
 def conn():
     init_db()
     return sqlite3.connect(DB)
@@ -45,16 +37,6 @@ def init_db():
             c.execute("""CREATE TABLE IF NOT EXISTS usage(
                 id INTEGER PRIMARY KEY AUTOINCREMENT, key TEXT, pages INTEGER,
                 template TEXT, at TEXT)""")
-            
-            count = c.execute("SELECT COUNT(*) FROM keys").fetchone()[0]
-            if count == 0:
-                now = datetime.now(timezone.utc)
-                exp = (now + timedelta(days=365)).isoformat(timespec="seconds")
-                for plan, keys in DEFAULT_KEYS.items():
-                    credits = PLANS[plan][0]
-                    for k in keys:
-                        c.execute("INSERT OR IGNORE INTO keys(key,email,plan,credits,created,expires,note) VALUES(?,?,?,?,?,?,?)",
-                                  (k, "admin@leadpages", plan, credits, now.isoformat(timespec="seconds"), exp, "seeded"))
     finally:
         c.close()
 

@@ -14,12 +14,11 @@ import zipfile
 from pathlib import Path
 
 import build as B
-import engine
-
+import netlify
 import ssl
 
 API = "https://api.netlify.com/api/v1"
-SSL_CTX = ssl._create_unverified_context()
+SSL_CTX = ssl.create_default_context()
 
 
 def req(path, token, method="GET", data=None, ctype="application/json"):

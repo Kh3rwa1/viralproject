@@ -12,7 +12,7 @@ from pathlib import Path
 import ssl
 
 API = "https://api.netlify.com/api/v1"
-SSL_CTX = ssl._create_unverified_context()
+SSL_CTX = ssl.create_default_context()
 
 
 class DeployError(Exception):

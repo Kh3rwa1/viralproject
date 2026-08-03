@@ -1477,8 +1477,8 @@
         </span>
 
         <span class="brand-copy">
-          <strong data-field="shortName">Ravi Shankar Pandey</strong>
-          <small data-field="category">Lawyer</small>
+          <strong>{{ lead.shortName }}</strong>
+          <small>{{ lead.category }}</small>
         </span>
       </a>
 
@@ -1527,10 +1527,12 @@
       <div class="hero-glow" aria-hidden="true"></div>
 
       <div class="container hero-content">
+        {% if lead.city %}
         <div class="hero-badge">
           <span class="status-dot"></span>
-          <span data-field="categoryLocation">Lawyer in Jamshedpur</span>
+          <span>{{ lead.category }} in {{ lead.city }}</span>
         </div>
+        {% endif %}
 
         <h1>
           Clear legal guidance.<br>
@@ -1539,7 +1541,7 @@
 
         <p class="hero-copy">
           Request a private consultation with
-          <strong data-field="shortName">Ravi Shankar Pandey</strong>
+          <strong>{{ lead.shortName }}</strong>
           to discuss your legal matter and understand the next steps available
           to you.
         </p>
@@ -1553,35 +1555,45 @@
             </svg>
           </button>
 
-          <a class="button button-ghost phone-link" href="tel:+919470550524">
+          {% if lead.phoneIntl %}
+          <a class="button button-ghost phone-link" href="tel:+{{ lead.phoneIntl }}">
             <span>Call now</span>
           </a>
+          {% endif %}
         </div>
 
         <div class="hero-proof">
+          {% if lead.rating %}
           <div class="proof-item rating-block">
             <strong>
-              <span data-field="rating">4.8</span> ★
+              <span>{{ lead.rating }}</span> ★
             </strong>
-            <span>Google rating</span>
+            <span>Rating</span>
           </div>
+          {% endif %}
 
+          {% if lead.reviewCount %}
           <div class="proof-item rating-block">
-            <strong data-field="reviewCount">190</strong>
+            <strong>{{ lead.reviewCount }}</strong>
             <span>Public reviews</span>
           </div>
+          {% endif %}
 
+          {% if lead.hours %}
           <div class="proof-item">
-            <strong data-field="hours">Open 24 hours</strong>
-            <span>Listing hours</span>
+            <strong>{{ lead.hours }}</strong>
+            <span>Hours</span>
           </div>
+          {% endif %}
 
+          {% if lead.address %}
           <div class="hero-location">
             Consultation location
-            <strong data-field="address">
-              Sharda Bhavan, Vishnu Path, Jamshedpur
+            <strong>
+              {{ lead.address }}
             </strong>
           </div>
+          {% endif %}
         </div>
       </div>
     </section>
@@ -1595,7 +1607,7 @@
           <span>Legal matter assessment</span>
           <span>Document discussion</span>
           <span>Practical next steps</span>
-          <span>Jamshedpur legal support</span>
+          <span>{{ lead.city }} legal support</span>
         </div>
 
         <div class="marquee-group">
@@ -1604,7 +1616,7 @@
           <span>Legal matter assessment</span>
           <span>Document discussion</span>
           <span>Practical next steps</span>
-          <span>Jamshedpur legal support</span>
+          <span>{{ lead.city }} legal support</span>
         </div>
       </div>
     </div>
@@ -1615,15 +1627,17 @@
         <div class="monogram-stage" data-reveal>
           <div class="orbit"></div>
 
-          <div class="monogram" data-field="initials">RP</div>
+          <div class="monogram">{{ (lead.shortName[0] if lead.shortName else "L") }}</div>
 
-          <span class="floating-tag one" data-field="category">
-            Lawyer
+          <span class="floating-tag one">
+            {{ lead.category }}
           </span>
 
-          <span class="floating-tag two" data-field="city">
-            Jamshedpur
+          {% if lead.city %}
+          <span class="floating-tag two">
+            {{ lead.city }}
           </span>
+          {% endif %}
         </div>
 
         <div data-reveal>
@@ -1645,31 +1659,35 @@
 
               <div>
                 <strong>Legal professional</strong>
-                <span data-field="fullName">
-                  Ravi Shankar Pandey (Best/Top Lawyer and Advocate in Jamshedpur)
+                <span>
+                  {{ lead.fullName }}
                 </span>
               </div>
             </div>
 
+            {% if lead.address %}
             <div class="meta-row">
               <span class="meta-icon">⌖</span>
 
               <div>
                 <strong>Consultation address</strong>
-                <span data-field="address">
-                  Sharda Bhavan, Vishnu Path, Jamshedpur
+                <span>
+                  {{ lead.address }}
                 </span>
               </div>
             </div>
+            {% endif %}
 
+            {% if lead.phoneIntl %}
             <div class="meta-row">
               <span class="meta-icon">☎</span>
 
               <div>
                 <strong>Contact number</strong>
-                <span data-field="phone">094705 50524</span>
+                <span>{{ lead.phoneDisplay }}</span>
               </div>
             </div>
+            {% endif %}
 
             <div class="meta-row">
               <span class="meta-icon">◷</span>
@@ -1848,7 +1866,7 @@
 
             <p>
               Contact
-              <strong data-field="shortName">Ravi Shankar Pandey</strong>
+              <strong>{{ lead.shortName }}</strong>
               to request a consultation regarding your legal matter.
             </p>
 
@@ -1857,18 +1875,22 @@
                 <span>Send consultation request</span>
               </button>
 
-              <a class="button button-ghost phone-link" href="tel:+919470550524">
-                <span data-field="phone">094705 50524</span>
+              {% if lead.phoneIntl %}
+              <a class="button button-ghost phone-link" href="tel:+{{ lead.phoneIntl }}">
+                <span>{{ lead.phoneDisplay }}</span>
               </a>
+              {% endif %}
 
+              {% if lead.mapsUrl %}
               <a
                 class="button button-ghost maps-link"
-                href="#"
+                href="{{ lead.mapsUrl }}"
                 target="_blank"
                 rel="noopener"
               >
                 <span>View location</span>
               </a>
+              {% endif %}
             </div>
           </div>
         </div>
@@ -1885,14 +1907,14 @@
             <span class="brand-mark">§</span>
 
             <span class="brand-copy">
-              <strong data-field="shortName">Ravi Shankar Pandey</strong>
-              <small data-field="category">Lawyer</small>
+              <strong>{{ lead.shortName }}</strong>
+              <small>{{ lead.category }}</small>
             </span>
           </a>
 
           <p>
-            A premium informational page for requesting a legal consultation
-            in <span data-field="city">Jamshedpur</span>.
+            Legal consultation services
+            {% if lead.city %}in {{ lead.city }}{% endif %}.
           </p>
         </div>
 
@@ -1911,32 +1933,38 @@
           <h4>Contact</h4>
 
           <ul class="footer-list">
+            {% if lead.phoneIntl %}
             <li>
-              <a class="phone-link" href="tel:+919470550524">
-                <span data-field="phone">094705 50524</span>
+              <a class="phone-link" href="tel:+{{ lead.phoneIntl }}">
+                <span>{{ lead.phoneDisplay }}</span>
               </a>
             </li>
+            {% endif %}
 
-            <li data-field="hours">Open 24 hours</li>
+            {% if lead.hours %}
+            <li>{{ lead.hours }}</li>
+            {% endif %}
 
+            {% if lead.mapsUrl %}
             <li>
               <a
                 class="maps-link"
-                href="#"
+                href="{{ lead.mapsUrl }}"
                 target="_blank"
                 rel="noopener"
               >
                 Google Maps
               </a>
             </li>
+            {% endif %}
           </ul>
         </div>
 
         <div>
           <h4>Location</h4>
 
-          <p data-field="address">
-            Sharda Bhavan, Vishnu Path, Jamshedpur
+          <p>
+            {{ lead.address if lead.address else lead.city }}
           </p>
         </div>
       </div>
@@ -1944,7 +1972,7 @@
       <div class="footer-bottom">
         <span>
           © <span id="year"></span>
-          <span data-field="shortName">Ravi Shankar Pandey</span>.
+          <span>{{ lead.fullName }}</span>. All rights reserved.
         </span>
 
         <span>
@@ -1956,9 +1984,10 @@
   </footer>
 
   <!-- Floating call -->
+  {% if lead.phoneIntl %}
   <a
     class="floating-call phone-link"
-    href="tel:+919470550524"
+    href="tel:+{{ lead.phoneIntl }}"
     aria-label="Call lawyer"
   >
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -1969,6 +1998,7 @@
       />
     </svg>
   </a>
+  {% endif %}
 
   <!-- Consultation modal -->
   <div
@@ -1991,7 +2021,7 @@
 
       <p class="modal-intro">
         This form prepares a WhatsApp message for
-        <strong data-field="shortName">Ravi Shankar Pandey</strong>.
+        <strong>{{ lead.shortName }}</strong>.
       </p>
 
       <form class="form" id="consultationForm">
@@ -2147,47 +2177,19 @@
         .toUpperCase() || "§";
     }
 
-    function applyLeadData() {
-      const values = {
-        ...lead,
-        initials: getInitials(lead.shortName),
-        categoryLocation:
-          `${lead.category || "Legal professional"} in ${lead.city || "your city"}`
-      };
+    function cleanPhone(value) {
+      const digits = String(value || "").replace(/\D/g, "");
 
-      document.querySelectorAll("[data-field]").forEach(element => {
-        const key = element.dataset.field;
-
-        if (values[key]) {
-          element.textContent = values[key];
-        }
-      });
-
-      const phone = cleanPhone(lead.phone);
-
-      document.querySelectorAll(".phone-link").forEach(link => {
-        if (phone) {
-          link.href = `tel:+${phone}`;
-        } else {
-          link.hidden = true;
-        }
-      });
-
-      document.querySelectorAll(".maps-link").forEach(link => {
-        link.href =
-          lead.mapsUrl ||
-          `https://www.google.com/maps/search/?api=1&query=${
-            encodeURIComponent(`${lead.fullName} ${lead.address}`)
-          }`;
-      });
-
-      if (!lead.rating || !lead.reviewCount) {
-        document.querySelectorAll(".rating-block").forEach(block => {
-          block.hidden = true;
-        });
+      if (digits.length === 10) {
+        return `91${digits}`;
       }
 
-      const reviewSection = document.querySelector("#review");
+      if (digits.length === 11 && digits.startsWith("0")) {
+        return `91${digits.slice(1)}`;
+      }
+
+      return digits;
+    }
 
       if (!lead.review && reviewSection) {
         reviewSection.hidden = true;

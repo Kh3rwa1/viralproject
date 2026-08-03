@@ -9,6 +9,7 @@ leads.csv
 updated.csv
 state.json
 preview.html
+build-manifest.json
 *.bak
 netlify_debug.log
 dist/*

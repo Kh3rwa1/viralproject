@@ -194,6 +194,8 @@ def api_deploy(jid):
     row, err = auth()
     if err:
         return jsonify({"error": err}), 401
+    if not row.get("can_live"):
+        return jsonify({"error": "Live publishing requires Pro or Agency plan"}), 403
     job = jobs.get(jid, row["key"])
     if not job or job["state"] not in ("done", "deployed"):
         return jsonify({"error": "build not ready"}), 400

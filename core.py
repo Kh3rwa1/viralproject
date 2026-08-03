@@ -81,7 +81,7 @@ def build_console(records, base_url, console_path: Path):
         encoding="utf-8")
 
 
-def validate_build(dist: Path, leads: list[dict]):
+def validate_build(dist: Path, leads: list[dict], template_name: str = ""):
     expected = len(leads)
     generated_files = [p for p in dist.glob("*/index.html")]
     actual = len(generated_files)
@@ -98,12 +98,7 @@ def validate_build(dist: Path, leads: list[dict]):
             raise RuntimeError(f"Missing expected page for slug: {slug}")
 
         html = page_file.read_text(encoding="utf-8")
-        if not html.strip():
-            raise ValueError(f"Empty page generated for {slug}")
-        if "{{" in html or "}}" in html:
-            raise ValueError(f"Unresolved template placeholder for {slug}")
-        if "<title>" not in html:
-            raise ValueError(f"Missing <title> tag for {slug}")
+        engine.validate_rendered_page(html, lead, template_name=template_name)
 
 
 ROOT_INDEX = """<!doctype html>
@@ -164,7 +159,7 @@ def generate(csv_path, template, outdir, *, limit=0, city="", only="",
     # Validate template before generating
     tpl_errs = engine.validate_template(tpl_src)
     if tpl_errs:
-        print(f"Warning: Template validation issues for {template}: {tpl_errs}")
+        raise ValueError(f"Template validation failed for {template}: {'; '.join(tpl_errs)}")
 
     rows, fieldnames = read_csv(csv_path)
     kept, dropped = plan_rows(rows, fieldnames, limit=limit, city=city,
@@ -211,7 +206,7 @@ def generate(csv_path, template, outdir, *, limit=0, city="", only="",
             progress(i + 1, len(order))
 
     # Validate build output
-    validate_build(dist, [leads[s] for s in order])
+    validate_build(dist, [leads[s] for s in order], template_name=template)
 
     (dist / "404.html").write_text(
         "<!doctype html><meta charset='utf-8'><meta name='robots' content='noindex,nofollow'>"
@@ -224,7 +219,7 @@ def generate(csv_path, template, outdir, *, limit=0, city="", only="",
 
     built_at = engine.now_iso()
 
-    # Write build manifest
+    # Write build manifest inside private job directory (not in public dist/)
     manifest = {
         "template": meta["name"],
         "templateVersion": 2,
@@ -243,7 +238,7 @@ def generate(csv_path, template, outdir, *, limit=0, city="", only="",
             for s in order
         ],
     }
-    (dist / "build-manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+    (outdir / "build-manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
 
     if update_csv:
         by_row = {r["_row"]: r for r in kept}
