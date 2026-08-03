@@ -82,8 +82,8 @@ def main():
     if console_source.exists():
         core.build_console(_console_records(console_source), args.base_url, CONSOLE)
 
-    print(f"\nbuilt {summary['built']} pages - dropped {summary['dropped']}")
-    print(f"index.html = {summary['index_kb']} KB - stubs = {len(summary['slugs'])} x ~1 KB")
+    print(f"\nbuilt {summary['built']} standalone pages - dropped {summary['dropped']}")
+    print(f"dist/ layout: index.html + {len(summary['slugs'])} x {{slug}}/index.html")
     for d in summary["dropped_detail"][:12]:
         print(f"  skip: {d['name'][:44]:<46} {d['why']}")
     if summary["dropped"] > 12:

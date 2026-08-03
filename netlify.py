@@ -57,7 +57,7 @@ def zip_folder(folder: Path) -> bytes:
     return buf.getvalue()
 
 
-def deploy(folder: Path, site_name: str, token: str) -> str:
+def ensure_site(site_name: str, token: str) -> dict:
     token = (token or "").strip()
     if not token:
         raise DeployError("Netlify token is required.")
@@ -91,7 +91,6 @@ def deploy(folder: Path, site_name: str, token: str) -> str:
     if account_id:
         try:
             sites = _req(f"/{account_id}/sites", token)
-            print(f"[NETLIFY DEBUG] /{account_id}/sites returned {len(sites) if isinstance(sites, list) else type(sites)}")
             if isinstance(sites, list):
                 site = next((s for s in sites if isinstance(s, dict) and (s.get("name") == site_name or s.get("id") == site_name)), None)
         except Exception as e:
@@ -100,7 +99,6 @@ def deploy(folder: Path, site_name: str, token: str) -> str:
     if not site:
         try:
             sites = _req("/sites?filter=all", token)
-            print(f"[NETLIFY DEBUG] /sites?filter=all returned {len(sites) if isinstance(sites, list) else type(sites)}")
             if isinstance(sites, list):
                 site = next((s for s in sites if isinstance(s, dict) and (s.get("name") == site_name or s.get("id") == site_name)), None)
         except Exception as e:
@@ -130,8 +128,20 @@ def deploy(folder: Path, site_name: str, token: str) -> str:
     if not site or not site.get("id"):
         raise DeployError(f"Could not find or create site '{site_name}' on Netlify. Please check your Netlify Access Token.")
 
-    # 4. Upload zip deploy
-    dep = _req(f"/sites/{site['id']}/deploys", token, "POST",
+    url = site.get("ssl_url") or site.get("url") or f"https://{site.get('name', site_name)}.netlify.app"
+    return {
+        "id": site["id"],
+        "name": site.get("name", site_name),
+        "url": url,
+    }
+
+
+def deploy_to_site(folder: Path, site_id: str, token: str) -> str:
+    token = (token or "").strip()
+    if not token:
+        raise DeployError("Netlify token is required.")
+
+    dep = _req(f"/sites/{site_id}/deploys", token, "POST",
                zip_folder(folder), "application/zip")
 
     for _ in range(80):
@@ -142,4 +152,11 @@ def deploy(folder: Path, site_name: str, token: str) -> str:
             raise DeployError("Netlify build failed")
         time.sleep(3)
 
-    return site.get("ssl_url") or site.get("url") or f"https://{site.get('name', site_name)}.netlify.app"
+    return dep.get("id", "")
+
+
+def deploy(folder: Path, site_name: str, token: str) -> str:
+    site_info = ensure_site(site_name, token)
+    deploy_to_site(folder, site_info["id"], token)
+    return site_info["url"]
+

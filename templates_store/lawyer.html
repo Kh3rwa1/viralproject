@@ -8,14 +8,22 @@
     content="width=device-width, initial-scale=1, viewport-fit=cover"
   >
 
-  <meta
-    name="description"
-    content="Request a legal consultation with a lawyer in Jamshedpur."
-  >
+  <title>{{ lead.pageTitle }}</title>
 
-  <meta name="theme-color" content="#120d0b">
+  <meta name="description" content="{{ lead.pageDescription }}">
+  {% if not live %}<meta name="robots" content="noindex,nofollow">{% endif %}
+  <link rel="canonical" href="{{ lead.pageUrl }}">
 
-  <title>Legal Consultation in Jamshedpur</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ lead.siteName }}">
+  <meta property="og:title" content="{{ lead.pageTitle }}">
+  <meta property="og:description" content="{{ lead.pageDescription }}">
+  <meta property="og:url" content="{{ lead.pageUrl }}">
+
+  <script type="application/ld+json">
+  {{ schema | tojson }}
+  </script>
+
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2055,45 +2063,26 @@
     */
 
     const LEAD = {
-      fullName:
-        "Ravi Shankar Pandey (Best/Top Lawyer and Advocate in Jamshedpur)",
-
-      shortName:
-        "Ravi Shankar Pandey",
-
-      rating:
-        "4.8",
-
-      reviewCount:
-        "190",
-
-      category:
-        "Lawyer",
-
-      address:
-        "Sharda Bhavan, Vishnu Path, Jamshedpur",
-
-      city:
-        "Jamshedpur",
-
-      phone:
-        "094705 50524",
-
-      hours:
-        "Open 24 hours",
-
-      review:
-        "The guidance provided was practical and reassuring throughout the process.",
-
-      mapsUrl:
-        "https://www.google.com/maps/place/Ravi+Shankar+Pandey+%28Best%2FTop+Lawyer+and+Advocate+in+Jamshedpur%29/data=!4m7!3m6!1s0x39f5e524cf1cc48f:0xb3ae6984a152c6ba!8m2!3d22.7712274!4d86.2641183!16s%2Fg%2F11q88v630l"
+      fullName: {{ lead.fullName | tojson }},
+      shortName: {{ lead.shortName | tojson }},
+      rating: {{ lead.rating | tojson }},
+      reviewCount: {{ lead.reviewCount | tojson }},
+      category: {{ lead.category | tojson }},
+      address: {{ lead.address | tojson }},
+      city: {{ lead.city | tojson }},
+      phone: {{ lead.phoneDisplay | tojson }},
+      phoneIntl: {{ lead.phoneIntl | tojson }},
+      waEnabled: {{ lead.waEnabled | tojson }},
+      hours: {{ lead.hours | tojson }},
+      review: {{ lead.review | tojson }},
+      mapsUrl: {{ lead.mapsUrl | tojson }}
     };
 
     /*
       Optional URL personalization:
 
       index.html?name=Advocate%20Rahul%20Singh
-                &phone=9876543210
+                &phone=910000000000
                 &category=Legal%20Services
                 &address=Jamshedpur
                 &rating=5.0

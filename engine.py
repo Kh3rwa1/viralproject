@@ -7,10 +7,21 @@ import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
 
+from jinja2 import Environment, StrictUndefined, select_autoescape
+
 ROOT = Path(__file__).resolve().parent
 TEMPLATE_DIR = ROOT / "templates_store"
 DIST = ROOT / "dist"
 DATA = ROOT / "data"
+
+JINJA = Environment(
+    autoescape=select_autoescape(
+        enabled_extensions=("html", "xml"),
+        default_for_string=True,
+    ),
+    undefined=StrictUndefined,
+)
+
 
 # Fields the pipeline owns. The runtime is allowed to blank/hide only these,
 # so template-computed things (initials, categoryLocation) are never touched.
@@ -121,26 +132,99 @@ def slugify(text: str) -> str:
 
 # ------------------------------------------------------------------ lead record
 
-def lead_record(row: dict, slug: str) -> dict:
-    kind = row.get("phone_kind") or phone_kind(row.get("phone", ""))
+def lead_record(row: dict, slug: str, *, base_url="", site_name="Previews") -> dict:
+    phone_raw = row.get("phone", "")
+    phone_intl_num = phone_intl(phone_raw)
+    kind = row.get("phone_kind") or phone_kind(phone_raw)
+    wa_enabled = (kind == "mobile")
+
+    page_url = (
+        f"{base_url.rstrip('/')}/{slug}/"
+        if base_url
+        else f"/{slug}/"
+    )
+
+    full_name = row.get("name_full") or row.get("name") or ""
+    short_n = short_name(row.get("name") or full_name)
+    category = row.get("category") or "Local Business"
+    city = row.get("city") or ""
+
     return {
         "slug": slug,
-        "fullName": row.get("name_full") or row.get("name") or "",
-        "shortName": short_name(row.get("name") or ""),
-        "category": row.get("category") or "",
-        "city": row.get("city") or "",
+        "fullName": full_name,
+        "shortName": short_n,
+        "category": category,
+        "city": city,
         "address": row.get("address") or "",
-        "phone": phone_display(row.get("phone")),
-        "phoneIntl": phone_intl(row.get("phone")),
-        "waEnabled": kind == "mobile",
+        "phone": phone_raw or "",
+        "phoneDisplay": phone_display(phone_raw),
+        "phoneIntl": phone_intl_num,
+        "whatsappUrl": (
+            f"https://wa.me/{phone_intl_num}"
+            if wa_enabled and phone_intl_num
+            else ""
+        ),
+        "waEnabled": wa_enabled,
         "rating": str(row.get("rating") or ""),
         "reviewCount": str(row.get("reviews") or ""),
-        "hours": row.get("hours") or "",
         "review": row.get("review") or "",
-        "mapsUrl": row.get("maps_url") or "",
+        "hours": row.get("hours") or "",
         "website": row.get("website") or "",
         "websiteLabel": row.get("website_label") or "",
+        "mapsUrl": row.get("maps_url") or "",
+        "latitude": str(row.get("lat") or row.get("latitude") or ""),
+        "longitude": str(row.get("lng") or row.get("longitude") or ""),
+        "pageUrl": page_url,
+        "pageTitle": f"{full_name} — {category} in {city}" if city else f"{full_name} — {category}",
+        "pageDescription": (
+            f"Contact {full_name}, a {category} serving {city}." if city else f"Contact {full_name}, a {category}."
+        ),
+        "siteName": site_name,
+        "builtAt": now_iso(),
     }
+
+
+def render_full_page(template_source: str, lead: dict, *, schema=None, live=False) -> str:
+    if schema is None:
+        schema = {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": lead["fullName"],
+            "telephone": f"+{lead['phoneIntl']}" if lead["phoneIntl"] else "",
+            "address": lead["address"],
+            "url": lead["pageUrl"],
+        }
+    template = JINJA.from_string(template_source)
+    return template.render(
+        lead=lead,
+        schema=schema,
+        live=live,
+    )
+
+
+REQUIRED_TEMPLATE_FIELDS = [
+    "lead.fullName",
+    "lead.category",
+    "lead.city",
+    "lead.phoneIntl",
+]
+
+DEMO_VALUES = [
+    "BrightPath",
+    "9876543210",
+    "Sample Business",
+]
+
+
+def validate_template(template_source: str) -> list[str]:
+    errors = []
+    for field in REQUIRED_TEMPLATE_FIELDS:
+        if field not in template_source:
+            errors.append(f"Missing template field: {field}")
+    for demo in DEMO_VALUES:
+        if demo in template_source:
+            errors.append(f"Found hardcoded demo value: '{demo}'")
+    return errors
 
 
 def page_title(lead: dict) -> str:
@@ -156,6 +240,7 @@ def page_desc(lead: dict) -> str:
     city = lead["city"]
     tail = f" in {city}" if city else ""
     return f"Request a consultation with {who}, {cat}{tail}. Tap to call or message directly."
+
 
 
 # ------------------------------------------------------------------ template introspection

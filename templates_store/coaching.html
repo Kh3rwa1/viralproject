@@ -4,18 +4,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>BrightPath Coaching Centre</title>
+<title>{{ lead.pageTitle }}</title>
 
 <meta
   name="description"
-  content="Easy-to-understand coaching classes, regular tests and personal attention. Admissions open now."
+  content="{{ lead.pageDescription }}"
 >
 
+{% if not live %}
+<meta name="robots" content="noindex,nofollow">
+{% endif %}
+<link rel="canonical" href="{{ lead.pageUrl }}">
+
 <meta property="og:type" content="website">
-<meta property="og:title" content="BrightPath Coaching Centre">
-<meta property="og:description" content="Admissions open. Simple teaching, regular tests and personal attention.">
+<meta property="og:site_name" content="{{ lead.siteName }}">
+<meta property="og:title" content="{{ lead.pageTitle }}">
+<meta property="og:description" content="{{ lead.pageDescription }}">
+<meta property="og:url" content="{{ lead.pageUrl }}">
 <meta property="og:image" content="https://images.pexels.com/videos/6964495/free-video-6964495.jpg?auto=compress&amp;cs=tinysrgb&amp;w=1200">
 <meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">
+{{ schema | tojson }}
+</script>
+
 
 <meta name="theme-color" content="#f4efe2">
 
@@ -1550,8 +1562,8 @@ footer{
     <div class="nav-shell">
 
       <a class="logo" href="#home" aria-label="Homepage">
-        <i class="logo-mark"><span>B</span></i>
-        <span data-site="shortName">BrightPath</span>
+        <i class="logo-mark"><span>{{ lead.shortName[:1] if lead.shortName else 'B' }}</span></i>
+        <span data-site="shortName">{{ lead.shortName }}</span>
       </a>
 
       <nav class="desktop-nav" aria-label="Main navigation">
@@ -1611,11 +1623,13 @@ footer{
 
     <div class="hero-copy">
 
+      {% if lead.city %}
       <div class="admission-status">
         <span class="status-dot"></span>
         Admissions open now in
-        <span data-site="city">Kalyani</span>
+        <span data-site="city">{{ lead.city }}</span>
       </div>
+      {% endif %}
 
       <h1 id="heroTitle">
         Study with confidence. Get better marks.
@@ -2138,25 +2152,26 @@ footer{
 ========================================================= */
 
 const SITE = {
-  city: "Kalyani",
-  name: "Bumba Sir Biology Coaching Centre",
-  shortName: "BrightPath",
+  city: {{ lead.city | tojson }},
+  name: {{ lead.fullName | tojson }},
+  shortName: {{ lead.shortName | tojson }},
 
-  phone: "+917384566478",
-  phoneDisplay: "+91 73845 66478",
+  phone: {{ (lead.phoneIntl and ("+" + lead.phoneIntl) or lead.phone) | tojson }},
+  phoneDisplay: {{ lead.phoneDisplay | tojson }},
 
-  whatsapp: "https://wa.me/917384566478",
-  category: "Education Centre",
-  website: "https://example.com",
-  maps: "https://maps.google.com"
+  whatsapp: {{ lead.whatsappUrl | tojson }},
+  category: {{ lead.category | tojson }},
+  website: {{ lead.website | tojson }},
+  maps: {{ lead.mapsUrl | tojson }}
 };
+
 
 /* Insert institute details */
 
 document.querySelectorAll("[data-site]").forEach(element => {
   const key = element.dataset.site;
 
-  if (SITE[key] !== undefined) {
+  if (key in SITE && SITE[key] !== null) {
     element.textContent = SITE[key];
   }
 });
