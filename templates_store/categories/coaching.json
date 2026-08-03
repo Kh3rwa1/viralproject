@@ -1,53 +1,106 @@
 {
   "id": "coaching",
-  "name": "Coaching Institutes",
+  "name": "Coaching Institutes & Training Centers",
   "singular": "Training Institute",
-  "headline": "Expert Instruction for Top Exam & Skill Performance",
-  "description": "Structured courses, small batch sizes, and proven study material designed for high achievement.",
-  "services": [
+  "eyebrow": "Result-Driven Competitive Exam Mastery",
+  "headline": "Unlock Your Academic Potential & Rank Top",
+  "description": "Expert faculty, rigorous test series, small batch attention, and structured study material for entrance exam success.",
+  "hero_video_mp4": "https://videos.pexels.com/video-files/5199658/5199658-hd_1920_1080_25fps.mp4",
+  "hero_video_webm": "https://videos.pexels.com/video-files/5199658/5199658-hd_1920_1080_25fps.mp4",
+  "video_poster": "https://images.pexels.com/photos/5199658/pexels-photo-5199658.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "hero_image": "https://images.pexels.com/photos/5199658/pexels-photo-5199658.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "trust_items": [
+    "IIT & AIIMS Faculty",
+    "Small 25-Student Batches",
+    "Daily Doubt Clearance",
+    "AI Analytics Test Portal"
+  ],
+  "statistics": [
     {
-      "title": "Competitive Exam Prep",
-      "description": "Comprehensive coaching for national and state entrance exams."
+      "value": "94.2%",
+      "label": "Selection Success Rate"
     },
     {
-      "title": "Academic Tuition Classes",
-      "description": "Subject-focused classes for school and college students."
+      "value": "4,500+",
+      "label": "Top Ranks Produced"
     },
     {
-      "title": "Professional Skill Courses",
-      "description": "IT skills, digital marketing, and industry certification training."
+      "value": "15+",
+      "label": "Years Educational Excellence"
     },
     {
-      "title": "Mock Tests & Mentorship",
-      "description": "Regular evaluations, performance analytics, and 1-on-1 guidance."
+      "value": "1:1",
+      "label": "Personal Mentorship"
     }
   ],
-  "primary_action": "Enrol now",
-  "secondary_action": "Download syllabus",
-  "disclaimer": "Course duration and batch timings subject to institute schedule.",
-  "pexels_video": "https://videos.pexels.com/video-files/8553856/8553856-hd_1920_1080_25fps.mp4",
-  "location_heading": "Visit Our Training Campus",
-  "contact_heading": "Enquire for Admissions & Batches",
-  "hero_image": "https://images.pexels.com/photos/8553868/pexels-photo-8553868.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "video_poster": "https://images.pexels.com/photos/8553868/pexels-photo-8553868.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "hero_eyebrow": "Empowering Academic & Career Success",
-  "story_heading": "Proven Results Through Expert Mentorship",
-  "story_body": "Our experienced educators provide individual attention and rigorous practice to help students achieve their goals.",
+  "services": [
+    {
+      "title": "IIT-JEE & Medical Entrance",
+      "description": "Comprehensive 1 & 2 year foundation courses for JEE Advanced & NEET."
+    },
+    {
+      "title": "Board Exam Foundation (Cl 8-10)",
+      "description": "Strong STEM fundamentals with conceptual problem-solving practice."
+    },
+    {
+      "title": "Mock Test & AI Analytics",
+      "description": "Adaptive computer tests replicating national exam environments."
+    },
+    {
+      "title": "1-on-1 Personal Mentorship",
+      "description": "Dedicated faculty mentors monitoring weak topics daily."
+    }
+  ],
   "process_steps": [
     {
       "step": "01",
-      "title": "Free Demo Class",
-      "desc": "Experience our teaching methodology firsthand."
+      "title": "Free Diagnostic Test",
+      "desc": "Identify learning strengths and concept gaps."
     },
     {
       "step": "02",
-      "title": "Structured Module",
-      "desc": "Comprehensive curriculum covering all concepts."
+      "title": "Small Batch Placement",
+      "desc": "Join focused interactive classes capped at 25 students."
     },
     {
       "step": "03",
-      "title": "Mock Assessment",
-      "desc": "Regular testing and personalized progress feedback."
+      "title": "Rank Optimization",
+      "desc": "Continuous practice tests, doubt sessions, and exam strategy."
     }
-  ]
+  ],
+  "story": {
+    "heading": "Nurturing Rankers With Structured Pedagogy",
+    "body": "We believe every student can achieve top percentile results when guided by systematic mentorship.",
+    "badge": "Top Rank Producer"
+  },
+  "benefits": [
+    "Air-conditioned quiet library",
+    "Recorded lecture backup portal",
+    "Weekly parent progress reports"
+  ],
+  "testimonials": [
+    {
+      "name": "Saurav Paul",
+      "text": "Cleared JEE Advanced with AIR 412! The faculty support was unmatched.",
+      "rating": "5"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "What is the batch size limit?",
+      "a": "Batches are strictly limited to 25 students for personalized doubt resolution."
+    }
+  ],
+  "team": [
+    {
+      "name": "Prof. D. Roy",
+      "role": "Head of Physics (Ex-IITian)",
+      "exp": "18+ Yrs Exp"
+    }
+  ],
+  "primary_action": "Book Free Trial Class",
+  "secondary_action": "Call Admissions",
+  "location_heading": "Institute Campus & Study Center",
+  "contact_heading": "Apply For Scholarship Test",
+  "disclaimer": "Exam rank success dependent on student dedication and attendance."
 }

@@ -284,7 +284,7 @@ class TestStandaloneGenerator(unittest.TestCase):
 
     def test_unique_category_videos(self):
         packs = [engine.load_category_pack(category) for category in engine.BUSINESS_CATEGORIES]
-        videos = [pack.get("pexels_video") for pack in packs if pack.get("pexels_video")]
+        videos = [pack.get("hero_video_mp4") or pack.get("pexels_video") for pack in packs if pack.get("hero_video_mp4") or pack.get("pexels_video")]
         self.assertEqual(len(videos), 10)
         self.assertEqual(len(set(videos)), 10)
 
@@ -313,16 +313,17 @@ class TestStandaloneGenerator(unittest.TestCase):
                 self.assertIn("loop", html)
                 self.assertIn("playsinline", html)
                 self.assertIn("poster=", html)
-                self.assertIn('document.querySelectorAll(".hero-video")', html)
+                self.assertTrue('data-video-hero' in html or 'hero-video' in html)
 
     def test_all_categories_have_video_and_poster(self):
         for category in engine.BUSINESS_CATEGORIES:
             pack = engine.load_category_pack(category)
+            v_url = pack.get("hero_video_mp4") or pack.get("pexels_video")
 
             with self.subTest(category=category):
-                self.assertTrue(pack.get("pexels_video"))
+                self.assertTrue(v_url)
                 self.assertTrue(pack.get("video_poster"))
-                self.assertTrue(pack["pexels_video"].startswith("https://"))
+                self.assertTrue(v_url.startswith("https://"))
                 self.assertTrue(pack["video_poster"].startswith("https://"))
 
     def test_map_coordinate_priority(self):

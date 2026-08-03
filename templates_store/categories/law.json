@@ -1,53 +1,106 @@
 {
   "id": "law",
   "name": "Law Firms",
-  "singular": "Law Office",
-  "headline": "Protecting Your Rights & Legal Interests",
-  "description": "Experienced attorneys offering legal counsel in personal injury, business law, and family matters.",
-  "services": [
+  "singular": "Law Practice",
+  "eyebrow": "Strategic & Relentless Legal Advocacy",
+  "headline": "Protecting Your Legal Rights & Corporate Interests",
+  "description": "Seasoned advocates offering sharp litigation defense, corporate counsel, estate planning, and dispute resolution.",
+  "hero_video_mp4": "https://videos.pexels.com/video-files/5669176/5669176-hd_1920_1080_25fps.mp4",
+  "hero_video_webm": "https://videos.pexels.com/video-files/5669176/5669176-hd_1920_1080_25fps.mp4",
+  "video_poster": "https://images.pexels.com/photos/5668858/pexels-photo-5668858.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "hero_image": "https://images.pexels.com/photos/5668858/pexels-photo-5668858.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "trust_items": [
+    "Bar Council Certified",
+    "96% Success Record",
+    "Confidential Counsel",
+    "Transparent Fee Guarantee"
+  ],
+  "statistics": [
     {
-      "title": "Corporate & Business Law",
-      "description": "Contract drafting, entity formation, and regulatory compliance."
+      "value": "1,200+",
+      "label": "Cases Resolved"
     },
     {
-      "title": "Civil & Commercial Litigation",
-      "description": "Representation in court disputes, arbitration, and resolution."
+      "value": "\u20b950Cr+",
+      "label": "Settlements Secured"
+    },
+    {
+      "value": "22+",
+      "label": "Years Practice"
+    },
+    {
+      "value": "100%",
+      "label": "Client Confidentiality"
+    }
+  ],
+  "services": [
+    {
+      "title": "Civil & Criminal Litigation",
+      "description": "Robust courtroom representation across High Court & District Courts."
+    },
+    {
+      "title": "Corporate & Commercial Law",
+      "description": "Contract drafting, regulatory compliance, mergers, and IP protection."
     },
     {
       "title": "Property & Real Estate Law",
-      "description": "Title verification, property documentation, and dispute assistance."
+      "description": "Title verification, property dispute resolution, and registration."
     },
     {
       "title": "Family & Estate Planning",
-      "description": "Wills, trusts, estate management, and family legal matters."
+      "description": "Wills, probate, asset protection, and marital disputes."
     }
   ],
-  "primary_action": "Request consultation",
-  "secondary_action": "Call office",
-  "disclaimer": "Information on this page does not constitute formal legal advice. Past outcomes do not guarantee future results.",
-  "pexels_video": "https://videos.pexels.com/video-files/5668750/5668750-hd_1920_1080_25fps.mp4",
-  "location_heading": "Visit Our Law Office",
-  "contact_heading": "Request a Legal Consultation",
-  "hero_image": "https://images.pexels.com/photos/5668772/pexels-photo-5668772.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "video_poster": "https://images.pexels.com/photos/5668772/pexels-photo-5668772.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "hero_eyebrow": "Strategic Legal Representation",
-  "story_heading": "Uncompromising Legal Expertise",
-  "story_body": "We advocate tirelessly for our clients, delivering tailored legal strategies backed by years of courtroom success.",
   "process_steps": [
     {
       "step": "01",
       "title": "Case Evaluation",
-      "desc": "Confidential initial assessment of your legal position."
+      "desc": "Strictly confidential legal review of your situation."
     },
     {
       "step": "02",
-      "title": "Strategic Planning",
-      "desc": "Building a strong legal roadmap tailored to your goals."
+      "title": "Strategy Roadmap",
+      "desc": "Clear action plan with risk analysis and timeline."
     },
     {
       "step": "03",
-      "title": "Determined Representation",
-      "desc": "Relentless advocacy to secure the best outcome."
+      "title": "Relentless Execution",
+      "desc": "Dedicated representation in court and negotiations."
     }
-  ]
+  ],
+  "story": {
+    "heading": "Uncompromising Defense of Your Rights",
+    "body": "We represent individuals and enterprises with strategic legal precision and unwavering integrity.",
+    "badge": "High Court Legal Counsel"
+  },
+  "benefits": [
+    "Direct Senior Counsel Access",
+    "No Hidden Billing Rates",
+    "Urgent Injunction Filing"
+  ],
+  "testimonials": [
+    {
+      "name": "Vikram Mehta",
+      "text": "Outstanding legal counsel. Resolved our property dispute efficiently.",
+      "rating": "5"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Is the first legal consultation confidential?",
+      "a": "Yes, attorney-client privilege applies to all inquiries."
+    }
+  ],
+  "team": [
+    {
+      "name": "Adv. K. Sengupta",
+      "role": "Senior Partner",
+      "exp": "20+ Yrs Exp"
+    }
+  ],
+  "primary_action": "Schedule Confidential Consultation",
+  "secondary_action": "Call Advocate",
+  "location_heading": "Our Law Chambers",
+  "contact_heading": "Request Legal Counsel",
+  "disclaimer": "Legal advice is tailored to specific jurisdiction details."
 }

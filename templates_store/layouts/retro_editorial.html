@@ -1,181 +1,203 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  {% include 'partials/seo.html' %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ lead.pageTitle }}</title>
+  <meta name="description" content="{{ lead.pageDescription }}">
+  {% if not live %}<meta name="robots" content="noindex, nofollow">{% endif %}
+  <link rel="canonical" href="{{ lead.pageUrl }}">
+
+  <!-- Fonts & Motion -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  {% include "partials/motion.html" %}
+
   <style>
     :root {
-      --primary: #78350f;
-      --accent: #92400e;
-      --bg: #faf7f2;
-      --card-bg: #fffcf7;
+      --bg: #fbf9f5;
+      --surface: #f4efe6;
+      --surface-card: #ffffff;
       --text: #1c1917;
       --muted: #57534e;
-      --border: #d6d3d1;
+      --primary: #991b1b;
+      --primary-hover: #7f1d1d;
+      --border: #e7e5e4;
+      --max-w: 1140px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif; background: var(--bg); color: var(--text); line-height: 1.7; padding-bottom: 70px; }
-    .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+    body { background: var(--bg); color: var(--text); font-family: 'Source Sans 3', Georgia, serif; line-height: 1.6; overflow-x: hidden; }
+    h1, h2, h3, .serif { font-family: 'Playfair Display', Georgia, serif; }
+    .container { width: 100%; max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 24px; font-weight: 700; font-size: 14px; text-decoration: none; transition: all 0.2s ease; cursor: pointer; border: none; text-transform: uppercase; letter-spacing: 1px; }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-hover); }
+    .btn-outline { border: 1px solid var(--text); color: var(--text); background: transparent; }
+    .btn-outline:hover { background: var(--text); color: #fff; }
 
-    .site-header { background: var(--bg); border-bottom: 2px solid #1c1917; padding: 20px 0; position: sticky; top: 0; z-index: 100; }
-    .header-wrap { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; }
-    .logo-text { font-size: 32px; font-weight: 900; color: #1c1917; text-decoration: none; text-transform: uppercase; letter-spacing: -0.01em; }
-    .editorial-tag { font-family: -apple-system, sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; color: var(--primary); border-top: 1px solid #1c1917; border-bottom: 1px solid #1c1917; padding: 4px 16px; margin-top: 4px; }
-    
-    .nav-links { margin-top: 10px; font-family: -apple-system, sans-serif; }
-    .nav-links a { color: var(--text); text-decoration: none; margin: 0 14px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+    /* 1. Publication Masthead Header */
+    .masthead { border-bottom: 3px double var(--text); padding: 16px 0; background: var(--bg); text-align: center; }
+    .masthead-meta { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 16px; color: var(--muted); }
+    .masthead-title { font-size: 42px; font-weight: 800; letter-spacing: -1px; text-transform: uppercase; }
 
-    .btn { display: inline-block; padding: 12px 24px; font-weight: 700; font-family: -apple-system, sans-serif; text-decoration: none; cursor: pointer; border: 2px solid #1c1917; transition: all 0.2s; }
-    .btn-primary { background: #1c1917; color: #fff; }
-    .btn-whatsapp { background: #25D366; color: #fff; border-color: #128C7E; }
+    /* 2. Hero Section */
+    .hero { padding: 48px 0; border-bottom: 1px solid var(--border); }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+    .hero-title { font-size: 44px; font-weight: 800; line-height: 1.15; margin-bottom: 20px; }
+    .film-frame { position: relative; border: 12px solid #1c1917; box-shadow: 0 15px 35px rgba(0,0,0,0.15); aspect-ratio: 16/9; background: #000; }
+    .hero-poster, .hero-video { width: 100%; height: 100%; object-fit: cover; }
 
-    .hero { padding: 50px 0; text-align: center; border-bottom: 1px solid var(--border); }
-    .hero-title { font-size: 44px; font-weight: 900; color: #1c1917; margin-bottom: 16px; line-height: 1.15; }
-    .hero-sub { font-size: 20px; font-style: italic; color: var(--muted); max-width: 720px; margin: 0 auto 28px; }
-    .hero-divider { width: 80px; height: 2px; background: #1c1917; margin: 20px auto; }
+    /* 3. Trust Ticker */
+    .trust-ticker { padding: 16px 0; border-bottom: 1px solid var(--border); background: var(--surface); text-align: center; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; }
 
-    /* Newspaper Film-Style Framed Video Media */
-    .hero-media { position: relative; overflow: hidden; border: 3px solid #1c1917; box-shadow: 8px 8px 0 #1c1917; max-width: 800px; height: 380px; margin: 24px auto 0; background: #1c1917; }
-    .hero-media::after { content: ''; position: absolute; inset: 0; background: radial-gradient(rgba(0,0,0,0.1), transparent); pointer-events: none; z-index: 2; }
-    .hero-video, .hero-fallback { width: 100%; height: 100%; object-fit: cover; }
-    .hero-fallback { position: absolute; inset: 0; z-index: 0; }
-    .hero-video { position: relative; z-index: 1; }
+    /* 5. Editorial Service Directory */
+    .section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+    .editorial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
+    .service-row { border-top: 1px solid var(--text); padding-top: 20px; margin-bottom: 32px; }
+    .service-num { font-size: 28px; font-weight: 800; color: var(--primary); }
 
-    .story-spread { padding: 50px 0; border-bottom: 1px solid var(--border); }
-    .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+    /* 13 & 14. Booking & Map Directory */
+    .booking-box { border: 2px solid var(--text); padding: 40px; background: #fff; }
+    .map-frame { width: 100%; height: 320px; border: 1px solid var(--text); margin-top: 20px; filter: grayscale(0.5); }
 
-    
-    /* Retro Editorial Directory Contact & Map Styling */
-    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; text-align: center; margin-top: 32px; }
-    .contact-card { background: var(--card-bg); padding: 30px; border: 1px solid var(--border); box-shadow: 4px 4px 0 #1c1917; }
-    .contact-icon { font-size: 32px; margin-bottom: 12px; color: var(--primary); }
-    .link-btn { display: inline-block; margin-top: 12px; color: #1c1917; font-weight: 700; text-decoration: underline; font-family: -apple-system, sans-serif; }
-    .map-container { border: 2px solid #1c1917; box-shadow: 6px 6px 0 #1c1917; background: #faf7f2; }
-
-    .services-section { padding: 60px 0; }
-    .section-title { font-size: 28px; text-align: center; margin-bottom: 36px; color: #1c1917; font-weight: 800; border-bottom: 2px solid #1c1917; display: inline-block; padding-bottom: 6px; }
-    .index-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
-    .index-card { background: var(--card-bg); padding: 28px; border: 1px solid var(--border); box-shadow: 4px 4px 0 #1c1917; text-align: left; }
-    .index-num { font-family: -apple-system, sans-serif; font-size: 13px; font-weight: 900; color: var(--primary); margin-bottom: 6px; }
-
-    .site-footer { background: #1c1917; color: #d6d3d1; padding: 40px 0; text-align: center; margin-top: 40px; font-family: -apple-system, sans-serif; }
-
-    @media (max-width: 768px) {
-      .hero-title { font-size: 32px; }
-      .story-grid { grid-template-columns: 1fr; }
-      .logo-text { font-size: 24px; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .hero-video { display: none !important; }
-      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-    }
-  
-    /* Mobile Sticky Bar CTA Styling */
-    .mobile-sticky-bar { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); padding: 10px 16px; display: flex; gap: 10px; z-index: 999; border-top: 1px solid var(--border, rgba(255,255,255,0.1)); }
-    .bar-btn { flex: 1; display: flex; align-items: center; justify-content: center; padding: 12px 14px; border-radius: 8px; font-weight: 700; font-size: 13px; text-decoration: none; color: #fff; background: var(--primary, #0f766e); }
-    .bar-btn.whatsapp { background: #25D366; color: #fff; }
+    footer { background: var(--text); color: #d6d3d1; padding: 60px 0 30px; font-size: 14px; }
+    .mobile-sticky-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #1c1917; padding: 10px 16px; display: flex; gap: 10px; z-index: 999; border-top: 2px solid var(--primary); }
+    .bar-btn { flex: 1; display: flex; align-items: center; justify-content: center; padding: 12px 14px; font-weight: 700; font-size: 13px; text-decoration: none; color: #fff; background: var(--primary); }
+    .bar-btn.whatsapp { background: #25D366; }
     @media (min-width: 769px) { .mobile-sticky-bar { display: none !important; } }
-
+    @media (max-width: 900px) {
+      .hero-grid, .editorial-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 32px; }
+      .masthead-title { font-size: 28px; }
+    }
   </style>
+  <script type="application/ld+json">{{ schema | tojson }}</script>
 </head>
 <body>
 
-  <!-- Editorial Header -->
-  <header class="site-header">
-    <div class="container header-wrap">
-      <a href="#top" class="logo-text">{{ lead.fullName }}</a>
-      <span class="editorial-tag">Professional Service · {{ category_pack.name if category_pack else lead.category }}</span>
-      <nav class="nav-links">
-        <a href="#story">Story</a>
-        <a href="#services">Offerings</a>
-        <a href="#contact">Contact</a>
-      </nav>
+  <!-- 1. Publication Masthead Header -->
+  <header class="masthead">
+    <div class="container">
+      <div class="masthead-meta">
+        <span>ESTABLISHED PRACTICE</span>
+        <span>{{ lead.category }} — {{ lead.city }}</span>
+        <span>ISSUE {{ current_year }}</span>
+      </div>
+      <a href="#" class="masthead-title serif" style="color:inherit;text-decoration:none">{{ lead.fullName }}</a>
     </div>
   </header>
 
-  <!-- Editorial Hero with Newspaper Film Frame -->
+  <!-- 2. Hero Section -->
   <section class="hero">
-    <div class="container">
-      <h1 class="hero-title">{{ lead.fullName }}</h1>
-      <div class="hero-divider"></div>
-      <p class="hero-sub">{{ category_pack.headline if category_pack else lead.pageDescription }}</p>
-      <div>
-        {% if lead.phoneHref %}
-        <a href="{{ lead.phoneHref }}" class="btn btn-primary">{{ category_pack.primary_action if category_pack else 'Call Now' }} ({{ lead.phoneIntl }})</a>
-        {% endif %}
-        {% if lead.whatsappHref %}
-        <a href="{{ lead.whatsappHref }}" target="_blank" class="btn btn-whatsapp" style="margin-left:10px">WhatsApp Us</a>
-        {% endif %}
+    <div class="container hero-grid">
+      <div class="reveal-up">
+        <p style="text-transform:uppercase;letter-spacing:2px;font-weight:700;color:var(--primary);margin-bottom:12px">SPECIAL EDITORIAL FEATURE</p>
+        <h1 class="hero-title serif">{{ category_pack.headline or lead.fullName }}</h1>
+        <p style="font-size:18px;color:var(--muted);margin-bottom:28px">{{ category_pack.description or lead.pageDescription }}</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="#book" class="btn btn-primary">{{ category_pack.primary_action or 'Book Consultation' }}</a>
+          {% if lead.phoneHref %}<a href="{{ lead.phoneHref }}" class="btn btn-outline">Call {{ lead.phoneDisplay }}</a>{% endif %}
+        </div>
       </div>
-      <div class="hero-media">
-        {% if category_pack and category_pack.hero_image %}
-        <img class="hero-fallback" src="{{ category_pack.hero_image }}" alt="" loading="eager">
-        {% endif %}
-        {% if category_pack and category_pack.pexels_video %}
-        <video class="hero-video" autoplay muted loop playsinline preload="metadata" {% if category_pack.video_poster %}poster="{{ category_pack.video_poster }}"{% endif %} aria-hidden="true">
-          <source src="{{ category_pack.pexels_video }}" type="video/mp4">
+      <div class="film-frame reveal-up" data-video-hero>
+        <img class="hero-poster" src="{{ category_pack.video_poster }}" alt="{{ lead.fullName }}">
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="{{ category_pack.video_poster }}">
+          <source src="{{ category_pack.hero_video_webm }}" type="video/webm">
+          <source src="{{ category_pack.hero_video_mp4 }}" type="video/mp4">
         </video>
-        {% endif %}
       </div>
     </div>
   </section>
 
-  <!-- Story Spread -->
-  {% if category_pack and category_pack.story_heading %}
-  <section id="story" class="story-spread">
-    <div class="container story-grid">
-      <div>
-        <h2 style="font-size:26px;font-weight:900;margin-bottom:12px">{{ category_pack.story_heading }}</h2>
-        <p style="font-size:16px;color:var(--muted);font-family:-apple-system, sans-serif">{{ category_pack.story_body }}</p>
-      </div>
-      {% if category_pack.hero_image %}
-      <div style="border:2px solid #1c1917;box-shadow:6px 6px 0 #1c1917">
-        <img src="{{ category_pack.hero_image }}" alt="{{ lead.fullName }}" style="width:100%;height:260px;object-fit:cover" loading="lazy">
-      </div>
-      {% endif %}
+  <!-- 3. Trust Ticker -->
+  {% if category_pack.trust_items %}
+  <div class="trust-ticker">
+    <div class="container">
+      {% for item in category_pack.trust_items %}
+        <span>✦ {{ item }} </span> &nbsp;&nbsp;&nbsp;
+      {% endfor %}
     </div>
-  </section>
+  </div>
   {% endif %}
 
-  <!-- Numbered Service Index -->
-  <section id="services" class="services-section">
-    <div class="container" style="text-align:center">
-      <h2 class="section-title">Index of Services</h2>
-      <div class="index-grid">
-        {% if category_pack and category_pack.services %}
-          {% for s in category_pack.services %}
-          <div class="index-card">
-            <div class="index-num">0{{ loop.index }}.</div>
-            <h3>{{ s.title }}</h3>
-            <p>{{ s.description }}</p>
+  <!-- 5. Editorial Service Directory -->
+  <section class="section">
+    <div class="container">
+      <h2 class="serif" style="font-size:36px;text-align:center;margin-bottom:48px">PRACTICE DIRECTORY & SERVICES</h2>
+      <div class="editorial-grid reveal-stagger">
+        {% for s in category_pack.services %}
+          <div class="service-row">
+            <span class="service-num serif">0{{ loop.index }}.</span>
+            <h3 class="serif" style="font-size:24px;margin:8px 0">{{ s.title }}</h3>
+            <p style="color:var(--muted)">{{ s.description }}</p>
           </div>
-          {% endfor %}
-        {% else %}
-          <div class="index-card">
-            <div class="index-num">01.</div>
-            <h3>Professional Services</h3>
-            <p>Quality care provided directly by {{ lead.shortName }}.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 & 12. Story & FAQ -->
+  <section class="section" style="background:var(--surface)">
+    <div class="container editorial-grid">
+      <div class="reveal-up">
+        <h2 class="serif" style="font-size:32px;margin-bottom:16px">OUR EDITORIAL STORY</h2>
+        <p style="font-size:16px;color:var(--muted);margin-bottom:24px">{{ category_pack.story.body if category_pack.story else lead.pageDescription }}</p>
+        <blockquote style="border-left:3px solid var(--primary);padding-left:20px;font-style:italic;font-size:18px" class="serif">
+          "Uncompromising dedication to patient health and clinical excellence."
+        </blockquote>
+      </div>
+
+      <div class="reveal-up">
+        <h2 class="serif" style="font-size:32px;margin-bottom:16px">FREQUENTLY ASKED QUESTIONS</h2>
+        {% for f in category_pack.faqs %}
+          <div class="faq-item">
+            <button class="faq-trigger"><span>{{ f.q }}</span> <span class="faq-icon">+</span></button>
+            <div class="faq-content"><p style="color:var(--muted)">{{ f.a }}</p></div>
           </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 & 14. Booking & Map Directory -->
+  <section class="section" id="book">
+    <div class="container editorial-grid">
+      <div class="booking-box reveal-up">
+        <h2 class="serif" style="font-size:28px;margin-bottom:12px">{{ category_pack.contact_heading or 'Schedule Consultation' }}</h2>
+        <p style="color:var(--muted);margin-bottom:24px">Direct directory reservation for {{ lead.fullName }}.</p>
+        {% if lead.phoneHref %}<a href="{{ lead.phoneHref }}" class="btn btn-primary" style="width:100%;margin-bottom:12px">Call {{ lead.phoneDisplay }}</a>{% endif %}
+        {% if lead.whatsappHref %}<a href="{{ lead.whatsappHref }}" class="btn btn-outline" style="width:100%">WhatsApp Enquiry</a>{% endif %}
+      </div>
+      <div class="reveal-up">
+        <h2 class="serif" style="font-size:28px;margin-bottom:12px">{{ category_pack.location_heading or 'Directory Location' }}</h2>
+        <p style="color:var(--muted)">{{ lead.fullAddress or lead.address }}</p>
+        {% if lead.mapsEmbedUrl %}
+          <iframe class="map-frame" src="{{ lead.mapsEmbedUrl }}" loading="lazy" allowfullscreen></iframe>
         {% endif %}
       </div>
     </div>
   </section>
 
-  {% include 'partials/contact.html' %}
-  {% include 'partials/map.html' %}
-  {% include 'partials/footer.html' %}
-  {% include 'partials/mobile_actions.html' %}
-  {% include 'partials/structured_data.html' %}
+  <!-- 16. Footer -->
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px">
+      <div>
+        <h3 class="serif" style="font-size:20px">{{ lead.fullName }}</h3>
+        <p style="margin-top:4px;color:#a8a29e">{{ lead.category }} — {{ lead.city }}</p>
+      </div>
+      <div>
+        <p style="color:#a8a29e">{{ category_pack.disclaimer }}</p>
+        <p style="margin-top:8px">© {{ current_year }} {{ lead.fullName }}. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
 
-  <script>
-  document.querySelectorAll(".hero-video").forEach((video) => {
-    const hideVideo = () => { video.hidden = true; };
-    video.addEventListener("error", hideVideo);
-    const source = video.querySelector("source");
-    if (source) { source.addEventListener("error", hideVideo); }
-  });
-</script>
+  <!-- 17. Mobile Sticky Actions -->
+  <div class="mobile-sticky-bar">
+    {% if lead.phoneHref %}<a href="{{ lead.phoneHref }}" class="bar-btn">Call Now</a>{% endif %}
+    {% if lead.whatsappHref %}<a href="{{ lead.whatsappHref }}" class="bar-btn whatsapp">WhatsApp</a>{% endif %}
+  </div>
+
 </body>
 </html>

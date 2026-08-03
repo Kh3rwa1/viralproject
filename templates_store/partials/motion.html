@@ -1,0 +1,185 @@
+<!-- Shared Premium Motion System & Interactive Components -->
+<style>
+  /* Entrance Animations */
+  .reveal-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-up.is-inview {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-stagger.is-inview > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-stagger.is-inview > *:nth-child(1) { transition-delay: 0.05s; }
+  .reveal-stagger.is-inview > *:nth-child(2) { transition-delay: 0.12s; }
+  .reveal-stagger.is-inview > *:nth-child(3) { transition-delay: 0.19s; }
+  .reveal-stagger.is-inview > *:nth-child(4) { transition-delay: 0.26s; }
+
+  /* Video Hero State Management */
+  [data-video-hero] .hero-video {
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+  [data-video-hero].video-ready .hero-video {
+    opacity: 1;
+  }
+  [data-video-hero].video-failed .hero-video {
+    display: none !important;
+  }
+
+  /* FAQ Accordion Styling */
+  .faq-item {
+    border-bottom: 1px solid var(--border-color, rgba(255,255,255,0.1));
+    overflow: hidden;
+  }
+  .faq-trigger {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 18px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: inherit;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+  .faq-icon {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+  }
+  .faq-content {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  }
+  .faq-item.active .faq-content {
+    max-height: 250px;
+    opacity: 1;
+    padding-bottom: 18px;
+  }
+  .faq-item.active .faq-icon {
+    transform: rotate(45deg);
+  }
+
+  /* Reduced Motion Overrides */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      scroll-behavior: auto !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    .reveal-up, .reveal-stagger > * {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    [data-tilt] {
+      transform: none !important;
+    }
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. Resilient Video Hero Handler
+  document.querySelectorAll('[data-video-hero]').forEach(hero => {
+    const video = hero.querySelector('video');
+    if (!video) return;
+
+    const activate = () => hero.classList.add('video-ready');
+    const fallback = () => {
+      hero.classList.remove('video-ready');
+      hero.classList.add('video-failed');
+    };
+
+    video.addEventListener('canplay', activate, { once: true });
+    video.addEventListener('error', fallback);
+
+    video.querySelectorAll('source').forEach(src => {
+      src.addEventListener('error', () => {
+        if (video.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) {
+          fallback();
+        }
+      });
+    });
+
+    const playPromise = video.play();
+    if (playPromise && playPromise.catch) {
+      playPromise.catch(fallback);
+    }
+  });
+
+  // 2. IntersectionObserver for Reveal Animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-inview');
+        // Trigger counter if present
+        if (entry.target.hasAttribute('data-count')) {
+          animateCounter(entry.target);
+        }
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal-up, .reveal-stagger, [data-count]').forEach(el => observer.observe(el));
+
+  // 3. Number Counter Animation
+  function animateCounter(el) {
+    const raw = el.getAttribute('data-count') || el.innerText;
+    const target = float(raw);
+    if (!target || el.dataset.animated) return;
+    el.dataset.animated = 'true';
+    let current = 0;
+    const duration = 1500;
+    const step = target / (duration / 16);
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= target) {
+        current = target;
+        clearInterval(timer);
+      }
+      el.innerText = Math.floor(current).toLocaleString() + (raw.includes('+') ? '+' : raw.includes('%') ? '%' : '');
+    }, 16);
+  }
+  function float(v) { return parseFloat(String(v).replace(/[^0-9.]/g, '')) || 0; }
+
+  // 4. FAQ Accordion Handler
+  document.querySelectorAll('.faq-trigger').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isActive = item.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+      if (!isActive) item.classList.add('active');
+    });
+  });
+
+  // 5. 3D Card Tilt Effect
+  document.querySelectorAll('[data-tilt]').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      card.style.transform = `perspective(800px) rotateX(${-y / 20}deg) rotateY(${x / 20}deg) scale3d(1.02, 1.02, 1.02)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'none';
+    });
+  });
+});
+</script>

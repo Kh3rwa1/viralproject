@@ -1,53 +1,106 @@
 {
   "id": "medical",
   "name": "Medical Clinics",
-  "singular": "Medical Center",
-  "headline": "Compassionate Healthcare When You Need It Most",
-  "description": "Dedicated medical professionals offering primary care, health screenings, and wellness checks.",
-  "services": [
+  "singular": "Medical Practice",
+  "eyebrow": "Comprehensive Multi-Specialty Healthcare",
+  "headline": "World-Class Medical Care For Your Family",
+  "description": "Board-certified physicians, advanced diagnostic technology, and holistic treatment plans in a state-of-the-art medical environment.",
+  "hero_video_mp4": "https://videos.pexels.com/video-files/7578886/7578886-uhd_2560_1440_25fps.mp4",
+  "hero_video_webm": "https://videos.pexels.com/video-files/7578886/7578886-uhd_2560_1440_25fps.mp4",
+  "video_poster": "https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "hero_image": "https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "trust_items": [
+    "NABL Certified Lab",
+    "NABH Accredited",
+    "24/7 Pharmacy",
+    "Zero Waiting Time"
+  ],
+  "statistics": [
     {
-      "title": "General Physician Consultation",
-      "description": "Routine health check-ups and medical advice for everyday health concerns."
+      "value": "25,000+",
+      "label": "Patients Served"
     },
     {
-      "title": "Diagnostic Testing",
-      "description": "On-site lab tests, blood work, and health screening packages."
+      "value": "98.9%",
+      "label": "Diagnostic Accuracy"
     },
     {
-      "title": "Preventive Health Checks",
-      "description": "Comprehensive wellness evaluations tailored to your age and lifestyle."
+      "value": "20+",
+      "label": "Specialist Doctors"
     },
     {
-      "title": "Chronic Disease Management",
-      "description": "Ongoing support for diabetes, hypertension, and long-term conditions."
+      "value": "15 Mins",
+      "label": "Avg Consultation Start"
     }
   ],
-  "primary_action": "Book consultation",
-  "secondary_action": "Call clinic",
-  "disclaimer": "Information provided is for informational purposes. Consult a doctor for medical advice. Individual results vary.",
-  "pexels_video": "https://videos.pexels.com/video-files/4056845/4056845-hd_1920_1080_25fps.mp4",
-  "location_heading": "Visit Our Medical Center",
-  "contact_heading": "Schedule an Appointment",
-  "hero_image": "https://images.pexels.com/photos/4056853/pexels-photo-4056853.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "video_poster": "https://images.pexels.com/photos/4056853/pexels-photo-4056853.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "hero_eyebrow": "Trusted Primary & Urgent Care",
-  "story_heading": "Dedicated to Your Health & Well-being",
-  "story_body": "Our clinic delivers patient-centered medical services using evidence-based medicine and personalized treatment plans.",
+  "services": [
+    {
+      "title": "Primary Family Care",
+      "description": "Routine health checks, chronic disease management, and preventative screening."
+    },
+    {
+      "title": "In-House Diagnostics",
+      "description": "Ultrasound, digital X-rays, ECG, and NABL-accredited blood testing."
+    },
+    {
+      "title": "Specialist Consultations",
+      "description": "Cardiology, Endocrinology, Gastroenterology, and Pediatrics."
+    },
+    {
+      "title": "Preventative Wellness",
+      "description": "Executive body health packages tailored to age and medical history."
+    }
+  ],
   "process_steps": [
     {
       "step": "01",
       "title": "Easy Booking",
-      "desc": "Book online or call for immediate consultation slots."
+      "desc": "Instant online appointment or phone reservation."
     },
     {
       "step": "02",
-      "title": "Thorough Diagnosis",
-      "desc": "In-depth consultation with experienced physicians."
+      "title": "Thorough Assessment",
+      "desc": "Comprehensive checkup with experienced specialists."
     },
     {
       "step": "03",
-      "title": "Ongoing Wellness",
-      "desc": "Comprehensive follow-up care and health management."
+      "title": "Targeted Care Plan",
+      "desc": "Personalized prescriptions and follow-up guidance."
     }
-  ]
+  ],
+  "story": {
+    "heading": "Putting Your Long-Term Health First",
+    "body": "Our medical team is dedicated to preventive health and precise diagnosis, ensuring patient-first medical treatment.",
+    "badge": "Trusted Medical Excellence"
+  },
+  "benefits": [
+    "Same-day diagnostic lab results",
+    "Teleconsultation support available",
+    "Clean sanitized waiting rooms"
+  ],
+  "testimonials": [
+    {
+      "name": "Priyanka Das",
+      "text": "Extremely thorough doctor and zero wait time. Highly recommended!",
+      "rating": "5"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Do you offer lab test home pickup?",
+      "a": "Yes, sample collection is available upon request."
+    }
+  ],
+  "team": [
+    {
+      "name": "Dr. A. Roy",
+      "role": "Senior Physician",
+      "exp": "18+ Yrs Exp"
+    }
+  ],
+  "primary_action": "Book Medical Consultation",
+  "secondary_action": "Call Clinic",
+  "location_heading": "Visit Our Medical Center",
+  "contact_heading": "Schedule Patient Appointment",
+  "disclaimer": "Medical guidance provided following physical consultation."
 }

@@ -2,52 +2,105 @@
   "id": "cosmetic",
   "name": "Cosmetic & Plastic Surgery Clinics",
   "singular": "Aesthetic Clinic",
-  "headline": "Reveal Your Natural Radiance & Beauty",
-  "description": "State-of-the-art non-surgical treatments, skin rejuvenation, and cosmetic procedures.",
-  "services": [
+  "eyebrow": "Premium Aesthetic & Rejuvenation Science",
+  "headline": "Natural Aesthetic Transformation By Specialists",
+  "description": "Advanced cosmetic surgery, non-surgical laser treatments, hair restoration, and medical skin rejuvenation.",
+  "hero_video_mp4": "https://videos.pexels.com/video-files/5069480/5069480-hd_1920_1080_25fps.mp4",
+  "hero_video_webm": "https://videos.pexels.com/video-files/5069480/5069480-hd_1920_1080_25fps.mp4",
+  "video_poster": "https://images.pexels.com/photos/5069480/pexels-photo-5069480.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "hero_image": "https://images.pexels.com/photos/5069480/pexels-photo-5069480.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "trust_items": [
+    "FDA Approved Lasers",
+    "Board-Certified Surgeons",
+    "Private Recovery Suite",
+    "Natural Look Guarantee"
+  ],
+  "statistics": [
     {
-      "title": "Skin Rejuvenation",
-      "description": "Laser therapy, chemical peels, and advanced facial treatments."
+      "value": "8,500+",
+      "label": "Successful Procedures"
     },
     {
-      "title": "Non-Surgical Aesthetics",
-      "description": "Dermal fillers, contouring, and anti-aging consultations."
+      "value": "99.2%",
+      "label": "Client Satisfaction"
     },
     {
-      "title": "Hair Restoration",
-      "description": "PRP therapy and modern hair transplant consultations."
+      "value": "15+",
+      "label": "Years Clinical Excellence"
     },
     {
-      "title": "Cosmetic Consultations",
-      "description": "In-depth aesthetic evaluation and custom procedure planning."
+      "value": "100%",
+      "label": "Discreet Consultation"
     }
   ],
-  "primary_action": "Schedule consultation",
-  "secondary_action": "Call clinic",
-  "disclaimer": "Discuss procedure suitability with a certified specialist. Treatment outcomes and recovery vary by individual.",
-  "pexels_video": "https://videos.pexels.com/video-files/3763990/3763990-hd_1920_1080_25fps.mp4",
-  "location_heading": "Visit Our Aesthetic Clinic",
-  "contact_heading": "Book Your Personal Consultation",
-  "hero_image": "https://images.pexels.com/photos/3764013/pexels-photo-3764013.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "video_poster": "https://images.pexels.com/photos/3764013/pexels-photo-3764013.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "hero_eyebrow": "Advanced Aesthetic Enhancement",
-  "story_heading": "Artistry Meets Medical Precision",
-  "story_body": "Our board-certified specialists customize every aesthetic procedure to enhance your natural features safely.",
+  "services": [
+    {
+      "title": "Facial Rejuvenation & Fillers",
+      "description": "Precision Botox, dermal fillers, and thread lifts for youthful contours."
+    },
+    {
+      "title": "Robotic Hair Transplantation",
+      "description": "High-density FUE hair restoration with natural hairline design."
+    },
+    {
+      "title": "Body Contouring & Liposuction",
+      "description": "Advanced VASER sculpting and targeted fat reduction."
+    },
+    {
+      "title": "Laser Skin Resurfacing",
+      "description": "FDA-cleared lasers for acne scar removal, pigmentation, and glow."
+    }
+  ],
   "process_steps": [
     {
       "step": "01",
-      "title": "Personal Consultation",
-      "desc": "In-depth skin and facial analysis with our specialist."
+      "title": "Private Consultation",
+      "desc": "Detailed 3D facial/body analysis with board surgeon."
     },
     {
       "step": "02",
-      "title": "Bespoke Care Plan",
-      "desc": "Custom treatment program tailored to your vision."
+      "title": "Personalized Protocol",
+      "desc": "Tailored aesthetic plan matching your natural goals."
     },
     {
       "step": "03",
-      "title": "Refined Results",
-      "desc": "Expert treatment with minimal downtime and maximum radiance."
+      "title": "Precision Treatment",
+      "desc": "Perfectionist clinical care with complete post-op support."
     }
-  ]
+  ],
+  "story": {
+    "heading": "Refining Elegance Through Clinical Precision",
+    "body": "We combine artistic subtle enhancement with medical rigor to deliver natural, radiant results.",
+    "badge": "Board-Certified Aesthetics"
+  },
+  "benefits": [
+    "Private VIP suite access",
+    "Zero downtime laser options",
+    "Natural non-overdone outcomes"
+  ],
+  "testimonials": [
+    {
+      "name": "Neha Agarwal",
+      "text": "The hair laser treatments transformed my skin texture completely!",
+      "rating": "5"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Is the consultation private?",
+      "a": "All consultation records are strictly confidential with zero disclosure."
+    }
+  ],
+  "team": [
+    {
+      "name": "Dr. M. Banerjee",
+      "role": "Senior Aesthetic Surgeon",
+      "exp": "16+ Yrs Exp"
+    }
+  ],
+  "primary_action": "Book Aesthetic Consultation",
+  "secondary_action": "Call Clinic",
+  "location_heading": "Visit Our VIP Clinic",
+  "contact_heading": "Schedule Private Consultation",
+  "disclaimer": "Aesthetic suitability confirmed during clinical evaluation."
 }

@@ -2,52 +2,124 @@
   "id": "dental",
   "name": "Dental Clinics",
   "singular": "Dental Practice",
-  "headline": "Comprehensive Care for Healthy, Beautiful Smiles",
-  "description": "Modern dental care tailored for your family. From routine cleanings to painless implants.",
+  "eyebrow": "Gentle & Advanced Family Dentistry",
+  "headline": "Comprehensive Care for Healthy, Radiant Smiles",
+  "description": "Modern dental care tailored for your family. From painless preventative cleanings to state-of-the-art implants and clear aligners.",
+  "hero_video_mp4": "https://videos.pexels.com/video-files/3845735/3845735-hd_1920_1080_25fps.mp4",
+  "hero_video_webm": "https://videos.pexels.com/video-files/3845735/3845735-hd_1920_1080_25fps.mp4",
+  "video_poster": "https://images.pexels.com/photos/3845766/pexels-photo-3845766.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "hero_image": "https://images.pexels.com/photos/3845766/pexels-photo-3845766.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "trust_items": [
+    "IDA Accredited",
+    "Low-Radiation Digital X-Ray",
+    "100% Painless Guarantee",
+    "Sterile Hospital Standards"
+  ],
+  "statistics": [
+    {
+      "value": "15,000+",
+      "label": "Patients Treated"
+    },
+    {
+      "value": "99.4%",
+      "label": "Satisfaction Rate"
+    },
+    {
+      "value": "12+",
+      "label": "Years Experience"
+    },
+    {
+      "value": "4.9\u2605",
+      "label": "Patient Reviews"
+    }
+  ],
   "services": [
     {
       "title": "General Dental Check-ups",
-      "description": "Comprehensive examinations, digital X-rays, and professional teeth cleaning."
+      "description": "Comprehensive examinations, digital X-rays, and painless professional teeth cleaning."
     },
     {
-      "title": "Teeth Whitening",
-      "description": "Safe, effective in-clinic and at-home whitening solutions."
+      "title": "Teeth Whitening & Aesthetics",
+      "description": "Safe, effective in-clinic laser whitening and custom porcelain veneers."
     },
     {
-      "title": "Orthodontics & Aligners",
-      "description": "Modern clear aligners and traditional braces for a confident smile."
+      "title": "Orthodontics & Clear Aligners",
+      "description": "Discreet invisible aligners and modern braces for adults and teens."
     },
     {
-      "title": "Dental Implants & Restorations",
-      "description": "Durable, natural-looking tooth replacement options."
+      "title": "Implants & Restorations",
+      "description": "Permanent, natural-looking tooth replacement with lifetime durability."
     }
   ],
-  "primary_action": "Book appointment",
-  "secondary_action": "Call clinic",
-  "disclaimer": "Discuss individual dental treatment suitability with your dentist. Results vary by patient.",
-  "pexels_video": "https://videos.pexels.com/video-files/3845735/3845735-hd_1920_1080_25fps.mp4",
-  "location_heading": "Visit Our Dental Clinic",
-  "contact_heading": "Book Your Dental Consultation",
-  "hero_image": "https://images.pexels.com/photos/3845766/pexels-photo-3845766.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "video_poster": "https://images.pexels.com/photos/3845766/pexels-photo-3845766.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "hero_eyebrow": "Gentle & Advanced Family Dentistry",
-  "story_heading": "Why Patients Choose Our Practice",
-  "story_body": "We combine state-of-the-art dental technology with a compassionate, gentle approach to ensure your comfort at every visit.",
   "process_steps": [
     {
       "step": "01",
-      "title": "Gentle Exam",
-      "desc": "Comprehensive checkup with digital low-radiation X-rays."
+      "title": "Initial Gentle Consultation",
+      "desc": "Comprehensive oral exam with instant 3D digital imaging."
     },
     {
       "step": "02",
-      "title": "Personalized Plan",
-      "desc": "Clear, transparent treatment options tailored to your budget."
+      "title": "Custom Treatment Plan",
+      "desc": "Transparent cost breakdown with zero hidden fees."
     },
     {
       "step": "03",
-      "title": "Comfort Treatment",
-      "desc": "Relax in our modern clinic with painless dental care."
+      "title": "Painless Care",
+      "desc": "Relax in our modern clinic equipped with gentle laser care."
     }
-  ]
+  ],
+  "story": {
+    "heading": "Restoring Confidence One Smile At A Time",
+    "body": "We combine state-of-the-art dental technology with a compassionate, gentle approach to ensure complete patient comfort at every visit.",
+    "badge": "Patient-Centric Care"
+  },
+  "benefits": [
+    "Same-day emergency dental appointments",
+    "Flexible zero-percent installment options",
+    "Sedation options for anxious patients",
+    "Dedicated pediatric care room"
+  ],
+  "testimonials": [
+    {
+      "name": "Ananya Sharma",
+      "text": "The most gentle dental clinic I have ever visited. Painless root canal treatment!",
+      "rating": "5"
+    },
+    {
+      "name": "Rahul Verma",
+      "text": "Got clear aligners here. Incredible results in just 6 months. Highly recommend!",
+      "rating": "5"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Are emergency appointments available?",
+      "a": "Yes, we reserve dedicated daily slots for urgent dental pain and trauma."
+    },
+    {
+      "q": "How long does teeth whitening last?",
+      "a": "In-office professional whitening results typically last 1 to 3 years with proper care."
+    },
+    {
+      "q": "Do clear aligners hurt?",
+      "a": "You may feel mild pressure for 1\u20132 days per new tray, but aligners are much more comfortable than braces."
+    }
+  ],
+  "team": [
+    {
+      "name": "Dr. S. Mukherjee",
+      "role": "Lead Endodontist",
+      "exp": "14+ Yrs Exp"
+    },
+    {
+      "name": "Dr. R. Kapoor",
+      "role": "Orthodontist Specialist",
+      "exp": "10+ Yrs Exp"
+    }
+  ],
+  "primary_action": "Book Appointment",
+  "secondary_action": "Call Clinic",
+  "location_heading": "Visit Our Modern Clinic",
+  "contact_heading": "Reserve Your Consultation",
+  "disclaimer": "Individual treatment suitability verified during clinical examination."
 }

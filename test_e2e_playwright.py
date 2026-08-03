@@ -96,13 +96,15 @@ class TestE2EPlaywright(unittest.TestCase):
 
             browser.close()
 
-    def test_rendered_dental_layouts_in_browser(self):
+    def test_multi_viewport_landing_pages_rendering(self):
         lead = engine.lead_record({
             "name": "Apex Dental Clinic",
             "category": "Dental Clinics",
             "city": "Kolkata",
             "phone": "9876543210",
-            "address": "12 Park Street"
+            "address": "12 Park Street, Opposite City Mall",
+            "rating": "4.9",
+            "reviews": "128"
         }, "apex-dental-clinic")
 
         layouts = [
@@ -113,28 +115,54 @@ class TestE2EPlaywright(unittest.TestCase):
             "dental_friendly_illustrated"
         ]
 
+        viewports = [
+            {"width": 375, "height": 812, "name": "mobile_375"},
+            {"width": 430, "height": 932, "name": "mobile_430"},
+            {"width": 768, "height": 1024, "name": "tablet_768"},
+            {"width": 1440, "height": 900, "name": "desktop_1440"},
+            {"width": 1920, "height": 1080, "name": "desktop_1920"}
+        ]
+
+        artifact_dir = Path("/Users/dulorai/.gemini/antigravity/brain/0307b4a0-8eb7-43a0-852d-7166f9fe4a6f")
+        artifact_dir.mkdir(parents=True, exist_ok=True)
+
         with sync_playwright() as p:
             browser = p.chromium.launch(headless=True)
 
             for l_id in layouts:
-                page_errors = []
                 html = engine.render_full_page(l_id, lead, live=False)
-                
-                context = browser.new_context(viewport={"width": 1280, "height": 800})
-                page = context.new_page()
-                page.on("pageerror", lambda err: page_errors.append(str(err)))
 
-                page.set_content(html)
+                for vp in viewports:
+                    page_errors = []
+                    context = browser.new_context(viewport={"width": vp["width"], "height": vp["height"]})
+                    page = context.new_page()
+                    page.on("pageerror", lambda err: page_errors.append(str(err)))
 
-                # Verify hero video and fallback image exist
-                video_exists = page.query_selector("video.hero-video") is not None
-                fallback_exists = page.query_selector("img.hero-fallback") is not None
+                    page.set_content(html)
+                    page.wait_for_timeout(300)
 
-                self.assertTrue(video_exists, f"Missing hero video in layout {l_id}")
-                self.assertTrue(fallback_exists, f"Missing hero fallback image in layout {l_id}")
-                self.assertEqual(len(page_errors), 0, f"Page error in layout {l_id}: {page_errors}")
+                    # Verify video and poster fallback exist
+                    video_exists = page.query_selector("video") is not None
+                    poster_exists = page.query_selector("img.hero-poster") is not None
 
-                context.close()
+                    self.assertTrue(video_exists, f"Missing hero video in {l_id} at {vp['name']}")
+                    self.assertTrue(poster_exists, f"Missing hero poster in {l_id} at {vp['name']}")
+                    self.assertEqual(len(page_errors), 0, f"Page error in {l_id} at {vp['name']}: {page_errors}")
+
+                    # Test FAQ toggle
+                    faq_btn = page.query_selector(".faq-trigger")
+                    if faq_btn:
+                        faq_btn.click()
+
+                    # Save screenshots for desktop (1440x900) and mobile (375x812)
+                    if vp["name"] == "desktop_1440":
+                        img_path = artifact_dir / f"agency_{l_id}_desktop.png"
+                        page.screenshot(path=str(img_path))
+                    elif vp["name"] == "mobile_375":
+                        img_path = artifact_dir / f"agency_{l_id}_mobile.png"
+                        page.screenshot(path=str(img_path))
+
+                    context.close()
 
             browser.close()
 

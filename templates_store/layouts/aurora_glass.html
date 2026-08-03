@@ -1,168 +1,229 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  {% include 'partials/seo.html' %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ lead.pageTitle }}</title>
+  <meta name="description" content="{{ lead.pageDescription }}">
+  {% if not live %}<meta name="robots" content="noindex, nofollow">{% endif %}
+  <link rel="canonical" href="{{ lead.pageUrl }}">
+
+  <!-- Fonts & Motion -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  {% include "partials/motion.html" %}
+
   <style>
     :root {
-      --primary: #818cf8;
-      --accent: #c084fc;
+      --bg: #0b0f19;
+      --surface: rgba(255, 255, 255, 0.05);
+      --surface-glass: rgba(255, 255, 255, 0.07);
       --text: #f8fafc;
-      --muted: #cbd5e1;
-      --glass: rgba(255, 255, 255, 0.08);
-      --glass-border: rgba(255, 255, 255, 0.18);
+      --muted: #94a3b8;
+      --primary: #8b5cf6;
+      --primary-hover: #7c3aed;
+      --border: rgba(255, 255, 255, 0.12);
       --radius: 20px;
+      --max-w: 1200px;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #090d16; color: var(--text); line-height: 1.6; padding-bottom: 70px; min-height: 100vh; overflow-x: hidden; }
-    
-    .aurora-bg { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -1; background: radial-gradient(circle at 15% 25%, rgba(99, 102, 241, 0.35) 0%, transparent 45%), radial-gradient(circle at 85% 65%, rgba(168, 85, 247, 0.35) 0%, transparent 45%), radial-gradient(circle at 50% 90%, rgba(236, 72, 153, 0.3) 0%, transparent 50%); filter: blur(60px); }
-
-    .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
-
-    .site-header { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border); padding: 16px 0; position: sticky; top: 0; z-index: 100; }
-    .header-wrap { display: flex; justify-content: space-between; align-items: center; }
-    .logo-text { font-size: 22px; font-weight: 800; color: #fff; text-decoration: none; }
-    .nav-links a { color: var(--muted); text-decoration: none; margin-left: 20px; font-size: 14px; font-weight: 600; }
-    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 26px; border-radius: 99px; font-weight: 700; text-decoration: none; border: 1px solid var(--glass-border); transition: all 0.2s; backdrop-filter: blur(10px); }
-    .btn-primary { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); color: #fff; border: 0; box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4); }
-    .btn-whatsapp { background: #25D366; color: #fff; border: 0; }
-    .btn-sm { padding: 8px 16px; font-size: 13px; }
-
-    /* Asymmetric Glass Hero with Floating Glass Video Frame */
-    .hero { padding: 70px 0 50px; }
-    .glass-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 32px; align-items: center; }
-    .glass-panel { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--glass-border); border-radius: var(--radius); padding: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
-    .hero-title { font-size: 38px; font-weight: 900; margin-bottom: 16px; background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .hero-sub { font-size: 17px; color: var(--muted); margin-bottom: 28px; }
-    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
-
-    .hero-media { position: relative; overflow: hidden; border-radius: var(--radius); border: 1px solid var(--glass-border); height: 340px; backdrop-filter: blur(20px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
-    .hero-video, .hero-fallback { width: 100%; height: 100%; object-fit: cover; }
-    .hero-fallback { position: absolute; inset: 0; z-index: 0; }
-    .hero-video { position: relative; z-index: 1; }
-
-    .section { padding: 60px 0; }
-    .section-title { font-size: 28px; text-align: center; margin-bottom: 40px; color: #fff; font-weight: 800; }
-    
-    
-    /* Aurora Glass Contact & Map Styling */
-    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; text-align: center; margin-top: 32px; }
-    .contact-card { background: var(--glass); backdrop-filter: blur(16px); padding: 30px; border-radius: var(--radius); border: 1px solid var(--glass-border); }
-    .contact-icon { font-size: 32px; margin-bottom: 12px; color: var(--primary); }
-    .link-btn { display: inline-block; margin-top: 12px; color: var(--primary); font-weight: 700; text-decoration: none; }
-    .map-container { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--glass-border); backdrop-filter: blur(16px); }
-
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-    .service-card { background: var(--glass); backdrop-filter: blur(16px); padding: 28px; border-radius: var(--radius); border: 1px solid var(--glass-border); transition: transform 0.2s; }
-    .service-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.35); }
-    .service-card h3 { font-size: 18px; color: #fff; margin-bottom: 10px; font-weight: 700; }
-    .service-card p { font-size: 14px; color: var(--muted); }
-
-    .site-footer { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); color: var(--muted); padding: 40px 0; text-align: center; margin-top: 40px; border-top: 1px solid var(--glass-border); }
-
-    @media (max-width: 768px) {
-      .glass-grid { grid-template-columns: 1fr; }
-      .hero-title { font-size: 30px; }
-      .nav-links { display: none; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Outfit', system-ui, sans-serif; }
+    body {
+      background: var(--bg);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.25) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(56, 189, 248, 0.2) 0px, transparent 50%);
+      background-attachment: fixed;
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
     }
+    .container { width: 100%; max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+    .glass-card { background: var(--surface-glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: var(--radius); padding: 36px; box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 28px; border-radius: 9999px; font-weight: 700; font-size: 14px; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; }
+    .btn-primary { background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%); color: #fff; box-shadow: 0 10px 25px -5px rgba(139,92,246,0.5); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 15px 30px -5px rgba(139,92,246,0.7); }
+    .btn-outline { border: 1px solid var(--border); color: #fff; background: rgba(255,255,255,0.05); }
+    .btn-outline:hover { background: rgba(255,255,255,0.12); }
+    .pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 16px; border-radius: 9999px; background: rgba(139,92,246,0.2); border: 1px solid rgba(139,92,246,0.4); color: #c084fc; font-size: 13px; font-weight: 700; }
 
-    @media (prefers-reduced-motion: reduce) {
-      .hero-video { display: none !important; }
-      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-    }
-  
-    /* Mobile Sticky Bar CTA Styling */
-    .mobile-sticky-bar { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); padding: 10px 16px; display: flex; gap: 10px; z-index: 999; border-top: 1px solid var(--border, rgba(255,255,255,0.1)); }
-    .bar-btn { flex: 1; display: flex; align-items: center; justify-content: center; padding: 12px 14px; border-radius: 8px; font-weight: 700; font-size: 13px; text-decoration: none; color: #fff; background: var(--primary, #0f766e); }
-    .bar-btn.whatsapp { background: #25D366; color: #fff; }
+    /* 1. Navigation */
+    .nav { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: calc(100% - 48px); max-width: var(--max-w); height: 64px; background: rgba(15,23,42,0.75); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: 9999px; z-index: 1000; display: flex; align-items: center; padding: 0 24px; }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .brand { font-size: 18px; font-weight: 800; color: #fff; text-decoration: none; }
+
+    /* 2. Hero Section */
+    .hero { padding: 160px 0 90px; }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
+    .hero-title { font-size: 52px; font-weight: 800; line-height: 1.1; letter-spacing: -1px; margin: 20px 0 24px; background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-media { position: relative; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); aspect-ratio: 16/9; background: var(--surface); }
+    .hero-poster, .hero-video { width: 100%; height: 100%; object-fit: cover; }
+
+    /* 3. Trust Strip */
+    .trust-strip { padding: 32px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: rgba(0,0,0,0.2); }
+    .trust-flex { display: flex; justify-content: space-around; gap: 20px; flex-wrap: wrap; }
+    .trust-item { font-size: 14px; font-weight: 600; color: var(--muted); }
+
+    /* 5. Services Constellation */
+    .section { padding: 100px 0; }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+
+    /* 13. Glass Booking */
+    .map-frame { width: 100%; height: 350px; border-radius: var(--radius); border: 1px solid var(--border); margin-top: 20px; }
+
+    footer { background: rgba(5,8,15,0.9); border-top: 1px solid var(--border); color: var(--muted); padding: 60px 0 30px; font-size: 14px; }
+    .mobile-sticky-bar { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(11,15,25,0.95); backdrop-filter: blur(16px); padding: 10px 16px; display: flex; gap: 10px; z-index: 999; border-top: 1px solid var(--border); }
+    .bar-btn { flex: 1; display: flex; align-items: center; justify-content: center; padding: 12px 14px; border-radius: 9999px; font-weight: 700; font-size: 13px; text-decoration: none; color: #fff; background: var(--primary); }
+    .bar-btn.whatsapp { background: #25D366; }
     @media (min-width: 769px) { .mobile-sticky-bar { display: none !important; } }
-
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 36px; }
+      .nav { width: calc(100% - 24px); top: 12px; }
+    }
   </style>
+  <script type="application/ld+json">{{ schema | tojson }}</script>
 </head>
 <body>
-  <div class="aurora-bg"></div>
 
-  <!-- Glass Header -->
-  <header class="site-header">
-    <div class="container header-wrap">
-      <a href="#top" class="logo-text">{{ lead.fullName }}</a>
-      <nav class="nav-links">
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-        {% if lead.phoneHref %}
-        <a href="{{ lead.phoneHref }}" class="btn btn-sm btn-primary">Call {{ lead.phoneIntl }}</a>
-        {% endif %}
-      </nav>
+  <!-- 1. Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="brand">{{ lead.fullName }}</a>
+      <div style="display:flex;gap:10px">
+        {% if lead.phoneHref %}<a href="{{ lead.phoneHref }}" class="btn btn-outline" style="padding:8px 18px">Call {{ lead.phoneDisplay }}</a>{% endif %}
+        <a href="#book" class="btn btn-primary" style="padding:8px 18px">{{ category_pack.primary_action or 'Book Visit' }}</a>
+      </div>
     </div>
-  </header>
+  </nav>
 
-  <!-- Floating Glass Hero with Video Frame -->
+  <!-- 2. Hero Section -->
   <section class="hero">
-    <div class="container">
-      <div class="glass-grid">
-        <div class="glass-panel">
-          <h1 class="hero-title">{{ lead.fullName }}</h1>
-          <p class="hero-sub">{{ category_pack.headline if category_pack else lead.pageDescription }}</p>
-          <div class="hero-ctas">
-            {% if lead.phoneHref %}
-            <a href="{{ lead.phoneHref }}" class="btn btn-primary">{{ category_pack.primary_action if category_pack else 'Call Now' }} ({{ lead.phoneIntl }})</a>
-            {% endif %}
-            {% if lead.whatsappHref %}
-            <a href="{{ lead.whatsappHref }}" target="_blank" class="btn btn-whatsapp">WhatsApp Us</a>
-            {% endif %}
-          </div>
+    <div class="container hero-grid">
+      <div class="reveal-up">
+        <span class="pill">✨ {{ category_pack.eyebrow or lead.category }}</span>
+        <h1 class="hero-title">{{ category_pack.headline or lead.fullName }}</h1>
+        <p style="font-size:18px;color:var(--muted);margin-bottom:32px">{{ category_pack.description or lead.pageDescription }}</p>
+        <div style="display:flex;gap:14px;flex-wrap:wrap">
+          <a href="#book" class="btn btn-primary">{{ category_pack.primary_action or 'Book Now' }}</a>
+          {% if lead.whatsappHref %}<a href="{{ lead.whatsappHref }}" class="btn btn-outline">WhatsApp Direct</a>{% endif %}
         </div>
-        <div class="hero-media">
-          {% if category_pack and category_pack.hero_image %}
-          <img class="hero-fallback" src="{{ category_pack.hero_image }}" alt="" loading="eager">
-          {% endif %}
-          {% if category_pack and category_pack.pexels_video %}
-          <video class="hero-video" autoplay muted loop playsinline preload="metadata" {% if category_pack.video_poster %}poster="{{ category_pack.video_poster }}"{% endif %} aria-hidden="true">
-            <source src="{{ category_pack.pexels_video }}" type="video/mp4">
-          </video>
-          {% endif %}
-        </div>
+      </div>
+      <div class="hero-media reveal-up" data-video-hero>
+        <img class="hero-poster" src="{{ category_pack.video_poster }}" alt="{{ lead.fullName }}">
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="{{ category_pack.video_poster }}">
+          <source src="{{ category_pack.hero_video_webm }}" type="video/webm">
+          <source src="{{ category_pack.hero_video_mp4 }}" type="video/mp4">
+        </video>
       </div>
     </div>
   </section>
 
-  <!-- Services Grid -->
-  <section id="services" class="section">
+  <!-- 3. Trust Strip -->
+  {% if category_pack.trust_items %}
+  <section class="trust-strip">
+    <div class="container trust-flex">
+      {% for item in category_pack.trust_items %}
+        <div class="trust-item">💎 {{ item }}</div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- 5. Services Constellation -->
+  <section class="section">
     <div class="container">
-      <h2 class="section-title">Specialized Care</h2>
-      <div class="services-grid">
-        {% if category_pack and category_pack.services %}
-          {% for s in category_pack.services %}
-          <div class="service-card">
-            <h3>{{ s.title }}</h3>
-            <p>{{ s.description }}</p>
+      <div style="text-align:center;margin-bottom:60px" class="reveal-up">
+        <span class="pill">Spatial Services</span>
+        <h2 style="font-size:38px;font-weight:800;margin-top:12px">Advanced Care Ecosystem</h2>
+      </div>
+      <div class="services-grid reveal-stagger">
+        {% for s in category_pack.services %}
+          <div class="glass-card" data-tilt>
+            <h3 style="font-size:22px;font-weight:700;margin-bottom:12px">{{ s.title }}</h3>
+            <p style="color:var(--muted)">{{ s.description }}</p>
           </div>
-          {% endfor %}
-        {% else %}
-          <div class="service-card">
-            <h3>Professional Services</h3>
-            <p>Premium solutions delivered by {{ lead.shortName }}.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Results & Stats -->
+  {% if category_pack.statistics %}
+  <section class="section" style="background:rgba(0,0,0,0.3)">
+    <div class="container" style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center">
+      {% for stat in category_pack.statistics %}
+        <div>
+          <div style="font-size:44px;font-weight:800;color:var(--primary)" data-count="{{ stat.value }}">{{ stat.value }}</div>
+          <div style="color:var(--muted);font-weight:600">{{ stat.label }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- 8 & 12. Journey & FAQ -->
+  <section class="section">
+    <div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
+      <!-- Story -->
+      <div class="glass-card reveal-up">
+        <span class="pill">About Practice</span>
+        <h2 style="font-size:30px;margin:16px 0">{{ category_pack.story.heading if category_pack.story else 'Future-Ready Healthcare' }}</h2>
+        <p style="color:var(--muted)">{{ category_pack.story.body if category_pack.story else lead.pageDescription }}</p>
+      </div>
+
+      <!-- FAQ Accordion -->
+      <div class="glass-card reveal-up">
+        <span class="pill">FAQ</span>
+        <h2 style="font-size:30px;margin:16px 0">Frequently Asked Questions</h2>
+        {% for f in category_pack.faqs %}
+          <div class="faq-item">
+            <button class="faq-trigger"><span>{{ f.q }}</span> <span class="faq-icon">+</span></button>
+            <div class="faq-content"><p style="color:var(--muted)">{{ f.a }}</p></div>
           </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 & 14. Booking Dock -->
+  <section class="section" id="book">
+    <div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
+      <div class="glass-card reveal-up">
+        <h2>{{ category_pack.contact_heading or 'Schedule Consultation' }}</h2>
+        <p style="color:var(--muted);margin-bottom:24px">Book your session with {{ lead.fullName }}.</p>
+        {% if lead.phoneHref %}<a href="{{ lead.phoneHref }}" class="btn btn-primary" style="width:100%;margin-bottom:12px">Call {{ lead.phoneDisplay }}</a>{% endif %}
+        {% if lead.whatsappHref %}<a href="{{ lead.whatsappHref }}" class="btn btn-outline" style="width:100%">WhatsApp Contact</a>{% endif %}
+      </div>
+      <div class="glass-card reveal-up">
+        <h2>{{ category_pack.location_heading or 'Location' }}</h2>
+        <p style="color:var(--muted)">{{ lead.fullAddress or lead.address }}</p>
+        {% if lead.mapsEmbedUrl %}
+          <iframe class="map-frame" src="{{ lead.mapsEmbedUrl }}" loading="lazy" allowfullscreen></iframe>
         {% endif %}
       </div>
     </div>
   </section>
 
-  {% include 'partials/contact.html' %}
-  {% include 'partials/map.html' %}
-  {% include 'partials/footer.html' %}
-  {% include 'partials/mobile_actions.html' %}
-  {% include 'partials/structured_data.html' %}
+  <!-- 16. Footer -->
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px">
+      <div>
+        <h3>{{ lead.fullName }}</h3>
+        <p style="margin-top:4px">{{ lead.category }} in {{ lead.city }}</p>
+      </div>
+      <div>
+        <p>{{ category_pack.disclaimer }}</p>
+        <p style="margin-top:8px">© {{ current_year }} {{ lead.fullName }}. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
 
-  <script>
-  document.querySelectorAll(".hero-video").forEach((video) => {
-    const hideVideo = () => { video.hidden = true; };
-    video.addEventListener("error", hideVideo);
-    const source = video.querySelector("source");
-    if (source) { source.addEventListener("error", hideVideo); }
-  });
-</script>
+  <!-- 17. Mobile Sticky Actions -->
+  <div class="mobile-sticky-bar">
+    {% if lead.phoneHref %}<a href="{{ lead.phoneHref }}" class="bar-btn">Call Now</a>{% endif %}
+    {% if lead.whatsappHref %}<a href="{{ lead.whatsappHref }}" class="bar-btn whatsapp">WhatsApp</a>{% endif %}
+  </div>
+
 </body>
 </html>

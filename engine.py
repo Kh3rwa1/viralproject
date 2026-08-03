@@ -292,6 +292,12 @@ def load_category_pack(category_id: str) -> dict:
             return json.loads(pack_file.read_text(encoding="utf-8"))
         except Exception:
             pass
+    fallback_file = TEMPLATE_DIR / "categories" / "dental.json"
+    if fallback_file.exists():
+        try:
+            return json.loads(fallback_file.read_text(encoding="utf-8"))
+        except Exception:
+            pass
     return {}
 
 

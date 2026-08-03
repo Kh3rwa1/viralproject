@@ -1,53 +1,106 @@
 {
   "id": "accounting",
-  "name": "Accounting Firms",
-  "singular": "Financial Firm",
-  "headline": "Maximize Efficiency & Ensure Tax Compliance",
-  "description": "Professional tax planning, bookkeeping, auditing, and business accounting solutions.",
-  "services": [
+  "name": "Accounting & Tax Firms",
+  "singular": "Accounting Practice",
+  "eyebrow": "Strategic Financial Integrity & Tax Savings",
+  "headline": "Maximize Profit & Stay 100% Tax Compliant",
+  "description": "Chartered accountants and tax advisors providing corporate auditing, GST filings, income tax optimization, and CFO advisory.",
+  "hero_video_mp4": "https://videos.pexels.com/video-files/6863384/6863384-hd_1920_1080_25fps.mp4",
+  "hero_video_webm": "https://videos.pexels.com/video-files/6863384/6863384-hd_1920_1080_25fps.mp4",
+  "video_poster": "https://images.pexels.com/photos/6863384/pexels-photo-6863384.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "hero_image": "https://images.pexels.com/photos/6863384/pexels-photo-6863384.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "trust_items": [
+    "ICAI Registered CAs",
+    "100% On-Time Filing",
+    "Penalties Protection Guarantee",
+    "Cloud Accounting Tech"
+  ],
+  "statistics": [
     {
-      "title": "Income Tax Return Filing",
-      "description": "Timely, accurate tax filing for individuals and corporate entities."
+      "value": "\u20b925Cr+",
+      "label": "Tax Savings Achieved"
     },
     {
-      "title": "GST & Indirect Tax Support",
-      "description": "Registration, return filing, reconciliation, and audit representation."
+      "value": "850+",
+      "label": "Corporate Clients"
     },
     {
-      "title": "Bookkeeping & Payroll",
-      "description": "Monthly ledger maintenance, financial reporting, and payroll management."
+      "value": "99.9%",
+      "label": "On-Time Filing Rate"
     },
     {
-      "title": "Financial Audits",
-      "description": "Statutory audits, internal financial controls, and compliance reporting."
+      "value": "16+",
+      "label": "Years CA Experience"
     }
   ],
-  "primary_action": "Schedule tax review",
-  "secondary_action": "Call accountant",
-  "disclaimer": "Tax outcomes depend on individual circumstances and applicable government tax laws.",
-  "pexels_video": "https://videos.pexels.com/video-files/7688457/7688457-hd_1920_1080_25fps.mp4",
-  "location_heading": "Visit Our Financial Office",
-  "contact_heading": "Consult with a Tax Expert",
-  "hero_image": "https://images.pexels.com/photos/7688460/pexels-photo-7688460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "video_poster": "https://images.pexels.com/photos/7688460/pexels-photo-7688460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "hero_eyebrow": "Strategic Financial & Tax Advisory",
-  "story_heading": "Financial Clarity for Individuals & Businesses",
-  "story_body": "We simplify complex financial regulations, optimize tax strategy, and keep your business financially healthy.",
+  "services": [
+    {
+      "title": "Corporate Tax & GST Filings",
+      "description": "Monthly GST returns, annual filings, reconciliation, and audit compliance."
+    },
+    {
+      "title": "Bookkeeping & Cloud Accounting",
+      "description": "Real-time financial ledgers using Zoho, Tally, and QuickBooks."
+    },
+    {
+      "title": "Statutory Audit & Assurance",
+      "description": "Independent financial audits meeting MCA and Tax Authority norms."
+    },
+    {
+      "title": "Virtual CFO & Financial Planning",
+      "description": "Cash flow management, budgeting, and fundraising advisory."
+    }
+  ],
   "process_steps": [
     {
       "step": "01",
-      "title": "Financial Audit",
-      "desc": "Reviewing your records for tax-saving opportunities."
+      "title": "Financial Audit Review",
+      "desc": "Complimentary analysis of current tax posture and books."
     },
     {
       "step": "02",
-      "title": "Custom Advisory",
-      "desc": "Tailored accounting and compliance strategy."
+      "title": "Optimization Strategy",
+      "desc": "Structure transactions legally to minimize tax liabilities."
     },
     {
       "step": "03",
-      "title": "Ongoing Filing",
-      "desc": "Timely tax returns, payroll, and bookkeeping."
+      "title": "Seamless Compliance",
+      "desc": "Automated filings and monthly reporting dashboards."
     }
-  ]
+  ],
+  "story": {
+    "heading": "Your Trusted Financial & Tax Partners",
+    "body": "We safeguard business growth with airtight tax compliance and proactive financial intelligence.",
+    "badge": "ICAI Certified Firm"
+  },
+  "benefits": [
+    "Dedicated CA Account Manager",
+    "Zero Tax Penalty Protection",
+    "Encrypted Document Vault"
+  ],
+  "testimonials": [
+    {
+      "name": "Manish Kothari",
+      "text": "Saved us 18% in tax liabilities legally through clean corporate restructuring.",
+      "rating": "5"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Can you handle GST audit notices?",
+      "a": "Yes, our senior CAs handle end-to-end representation before tax departments."
+    }
+  ],
+  "team": [
+    {
+      "name": "CA V. Singhania",
+      "role": "Senior Partner & Tax Lead",
+      "exp": "16+ Yrs Exp"
+    }
+  ],
+  "primary_action": "Schedule Tax Audit",
+  "secondary_action": "Call Advisor",
+  "location_heading": "Our Corporate Office",
+  "contact_heading": "Request Tax Consultation",
+  "disclaimer": "Tax optimization executed within statutory frameworks."
 }

@@ -1,53 +1,106 @@
 {
   "id": "auto",
-  "name": "Auto Repair Shops",
+  "name": "Auto Repair & Car Detailing Shops",
   "singular": "Auto Service Center",
-  "headline": "Keep Your Vehicle Running at Peak Performance",
-  "description": "Comprehensive auto maintenance, engine diagnostic, brake service, and luxury detailing.",
-  "services": [
+  "eyebrow": "Precision Automotive Diagnostics & Detailing",
+  "headline": "Peak Vehicle Performance & Showroom Finish",
+  "description": "Factory-trained mechanics offering OBD diagnostics, engine tuning, ceramic coating, paint protection, and emergency repair.",
+  "hero_video_mp4": "https://videos.pexels.com/video-files/4489816/4489816-hd_1920_1080_25fps.mp4",
+  "hero_video_webm": "https://videos.pexels.com/video-files/4489816/4489816-hd_1920_1080_25fps.mp4",
+  "video_poster": "https://images.pexels.com/photos/4489816/pexels-photo-4489816.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "hero_image": "https://images.pexels.com/photos/4489816/pexels-photo-4489816.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "trust_items": [
+    "OEM Spare Parts",
+    "10H Ceramic Coating",
+    "Digital Diagnostics",
+    "6-Month Service Guarantee"
+  ],
+  "statistics": [
     {
-      "title": "Engine & Mechanical Repair",
-      "description": "Diagnostic scans, engine tuning, brake repairs, and suspension service."
+      "value": "12,000+",
+      "label": "Vehicles Serviced"
     },
     {
-      "title": "Periodic Car Servicing",
-      "description": "Oil change, filter replacement, fluid top-up, and multi-point inspection."
+      "value": "100%",
+      "label": "Genuine Spares Guarantee"
     },
     {
-      "title": "Car Washing & Detailing",
-      "description": "Ceramic coating, paint protection, deep interior cleaning, and polishing."
+      "value": "4.9\u2605",
+      "label": "Customer Rating"
     },
     {
-      "title": "AC & Electrical Repair",
-      "description": "Compressor service, gas refilling, battery testing, and electrical fixes."
+      "value": "14+",
+      "label": "Years Workshop Mastery"
     }
   ],
-  "primary_action": "Book service",
-  "secondary_action": "Call mechanic",
-  "disclaimer": "Part costs depend on vehicle make and model. Warranty subject to service agreement.",
-  "pexels_video": "https://videos.pexels.com/video-files/4489814/4489814-hd_1920_1080_25fps.mp4",
-  "location_heading": "Visit Our Auto Service Center",
-  "contact_heading": "Book Your Vehicle Repair",
-  "hero_image": "https://images.pexels.com/photos/4489749/pexels-photo-4489749.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "video_poster": "https://images.pexels.com/photos/4489749/pexels-photo-4489749.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "hero_eyebrow": "Expert Mechanical Repair & Detailing",
-  "story_heading": "Precision Automotive Care",
-  "story_body": "Equipped with computer diagnostic tools and certified mechanics, we fix issues right the first time.",
+  "services": [
+    {
+      "title": "Complete General Maintenance",
+      "description": "Engine oil flush, filter replacement, brake check, and suspension tune."
+    },
+    {
+      "title": "10H Ceramic & PPF Detailing",
+      "description": "Ultra-gloss hydrophobic paint protection film and scratch shield."
+    },
+    {
+      "title": "Computerized OBD Diagnostics",
+      "description": "Advanced scanning for electrical, ECU, transmission, and sensor faults."
+    },
+    {
+      "title": "AC & Climate Control Overhaul",
+      "description": "Gas refilling, leak repair, condenser cleaning, and germ sanitization."
+    }
+  ],
   "process_steps": [
     {
       "step": "01",
-      "title": "Computer Scan",
-      "desc": "State-of-the-art diagnostic inspection."
+      "title": "Digital Health Scan",
+      "desc": "Comprehensive 50-point computer diagnostic inspection."
     },
     {
       "step": "02",
-      "title": "Transparent Quote",
-      "desc": "Detailed cost estimate before repairs start."
+      "title": "Transparent Estimate",
+      "desc": "Detailed video inspection report sent before job approval."
     },
     {
       "step": "03",
-      "title": "Quality Test",
-      "desc": "Road-tested repair backed by parts warranty."
+      "title": "Showroom Delivery",
+      "desc": "Precision repair work backed by road test and wash."
     }
-  ]
+  ],
+  "story": {
+    "heading": "Engineering Excellence For Your Drive",
+    "body": "Our master mechanics treat every car with white-glove precision using genuine OEM parts and state-of-the-art scanners.",
+    "badge": "Certified Auto Workshop"
+  },
+  "benefits": [
+    "Free doorstep pickup & drop",
+    "Live video inspection updates",
+    "AC waiting lounge with Wi-Fi"
+  ],
+  "testimonials": [
+    {
+      "name": "Rishi Dutt",
+      "text": "The ceramic coating made my 4-year-old car look brand new again!",
+      "rating": "5"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Do you use genuine OEM spare parts?",
+      "a": "Yes, all replacement parts are 100% original OEM sourced directly from manufacturers."
+    }
+  ],
+  "team": [
+    {
+      "name": "Gurpreet Singh",
+      "role": "Chief Workshop Technician",
+      "exp": "15+ Yrs Exp"
+    }
+  ],
+  "primary_action": "Book Car Service",
+  "secondary_action": "Call Service Manager",
+  "location_heading": "Workshop & Detailing Studio",
+  "contact_heading": "Book Workshop Slot",
+  "disclaimer": "Service completion timeframe dependent on parts availability."
 }

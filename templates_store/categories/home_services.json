@@ -1,53 +1,106 @@
 {
   "id": "home_services",
   "name": "Home Services",
-  "singular": "Home Service Provider",
-  "headline": "Expert Repairs, Maintenance & Installation",
-  "description": "Prompt, licensed technicians ready to solve your plumbing, electrical, and HVAC issues.",
+  "singular": "Home Services Provider",
+  "eyebrow": "Licensed & On-Time Property Repairs",
+  "headline": "Fast, Dependable Home Repairs & Maintenance",
+  "description": "Certified technicians for plumbing, electrical, HVAC, and roofing. Honest upfront pricing and 100% work warranty.",
+  "hero_video_mp4": "https://videos.pexels.com/video-files/8005399/8005399-hd_1920_1080_25fps.mp4",
+  "hero_video_webm": "https://videos.pexels.com/video-files/8005399/8005399-hd_1920_1080_25fps.mp4",
+  "video_poster": "https://images.pexels.com/photos/8005399/pexels-photo-8005399.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "hero_image": "https://images.pexels.com/photos/8005399/pexels-photo-8005399.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "trust_items": [
+    "Verified Technicians",
+    "Upfront Fixed Quotes",
+    "Same-Day Dispatch",
+    "1-Year Service Warranty"
+  ],
+  "statistics": [
+    {
+      "value": "10,000+",
+      "label": "Homes Serviced"
+    },
+    {
+      "value": "60 Mins",
+      "label": "Emergency Response"
+    },
+    {
+      "value": "4.9\u2605",
+      "label": "Rating Across 500+ Reviews"
+    },
+    {
+      "value": "100%",
+      "label": "Satisfaction Guarantee"
+    }
+  ],
   "services": [
     {
       "title": "Emergency Plumbing",
-      "description": "Leak repair, pipe fitting, drain clearing, and water heater service."
+      "description": "Leak detection, pipe replacement, drain unblocking, and water heater repairs."
     },
     {
-      "title": "HVAC & Air Conditioning",
-      "description": "AC installation, repair, duct cleaning, and heating systems."
+      "title": "Electrical Systems & Wiring",
+      "description": "Safety inspections, panel upgrades, short-circuit fixes, and lighting installation."
     },
     {
-      "title": "Electrical Repairs & Wiring",
-      "description": "Safety inspections, panel upgrades, and lighting installations."
+      "title": "HVAC & AC Service",
+      "description": "AC installation, gas refills, deep chemical cleaning, and furnace repairs."
     },
     {
-      "title": "Roofing & Exterior Repairs",
-      "description": "Roof inspection, leak prevention, tile repair, and gutter maintenance."
+      "title": "Roofing & Leak Repair",
+      "description": "Roof waterproofing, tile repair, gutter installation, and structural seals."
     }
   ],
-  "primary_action": "Call for service",
-  "secondary_action": "Get instant quote",
-  "disclaimer": "Emergency availability subject to local scheduling. Estimates provided upon inspection.",
-  "pexels_video": "https://videos.pexels.com/video-files/5691560/5691560-hd_1920_1080_25fps.mp4",
-  "location_heading": "Service Area & Headquarters",
-  "contact_heading": "Request Emergency Home Service",
-  "hero_image": "https://images.pexels.com/photos/5691589/pexels-photo-5691589.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "video_poster": "https://images.pexels.com/photos/5691589/pexels-photo-5691589.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "hero_eyebrow": "Fast & Reliable Local Repairs",
-  "story_heading": "Trusted by Homeowners Across Town",
-  "story_body": "We arrive on time, provide upfront pricing, and back all our work with a 100% satisfaction guarantee.",
   "process_steps": [
     {
       "step": "01",
-      "title": "Call & Dispatch",
-      "desc": "Reach out 24/7 for fast local technician dispatch."
+      "title": "Book Inspection",
+      "desc": "Call or book online for fast technician dispatch."
     },
     {
       "step": "02",
-      "title": "Upfront Estimate",
-      "desc": "Clear, flat-rate pricing before any work begins."
+      "title": "Upfront Quote",
+      "desc": "Clear fixed estimate provided before work begins."
     },
     {
       "step": "03",
       "title": "Guaranteed Repair",
-      "desc": "Quality workmanship backed by full service warranty."
+      "desc": "Expert fix with post-service cleanup and warranty."
     }
-  ]
+  ],
+  "story": {
+    "heading": "Your Trusted Local Repair Specialists",
+    "body": "We respect your home and time. Our background-checked technicians deliver flawless repair work.",
+    "badge": "Licensed & Insured"
+  },
+  "benefits": [
+    "24/7 Emergency Dispatch",
+    "Zero Cleanup Left Behind",
+    "Background Checked Crew"
+  ],
+  "testimonials": [
+    {
+      "name": "Sanjay Gupta",
+      "text": "Technician arrived within 45 mins and fixed our main water leak!",
+      "rating": "5"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Do you provide warranties on repairs?",
+      "a": "Yes, all repair work includes a 1-year service warranty."
+    }
+  ],
+  "team": [
+    {
+      "name": "Rajesh Kumar",
+      "role": "Master Electrician & Field Lead",
+      "exp": "12+ Yrs Exp"
+    }
+  ],
+  "primary_action": "Book Service Tech",
+  "secondary_action": "Call Emergency Line",
+  "location_heading": "Service Center & Warehouse",
+  "contact_heading": "Request Instant Home Repair",
+  "disclaimer": "Service estimates provided following physical diagnosis."
 }

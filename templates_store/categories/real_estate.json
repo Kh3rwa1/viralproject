@@ -1,53 +1,106 @@
 {
   "id": "real_estate",
   "name": "Real Estate Agencies",
-  "singular": "Real Estate Brokerage",
-  "headline": "Find Your Dream Home or Investment Property",
-  "description": "Expert real estate guidance for buyers, sellers, and investors in top local neighborhoods.",
-  "services": [
+  "singular": "Real Estate Agency",
+  "eyebrow": "Curated Luxury Residences & Commercial Assets",
+  "headline": "Find Your Ideal Home & High-Yield Investment",
+  "description": "Premier property advisory specializing in luxury apartments, gated villas, commercial spaces, and land acquisition.",
+  "hero_video_mp4": "https://videos.pexels.com/video-files/7578552/7578552-uhd_2560_1440_25fps.mp4",
+  "hero_video_webm": "https://videos.pexels.com/video-files/7578552/7578552-uhd_2560_1440_25fps.mp4",
+  "video_poster": "https://images.pexels.com/photos/7578552/pexels-photo-7578552.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "hero_image": "https://images.pexels.com/photos/7578552/pexels-photo-7578552.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "trust_items": [
+    "RERA Registered",
+    "Zero Brokerage Options",
+    "Legal Title Verified",
+    "Home Loan Assistance"
+  ],
+  "statistics": [
     {
-      "title": "Residential Property Sales",
-      "description": "Apartments, villas, and family homes in prime neighborhoods."
+      "value": "\u20b9450Cr+",
+      "label": "Property Portfolio Transacted"
     },
     {
-      "title": "Commercial Leasing",
-      "description": "Office spaces, retail shops, and commercial property listings."
+      "value": "1,500+",
+      "label": "Families Housed"
     },
     {
-      "title": "Property Valuation",
-      "description": "Accurate market valuation and pricing insights."
+      "value": "100%",
+      "label": "RERA Compliance"
     },
     {
-      "title": "Investment Advisory",
-      "description": "High-yield real estate investment guidance and portfolio consulting."
+      "value": "4.9\u2605",
+      "label": "Client Rating"
     }
   ],
-  "primary_action": "Browse listings",
-  "secondary_action": "Call agent",
-  "disclaimer": "Property availability and pricing subject to market updates and seller confirmation.",
-  "pexels_video": "https://videos.pexels.com/video-files/7578546/7578546-hd_1920_1080_25fps.mp4",
-  "location_heading": "Visit Our Property Lounge",
-  "contact_heading": "Connect with a Real Estate Consultant",
-  "hero_image": "https://images.pexels.com/photos/7578848/pexels-photo-7578848.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "video_poster": "https://images.pexels.com/photos/7578848/pexels-photo-7578848.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "hero_eyebrow": "Premier Residential & Commercial Properties",
-  "story_heading": "Your Local Property Experts",
-  "story_body": "With deep market knowledge and negotiation expertise, we turn complex property transactions into seamless experiences.",
+  "services": [
+    {
+      "title": "Luxury Residential Sales",
+      "description": "Exclusive villas, penthouses, and gated community apartments."
+    },
+    {
+      "title": "Commercial Real Estate",
+      "description": "High-yield office spaces, retail showrooms, and IT park leases."
+    },
+    {
+      "title": "Property Valuation & Advisory",
+      "description": "Data-backed market valuations and investment ROI analysis."
+    },
+    {
+      "title": "End-to-End Legal Assistance",
+      "description": "Title verification, agreement drafting, and hassle-free registration."
+    }
+  ],
   "process_steps": [
     {
       "step": "01",
-      "title": "Property Discovery",
-      "desc": "Matching your requirements with curated listings."
+      "title": "Requirement Mapping",
+      "desc": "Understand your exact budget, location, and amenity preferences."
     },
     {
       "step": "02",
-      "title": "Private Tour",
-      "desc": "Exclusive walkthroughs with market insight."
+      "title": "Curated Site Visits",
+      "desc": "Private guided tours of verified RERA-cleared properties."
     },
     {
       "step": "03",
       "title": "Seamless Closing",
-      "desc": "Expert contract negotiation and hassle-free handover."
+      "desc": "Complete assistance with documentation, loans, and registry."
     }
-  ]
+  ],
+  "story": {
+    "heading": "Guiding Your Lifetime Property Decisions",
+    "body": "Our real estate advisors combine deep local intelligence with uncompromising legal verification.",
+    "badge": "RERA Certified Agency"
+  },
+  "benefits": [
+    "Pre-vetted legal land titles",
+    "Instant home loan tie-ups",
+    "Dedicated property manager"
+  ],
+  "testimonials": [
+    {
+      "name": "Amitav Chatterjee",
+      "text": "Bought our dream 3BHK through them. Flawless legal registration process.",
+      "rating": "5"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Are all properties RERA compliant?",
+      "a": "Yes, every project listed undergoes rigorous legal title verification."
+    }
+  ],
+  "team": [
+    {
+      "name": "Rohan Bose",
+      "role": "Managing Director",
+      "exp": "15+ Yrs Exp"
+    }
+  ],
+  "primary_action": "Book Private Site Visit",
+  "secondary_action": "Call Property Consultant",
+  "location_heading": "Our Corporate Sales Lounge",
+  "contact_heading": "Schedule Property Advisory Session",
+  "disclaimer": "Property availability subject to market transactions."
 }

@@ -1,53 +1,106 @@
 {
   "id": "veterinary",
   "name": "Veterinary Clinics",
-  "singular": "Animal Hospital",
-  "headline": "Loving & Expert Medical Care for Your Pets",
-  "description": "Comprehensive veterinary services, vaccinations, dental care, surgery, and wellness exams.",
-  "services": [
+  "singular": "Veterinary Hospital",
+  "eyebrow": "Compassionate & Gentle Pet Healthcare",
+  "headline": "Expert Medical Care For Your Beloved Pets",
+  "description": "Full-service animal hospital providing preventative vaccinations, soft-tissue surgery, pet dentistry, and 24/7 emergency care.",
+  "hero_video_mp4": "https://videos.pexels.com/video-files/6234988/6234988-uhd_2560_1440_25fps.mp4",
+  "hero_video_webm": "https://videos.pexels.com/video-files/6234988/6234988-uhd_2560_1440_25fps.mp4",
+  "video_poster": "https://images.pexels.com/photos/6234988/pexels-photo-6234988.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "hero_image": "https://images.pexels.com/photos/6234988/pexels-photo-6234988.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "trust_items": [
+    "VCI Certified Vets",
+    "24/7 Emergency Care",
+    "In-House Surgery & ICU",
+    "Fear-Free Handling"
+  ],
+  "statistics": [
     {
-      "title": "General Pet Health Exams",
-      "description": "Routine physical examinations, weight monitoring, and wellness check-ups."
+      "value": "18,000+",
+      "label": "Pets Treated"
     },
     {
-      "title": "Pet Vaccinations",
-      "description": "Essential core and non-core vaccines for dogs, cats, and small animals."
+      "value": "99.5%",
+      "label": "Recovery Rate"
     },
     {
-      "title": "Nutritional & Behavioral Advice",
-      "description": "Custom diet plans and behavioral guidance for pet owners."
+      "value": "24/7",
+      "label": "Emergency Care"
     },
     {
-      "title": "Dental & Preventive Care",
-      "description": "Pet dental cleaning, flea/tick prevention, and long-term care support."
+      "value": "4.9\u2605",
+      "label": "Pet Parent Reviews"
     }
   ],
-  "primary_action": "Book vet appointment",
-  "secondary_action": "Call clinic",
-  "disclaimer": "Emergency pet care subject to clinic operating hours. Consult vet for specific health advice.",
-  "pexels_video": "https://videos.pexels.com/video-files/6235122/6235122-hd_1920_1080_25fps.mp4",
-  "location_heading": "Visit Our Animal Hospital",
-  "contact_heading": "Schedule Pet Consultation",
-  "hero_image": "https://images.pexels.com/photos/6235115/pexels-photo-6235115.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "video_poster": "https://images.pexels.com/photos/6235115/pexels-photo-6235115.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "hero_eyebrow": "Compassionate Pet Healthcare",
-  "story_heading": "Treating Your Pets Like Family",
-  "story_body": "Our gentle veterinary team creates a calm, welcoming space for dogs, cats, and small animals.",
+  "services": [
+    {
+      "title": "Preventative Wellness & Vaccines",
+      "description": "Core vaccinations, parasite control, microchipping, and nutrition plans."
+    },
+    {
+      "title": "Advanced Pet Surgery & ICU",
+      "description": "Sterile operating theatre for spay/neuter, orthopedic, and soft-tissue surgery."
+    },
+    {
+      "title": "In-House Diagnostics & X-Ray",
+      "description": "Instant blood analyzer, digital radiography, and ultrasound."
+    },
+    {
+      "title": "Dental Care & Scale Cleaning",
+      "description": "Ultrasonic teeth scaling, extraction, and oral health maintenance."
+    }
+  ],
   "process_steps": [
     {
       "step": "01",
-      "title": "Nose-to-Tail Exam",
-      "desc": "Thorough health check in a stress-free environment."
+      "title": "Fear-Free Checkup",
+      "desc": "Gentle evaluation in a calm stress-free clinic room."
     },
     {
       "step": "02",
-      "title": "Custom Wellness",
-      "desc": "Vaccinations, nutrition, and preventive plans."
+      "title": "Diagnostic Review",
+      "desc": "Instant lab results to pinpoint symptoms accurately."
     },
     {
       "step": "03",
-      "title": "Gentle Care",
-      "desc": "Attentive treatment and follow-up support."
+      "title": "Loving Care & Recovery",
+      "desc": "Expert treatment with step-by-step home care guidance."
     }
-  ]
+  ],
+  "story": {
+    "heading": "Treating Your Pets Like Family",
+    "body": "Our veterinary team combines advanced medical expertise with deep love for animals to keep your pets happy and healthy.",
+    "badge": "Certified Pet Care"
+  },
+  "benefits": [
+    "Separate cat & dog waiting areas",
+    "Pet ambulance pickup",
+    "Medicated grooming salon"
+  ],
+  "testimonials": [
+    {
+      "name": "Tania Sen",
+      "text": "Saved my dog during an emergency situation at midnight. Forever grateful!",
+      "rating": "5"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Is emergency vet service open 24/7?",
+      "a": "Yes, our veterinary emergency trauma unit is staffed 24 hours a day."
+    }
+  ],
+  "team": [
+    {
+      "name": "Dr. P. Deshmukh",
+      "role": "Senior Veterinary Surgeon",
+      "exp": "14+ Yrs Exp"
+    }
+  ],
+  "primary_action": "Book Pet Visit",
+  "secondary_action": "Call Vet Emergency",
+  "location_heading": "Veterinary Hospital & Pet Care",
+  "contact_heading": "Schedule Pet Consultation",
+  "disclaimer": "Emergency cases prioritized immediately upon arrival."
 }
