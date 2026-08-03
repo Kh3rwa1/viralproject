@@ -8,7 +8,7 @@
   {% if not live %}<meta name="robots" content="noindex, nofollow">{% endif %}
   <link rel="canonical" href="{{ lead.pageUrl }}">
 
-  <!-- Fonts & Motion -->
+  <!-- Fonts & Motion System -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
@@ -44,27 +44,27 @@
     .nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
     .brand { font-size: 22px; font-weight: 700; color: var(--text); text-decoration: none; font-family: 'Fredoka'; }
 
-    /* 2. Hero Section */
+    /* 2. Illustrated Story Hero */
     .hero { padding: 130px 0 80px; position: relative; }
     .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
     .hero-title { font-size: 48px; font-weight: 700; line-height: 1.15; color: #78350f; margin: 16px 0; }
     
-    /* Blob Masked Video */
+    /* Blob Masked Video Frame */
     .blob-media { position: relative; width: 100%; aspect-ratio: 4/3; border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; overflow: hidden; border: 4px solid var(--primary); box-shadow: 0 20px 40px -10px rgba(180,83,9,0.2); background: var(--surface); }
     .hero-poster, .hero-video { width: 100%; height: 100%; object-fit: cover; }
 
-    /* 3. Trust Strip */
+    /* 3. Hand-Drawn SVG Trust Strip */
     .trust-strip { padding: 32px 0; background: #fef3c7; border-top: 2px dashed var(--border); border-bottom: 2px dashed var(--border); }
     .trust-flex { display: flex; justify-content: space-around; gap: 20px; flex-wrap: wrap; }
     .trust-item { font-size: 15px; font-weight: 700; color: var(--muted); font-family: 'Fredoka'; }
 
-    /* 5. Services Cards */
+    /* 5. Service Worlds */
     .section { padding: 90px 0; }
     .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
     .card { background: var(--surface-card); border: 2px solid var(--border); padding: 32px; border-radius: var(--radius); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); transition: all 0.3s ease; }
     .card:hover { transform: translateY(-6px) rotate(1deg); border-color: var(--primary); }
 
-    /* 13 & 14. Booking & Map */
+    /* 13 & 14. Celebratory Booking Scene & Location */
     .booking-box { background: #fff; border: 3px solid var(--primary); padding: 40px; border-radius: 32px; box-shadow: 0 20px 40px -10px rgba(217,119,6,0.15); }
     .map-frame { width: 100%; height: 350px; border-radius: var(--radius); border: 2px solid var(--border); margin-top: 20px; }
 
@@ -93,7 +93,7 @@
     </div>
   </nav>
 
-  <!-- 2. Hero Section -->
+  <!-- 2. Illustrated Story Hero Section -->
   <section class="hero">
     <div class="container hero-grid">
       <div class="reveal-up">
@@ -115,7 +115,7 @@
     </div>
   </section>
 
-  <!-- 3. Trust Strip -->
+  <!-- 3. Hand-Drawn SVG Trust Strip -->
   {% if category_pack.trust_items %}
   <section class="trust-strip">
     <div class="container trust-flex">
@@ -130,7 +130,7 @@
   </section>
   {% endif %}
 
-  <!-- 5. Services Section -->
+  <!-- 5. Service Worlds -->
   <section class="section">
     <div class="container">
       <div style="text-align:center;margin-bottom:56px" class="reveal-up">
@@ -148,7 +148,7 @@
     </div>
   </section>
 
-  <!-- 6. Results & Stats -->
+  <!-- 6. Friendly Results Board -->
   {% if category_pack.statistics %}
   <section class="section" style="background:#fef3c7">
     <div class="container" style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center">
@@ -162,7 +162,7 @@
   </section>
   {% endif %}
 
-  <!-- 8 & 12. Story & FAQ -->
+  <!-- 8 & 12. Character Journey & FAQ -->
   <section class="section">
     <div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
       <!-- Story -->
@@ -186,7 +186,7 @@
     </div>
   </section>
 
-  <!-- 13 & 14. Booking & Map World -->
+  <!-- 13 & 14. Celebratory Booking Scene & Location -->
   <section class="section" id="book" style="background:#fef3c7">
     <div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
       <div class="booking-box reveal-up">

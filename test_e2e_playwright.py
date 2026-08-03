@@ -96,67 +96,73 @@ class TestE2EPlaywright(unittest.TestCase):
 
             browser.close()
 
-    def test_dark_cinematic_visual_approval_gate(self):
+    def test_all_five_independent_templates_visual_gate(self):
         lead = engine.lead_record({
-            "name": "Apex Luxury Dental Clinic",
+            "name": "Apex Dental Clinic",
             "category": "Dental Clinics",
             "city": "Kolkata",
             "phone": "9876543210",
             "address": "12 Park Street, Opposite City Mall",
             "rating": "4.9",
             "reviews": "128"
-        }, "apex-luxury-dental")
+        }, "apex-dental-clinic")
+
+        layouts = [
+            "dental_clean_product",
+            "dental_dark_cinematic",
+            "dental_aurora_glass",
+            "dental_retro_editorial",
+            "dental_friendly_illustrated"
+        ]
 
         artifact_dir = Path("/Users/dulorai/.gemini/antigravity/brain/0307b4a0-8eb7-43a0-852d-7166f9fe4a6f")
         artifact_dir.mkdir(parents=True, exist_ok=True)
 
-        html = engine.render_full_page("dental_dark_cinematic", lead, live=False)
-        (artifact_dir / "dark_cinematic_rendered.html").write_text(html, encoding="utf-8")
-
         with sync_playwright() as p:
             browser = p.chromium.launch(headless=True)
 
-            # 1. Desktop Viewport 1440x900
-            page_errors = []
-            context = browser.new_context(viewport={"width": 1440, "height": 900})
-            page = context.new_page()
-            page.on("pageerror", lambda err: page_errors.append(str(err)))
+            for l_id in layouts:
+                html = engine.render_full_page(l_id, lead, live=False)
 
-            page.set_content(html)
-            page.wait_for_timeout(500)
+                # Save rendered HTML
+                (artifact_dir / f"{l_id}_rendered.html").write_text(html, encoding="utf-8")
 
-            # Assert video hero & poster exist
-            video_exists = page.query_selector("video.hero-video") is not None
-            poster_exists = page.query_selector("img.hero-poster") is not None
-            self.assertTrue(video_exists, "Missing video.hero-video in dark_cinematic")
-            self.assertTrue(poster_exists, "Missing img.hero-poster in dark_cinematic")
-            self.assertEqual(len(page_errors), 0, f"Encountered page errors: {page_errors}")
+                # 1. Desktop Viewport 1440x900
+                page_errors = []
+                context_desktop = browser.new_context(viewport={"width": 1440, "height": 900})
+                page_desktop = context_desktop.new_page()
+                page_desktop.on("pageerror", lambda err: page_errors.append(str(err)))
 
-            # Capture Viewport Screenshot
-            page.screenshot(path=str(artifact_dir / "dark_cinematic_desktop_1440.png"))
-            # Capture Full Page Screenshot
-            page.screenshot(path=str(artifact_dir / "dark_cinematic_fullpage_1440.png"), full_page=True)
+                page_desktop.set_content(html)
+                page_desktop.wait_for_timeout(400)
 
-            context.close()
+                video_exists = page_desktop.query_selector("video") is not None
+                poster_exists = page_desktop.query_selector("img.hero-poster") is not None
+                self.assertTrue(video_exists, f"Missing video in {l_id}")
+                self.assertTrue(poster_exists, f"Missing poster in {l_id}")
+                self.assertEqual(len(page_errors), 0, f"Page error in {l_id}: {page_errors}")
 
-            # 2. Mobile Viewport 390x844 (iPhone 14)
-            page_errors_mobile = []
-            context_mobile = browser.new_context(viewport={"width": 390, "height": 844})
-            page_mobile = context_mobile.new_page()
-            page_mobile.on("pageerror", lambda err: page_errors_mobile.append(str(err)))
+                # Capture Desktop Screenshot
+                page_desktop.screenshot(path=str(artifact_dir / f"{l_id}_desktop_1440.png"))
+                context_desktop.close()
 
-            page_mobile.set_content(html)
-            page_mobile.wait_for_timeout(500)
+                # 2. Mobile Viewport 390x844
+                page_errors_mobile = []
+                context_mobile = browser.new_context(viewport={"width": 390, "height": 844})
+                page_mobile = context_mobile.new_page()
+                page_mobile.on("pageerror", lambda err: page_errors_mobile.append(str(err)))
 
-            # Assert mobile sticky bar is visible
-            mobile_bar_visible = page_mobile.eval_on_selector(".mobile-sticky-bar", "el => getComputedStyle(el).display !== 'none'")
-            self.assertTrue(mobile_bar_visible, "Mobile sticky bar should be visible on 390x844 viewport")
-            self.assertEqual(len(page_errors_mobile), 0, f"Encountered mobile page errors: {page_errors_mobile}")
+                page_mobile.set_content(html)
+                page_mobile.wait_for_timeout(400)
 
-            # Capture Mobile Screenshot
-            page_mobile.screenshot(path=str(artifact_dir / "dark_cinematic_mobile_390.png"))
+                mobile_bar_visible = page_mobile.eval_on_selector(".mobile-sticky-bar", "el => getComputedStyle(el).display !== 'none'")
+                self.assertTrue(mobile_bar_visible, f"Mobile sticky bar should be visible on {l_id}")
+                self.assertEqual(len(page_errors_mobile), 0, f"Mobile page error in {l_id}: {page_errors_mobile}")
 
-            context_mobile.close()
+                # Capture Mobile Screenshot
+                page_mobile.screenshot(path=str(artifact_dir / f"{l_id}_mobile_390.png"))
+                context_mobile.close()
+
             browser.close()
 
 

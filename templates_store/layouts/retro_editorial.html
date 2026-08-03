@@ -8,7 +8,7 @@
   {% if not live %}<meta name="robots" content="noindex, nofollow">{% endif %}
   <link rel="canonical" href="{{ lead.pageUrl }}">
 
-  <!-- Fonts & Motion -->
+  <!-- Fonts & Motion System -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
@@ -30,38 +30,38 @@
     body { background: var(--bg); color: var(--text); font-family: 'Source Sans 3', Georgia, serif; line-height: 1.6; overflow-x: hidden; }
     h1, h2, h3, .serif { font-family: 'Playfair Display', Georgia, serif; }
     .container { width: 100%; max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 24px; font-weight: 700; font-size: 14px; text-decoration: none; transition: all 0.2s ease; cursor: pointer; border: none; text-transform: uppercase; letter-spacing: 1px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 28px; font-weight: 700; font-size: 14px; text-decoration: none; transition: all 0.2s ease; cursor: pointer; border: none; text-transform: uppercase; letter-spacing: 1.5px; }
     .btn-primary { background: var(--primary); color: #fff; }
     .btn-primary:hover { background: var(--primary-hover); }
     .btn-outline { border: 1px solid var(--text); color: var(--text); background: transparent; }
     .btn-outline:hover { background: var(--text); color: #fff; }
 
     /* 1. Publication Masthead Header */
-    .masthead { border-bottom: 3px double var(--text); padding: 16px 0; background: var(--bg); text-align: center; }
+    .masthead { border-bottom: 3px double var(--text); padding: 20px 0; background: var(--bg); text-align: center; }
     .masthead-meta { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 16px; color: var(--muted); }
-    .masthead-title { font-size: 42px; font-weight: 800; letter-spacing: -1px; text-transform: uppercase; }
+    .masthead-title { font-size: 46px; font-weight: 800; letter-spacing: -1px; text-transform: uppercase; }
 
-    /* 2. Hero Section */
-    .hero { padding: 48px 0; border-bottom: 1px solid var(--border); }
-    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-    .hero-title { font-size: 44px; font-weight: 800; line-height: 1.15; margin-bottom: 20px; }
+    /* 2. Cover Story Hero */
+    .hero { padding: 52px 0; border-bottom: 1px solid var(--border); }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; align-items: center; }
+    .hero-title { font-size: 46px; font-weight: 800; line-height: 1.15; margin-bottom: 20px; }
     .film-frame { position: relative; border: 12px solid #1c1917; box-shadow: 0 15px 35px rgba(0,0,0,0.15); aspect-ratio: 16/9; background: #000; }
     .hero-poster, .hero-video { width: 100%; height: 100%; object-fit: cover; }
 
-    /* 3. Trust Ticker */
+    /* 3. News Ticker */
     .trust-ticker { padding: 16px 0; border-bottom: 1px solid var(--border); background: var(--surface); text-align: center; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; }
 
     /* 5. Editorial Service Directory */
-    .section { padding: 80px 0; border-bottom: 1px solid var(--border); }
-    .editorial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
+    .section { padding: 85px 0; border-bottom: 1px solid var(--border); }
+    .editorial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 44px; }
     .service-row { border-top: 1px solid var(--text); padding-top: 20px; margin-bottom: 32px; }
     .service-num { font-size: 28px; font-weight: 800; color: var(--primary); }
 
-    /* 13 & 14. Booking & Map Directory */
-    .booking-box { border: 2px solid var(--text); padding: 40px; background: #fff; }
-    .map-frame { width: 100%; height: 320px; border: 1px solid var(--text); margin-top: 20px; filter: grayscale(0.5); }
+    /* 13 & 14. Booking Directory & Location */
+    .booking-box { border: 2px solid var(--text); padding: 44px; background: #fff; }
+    .map-frame { width: 100%; height: 340px; border: 1px solid var(--text); margin-top: 20px; filter: grayscale(0.5); }
 
-    footer { background: var(--text); color: #d6d3d1; padding: 60px 0 30px; font-size: 14px; }
+    footer { background: var(--text); color: #d6d3d1; padding: 65px 0 35px; font-size: 14px; }
     .mobile-sticky-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #1c1917; padding: 10px 16px; display: flex; gap: 10px; z-index: 999; border-top: 2px solid var(--primary); }
     .bar-btn { flex: 1; display: flex; align-items: center; justify-content: center; padding: 12px 14px; font-weight: 700; font-size: 13px; text-decoration: none; color: #fff; background: var(--primary); }
     .bar-btn.whatsapp { background: #25D366; }
@@ -88,7 +88,7 @@
     </div>
   </header>
 
-  <!-- 2. Hero Section -->
+  <!-- 2. Cover Story Hero Section -->
   <section class="hero">
     <div class="container hero-grid">
       <div class="reveal-up">
@@ -110,7 +110,7 @@
     </div>
   </section>
 
-  <!-- 3. Trust Ticker -->
+  <!-- 3. News Ticker & Credentials -->
   {% if category_pack.trust_items %}
   <div class="trust-ticker">
     <div class="container">
@@ -137,7 +137,7 @@
     </div>
   </section>
 
-  <!-- 8 & 12. Story & FAQ -->
+  <!-- 8 & 12. Editorial Story & FAQ -->
   <section class="section" style="background:var(--surface)">
     <div class="container editorial-grid">
       <div class="reveal-up">
@@ -160,7 +160,7 @@
     </div>
   </section>
 
-  <!-- 13 & 14. Booking & Map Directory -->
+  <!-- 13 & 14. Booking Directory & Location -->
   <section class="section" id="book">
     <div class="container editorial-grid">
       <div class="booking-box reveal-up">
