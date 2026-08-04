@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
+  unit-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -25,3 +25,32 @@ jobs:
       - name: Run Unit Tests
         run: |
           python -m unittest test_standalone_generator.py test_app.py
+
+  browser-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies & Playwright Chromium
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
+
+      - name: Run Visual Approval Gate Tests
+        env:
+          TEST_ARTIFACT_DIR: test-results/visual-gates
+        run: |
+          python -m unittest -v tests/visual/test_aurora_glass.py tests/visual/test_playful_3d.py tests/visual/test_luminous_cinema.py tests/visual/test_retro_editorial.py
+
+      - name: Upload Screenshot Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-approval-screenshots
+          path: test-results/

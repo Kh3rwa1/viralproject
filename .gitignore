@@ -15,3 +15,5 @@ netlify_debug.log
 dist/*
 !dist/.gitkeep
 
+rendered_*.html
+test-results/
