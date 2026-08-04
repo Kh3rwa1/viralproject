@@ -39,14 +39,14 @@ jobs:
       - name: Install dependencies & Playwright Chromium
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
           python -m playwright install --with-deps chromium
 
       - name: Run Visual Approval Gate Tests
         env:
           TEST_ARTIFACT_DIR: test-results/visual-gates
         run: |
-          python -m unittest -v tests/visual/test_aurora_glass.py tests/visual/test_playful_3d.py tests/visual/test_luminous_cinema.py tests/visual/test_retro_editorial.py
+          python -m unittest -v tests/visual/test_aurora_glass.py tests/visual/test_playful_3d.py tests/visual/test_luminous_cinema.py tests/visual/test_retro_editorial.py tests/visual/test_clean_product.py
 
       - name: Upload Screenshot Artifacts
         if: always()

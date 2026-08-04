@@ -1,11 +1,11 @@
 [
   {
     "id": "dental_clean_product",
-    "name": "Dental Clinics \u2014 Clean Product",
-    "label": "Dental Clinics (Clean Product)",
+    "name": "Dental \u2014 Clean Product",
+    "label": "Clean Product",
     "category": "dental",
     "layout": "clean_product",
-    "description": "Clean Product design system tailored for Dental Clinics",
+    "description": "Pure white product-launch design for modern dental practices.",
     "thumbnail": "/template-previews/dental-clean-product.webp",
     "version": 2,
     "active": true,
@@ -68,7 +68,7 @@
   {
     "id": "medical_clean_product",
     "name": "Medical Clinics \u2014 Clean Product",
-    "label": "Medical Clinics (Clean Product)",
+    "label": "Clean Product",
     "category": "medical",
     "layout": "clean_product",
     "description": "Clean Product design system tailored for Medical Clinics",
@@ -134,7 +134,7 @@
   {
     "id": "law_clean_product",
     "name": "Law Firms \u2014 Clean Product",
-    "label": "Law Firms (Clean Product)",
+    "label": "Clean Product",
     "category": "law",
     "layout": "clean_product",
     "description": "Clean Product design system tailored for Law Firms",
@@ -200,7 +200,7 @@
   {
     "id": "home_services_clean_product",
     "name": "Home Services \u2014 Clean Product",
-    "label": "Home Services (Clean Product)",
+    "label": "Clean Product",
     "category": "home_services",
     "layout": "clean_product",
     "description": "Clean Product design system tailored for Home Services",
@@ -266,7 +266,7 @@
   {
     "id": "cosmetic_clean_product",
     "name": "Cosmetic Clinics \u2014 Clean Product",
-    "label": "Cosmetic Clinics (Clean Product)",
+    "label": "Clean Product",
     "category": "cosmetic",
     "layout": "clean_product",
     "description": "Clean Product design system tailored for Cosmetic Clinics",
@@ -332,7 +332,7 @@
   {
     "id": "real_estate_clean_product",
     "name": "Real Estate Agencies \u2014 Clean Product",
-    "label": "Real Estate Agencies (Clean Product)",
+    "label": "Clean Product",
     "category": "real_estate",
     "layout": "clean_product",
     "description": "Clean Product design system tailored for Real Estate Agencies",
@@ -398,7 +398,7 @@
   {
     "id": "coaching_clean_product",
     "name": "Coaching Institutes \u2014 Clean Product",
-    "label": "Coaching Institutes (Clean Product)",
+    "label": "Clean Product",
     "category": "coaching",
     "layout": "clean_product",
     "description": "Clean Product design system tailored for Coaching Institutes",
@@ -464,7 +464,7 @@
   {
     "id": "accounting_clean_product",
     "name": "Accounting Firms \u2014 Clean Product",
-    "label": "Accounting Firms (Clean Product)",
+    "label": "Clean Product",
     "category": "accounting",
     "layout": "clean_product",
     "description": "Clean Product design system tailored for Accounting Firms",
@@ -530,7 +530,7 @@
   {
     "id": "auto_clean_product",
     "name": "Auto Repair Shops \u2014 Clean Product",
-    "label": "Auto Repair Shops (Clean Product)",
+    "label": "Clean Product",
     "category": "auto",
     "layout": "clean_product",
     "description": "Clean Product design system tailored for Auto Repair Shops",
@@ -596,7 +596,7 @@
   {
     "id": "veterinary_clean_product",
     "name": "Veterinary Clinics \u2014 Clean Product",
-    "label": "Veterinary Clinics (Clean Product)",
+    "label": "Clean Product",
     "category": "veterinary",
     "layout": "clean_product",
     "description": "Clean Product design system tailored for Veterinary Clinics",
