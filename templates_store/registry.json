@@ -15,16 +15,16 @@
   },
   {
     "id": "dental_dark_cinematic",
-    "name": "Dental Clinics \u2014 Dark Cinematic",
-    "label": "Dental Clinics (Dark Cinematic)",
+    "name": "Dental Clinics \u2014 Luminous Cinema",
+    "label": "Dental Clinics (Luminous Cinema)",
     "category": "dental",
     "layout": "dark_cinematic",
-    "description": "Dark Cinematic design system tailored for Dental Clinics",
+    "description": "Luminous Cinema design system tailored for Dental Clinics",
     "thumbnail": "/template-previews/dental-dark-cinematic.webp",
     "version": 2,
     "active": true,
     "badges": [
-      "Dark"
+      "Luminous"
     ]
   },
   {
@@ -81,16 +81,16 @@
   },
   {
     "id": "medical_dark_cinematic",
-    "name": "Medical Clinics \u2014 Dark Cinematic",
-    "label": "Medical Clinics (Dark Cinematic)",
+    "name": "Medical Clinics \u2014 Luminous Cinema",
+    "label": "Medical Clinics (Luminous Cinema)",
     "category": "medical",
     "layout": "dark_cinematic",
-    "description": "Dark Cinematic design system tailored for Medical Clinics",
+    "description": "Luminous Cinema design system tailored for Medical Clinics",
     "thumbnail": "/template-previews/medical-dark-cinematic.webp",
     "version": 2,
     "active": true,
     "badges": [
-      "Dark"
+      "Luminous"
     ]
   },
   {
@@ -147,16 +147,16 @@
   },
   {
     "id": "law_dark_cinematic",
-    "name": "Law Firms \u2014 Dark Cinematic",
-    "label": "Law Firms (Dark Cinematic)",
+    "name": "Law Firms \u2014 Luminous Cinema",
+    "label": "Law Firms (Luminous Cinema)",
     "category": "law",
     "layout": "dark_cinematic",
-    "description": "Dark Cinematic design system tailored for Law Firms",
+    "description": "Luminous Cinema design system tailored for Law Firms",
     "thumbnail": "/template-previews/law-dark-cinematic.webp",
     "version": 2,
     "active": true,
     "badges": [
-      "Dark"
+      "Luminous"
     ]
   },
   {
@@ -213,16 +213,16 @@
   },
   {
     "id": "home_services_dark_cinematic",
-    "name": "Home Services \u2014 Dark Cinematic",
-    "label": "Home Services (Dark Cinematic)",
+    "name": "Home Services \u2014 Luminous Cinema",
+    "label": "Home Services (Luminous Cinema)",
     "category": "home_services",
     "layout": "dark_cinematic",
-    "description": "Dark Cinematic design system tailored for Home Services",
+    "description": "Luminous Cinema design system tailored for Home Services",
     "thumbnail": "/template-previews/home_services-dark-cinematic.webp",
     "version": 2,
     "active": true,
     "badges": [
-      "Dark"
+      "Luminous"
     ]
   },
   {
@@ -279,16 +279,16 @@
   },
   {
     "id": "cosmetic_dark_cinematic",
-    "name": "Cosmetic Clinics \u2014 Dark Cinematic",
-    "label": "Cosmetic Clinics (Dark Cinematic)",
+    "name": "Cosmetic Clinics \u2014 Luminous Cinema",
+    "label": "Cosmetic Clinics (Luminous Cinema)",
     "category": "cosmetic",
     "layout": "dark_cinematic",
-    "description": "Dark Cinematic design system tailored for Cosmetic Clinics",
+    "description": "Luminous Cinema design system tailored for Cosmetic Clinics",
     "thumbnail": "/template-previews/cosmetic-dark-cinematic.webp",
     "version": 2,
     "active": true,
     "badges": [
-      "Dark"
+      "Luminous"
     ]
   },
   {
@@ -345,16 +345,16 @@
   },
   {
     "id": "real_estate_dark_cinematic",
-    "name": "Real Estate Agencies \u2014 Dark Cinematic",
-    "label": "Real Estate Agencies (Dark Cinematic)",
+    "name": "Real Estate Agencies \u2014 Luminous Cinema",
+    "label": "Real Estate Agencies (Luminous Cinema)",
     "category": "real_estate",
     "layout": "dark_cinematic",
-    "description": "Dark Cinematic design system tailored for Real Estate Agencies",
+    "description": "Luminous Cinema design system tailored for Real Estate Agencies",
     "thumbnail": "/template-previews/real_estate-dark-cinematic.webp",
     "version": 2,
     "active": true,
     "badges": [
-      "Dark"
+      "Luminous"
     ]
   },
   {
@@ -411,16 +411,16 @@
   },
   {
     "id": "coaching_dark_cinematic",
-    "name": "Coaching Institutes \u2014 Dark Cinematic",
-    "label": "Coaching Institutes (Dark Cinematic)",
+    "name": "Coaching Institutes \u2014 Luminous Cinema",
+    "label": "Coaching Institutes (Luminous Cinema)",
     "category": "coaching",
     "layout": "dark_cinematic",
-    "description": "Dark Cinematic design system tailored for Coaching Institutes",
+    "description": "Luminous Cinema design system tailored for Coaching Institutes",
     "thumbnail": "/template-previews/coaching-dark-cinematic.webp",
     "version": 2,
     "active": true,
     "badges": [
-      "Dark"
+      "Luminous"
     ]
   },
   {
@@ -477,16 +477,16 @@
   },
   {
     "id": "accounting_dark_cinematic",
-    "name": "Accounting Firms \u2014 Dark Cinematic",
-    "label": "Accounting Firms (Dark Cinematic)",
+    "name": "Accounting Firms \u2014 Luminous Cinema",
+    "label": "Accounting Firms (Luminous Cinema)",
     "category": "accounting",
     "layout": "dark_cinematic",
-    "description": "Dark Cinematic design system tailored for Accounting Firms",
+    "description": "Luminous Cinema design system tailored for Accounting Firms",
     "thumbnail": "/template-previews/accounting-dark-cinematic.webp",
     "version": 2,
     "active": true,
     "badges": [
-      "Dark"
+      "Luminous"
     ]
   },
   {
@@ -543,16 +543,16 @@
   },
   {
     "id": "auto_dark_cinematic",
-    "name": "Auto Repair Shops \u2014 Dark Cinematic",
-    "label": "Auto Repair Shops (Dark Cinematic)",
+    "name": "Auto Repair Shops \u2014 Luminous Cinema",
+    "label": "Auto Repair Shops (Luminous Cinema)",
     "category": "auto",
     "layout": "dark_cinematic",
-    "description": "Dark Cinematic design system tailored for Auto Repair Shops",
+    "description": "Luminous Cinema design system tailored for Auto Repair Shops",
     "thumbnail": "/template-previews/auto-dark-cinematic.webp",
     "version": 2,
     "active": true,
     "badges": [
-      "Dark"
+      "Luminous"
     ]
   },
   {
@@ -609,16 +609,16 @@
   },
   {
     "id": "veterinary_dark_cinematic",
-    "name": "Veterinary Clinics \u2014 Dark Cinematic",
-    "label": "Veterinary Clinics (Dark Cinematic)",
+    "name": "Veterinary Clinics \u2014 Luminous Cinema",
+    "label": "Veterinary Clinics (Luminous Cinema)",
     "category": "veterinary",
     "layout": "dark_cinematic",
-    "description": "Dark Cinematic design system tailored for Veterinary Clinics",
+    "description": "Luminous Cinema design system tailored for Veterinary Clinics",
     "thumbnail": "/template-previews/veterinary-dark-cinematic.webp",
     "version": 2,
     "active": true,
     "badges": [
-      "Dark"
+      "Luminous"
     ]
   },
   {

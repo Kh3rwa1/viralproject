@@ -1,0 +1,99 @@
+<!-- Motion & Animation System for Luminous Cinema -->
+<style>
+  .reveal-luminous {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-luminous.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    .reveal-luminous { opacity: 1 !important; transform: none !important; }
+    .luminous-hero__video { display: none !important; }
+    .luminous-hero__poster { opacity: 1 !important; }
+  }
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Video Hero Setup & Ready Handling
+  document.querySelectorAll("[data-luminous-video]").forEach((hero) => {
+    const video = hero.querySelector(".luminous-hero__video") || hero.querySelector("video");
+    const poster = hero.querySelector(".luminous-hero__poster") || hero.querySelector("img");
+
+    if (!video) return;
+
+    const ready = () => {
+      hero.classList.add("video-ready");
+      hero.classList.remove("video-failed");
+    };
+
+    const failed = () => {
+      hero.classList.remove("video-ready");
+      hero.classList.add("video-failed");
+      if (poster) {
+        poster.hidden = false;
+      }
+    };
+
+    video.addEventListener("playing", ready);
+    video.addEventListener("canplay", ready);
+    video.addEventListener("error", failed);
+
+    video.querySelectorAll("source").forEach((source) => {
+      source.addEventListener("error", failed);
+    });
+
+    if (video.readyState >= 2) {
+      ready();
+    }
+
+    const playback = video.play();
+    if (playback?.catch) {
+      playback.catch(failed);
+    }
+  });
+
+  // Chapter Switching
+  const chapterTabs = document.querySelectorAll(".luminous-chapter-tab");
+  const activeTitle = document.getElementById("luminous-active-chapter-title");
+  const activeDesc = document.getElementById("luminous-active-chapter-desc");
+
+  chapterTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      chapterTabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+
+      if (activeTitle && activeDesc) {
+        activeTitle.textContent = tab.getAttribute("data-title") || "";
+        activeDesc.textContent = tab.getAttribute("data-desc") || "";
+      }
+    });
+  });
+
+  // Scroll Reveals
+  const reveals = document.querySelectorAll(".reveal-luminous");
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("active");
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach((r) => observer.observe(r));
+  } else {
+    reveals.forEach((r) => r.classList.add("active"));
+  }
+});
+</script>

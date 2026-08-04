@@ -3,16 +3,114 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ lead.pageTitle }}</title>
-  <meta name="description" content="{{ lead.pageDescription }}">
-  {% if not live %}<meta name="robots" content="noindex, nofollow">{% endif %}
-  <link rel="canonical" href="{{ lead.pageUrl }}">
+  <title>Apex Dental Clinic — Dental Clinics in Kolkata</title>
+  <meta name="description" content="Contact Apex Dental Clinic, a Dental Clinics serving Kolkata.">
+  
+  <link rel="canonical" href="/apex-dental-clinic/">
 
   <!-- Fonts & Luminous Motion System -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  {% include "partials/motion_luminous.html" %}
+  <!-- Motion & Animation System for Luminous Cinema -->
+<style>
+  .reveal-luminous {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-luminous.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    .reveal-luminous { opacity: 1 !important; transform: none !important; }
+    .luminous-hero__video { display: none !important; }
+    .luminous-hero__poster { opacity: 1 !important; }
+  }
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Video Hero Setup & Ready Handling
+  document.querySelectorAll("[data-luminous-video]").forEach((hero) => {
+    const video = hero.querySelector(".luminous-hero__video") || hero.querySelector("video");
+    const poster = hero.querySelector(".luminous-hero__poster") || hero.querySelector("img");
+
+    if (!video) return;
+
+    const ready = () => {
+      hero.classList.add("video-ready");
+      hero.classList.remove("video-failed");
+    };
+
+    const failed = () => {
+      hero.classList.remove("video-ready");
+      hero.classList.add("video-failed");
+      if (poster) {
+        poster.hidden = false;
+      }
+    };
+
+    video.addEventListener("playing", ready);
+    video.addEventListener("canplay", ready);
+    video.addEventListener("error", failed);
+
+    video.querySelectorAll("source").forEach((source) => {
+      source.addEventListener("error", failed);
+    });
+
+    if (video.readyState >= 2) {
+      ready();
+    }
+
+    const playback = video.play();
+    if (playback?.catch) {
+      playback.catch(failed);
+    }
+  });
+
+  // Chapter Switching
+  const chapterTabs = document.querySelectorAll(".luminous-chapter-tab");
+  const activeTitle = document.getElementById("luminous-active-chapter-title");
+  const activeDesc = document.getElementById("luminous-active-chapter-desc");
+
+  chapterTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      chapterTabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+
+      if (activeTitle && activeDesc) {
+        activeTitle.textContent = tab.getAttribute("data-title") || "";
+        activeDesc.textContent = tab.getAttribute("data-desc") || "";
+      }
+    });
+  });
+
+  // Scroll Reveals
+  const reveals = document.querySelectorAll(".reveal-luminous");
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("active");
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach((r) => observer.observe(r));
+  } else {
+    reveals.forEach((r) => r.classList.add("active"));
+  }
+});
+</script>
 
   <style>
     :root {
@@ -123,16 +221,16 @@
       .chapters-grid, .approach-grid, .booking-scene { grid-template-columns: 1fr; }
     }
   </style>
-  <script type="application/ld+json">{{ schema | tojson }}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LocalBusiness", "address": "12 Park Street, Opposite City Mall", "description": "Contact Apex Dental Clinic, a Dental Clinics serving Kolkata.", "name": "Apex Dental Clinic", "telephone": "+919876543210", "url": "/apex-dental-clinic/"}</script>
 </head>
 <body>
 
   <!-- 1. Luminous Film Hero -->
-  <section class="luminous-hero" data-luminous-video data-video-hero>
+  <section class="luminous-hero" data-luminous-video>
     <div class="luminous-hero__media">
-      <img class="luminous-hero__poster" src="{{ category_pack.video_poster }}" alt="{{ lead.fullName }}" width="1920" height="1080">
-      <video class="luminous-hero__video" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="{{ category_pack.video_poster }}" aria-hidden="true">
-        <source src="{{ category_pack.hero_video_mp4 or category_pack.pexels_video }}" type="video/mp4">
+      <img class="luminous-hero__poster" src="https://images.pexels.com/photos/3845766/pexels-photo-3845766.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1260&amp;h=750&amp;dpr=2" alt="Apex Dental Clinic" width="1920" height="1080">
+      <video class="luminous-hero__video" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="https://images.pexels.com/photos/3845766/pexels-photo-3845766.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1260&amp;h=750&amp;dpr=2" aria-hidden="true">
+        <source src="https://www.pexels.com/download/video/6192876/" type="video/mp4">
       </video>
       <div class="luminous-hero__pearl"></div>
       <div class="luminous-hero__grain"></div>
@@ -140,21 +238,21 @@
 
     <!-- Navigation (Short Name in Nav!) -->
     <nav class="luminous-nav">
-      <a class="luminous-brand" href="#">{{ lead.shortName or lead.fullName }}</a>
+      <a class="luminous-brand" href="#">Apex Dental Clinic</a>
       <div class="luminous-nav__links">
         <a href="#treatments">Treatments</a>
         <a href="#approach">Our approach</a>
         <a href="#location">Visit</a>
       </div>
-      {% if lead.phoneHref %}
-      <a href="{{ lead.phoneHref }}" class="luminous-nav__cta">Book a visit</a>
-      {% endif %}
+      
+      <a href="tel:+919876543210" class="luminous-nav__cta">Book a visit</a>
+      
     </nav>
 
     <!-- Hero Copy (Lower-Left Editorial Position) -->
     <div class="luminous-hero__copy reveal-luminous">
       <p class="luminous-eyebrow">
-        Modern dentistry{% if lead.city %} · {{ lead.city }}{% endif %}
+        Modern dentistry · Kolkata
       </p>
       <h1>
         Care,<br>
@@ -162,36 +260,36 @@
       </h1>
       <p>Comfortable dentistry, close to home.</p>
       <div class="luminous-hero__actions">
-        {% if lead.phoneHref %}
+        
         <a href="#book" class="luminous-button">Book a visit</a>
-        {% endif %}
-        {% if lead.whatsappHref %}
-        <a href="{{ lead.whatsappHref }}" class="luminous-text-link">WhatsApp</a>
-        {% endif %}
+        
+        
+        <a href="https://wa.me/919876543210" class="luminous-text-link">WhatsApp</a>
+        
       </div>
     </div>
 
     <!-- Vertical Film Metadata Aside -->
     <aside class="luminous-film-meta">
       <span>Dental care</span>
-      {% if lead.city %}<span>{{ lead.city }}</span>{% endif %}
+      <span>Kolkata</span>
       <span>Est. locally</span>
     </aside>
 
     <!-- Bottom Proof Ribbon -->
     <div class="luminous-proof">
-      {% if lead.rating %}<span>{{ lead.rating }} Google rating</span>{% endif %}
-      {% if lead.reviewCount %}<span>{{ lead.reviewCount }} reviews</span>{% endif %}
-      {% if lead.hours %}<span>{{ lead.hours }}</span>{% endif %}
+      <span>4.9 Google rating</span>
+      <span>128 reviews</span>
+      
     </div>
   </section>
 
   <!-- 2. Film Credit Trust Ribbon -->
   <section class="credit-ribbon">
     <div class="container credit-flex reveal-luminous">
-      {% if lead.rating %}<div>★ {{ lead.rating }} Rating</div>{% endif %}
-      {% if lead.reviewCount %}<div>✦ {{ lead.reviewCount }} Google Reviews</div>{% endif %}
-      {% if lead.city %}<div>📍 Clinic in {{ lead.city }}</div>{% endif %}
+      <div>★ 4.9 Rating</div>
+      <div>✦ 128 Google Reviews</div>
+      <div>📍 Clinic in Kolkata</div>
       <div>💬 Call or WhatsApp Booking</div>
     </div>
   </section>
@@ -205,20 +303,35 @@
       </div>
       <div class="chapters-grid">
         <div class="reveal-luminous">
-          {% for s in category_pack.services %}
-            <div class="luminous-chapter-tab {% if loop.first %}active{% endif %}" data-title="{{ s.title }}" data-desc="{{ s.description }}">
-              <span class="luminous-chapter-num">Chapter 0{{ loop.index }}</span>
-              <h3 class="serif" style="font-size:24px;margin-top:4px">{{ s.title }}</h3>
+          
+            <div class="luminous-chapter-tab active" data-title="Routine Check-ups &amp; Cleaning" data-desc="Comprehensive oral check-ups, tartar removal, and preventive plaque cleaning.">
+              <span class="luminous-chapter-num">Chapter 01</span>
+              <h3 class="serif" style="font-size:24px;margin-top:4px">Routine Check-ups &amp; Cleaning</h3>
             </div>
-          {% endfor %}
+          
+            <div class="luminous-chapter-tab " data-title="Teeth Aligners &amp; Braces" data-desc="Clear invisible aligners and orthodontic treatment options for all age groups.">
+              <span class="luminous-chapter-num">Chapter 02</span>
+              <h3 class="serif" style="font-size:24px;margin-top:4px">Teeth Aligners &amp; Braces</h3>
+            </div>
+          
+            <div class="luminous-chapter-tab " data-title="Dental Implants &amp; Crowns" data-desc="Durable tooth replacements and aesthetic porcelain crowns fitted to your natural bite.">
+              <span class="luminous-chapter-num">Chapter 03</span>
+              <h3 class="serif" style="font-size:24px;margin-top:4px">Dental Implants &amp; Crowns</h3>
+            </div>
+          
+            <div class="luminous-chapter-tab " data-title="Restorative &amp; Root Canal Care" data-desc="Tooth-colored fillings and gentle root canal treatments under local anesthesia.">
+              <span class="luminous-chapter-num">Chapter 04</span>
+              <h3 class="serif" style="font-size:24px;margin-top:4px">Restorative &amp; Root Canal Care</h3>
+            </div>
+          
         </div>
         <div class="chapter-display reveal-luminous">
           <span class="luminous-eyebrow">Selected Chapter</span>
           <h3 class="serif" id="luminous-active-chapter-title" style="font-size:36px;margin:12px 0">
-            {{ category_pack.services[0].title if category_pack.services else 'Preventive Care' }}
+            Routine Check-ups &amp; Cleaning
           </h3>
           <p id="luminous-active-chapter-desc" style="font-size:17px;color:var(--text-muted)">
-            {{ category_pack.services[0].description if category_pack.services else lead.pageDescription }}
+            Comprehensive oral check-ups, tartar removal, and preventive plaque cleaning.
           </p>
         </div>
       </div>
@@ -254,15 +367,7 @@
   </section>
 
   <!-- 7. Patient Voice (Rendered ONLY when review exists) -->
-  {% if lead.review %}
-  <section class="section">
-    <div class="container" style="max-width:760px;text-align:center">
-      <span class="luminous-eyebrow">Patient Voice</span>
-      <blockquote class="serif" style="font-size:24px;font-style:italic;margin:20px 0">"{{ lead.review }}"</blockquote>
-      <strong style="font-size:14px;color:var(--text-dark)">— Verified Patient Review</strong>
-    </div>
-  </section>
-  {% endif %}
+  
 
   <!-- 9. FAQ Film Index -->
   <section class="section">
@@ -271,14 +376,56 @@
         <span class="luminous-eyebrow">Film Index</span>
         <h2 class="serif" style="font-size:40px">Frequently Asked Questions</h2>
       </div>
-      {% for f in category_pack.faqs %}
+      
         <div class="faq-row reveal-luminous">
           <button class="faq-trigger-btn" onclick="this.parentElement.classList.toggle('open')">
-            <span>{{ f.q }}</span> <span style="color:var(--accent-cobalt)">+</span>
+            <span>How can I book an appointment?</span> <span style="color:var(--accent-cobalt)">+</span>
           </button>
-          <div class="faq-answer-panel"><p>{{ f.a }}</p></div>
+          <div class="faq-answer-panel"><p>You can click &#39;Book an appointment&#39;, call the clinic directly, or send us a message on WhatsApp for immediate assistance.</p></div>
         </div>
-      {% endfor %}
+      
+        <div class="faq-row reveal-luminous">
+          <button class="faq-trigger-btn" onclick="this.parentElement.classList.toggle('open')">
+            <span>Do I need an appointment for a dental check-up?</span> <span style="color:var(--accent-cobalt)">+</span>
+          </button>
+          <div class="faq-answer-panel"><p>Prior appointments are recommended to ensure zero waiting time, though walk-ins are accommodated based on doctor availability.</p></div>
+        </div>
+      
+        <div class="faq-row reveal-luminous">
+          <button class="faq-trigger-btn" onclick="this.parentElement.classList.toggle('open')">
+            <span>What should I bring to my first consultation?</span> <span style="color:var(--accent-cobalt)">+</span>
+          </button>
+          <div class="faq-answer-panel"><p>Please bring any previous dental X-rays or records if available, along with a list of any current medications.</p></div>
+        </div>
+      
+        <div class="faq-row reveal-luminous">
+          <button class="faq-trigger-btn" onclick="this.parentElement.classList.toggle('open')">
+            <span>Can I contact the clinic through WhatsApp?</span> <span style="color:var(--accent-cobalt)">+</span>
+          </button>
+          <div class="faq-answer-panel"><p>Yes! You can message us on WhatsApp for slot availability, directions, and routine queries.</p></div>
+        </div>
+      
+        <div class="faq-row reveal-luminous">
+          <button class="faq-trigger-btn" onclick="this.parentElement.classList.toggle('open')">
+            <span>Where is the clinic located?</span> <span style="color:var(--accent-cobalt)">+</span>
+          </button>
+          <div class="faq-answer-panel"><p>Our address and interactive map are listed below. We are located centrally with convenient local transit access.</p></div>
+        </div>
+      
+        <div class="faq-row reveal-luminous">
+          <button class="faq-trigger-btn" onclick="this.parentElement.classList.toggle('open')">
+            <span>What are the clinic timings?</span> <span style="color:var(--accent-cobalt)">+</span>
+          </button>
+          <div class="faq-answer-panel"><p>Our clinic timings are displayed in the booking section below. Please call or message on WhatsApp to confirm holiday schedules.</p></div>
+        </div>
+      
+        <div class="faq-row reveal-luminous">
+          <button class="faq-trigger-btn" onclick="this.parentElement.classList.toggle('open')">
+            <span>Are treatment costs discussed before starting?</span> <span style="color:var(--accent-cobalt)">+</span>
+          </button>
+          <div class="faq-answer-panel"><p>Yes, absolutely. We provide a complete overview of recommended procedures and costs before starting any treatment.</p></div>
+        </div>
+      
     </div>
   </section>
 
@@ -289,17 +436,17 @@
         <div>
           <span class="luminous-eyebrow">Visit Reservation</span>
           <h2 class="serif" style="font-size:38px;margin-bottom:12px">Quality dental care, closer to home.</h2>
-          <p style="color:var(--text-muted);margin-bottom:28px">Contact {{ lead.fullName }} in {{ lead.city }} to schedule your visit.</p>
-          {% if lead.phoneHref %}<a href="{{ lead.phoneHref }}" class="luminous-button" style="width:100%;margin-bottom:12px">Call clinic ({{ lead.phoneDisplay }})</a>{% endif %}
-          {% if lead.whatsappHref %}<a href="{{ lead.whatsappHref }}" class="luminous-text-link" style="font-size:16px">Chat on WhatsApp →</a>{% endif %}
+          <p style="color:var(--text-muted);margin-bottom:28px">Contact Apex Dental Clinic in Kolkata to schedule your visit.</p>
+          <a href="tel:+919876543210" class="luminous-button" style="width:100%;margin-bottom:12px">Call clinic (9876543210)</a>
+          <a href="https://wa.me/919876543210" class="luminous-text-link" style="font-size:16px">Chat on WhatsApp →</a>
         </div>
         <div id="location">
           <span class="luminous-eyebrow">Location</span>
-          <h3 class="serif" style="font-size:24px;margin-bottom:6px">{{ lead.fullName }}</h3>
-          <p style="color:var(--text-muted)">{{ lead.fullAddress or lead.address }}</p>
-          {% if lead.mapsEmbedUrl %}
-            <iframe class="map-aperture" src="{{ lead.mapsEmbedUrl }}" loading="lazy" allowfullscreen></iframe>
-          {% endif %}
+          <h3 class="serif" style="font-size:24px;margin-bottom:6px">Apex Dental Clinic</h3>
+          <p style="color:var(--text-muted)">12 Park Street, Opposite City Mall</p>
+          
+            <iframe class="map-aperture" src="https://www.google.com/maps?q=12%20Park%20Street%2C%20Opposite%20City%20Mall%2C%20Kolkata&amp;z=17&amp;output=embed" loading="lazy" allowfullscreen></iframe>
+          
         </div>
       </div>
     </div>
@@ -309,12 +456,12 @@
   <footer>
     <div class="container" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px">
       <div>
-        <h4 class="serif" style="font-size:18px;color:var(--text-dark)">{{ lead.fullName }}</h4>
-        <p style="margin-top:4px">Modern Dentistry in {{ lead.city }}</p>
+        <h4 class="serif" style="font-size:18px;color:var(--text-dark)">Apex Dental Clinic</h4>
+        <p style="margin-top:4px">Modern Dentistry in Kolkata</p>
       </div>
       <div>
-        <p>© {{ current_year }} {{ lead.fullName }}. All rights reserved.</p>
-        <p style="margin-top:4px;font-size:11px">{{ category_pack.disclaimer }}</p>
+        <p>© 2026 Apex Dental Clinic. All rights reserved.</p>
+        <p style="margin-top:4px;font-size:11px">Medical Disclaimer: Information on this page is for general awareness. Please consult a qualified dentist for diagnosis and treatment.</p>
       </div>
     </div>
   </footer>
