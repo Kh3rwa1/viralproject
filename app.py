@@ -50,6 +50,11 @@ def terms():
     return send_from_directory(SITE, "terms.html")
 
 
+@app.get("/showcase")
+def showcase():
+    return send_from_directory(SITE, "showcase.html")
+
+
 @app.get("/og.svg")
 def og_svg():
     return send_from_directory(SITE, "og.svg")
