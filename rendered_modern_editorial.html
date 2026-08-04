@@ -4,12 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-  <title>{{ lead.pageTitle }}</title>
-  <meta name="description" content="{{ lead.pageDescription }}">
-  {% if not live %}
-  <meta name="robots" content="noindex, nofollow">
-  {% endif %}
-  <link rel="canonical" href="{{ lead.pageUrl }}">
+  <title>Apex Dental Clinic — Dental Clinics in Kolkata</title>
+  <meta name="description" content="Contact Apex Dental Clinic, a Dental Clinics serving Kolkata.">
+  
+  <link rel="canonical" href="/apex-dental-clinic/">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1338,17 +1336,17 @@
     }
   </style>
 
-  <script type="application/ld+json">{{ schema | tojson }}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LocalBusiness", "address": "12 Park Street, Opposite City Mall", "description": "Contact Apex Dental Clinic, a Dental Clinics serving Kolkata.", "name": "Apex Dental Clinic", "telephone": "+919876543210", "url": "/apex-dental-clinic/"}</script>
 </head>
 
-<body data-business-phone="{{ lead.phoneIntl }}">
+<body data-business-phone="919876543210">
 
   <!-- Sticky retro masthead -->
   <header class="retro-header">
     <nav class="container retro-nav" aria-label="Primary navigation">
-      <a class="retro-brand" href="#top" aria-label="{{ lead.fullName }} home">
+      <a class="retro-brand" href="#top" aria-label="Apex Dental Clinic home">
         <span class="retro-brand__mark" aria-hidden="true">+</span>
-        <span>{{ lead.shortName or lead.fullName }}</span>
+        <span>Apex Dental Clinic</span>
       </a>
 
       <div class="retro-nav__links">
@@ -1359,11 +1357,11 @@
         <a href="#location">Location</a>
       </div>
 
-      {% if lead.phoneHref %}
+      
       <a class="retro-button retro-nav__action" href="#book">
         Book visit
       </a>
-      {% endif %}
+      
     </nav>
   </header>
 
@@ -1375,7 +1373,7 @@
 
         <div class="retro-hero__copy" data-reveal>
           <div class="retro-hero__issue">
-            Modern dentistry{% if lead.city %} · {{ lead.city }}{% endif %}
+            Modern dentistry · Kolkata
           </div>
 
           <h1>
@@ -1388,21 +1386,21 @@
           </p>
 
           <div class="retro-hero__actions">
-            {% if lead.phoneHref %}
+            
             <a class="retro-button" href="#book">
               Book a visit
             </a>
-            {% endif %}
+            
 
-            {% if lead.whatsappHref %}
+            
             <a
               class="retro-button retro-button--whatsapp"
-              href="{{ lead.whatsappHref }}"
+              href="https://wa.me/919876543210"
               rel="noopener"
             >
               WhatsApp
             </a>
-            {% endif %}
+            
           </div>
         </div>
 
@@ -1410,8 +1408,8 @@
           <div class="retro-screen">
             <img
               class="retro-screen__poster"
-              src="{{ category_pack.video_poster }}"
-              alt="{{ lead.fullName }} dental care"
+              src="https://images.pexels.com/photos/3845766/pexels-photo-3845766.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1260&amp;h=750&amp;dpr=2"
+              alt="Apex Dental Clinic dental care"
               width="1600"
               height="900"
             >
@@ -1424,18 +1422,13 @@
               playsinline
               webkit-playsinline
               preload="auto"
-              poster="{{ category_pack.video_poster }}"
-              aria-label="Dental care at {{ lead.fullName }}"
+              poster="https://images.pexels.com/photos/3845766/pexels-photo-3845766.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1260&amp;h=750&amp;dpr=2"
+              aria-label="Dental care at Apex Dental Clinic"
             >
-              {% if category_pack.hero_video_webm %}
-              <source
-                src="{{ category_pack.hero_video_webm }}"
-                type="video/webm"
-              >
-              {% endif %}
+              
 
               <source
-                src="{{ category_pack.hero_video_mp4 or category_pack.pexels_video }}"
+                src="https://www.pexels.com/download/video/6192876/"
                 type="video/mp4"
               >
             </video>
@@ -1467,29 +1460,25 @@
     <!-- Only real lead-sourced proof -->
     <div class="proof-strip" aria-label="Clinic information">
       <div class="proof-strip__track">
-        {% if lead.rating %}
+        
         <span class="proof-strip__item">
-          {{ lead.rating }} Google rating
+          4.9 Google rating
         </span>
-        {% endif %}
+        
 
-        {% if lead.reviewCount %}
+        
         <span class="proof-strip__item">
-          {{ lead.reviewCount }} reviews
+          128 reviews
         </span>
-        {% endif %}
+        
 
-        {% if lead.city %}
+        
         <span class="proof-strip__item">
-          Clinic in {{ lead.city }}
+          Clinic in Kolkata
         </span>
-        {% endif %}
+        
 
-        {% if lead.hours %}
-        <span class="proof-strip__item">
-          {{ lead.hours }}
-        </span>
-        {% endif %}
+        
 
         <span class="proof-strip__item">
           Call or WhatsApp booking
@@ -1518,7 +1507,7 @@
 
           <div class="intro-copy">
             <p>
-              {{ category_pack.story.body if category_pack.story else lead.pageDescription }}
+              We focus on patient comfort, transparent communication, and hygienic clinical standards. Whether you need a simple check-up or specialized care, our team ensures every visit is relaxed and stress-free.
             </p>
 
             <p>
@@ -1557,21 +1546,63 @@
         </div>
 
         <div class="service-directory">
-          {% for service in category_pack.services %}
+          
           <article class="service-entry" data-reveal>
             <span class="service-entry__number">
-              0{{ loop.index }}
+              01
             </span>
 
-            <h3>{{ service.title }}</h3>
+            <h3>Routine Check-ups &amp; Cleaning</h3>
 
-            <p>{{ service.description }}</p>
+            <p>Comprehensive oral check-ups, tartar removal, and preventive plaque cleaning.</p>
 
             <span class="service-entry__arrow" aria-hidden="true">
               →
             </span>
           </article>
-          {% endfor %}
+          
+          <article class="service-entry" data-reveal>
+            <span class="service-entry__number">
+              02
+            </span>
+
+            <h3>Teeth Aligners &amp; Braces</h3>
+
+            <p>Clear invisible aligners and orthodontic treatment options for all age groups.</p>
+
+            <span class="service-entry__arrow" aria-hidden="true">
+              →
+            </span>
+          </article>
+          
+          <article class="service-entry" data-reveal>
+            <span class="service-entry__number">
+              03
+            </span>
+
+            <h3>Dental Implants &amp; Crowns</h3>
+
+            <p>Durable tooth replacements and aesthetic porcelain crowns fitted to your natural bite.</p>
+
+            <span class="service-entry__arrow" aria-hidden="true">
+              →
+            </span>
+          </article>
+          
+          <article class="service-entry" data-reveal>
+            <span class="service-entry__number">
+              04
+            </span>
+
+            <h3>Restorative &amp; Root Canal Care</h3>
+
+            <p>Tooth-colored fillings and gentle root canal treatments under local anesthesia.</p>
+
+            <span class="service-entry__arrow" aria-hidden="true">
+              →
+            </span>
+          </article>
+          
         </div>
 
       </div>
@@ -1602,11 +1633,11 @@
               treatment.
             </p>
 
-            {% if lead.phoneHref %}
-            <a class="retro-button" href="{{ lead.phoneHref }}">
-              Call {{ lead.phoneDisplay }}
+            
+            <a class="retro-button" href="tel:+919876543210">
+              Call 9876543210
             </a>
-            {% endif %}
+            
           </div>
 
         </article>
@@ -1625,69 +1656,84 @@
         </h2>
 
         <div class="journey-grid">
-          {% for step in category_pack.process_steps %}
+          
           <article class="journey-step" data-reveal>
             <span class="journey-step__number">
-              {{ step.step }}
+              01
             </span>
 
-            <h3>{{ step.title }}</h3>
-            <p>{{ step.desc }}</p>
+            <h3>Book Your Visit</h3>
+            <p>Select a convenient time online or via WhatsApp with instant confirmation.</p>
           </article>
-          {% endfor %}
+          
+          <article class="journey-step" data-reveal>
+            <span class="journey-step__number">
+              02
+            </span>
+
+            <h3>Comprehensive Check-up</h3>
+            <p>Detailed examination and digital imaging with clear explanation of your options.</p>
+          </article>
+          
+          <article class="journey-step" data-reveal>
+            <span class="journey-step__number">
+              03
+            </span>
+
+            <h3>Personalised Care</h3>
+            <p>Step-by-step treatment plan with transparent costs discussed upfront.</p>
+          </article>
+          
+          <article class="journey-step" data-reveal>
+            <span class="journey-step__number">
+              04
+            </span>
+
+            <h3>Follow-Up &amp; Advice</h3>
+            <p>Post-treatment guidance and routine maintenance reminders.</p>
+          </article>
+          
         </div>
 
       </div>
     </section>
 
     <!-- Real business details only -->
-    {% if lead.rating or lead.reviewCount or lead.city %}
+    
     <section class="section real-proof">
       <div class="container">
 
         <span class="section-label">Clinic record</span>
 
         <div class="real-proof__grid" data-reveal>
-          {% if lead.rating %}
+          
           <article class="real-proof__item">
             <small>Google rating</small>
-            <strong>{{ lead.rating }}</strong>
+            <strong>4.9</strong>
           </article>
-          {% endif %}
+          
 
-          {% if lead.reviewCount %}
+          
           <article class="real-proof__item">
             <small>Published reviews</small>
-            <strong>{{ lead.reviewCount }}</strong>
+            <strong>128</strong>
           </article>
-          {% endif %}
+          
 
-          {% if lead.city %}
+          
           <article class="real-proof__item">
             <small>Clinic location</small>
-            <strong>{{ lead.city }}</strong>
+            <strong>Kolkata</strong>
           </article>
-          {% endif %}
+          
         </div>
 
       </div>
     </section>
-    {% endif %}
+    
 
     <!-- Render review only when imported from lead data -->
-    {% if lead.review %}
-    <section class="section review-spread">
-      <div class="container" data-reveal>
-        <span class="section-label">Patient review</span>
-
-        <blockquote>
-          {{ lead.review }}
-        </blockquote>
-
-        <p>Published patient feedback</p>
-      </div>
-    </section>
-    {% endif %}
+    
 
     <!-- Accessible FAQ index -->
     <section class="section" id="questions">
@@ -1703,19 +1749,91 @@
         </div>
 
         <div class="faq-list">
-          {% for faq in category_pack.faqs %}
+          
           <details class="faq-item" data-reveal>
             <summary>
-              <span class="faq-item__number">0{{ loop.index }}</span>
-              <span>{{ faq.q }}</span>
+              <span class="faq-item__number">01</span>
+              <span>How can I book an appointment?</span>
               <span class="faq-item__icon" aria-hidden="true">+</span>
             </summary>
 
             <div class="faq-item__answer">
-              <p>{{ faq.a }}</p>
+              <p>You can click &#39;Book an appointment&#39;, call the clinic directly, or send us a message on WhatsApp for immediate assistance.</p>
             </div>
           </details>
-          {% endfor %}
+          
+          <details class="faq-item" data-reveal>
+            <summary>
+              <span class="faq-item__number">02</span>
+              <span>Do I need an appointment for a dental check-up?</span>
+              <span class="faq-item__icon" aria-hidden="true">+</span>
+            </summary>
+
+            <div class="faq-item__answer">
+              <p>Prior appointments are recommended to ensure zero waiting time, though walk-ins are accommodated based on doctor availability.</p>
+            </div>
+          </details>
+          
+          <details class="faq-item" data-reveal>
+            <summary>
+              <span class="faq-item__number">03</span>
+              <span>What should I bring to my first consultation?</span>
+              <span class="faq-item__icon" aria-hidden="true">+</span>
+            </summary>
+
+            <div class="faq-item__answer">
+              <p>Please bring any previous dental X-rays or records if available, along with a list of any current medications.</p>
+            </div>
+          </details>
+          
+          <details class="faq-item" data-reveal>
+            <summary>
+              <span class="faq-item__number">04</span>
+              <span>Can I contact the clinic through WhatsApp?</span>
+              <span class="faq-item__icon" aria-hidden="true">+</span>
+            </summary>
+
+            <div class="faq-item__answer">
+              <p>Yes! You can message us on WhatsApp for slot availability, directions, and routine queries.</p>
+            </div>
+          </details>
+          
+          <details class="faq-item" data-reveal>
+            <summary>
+              <span class="faq-item__number">05</span>
+              <span>Where is the clinic located?</span>
+              <span class="faq-item__icon" aria-hidden="true">+</span>
+            </summary>
+
+            <div class="faq-item__answer">
+              <p>Our address and interactive map are listed below. We are located centrally with convenient local transit access.</p>
+            </div>
+          </details>
+          
+          <details class="faq-item" data-reveal>
+            <summary>
+              <span class="faq-item__number">06</span>
+              <span>What are the clinic timings?</span>
+              <span class="faq-item__icon" aria-hidden="true">+</span>
+            </summary>
+
+            <div class="faq-item__answer">
+              <p>Our clinic timings are displayed in the booking section below. Please call or message on WhatsApp to confirm holiday schedules.</p>
+            </div>
+          </details>
+          
+          <details class="faq-item" data-reveal>
+            <summary>
+              <span class="faq-item__number">07</span>
+              <span>Are treatment costs discussed before starting?</span>
+              <span class="faq-item__icon" aria-hidden="true">+</span>
+            </summary>
+
+            <div class="faq-item__answer">
+              <p>Yes, absolutely. We provide a complete overview of recommended procedures and costs before starting any treatment.</p>
+            </div>
+          </details>
+          
         </div>
 
       </div>
@@ -1735,81 +1853,55 @@
             </h2>
 
             <p>
-              Contact {{ lead.fullName }} directly to check appointment
+              Contact Apex Dental Clinic directly to check appointment
               availability.
             </p>
 
             <div class="booking-console__address">
-              <strong>{{ lead.fullName }}</strong>
+              <strong>Apex Dental Clinic</strong>
 
-              {% if lead.fullAddress or lead.address %}
-              <p>{{ lead.fullAddress or lead.address }}</p>
-              {% endif %}
+              
+              <p>12 Park Street, Opposite City Mall</p>
+              
 
-              {% if lead.hours %}
-              <p>{{ lead.hours }}</p>
-              {% endif %}
+              
 
-              {% if lead.phoneDisplay %}
-              <p>{{ lead.phoneDisplay }}</p>
-              {% endif %}
+              
+              <p>9876543210</p>
+              
             </div>
 
             <div class="booking-console__actions">
-              {% if lead.phoneHref %}
-              <a class="retro-button" href="{{ lead.phoneHref }}">
+              
+              <a class="retro-button" href="tel:+919876543210">
                 Call clinic
               </a>
-              {% endif %}
+              
 
-              {% if lead.whatsappHref %}
+              
               <a
                 class="retro-button retro-button--whatsapp"
-                href="{{ lead.whatsappHref }}"
+                href="https://wa.me/919876543210"
                 rel="noopener"
               >
                 WhatsApp enquiry
               </a>
-              {% endif %}
+              
 
-              {% if lead.mapsUrl %}
-              <a
-                class="retro-button retro-button--light"
-                href="{{ lead.mapsUrl }}"
-                target="_blank"
-                rel="noopener"
-              >
-                Open directions
-              </a>
-              {% endif %}
+              
             </div>
           </div>
 
           <div class="booking-console__map" id="location">
-            {% if lead.mapsEmbedUrl %}
+            
             <iframe
-              src="{{ lead.mapsEmbedUrl }}"
-              title="Map showing {{ lead.fullName }}"
+              src="https://www.google.com/maps?q=12%20Park%20Street%2C%20Opposite%20City%20Mall%2C%20Kolkata&amp;z=17&amp;output=embed"
+              title="Map showing Apex Dental Clinic"
               loading="lazy"
               allowfullscreen
               referrerpolicy="no-referrer-when-downgrade"
             ></iframe>
-            {% else %}
-            <div
-              style="
-                height:100%;
-                min-height:480px;
-                display:grid;
-                place-items:center;
-                border:3px solid var(--ink);
-                background:var(--paper);
-                padding:30px;
-                text-align:center;
-              "
-            >
-              <p>Contact the clinic for directions.</p>
-            </div>
-            {% endif %}
+            
           </div>
 
         </div>
@@ -1824,36 +1916,36 @@
 
       <div>
         <h2 class="retro-footer__brand">
-          {{ lead.fullName }}
+          Apex Dental Clinic
         </h2>
 
         <p>
-          {{ lead.category }}{% if lead.city %} in {{ lead.city }}{% endif %}
+          Dental Clinics in Kolkata
         </p>
 
         <p style="margin-top:16px">
-          {{ category_pack.disclaimer }}
+          Medical Disclaimer: Information on this page is for general awareness. Please consult a qualified dentist for diagnosis and treatment.
         </p>
       </div>
 
       <div class="retro-footer__edition">
-        Edition {{ current_year }} · {{ lead.shortName }}
+        Edition 2026 · Apex Dental Clinic
       </div>
 
     </div>
   </footer>
 
-  {% if lead.phoneHref or lead.whatsappHref %}
+  
   <div class="mobile-actions" aria-label="Quick contact actions">
-    {% if lead.phoneHref %}
-    <a href="{{ lead.phoneHref }}">Call clinic</a>
-    {% endif %}
+    
+    <a href="tel:+919876543210">Call clinic</a>
+    
 
-    {% if lead.whatsappHref %}
-    <a href="{{ lead.whatsappHref }}" rel="noopener">WhatsApp</a>
-    {% endif %}
+    
+    <a href="https://wa.me/919876543210" rel="noopener">WhatsApp</a>
+    
   </div>
-  {% endif %}
+  
 
   <script>
     (() => {
